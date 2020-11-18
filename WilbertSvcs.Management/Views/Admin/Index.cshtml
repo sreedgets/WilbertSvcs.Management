@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@{
+    ViewData["Title"] = "Dashbooard";
+}
+<link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/Account/dashboard.css" rel="stylesheet" />
+<h1 class="bg-info text-white">Dashboard</h1>
+
+<div>
+    <table class="dashboard_images">
+        <tr>
+            <td>
+                <a asp-action="Index" asp-controller="Users" class="btn btn-primary btn-lg">Manage Users</a>
+            </td>
+            <td>
+                <a asp-action="Index" asp-controller="role" class="btn btn-primary btn-lg">Manage Roles</a>
+            </td>
+
+        </tr>
+    </table>
+</div>
