@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using WilbertFSvcs.Models.Enums;
 using WilbertFSvcs.Models.Misc;
 
-namespace WilbertFSvcs.Model.Entities
+namespace WilbertFSvcs.Models.Entities
 {
     public class FuneralHomeContact
     {

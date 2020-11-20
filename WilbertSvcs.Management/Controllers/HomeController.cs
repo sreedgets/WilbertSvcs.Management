@@ -17,7 +17,6 @@ namespace WilbertSvcs.Management.Controllers
             userManager = userMgr;
         }
 
-        [Authorize(Roles = "Superuser")]
         public async Task<IActionResult> Index()
         {
             WilbertAppUser user = await userManager.GetUserAsync(HttpContext.User);

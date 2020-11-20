@@ -1,10 +1,54 @@
 ﻿@model string
-
-<h1 class="bg-info text-white">Index</h1>
-@Model
-
-@if (User?.Identity?.IsAuthenticated ?? false)
-{
-    @*<a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Logout</a>*@
-    <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Logout</a>
+@{
+    ViewData["Title"] = "Dashbooard";
 }
+<link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/Account/dashboard.css" rel="stylesheet" />
+<h1 class="bg-info text-white">Dashboard</h1>
+
+<div class="sidebar">
+    <table class="dashboard_images">
+        <tr>
+            <td>
+                <a asp-action="Index" asp-controller="Admin" class="btn btn-danger btn-lg">Administration</a>
+            </td>
+            <td>
+                <a asp-action="index" asp-controller="funeralhomes" class="btn btn-primary btn-lg">Funeral Homes</a>               
+            </td>
+            <td>
+                <a asp-action="index" asp-controller="Plants" class="btn btn-primary btn-lg">Plants</a>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary btn-lg">Cemetaries</button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary btn-lg">Orders</button>
+            </td>
+
+        </tr>
+    </table>
+    <br />
+    <br />
+    <table class="dashboard_images">
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-primary btn-lg">Daily List</button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary btn-lg">Deliveries</button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary btn-lg">Office Review</button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary btn-lg">Employees</button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary btn-lg">Vaults</button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary btn-lg">Trucks</button>
+            </td>
+        </tr>
+    </table>
+</div>

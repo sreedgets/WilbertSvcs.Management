@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using WilbertFSvcs.api.Data;
+using WilbertFSvcs.Models.Entities;
 using WilbertSvcs.Management.Models;
 
 namespace WilbertSvcs.Management
@@ -31,6 +33,8 @@ namespace WilbertSvcs.Management
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
                 options.SlidingExpiration = true;
             });
+
+            services.AddTransient<WilbertDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +61,7 @@ namespace WilbertSvcs.Management
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=login}/{id?}");
             });
         }
     }

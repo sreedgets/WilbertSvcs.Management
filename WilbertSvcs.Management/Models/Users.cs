@@ -14,15 +14,15 @@ namespace WilbertSvcs.Management.Models
         [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string NickName { get; set; }
+        [Required]
+        public string Name { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [Required]
-        [EmailAddress]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
         public string Spouse { get; set; }
         public Boolean ShowPrices { get; set; }
         public string Interests { get; set; }

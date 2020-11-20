@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WilbertFSvcs.Model.Entities;
 using WilbertFSvcs.api.Data;
+using WilbertFSvcs.Models.Entities;
 
 namespace WilbertFSvcs.api.Controllers
 {

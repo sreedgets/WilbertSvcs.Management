@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WilbertSvcs.Management.Models;
@@ -26,6 +27,7 @@ namespace WilbertSvcs.Management.Controllers
         }
 
 
+
         public ViewResult Create() => View();
 
         [HttpPost]
@@ -35,7 +37,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 WilbertAppUser appUser = new WilbertAppUser
                 {
-                    UserName = user.FirstName,
+                    UserName = user.Name,
                     Email = user.Email
                 };
 
@@ -50,6 +52,7 @@ namespace WilbertSvcs.Management.Controllers
             }
             return View(user);
         }
+    
         public async Task<IActionResult> Update(string id)
         {
             WilbertAppUser user = await userManager.FindByIdAsync(id);
@@ -62,7 +65,9 @@ namespace WilbertSvcs.Management.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(string id, string email, string password)
         {
+
             WilbertAppUser user = await userManager.FindByIdAsync(id);
+            //TODO:  Enforce password policy on update.
             if (user != null)
             {
                 if (!string.IsNullOrEmpty(email))
@@ -83,6 +88,7 @@ namespace WilbertSvcs.Management.Controllers
                     else
                         Errors(result);
                 }
+                
             }
             else
                 ModelState.AddModelError("", "User Not Found");

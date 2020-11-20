@@ -10,7 +10,7 @@ using WilbertSvcs.Management.Models;
 namespace WilbertSvcs.Management.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20201112151703_addIdentity")]
+    [Migration("20201118190015_addIdentity")]
     partial class addIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,6 +170,12 @@ namespace WilbertSvcs.Management.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

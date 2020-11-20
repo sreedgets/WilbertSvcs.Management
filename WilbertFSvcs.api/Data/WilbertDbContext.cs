@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using WilbertFSvcs.Models.Entities;
-using WilbertFSvcs.Model.Entities;
-using WilbertFSvcs.Models.Misc;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace WilbertFSvcs.api.Data
 {
@@ -28,7 +21,7 @@ namespace WilbertFSvcs.api.Data
 
         public DbSet<WilbertFSvcs.Models.Entities.FuneralHome> FuneralHome { get; set; }
 
-        public DbSet<WilbertFSvcs.Model.Entities.FuneralHomeContact> FuneralHomeContact { get; set; }
+        public DbSet<WilbertFSvcs.Models.Entities.FuneralHomeContact> FuneralHomeContact { get; set; }
 
         public DbSet<WilbertFSvcs.Models.Misc.Interaction> Interaction { get; set; }
 

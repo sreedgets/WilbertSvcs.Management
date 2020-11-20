@@ -54,7 +54,9 @@ namespace WilbertSvcs.Management.Controllers
                     {
                         login.wilbertAppUser = WilbertAppUser;
                         login.userManager = userManager;
-                        return View(login.ReturnUrl, login);
+                        //return View(login.ReturnUrl, login);
+
+                        return RedirectToAction("index", "home");
                     }
                 }
                 ModelState.AddModelError(nameof(login.Email), "Login Failed: Invalid Email or password");
