@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilbertSvcs.Management", "WilbertSvcs.Management\WilbertSvcs.Management.csproj", "{1FB86182-6CEF-4BAD-9BF8-FDE324CC747A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilbertVaultCompany.api", "..\..\WilbertProject\WilbertVaultCompany.api\WilbertVaultCompany.api\WilbertVaultCompany.api.csproj", "{B17A2A0B-1990-4539-BD27-BE008373CBA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilbertVaultCompany.api", "WilbertVaultCompany.api\WilbertVaultCompany.api\WilbertVaultCompany.api.csproj", "{EF0C5098-5652-40B0-8838-5A298DCC3B5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{1FB86182-6CEF-4BAD-9BF8-FDE324CC747A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB86182-6CEF-4BAD-9BF8-FDE324CC747A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FB86182-6CEF-4BAD-9BF8-FDE324CC747A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B17A2A0B-1990-4539-BD27-BE008373CBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B17A2A0B-1990-4539-BD27-BE008373CBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B17A2A0B-1990-4539-BD27-BE008373CBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B17A2A0B-1990-4539-BD27-BE008373CBA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0C5098-5652-40B0-8838-5A298DCC3B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0C5098-5652-40B0-8838-5A298DCC3B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0C5098-5652-40B0-8838-5A298DCC3B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0C5098-5652-40B0-8838-5A298DCC3B5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
