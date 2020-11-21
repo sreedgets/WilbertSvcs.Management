@@ -5,17 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WilbertFSvcs.Models.Entities;
-using WilbertFSvcs.api.Data;
-
+using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
 {
     public class FuneralHomesController : Controller
     {
-        private readonly WilbertDbContext _context;
+        private readonly WilbertFSDatabaseContext _context;
 
-        public FuneralHomesController(WilbertDbContext context)
+        public FuneralHomesController(WilbertFSDatabaseContext context)
         {
             _context = context;
         }
@@ -23,8 +21,8 @@ namespace WilbertSvcs.Management.Controllers
         // GET: FuneralHomes
         public async Task<IActionResult> Index()
         {
-            var wilbertDbContext = _context.FuneralHome.Include(f => f.plant);
-            return View(await wilbertDbContext.ToListAsync());
+            var wilbertFSDatabaseContext = _context.FuneralHomes.Include(f => f.Plant);
+            return View(await wilbertFSDatabaseContext.ToListAsync());
         }
 
         // GET: FuneralHomes/Details/5
@@ -35,8 +33,8 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var funeralHome = await _context.FuneralHome
-                .Include(f => f.plant)
+            var funeralHome = await _context.FuneralHomes
+                .Include(f => f.Plant)
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
             if (funeralHome == null)
             {
@@ -49,7 +47,7 @@ namespace WilbertSvcs.Management.Controllers
         // GET: FuneralHomes/Create
         public IActionResult Create()
         {
-            ViewData["PlantId"] = new SelectList(_context.Plant, "PlantId", "PlantId");
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId");
             return View();
         }
 
@@ -66,7 +64,7 @@ namespace WilbertSvcs.Management.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PlantId"] = new SelectList(_context.Plant, "PlantId", "PlantId", funeralHome.PlantId);
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
 
@@ -78,12 +76,12 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var funeralHome = await _context.FuneralHome.FindAsync(id);
+            var funeralHome = await _context.FuneralHomes.FindAsync(id);
             if (funeralHome == null)
             {
                 return NotFound();
             }
-            ViewData["PlantId"] = new SelectList(_context.Plant, "PlantId", "PlantId", funeralHome.PlantId);
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
 
@@ -119,7 +117,7 @@ namespace WilbertSvcs.Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PlantId"] = new SelectList(_context.Plant, "PlantId", "PlantId", funeralHome.PlantId);
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
 
@@ -131,8 +129,8 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var funeralHome = await _context.FuneralHome
-                .Include(f => f.plant)
+            var funeralHome = await _context.FuneralHomes
+                .Include(f => f.Plant)
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
             if (funeralHome == null)
             {
@@ -147,15 +145,15 @@ namespace WilbertSvcs.Management.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var funeralHome = await _context.FuneralHome.FindAsync(id);
-            _context.FuneralHome.Remove(funeralHome);
+            var funeralHome = await _context.FuneralHomes.FindAsync(id);
+            _context.FuneralHomes.Remove(funeralHome);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FuneralHomeExists(int id)
         {
-            return _context.FuneralHome.Any(e => e.FuneralHomeId == id);
+            return _context.FuneralHomes.Any(e => e.FuneralHomeId == id);
         }
     }
 }

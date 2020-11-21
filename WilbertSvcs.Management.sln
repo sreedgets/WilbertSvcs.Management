@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilbertSvcs.Management", "WilbertSvcs.Management\WilbertSvcs.Management.csproj", "{1FB86182-6CEF-4BAD-9BF8-FDE324CC747A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilbertFSvcs.Models", "WilbertFSvcs.Models\WilbertFSvcs.Models.csproj", "{4335B816-411A-4187-94C3-C5078D91CAA7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilbertFSvcs.api", "WilbertFSvcs.api\WilbertFSvcs.api.csproj", "{06A2A887-9897-4697-ABC5-978602B814BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilbertVaultCompany.api", "..\..\WilbertProject\WilbertVaultCompany.api\WilbertVaultCompany.api\WilbertVaultCompany.api.csproj", "{B17A2A0B-1990-4539-BD27-BE008373CBA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +17,10 @@ Global
 		{1FB86182-6CEF-4BAD-9BF8-FDE324CC747A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB86182-6CEF-4BAD-9BF8-FDE324CC747A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FB86182-6CEF-4BAD-9BF8-FDE324CC747A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4335B816-411A-4187-94C3-C5078D91CAA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4335B816-411A-4187-94C3-C5078D91CAA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4335B816-411A-4187-94C3-C5078D91CAA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4335B816-411A-4187-94C3-C5078D91CAA7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06A2A887-9897-4697-ABC5-978602B814BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06A2A887-9897-4697-ABC5-978602B814BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06A2A887-9897-4697-ABC5-978602B814BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06A2A887-9897-4697-ABC5-978602B814BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B17A2A0B-1990-4539-BD27-BE008373CBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B17A2A0B-1990-4539-BD27-BE008373CBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B17A2A0B-1990-4539-BD27-BE008373CBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B17A2A0B-1990-4539-BD27-BE008373CBA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

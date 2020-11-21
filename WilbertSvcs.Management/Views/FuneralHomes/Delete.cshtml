@@ -1,4 +1,4 @@
-﻿@model WilbertFSvcs.Models.Entities.FuneralHome
+﻿@model WilbertVaultCompany.api.Models.FuneralHome
 
 @{
     ViewData["Title"] = "Delete";
@@ -23,12 +23,6 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.plant)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.plant.PlantId)
-        </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Address)
         </dt>
@@ -71,6 +65,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Website)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Plant)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Plant.PlantId)
+        </dd class>
     </dl>
     
     <form asp-action="Delete">
