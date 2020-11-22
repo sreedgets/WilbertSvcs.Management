@@ -14,7 +14,8 @@ namespace WilbertSvcs.Management.Models
         [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [Required]
+       
+        // [Required]
         public string Name { get; set; }
 
         [Required]
@@ -22,6 +23,7 @@ namespace WilbertSvcs.Management.Models
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public string Spouse { get; set; }
         public Boolean ShowPrices { get; set; }
