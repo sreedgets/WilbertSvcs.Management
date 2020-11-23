@@ -33,6 +33,7 @@ namespace WilbertSvcs.Management.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Users user)
         {
+            user.Name = user.FirstName + "_" + user.LastName;
             if (ModelState.IsValid)
             {
                 WilbertAppUser appUser = new WilbertAppUser
