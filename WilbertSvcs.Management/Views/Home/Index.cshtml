@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model Login
 @{
     ViewData["Title"] = "Dashbooard";
 }
@@ -9,11 +9,14 @@
 <div class="sidebar">
     <table class="dashboard_images">
         <tr>
+            @if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
+            {
+                <td>
+                    <a asp-action="Index" asp-controller="Admin" class="btn btn-danger btn-lg">Administration</a>
+                </td>
+            }
             <td>
-                <a asp-action="Index" asp-controller="Admin" class="btn btn-danger btn-lg">Administration</a>
-            </td>
-            <td>
-                <a asp-action="index" asp-controller="funeralhomes" class="btn btn-primary btn-lg">Funeral Homes</a>               
+                <a asp-action="index" asp-controller="funeralhomes" class="btn btn-primary btn-lg">Funeral Homes</a>
             </td>
             <td>
                 <a asp-action="index" asp-controller="Plants" class="btn btn-primary btn-lg">Plants</a>

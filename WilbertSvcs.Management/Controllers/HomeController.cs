@@ -17,11 +17,12 @@ namespace WilbertSvcs.Management.Controllers
             userManager = userMgr;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Login login)
         {
             WilbertAppUser user = await userManager.GetUserAsync(HttpContext.User);
-            //string message = "Hello";
-            return View();
+            login.userManager = userManager;
+            login.wilbertAppUser = user;
+            return View(login);
         }
 
 

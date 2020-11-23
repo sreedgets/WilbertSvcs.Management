@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Diagnostics;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Controller;
 using WilbertSvcs.Management.Models;
 
 namespace WilbertSvcs.Management.Controllers
@@ -56,7 +51,7 @@ namespace WilbertSvcs.Management.Controllers
                         login.userManager = userManager;
                         //return View(login.ReturnUrl, login);
 
-                        return RedirectToAction("index", "home");
+                        return RedirectToAction("index", "home", login);
                     }
                 }
                 ModelState.AddModelError(nameof(login.Email), "Login Failed: Invalid Email or password");
