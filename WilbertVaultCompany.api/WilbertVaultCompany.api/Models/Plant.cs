@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -11,7 +12,7 @@ namespace WilbertVaultCompany.api.Models
         {
             Employees = new HashSet<Employee>();
             FuneralHomes = new HashSet<FuneralHome>();
-            Phones = new HashSet<Phone>();
+            //Phones = new HashSet<Phone>();
             Trucks = new HashSet<Truck>();
             VaultOrders = new HashSet<VaultOrder>();
         }
@@ -28,7 +29,16 @@ namespace WilbertVaultCompany.api.Models
 
         public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<FuneralHome> FuneralHomes { get; set; }
-        public virtual ICollection<Phone> Phones { get; set; }
+        //public virtual ICollection<Phone> Phones { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        public string Phone1 { get; set; }
+        public string PhoneType1 { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        public string Phone2 { get; set; }
+        public string PhoneType2 { get; set; }
+
         public virtual ICollection<Truck> Trucks { get; set; }
         public virtual ICollection<VaultOrder> VaultOrders { get; set; }
     }

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WilbertVaultCompany.api.Data;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Controllers
@@ -14,25 +13,25 @@ namespace WilbertVaultCompany.api.Controllers
     [ApiController]
     public class FuneralHomesController : ControllerBase
     {
-        private readonly WilbertVaultCompanyDbContext _context;
+        private readonly WilbertFSDatabaseContext _context;
 
-        public FuneralHomesController(WilbertVaultCompanyDbContext context)
+        public FuneralHomesController(WilbertFSDatabaseContext context)
         {
             _context = context;
         }
 
         // GET: api/FuneralHomes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FuneralHome>>> GetFuneralHome()
+        public async Task<ActionResult<IEnumerable<FuneralHome>>> GetFuneralHomes()
         {
-            return await _context.FuneralHome.ToListAsync();
+            return await _context.FuneralHomes.ToListAsync();
         }
 
         // GET: api/FuneralHomes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<FuneralHome>> GetFuneralHome(int id)
         {
-            var funeralHome = await _context.FuneralHome.FindAsync(id);
+            var funeralHome = await _context.FuneralHomes.FindAsync(id);
 
             if (funeralHome == null)
             {
@@ -80,7 +79,7 @@ namespace WilbertVaultCompany.api.Controllers
         [HttpPost]
         public async Task<ActionResult<FuneralHome>> PostFuneralHome(FuneralHome funeralHome)
         {
-            _context.FuneralHome.Add(funeralHome);
+            _context.FuneralHomes.Add(funeralHome);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetFuneralHome", new { id = funeralHome.FuneralHomeId }, funeralHome);
@@ -90,13 +89,13 @@ namespace WilbertVaultCompany.api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<FuneralHome>> DeleteFuneralHome(int id)
         {
-            var funeralHome = await _context.FuneralHome.FindAsync(id);
+            var funeralHome = await _context.FuneralHomes.FindAsync(id);
             if (funeralHome == null)
             {
                 return NotFound();
             }
 
-            _context.FuneralHome.Remove(funeralHome);
+            _context.FuneralHomes.Remove(funeralHome);
             await _context.SaveChangesAsync();
 
             return funeralHome;
@@ -104,7 +103,7 @@ namespace WilbertVaultCompany.api.Controllers
 
         private bool FuneralHomeExists(int id)
         {
-            return _context.FuneralHome.Any(e => e.FuneralHomeId == id);
+            return _context.FuneralHomes.Any(e => e.FuneralHomeId == id);
         }
     }
 }

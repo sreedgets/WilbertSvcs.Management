@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -11,7 +12,7 @@ namespace WilbertVaultCompany.api.Models
         {
             FuneralHomeContacts = new HashSet<FuneralHomeContact>();
             Interactions = new HashSet<Interaction>();
-            Phones = new HashSet<Phone>();
+            //Phones = new HashSet<Phone>();
             Photos = new HashSet<Photo>();
         }
 
@@ -30,7 +31,15 @@ namespace WilbertVaultCompany.api.Models
         public virtual Plant Plant { get; set; }
         public virtual ICollection<FuneralHomeContact> FuneralHomeContacts { get; set; }
         public virtual ICollection<Interaction> Interactions { get; set; }
-        public virtual ICollection<Phone> Phones { get; set; }
+        //public virtual ICollection<Phone> Phones { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        public string Phone1 { get; set; }
+        public string PhoneType1 { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        public string Phone2 { get; set; }
+        public string PhoneType2 { get; set; }
+
         public virtual ICollection<Photo> Photos { get; set; }
     }
 }
