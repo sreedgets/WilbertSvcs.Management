@@ -6,6 +6,7 @@ namespace WilbertVaultCompany.api.Enums
 {
     public enum PhoneType
     {
+        Choose,
         Business, 
         Fax,
         Mobile,
