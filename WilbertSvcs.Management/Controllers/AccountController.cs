@@ -36,7 +36,7 @@ namespace WilbertSvcs.Management.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(Login login)
         {
-            login.ReturnUrl = "dashboard";
+            //login.ReturnUrl = "dashboard";
 
             if (ModelState.IsValid)
             {
@@ -51,7 +51,8 @@ namespace WilbertSvcs.Management.Controllers
                         login.userManager = userManager;
                         //return View(login.ReturnUrl, login);
 
-                        return RedirectToAction("index", "home", login);
+                        //return RedirectToAction("index", "home", login);
+                        return Redirect(login.ReturnUrl ?? "/");
                     }
                 }
                 ModelState.AddModelError(nameof(login.Email), "Login Failed: Invalid Email or password");

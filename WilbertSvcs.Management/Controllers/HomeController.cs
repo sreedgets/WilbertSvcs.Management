@@ -17,6 +17,7 @@ namespace WilbertSvcs.Management.Controllers
             userManager = userMgr;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index(Login login)
         {
             WilbertAppUser user = await userManager.GetUserAsync(HttpContext.User);
