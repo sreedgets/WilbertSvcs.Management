@@ -45,7 +45,11 @@ namespace WilbertSvcs.Management.Controllers
         // GET: FuneralHomes/Create
         public IActionResult Create()
         {
-            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId");
+            using (_context)
+            {
+                var fromDatabaseEF = new SelectList(_context.FuneralHomes.ToList(), "ParentFuneralHomeId", "Name");
+                ViewData["DBParentFuneralHome"] = fromDatabaseEF;
+            }
             return View();
         }
 
@@ -58,6 +62,8 @@ namespace WilbertSvcs.Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                int strDDLValue = funeralHome.ParentFuneralHomeId;
+
                 _context.Add(funeralHome);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -79,7 +85,11 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
+            using (_context)
+            {
+                var fromDatabaseEF = new SelectList(_context.FuneralHomes.ToList(), "ParentFuneralHomeId", "Name");
+                ViewData["DBParentFuneralHome"] = fromDatabaseEF;
+            }
             return View(funeralHome);
         }
 
