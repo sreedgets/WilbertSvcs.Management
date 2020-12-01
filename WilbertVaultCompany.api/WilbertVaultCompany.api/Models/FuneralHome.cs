@@ -17,7 +17,9 @@ namespace WilbertVaultCompany.api.Models
         }
 
         public int FuneralHomeId { get; set; }
-        public int ParentFuneralHomeId { get; set; }
+        public int? ParentFuneralHomeId { get; set; }
+        public FuneralHome ParentFunrealHome { get; set; }
+        public ICollection<FuneralHome> FuneralHomes { get; set; }
         public string Name { get; set; }
         public int? PlantId { get; set; }
         public string Address { get; set; }
