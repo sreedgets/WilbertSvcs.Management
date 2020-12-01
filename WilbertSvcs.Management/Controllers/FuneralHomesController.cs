@@ -62,8 +62,7 @@ namespace WilbertSvcs.Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                int strDDLValue = funeralHome.ParentFuneralHomeId;
-
+              
                 _context.Add(funeralHome);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
