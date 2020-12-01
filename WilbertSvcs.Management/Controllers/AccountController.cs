@@ -31,6 +31,7 @@ namespace WilbertSvcs.Management.Controllers
             return View(login);
         }
 
+        //TODO: Add Forgot password functionality
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
