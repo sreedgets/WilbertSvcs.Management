@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -45,12 +46,11 @@ namespace WilbertSvcs.Management.Controllers
         // GET: FuneralHomes/Create
         public IActionResult Create()
         {
-            using (_context)
-            {
-                var fromDatabaseEF = new SelectList(_context.FuneralHomes.ToList(), "ParentFuneralHomeId", "Name");
-                ViewData["DBParentFuneralHome"] = fromDatabaseEF;
-            }
-            return View();
+            var fh = new FuneralHome();
+            fh.Parent_Funeral_Homes = new List<ParentFuneralHome>();
+            fh.Parent_Funeral_Homes = _context.ParentFuneralHome.ToList();     
+            
+            return View(fh);
         }
 
         // POST: FuneralHomes/Create
@@ -60,12 +60,21 @@ namespace WilbertSvcs.Management.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,Name,PlantId,Address,City,State,ZipCode,County,Email,Website,Phone1,PhoneType1,Phone2,PhoneType2")] FuneralHome funeralHome)
         {
+            if (funeralHome.Parent_Funeral_Homes == null)
+            {
+                funeralHome.Parent_Funeral_Homes = new List<ParentFuneralHome>();
+                ParentFuneralHome pfh = new ParentFuneralHome();
+                pfh.parent_funeralhome_name = funeralHome.Name;
+                funeralHome.Parent_Funeral_Homes.Add(pfh);
+                _context.Add(pfh);
+                await _context.SaveChangesAsync();
+            }
             if (ModelState.IsValid)
             {
-              
+
                 _context.Add(funeralHome);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));           
             }
             ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);

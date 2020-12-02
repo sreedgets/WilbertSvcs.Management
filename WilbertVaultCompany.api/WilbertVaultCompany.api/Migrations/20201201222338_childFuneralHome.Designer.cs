@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(WilbertFSDatabaseContext))]
-    partial class WilbertFSDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201201222338_childFuneralHome")]
+    partial class childFuneralHome
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -332,6 +334,9 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int?>("ParentFuneralHomeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ParentFunrealHomeFuneralHomeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Phone1")
                         .HasColumnType("nvarchar(max)");
 
@@ -357,6 +362,8 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("FuneralHomeId");
+
+                    b.HasIndex("ParentFunrealHomeFuneralHomeId");
 
                     b.HasIndex("PlantId");
 
@@ -440,26 +447,6 @@ namespace WilbertVaultCompany.api.Migrations
                     b.HasIndex("FuneralHomeId");
 
                     b.ToTable("Interactions");
-                });
-
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.ParentFuneralHome", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int?>("funral_homeFuneralHomeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("parent_funeralhome_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("funral_homeFuneralHomeId");
-
-                    b.ToTable("ParentFuneralHome");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Phone", b =>
@@ -824,9 +811,15 @@ namespace WilbertVaultCompany.api.Migrations
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.FuneralHome", b =>
                 {
+                    b.HasOne("WilbertVaultCompany.api.Models.FuneralHome", "ParentFunrealHome")
+                        .WithMany("ChildFuneralHomes")
+                        .HasForeignKey("ParentFunrealHomeFuneralHomeId");
+
                     b.HasOne("WilbertVaultCompany.api.Models.Plant", "Plant")
                         .WithMany("FuneralHomes")
                         .HasForeignKey("PlantId");
+
+                    b.Navigation("ParentFunrealHome");
 
                     b.Navigation("Plant");
                 });
@@ -849,15 +842,6 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasForeignKey("FuneralHomeId");
 
                     b.Navigation("FuneralHome");
-                });
-
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.ParentFuneralHome", b =>
-                {
-                    b.HasOne("WilbertVaultCompany.api.Models.FuneralHome", "funral_home")
-                        .WithMany("Parent_Funeral_Homes")
-                        .HasForeignKey("funral_homeFuneralHomeId");
-
-                    b.Navigation("funral_home");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Phone", b =>
@@ -987,11 +971,11 @@ namespace WilbertVaultCompany.api.Migrations
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.FuneralHome", b =>
                 {
+                    b.Navigation("ChildFuneralHomes");
+
                     b.Navigation("FuneralHomeContacts");
 
                     b.Navigation("Interactions");
-
-                    b.Navigation("Parent_Funeral_Homes");
 
                     b.Navigation("Photos");
                 });

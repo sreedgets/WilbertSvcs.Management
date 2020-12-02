@@ -21,13 +21,11 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <label class="control-label">Parent Fuenral Home</label>
-                            @*@Html.DropDownList("ParentHome", (IEnumerable
-                                <SelectListItem>)ViewData["DBParentFuneralHome"], "Select")*@
-
-
-                            @Html.DropDownListFor(m => m.ParentFuneralHomeId, (IEnumerable
-                                <SelectListItem>)ViewData["DBParentFuneralHome"], "-Select-")
+                            <label asp-for="ParentFuneralHomeId" class="control-label"></label>
+                            <select asp-for="ParentFuneralHomeId" class="form-control" asp-items="@(new SelectList(Model.Parent_Funeral_Homes,"id","parent_funeralhome_name"))">
+                                <option>Please select one</option>
+                            </select>
+                            <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
                         </div>
                     </td>
                     <td colspan="3">
@@ -37,7 +35,7 @@
                             <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
                     </td>
-                    <td >
+                    <td>
                         <div class="form-group" width="400px">
                             <label asp-for="City" class="control-label"></label>
                             <input asp-for="City" class="form-control" />
@@ -126,38 +124,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        $("#submit").live("click", function (e) {
-
-            e.preventDefault();
-            var data = JSON.stringify({ CourseId: $('#CourseId').val() });
-            $.ajax({
-                type: "POST",
-                url: config.basePath + '/Controllername/ActionMethodName',
-                cache: false,
-                data: data,
-                dataType: this.dataType,
-                contentType: "application/json; charset=utf-8",
-                success: function (result) {
-
-                    if (result.IsSuccess) {
-                        $("#error_message").html(result.ErrorMessage);
-                        $("#error_message").addClass("success");
-                        UTMSGrid.StudentCourses.List.bindGrid($("#grid"));
-                    }
-                    else {
-                        $("#error_message").html(result.ErrorMessage);
-                        $("#error_message").addClass("fail");
-                    }
-                },
-                error: function (data) {
-                    // $("#error_message").html(data);
-
-                }
-            }); // End ajax call
-
-
-
-        });
-    </script>
 }
