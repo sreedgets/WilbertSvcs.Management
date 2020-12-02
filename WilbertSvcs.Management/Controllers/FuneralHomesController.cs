@@ -47,9 +47,8 @@ namespace WilbertSvcs.Management.Controllers
         public IActionResult Create()
         {
             var fh = new FuneralHome();
-            fh.Parent_Funeral_Homes = new List<ParentFuneralHome>();
-            fh.Parent_Funeral_Homes = _context.ParentFuneralHome.ToList();     
-            
+            fh.Parent_Funeral_Homes = _context.ParentFuneralHome.ToList();
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId");
             return View(fh);
         }
 
@@ -60,21 +59,15 @@ namespace WilbertSvcs.Management.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,Name,PlantId,Address,City,State,ZipCode,County,Email,Website,Phone1,PhoneType1,Phone2,PhoneType2")] FuneralHome funeralHome)
         {
-            if (funeralHome.Parent_Funeral_Homes == null)
-            {
-                funeralHome.Parent_Funeral_Homes = new List<ParentFuneralHome>();
-                ParentFuneralHome pfh = new ParentFuneralHome();
-                pfh.parent_funeralhome_name = funeralHome.Name;
-                funeralHome.Parent_Funeral_Homes.Add(pfh);
-                _context.Add(pfh);
-                await _context.SaveChangesAsync();
-            }
             if (ModelState.IsValid)
             {
-
+                if (funeralHome.Parent_Funeral_Homes == null || funeralHome.Parent_Funeral_Homes.Count == 0)
+                {
+                    addParent(funeralHome);
+                }
                 _context.Add(funeralHome);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));           
+                return RedirectToAction(nameof(Index));
             }
             ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
@@ -93,11 +86,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-            using (_context)
-            {
-                var fromDatabaseEF = new SelectList(_context.FuneralHomes.ToList(), "ParentFuneralHomeId", "Name");
-                ViewData["DBParentFuneralHome"] = fromDatabaseEF;
-            }
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
 
@@ -170,6 +159,14 @@ namespace WilbertSvcs.Management.Controllers
         private bool FuneralHomeExists(int id)
         {
             return _context.FuneralHomes.Any(e => e.FuneralHomeId == id);
+        }
+
+        private void addParent(FuneralHome fh)
+        {
+            ParentFuneralHome pfh = new ParentFuneralHome();
+            pfh.parent_funeralhome_name = fh.Name;
+            fh.Parent_Funeral_Homes = new List<ParentFuneralHome>();
+            fh.Parent_Funeral_Homes.Add(pfh);
         }
     }
 }
