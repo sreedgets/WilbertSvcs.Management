@@ -20,7 +20,8 @@ namespace WilbertVaultCompany.api.Models
 
         [Display(Name = "Parent Fueneral Home")]
         public int? ParentFuneralHomeId { get; set; }
-      
+
+        public string ParentName { get; set; }
         public List<ParentFuneralHome> Parent_Funeral_Homes { get; set; }
         public bool IsParent { get; set; }
         public string Name { get; set; }

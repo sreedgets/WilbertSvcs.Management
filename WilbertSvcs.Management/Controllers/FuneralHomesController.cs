@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,6 +22,16 @@ namespace WilbertSvcs.Management.Controllers
         public async Task<IActionResult> Index()
         {
             var wilbertFSDatabaseContext = _context.FuneralHomes.Include(f => f.Plant);
+            var fhl = await wilbertFSDatabaseContext.ToListAsync();
+
+            foreach (var item in fhl)
+            {
+                var pfh = new ParentFuneralHome();
+                pfh = await _context.ParentFuneralHome.FindAsync(item.ParentFuneralHomeId);
+
+                if (item.ParentName != null)
+                    item.ParentName = pfh.parent_funeralhome_name.Trim();
+            }
             return View(await wilbertFSDatabaseContext.ToListAsync());
         }
 
@@ -57,14 +68,35 @@ namespace WilbertSvcs.Management.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,Name,PlantId,Address,City,State,ZipCode,County,Email,Website,Phone1,PhoneType1,Phone2,PhoneType2")] FuneralHome funeralHome)
+        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,IsParent,Name,PlantId,Address,City,State,ZipCode,County,Email,Website,Phone1,PhoneType1,Phone2,PhoneType2")] FuneralHome funeralHome)
         {
             if (ModelState.IsValid)
             {
-                if (_context.ParentFuneralHome.Count() == 0 )
+                if (_context.ParentFuneralHome.Count() == 0)
                 {
-                    initParentList(funeralHome);
+                    if (funeralHome.IsParent)
+                    {
+                        initParentList(funeralHome);
+                        addParent(funeralHome);
+                    }                        
+                    else
+                        initParentList(funeralHome);
                 }
+                else
+                {
+                    if (funeralHome.IsParent)
+                    {
+                        addParent(funeralHome);
+                    }
+                }
+
+                if (funeralHome.ParentFuneralHomeId != null)
+                {
+                    var pfh = new ParentFuneralHome();
+                    pfh = await _context.ParentFuneralHome.FindAsync(funeralHome.ParentFuneralHomeId);
+                    funeralHome.ParentName = pfh.parent_funeralhome_name;
+                }
+
                 _context.FuneralHomes.Add(funeralHome);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
