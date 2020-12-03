@@ -23,9 +23,16 @@
                         <div class="form-group">
                             <label asp-for="ParentFuneralHomeId" class="control-label"></label>
                             <select asp-for="ParentFuneralHomeId" class="form-control" asp-items="@(new SelectList(Model.Parent_Funeral_Homes,"id","parent_funeralhome_name"))">
-                                @*<option>Please select one</option*@>
+                                @*<option>Please select one</option>*@
                             </select>
                             <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td colspan="3">
+                        <div class="form-group">
+                            <label asp-for="IsParent" class="control-label"></label>
+                            <input asp-for="IsParent" class="form-control" />
+                            <span asp-validation-for="IsParent" class="text-danger"></span>
                         </div>
                     </td>
                     <td colspan="3">

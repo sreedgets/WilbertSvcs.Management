@@ -61,11 +61,11 @@ namespace WilbertSvcs.Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (funeralHome.Parent_Funeral_Homes == null || funeralHome.Parent_Funeral_Homes.Count == 0)
+                if (_context.ParentFuneralHome.Count() == 0 )
                 {
-                    addParent(funeralHome);
+                    initParentList(funeralHome);
                 }
-                _context.Add(funeralHome);
+                _context.FuneralHomes.Add(funeralHome);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -167,6 +167,16 @@ namespace WilbertSvcs.Management.Controllers
             pfh.parent_funeralhome_name = fh.Name;
             fh.Parent_Funeral_Homes = new List<ParentFuneralHome>();
             fh.Parent_Funeral_Homes.Add(pfh);
+            _context.ParentFuneralHome.Add(pfh);
+        }
+
+        private void initParentList(FuneralHome fh)
+        {
+            ParentFuneralHome pfh = new ParentFuneralHome();
+            pfh.parent_funeralhome_name = "";
+            fh.Parent_Funeral_Homes = new List<ParentFuneralHome>();
+            fh.Parent_Funeral_Homes.Add(pfh);
+            _context.ParentFuneralHome.Add(pfh);
         }
     }
 }
