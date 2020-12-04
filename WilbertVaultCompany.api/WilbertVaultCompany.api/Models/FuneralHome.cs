@@ -27,7 +27,7 @@ namespace WilbertVaultCompany.api.Models
         public string Phone2 { get; set; }
         public string PhoneType1 { get; set; }
         public string PhoneType2 { get; set; }
-        public bool? IsParent { get; set; }
+        public bool IsParent { get; set; }
         public string ParentName { get; set; }
 
         public virtual ICollection<ParentFuneralHome> ParentFuneralHomes { get; set; }
