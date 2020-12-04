@@ -7,11 +7,6 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class FuneralHomeContact
     {
-        public FuneralHomeContact()
-        {
-            Phones = new HashSet<Phone>();
-        }
-
         public int FuneralHomeContactId { get; set; }
         public int FuneralHomeId { get; set; }
         public string FirstName { get; set; }
@@ -22,8 +17,5 @@ namespace WilbertVaultCompany.api.Models
         public int ContactRole { get; set; }
         public string Interests { get; set; }
         public byte[] Photo { get; set; }
-
-        public virtual FuneralHome FuneralHome { get; set; }
-        public virtual ICollection<Phone> Phones { get; set; }
     }
 }

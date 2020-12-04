@@ -7,11 +7,6 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class Vault
     {
-        public Vault()
-        {
-            VaultOrders = new HashSet<VaultOrder>();
-        }
-
         public int VaultId { get; set; }
         public string Description { get; set; }
         public bool Ovation { get; set; }
@@ -29,8 +24,5 @@ namespace WilbertVaultCompany.api.Models
         public string Color2 { get; set; }
         public string Comments { get; set; }
         public byte[] PhotoImage { get; set; }
-
-        public virtual AllowedToSelect AllowedToSelect { get; set; }
-        public virtual ICollection<VaultOrder> VaultOrders { get; set; }
     }
 }

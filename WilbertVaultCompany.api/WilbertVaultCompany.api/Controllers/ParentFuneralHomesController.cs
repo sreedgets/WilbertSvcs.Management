@@ -13,25 +13,25 @@ namespace WilbertVaultCompany.api.Controllers
     [ApiController]
     public class ParentFuneralHomesController : ControllerBase
     {
-        private readonly WilbertFSDatabaseContext _context;
+        private readonly wilbertdbContext _context;
 
-        public ParentFuneralHomesController(WilbertFSDatabaseContext context)
+        public ParentFuneralHomesController(wilbertdbContext context)
         {
             _context = context;
         }
 
         // GET: api/ParentFuneralHomes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ParentFuneralHome>>> GetParentFuneralHome()
+        public async Task<ActionResult<IEnumerable<ParentFuneralHome>>> GetParentFuneralHomes()
         {
-            return await _context.ParentFuneralHome.ToListAsync();
+            return await _context.ParentFuneralHomes.ToListAsync();
         }
 
         // GET: api/ParentFuneralHomes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ParentFuneralHome>> GetParentFuneralHome(int id)
         {
-            var parentFuneralHome = await _context.ParentFuneralHome.FindAsync(id);
+            var parentFuneralHome = await _context.ParentFuneralHomes.FindAsync(id);
 
             if (parentFuneralHome == null)
             {
@@ -47,7 +47,7 @@ namespace WilbertVaultCompany.api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParentFuneralHome(int id, ParentFuneralHome parentFuneralHome)
         {
-            if (id != parentFuneralHome.id)
+            if (id != parentFuneralHome.Id)
             {
                 return BadRequest();
             }
@@ -79,23 +79,23 @@ namespace WilbertVaultCompany.api.Controllers
         [HttpPost]
         public async Task<ActionResult<ParentFuneralHome>> PostParentFuneralHome(ParentFuneralHome parentFuneralHome)
         {
-            _context.ParentFuneralHome.Add(parentFuneralHome);
+            _context.ParentFuneralHomes.Add(parentFuneralHome);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetParentFuneralHome", new { id = parentFuneralHome.id }, parentFuneralHome);
+            return CreatedAtAction("GetParentFuneralHome", new { id = parentFuneralHome.Id }, parentFuneralHome);
         }
 
         // DELETE: api/ParentFuneralHomes/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<ParentFuneralHome>> DeleteParentFuneralHome(int id)
         {
-            var parentFuneralHome = await _context.ParentFuneralHome.FindAsync(id);
+            var parentFuneralHome = await _context.ParentFuneralHomes.FindAsync(id);
             if (parentFuneralHome == null)
             {
                 return NotFound();
             }
 
-            _context.ParentFuneralHome.Remove(parentFuneralHome);
+            _context.ParentFuneralHomes.Remove(parentFuneralHome);
             await _context.SaveChangesAsync();
 
             return parentFuneralHome;
@@ -103,7 +103,7 @@ namespace WilbertVaultCompany.api.Controllers
 
         private bool ParentFuneralHomeExists(int id)
         {
-            return _context.ParentFuneralHome.Any(e => e.id == id);
+            return _context.ParentFuneralHomes.Any(e => e.Id == id);
         }
     }
 }

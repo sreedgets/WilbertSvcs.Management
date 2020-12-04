@@ -7,11 +7,6 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class Truck
     {
-        public Truck()
-        {
-            Photos = new HashSet<Photo>();
-        }
-
         public string TruckId { get; set; }
         public DateTime AcquisitionDate { get; set; }
         public int PlantId { get; set; }
@@ -28,9 +23,5 @@ namespace WilbertVaultCompany.api.Models
         public long TruckNumber { get; set; }
         public bool Inactive { get; set; }
         public string InactiveReason { get; set; }
-
-        public virtual Employee DriverEmployee { get; set; }
-        public virtual Plant Plant { get; set; }
-        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

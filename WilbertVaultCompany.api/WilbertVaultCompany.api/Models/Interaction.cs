@@ -16,7 +16,5 @@ namespace WilbertVaultCompany.api.Models
         public bool Completed { get; set; }
         public string Outcome { get; set; }
         public int? FuneralHomeId { get; set; }
-
-        public virtual FuneralHome FuneralHome { get; set; }
     }
 }

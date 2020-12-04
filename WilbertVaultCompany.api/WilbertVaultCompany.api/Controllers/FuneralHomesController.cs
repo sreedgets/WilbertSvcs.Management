@@ -13,9 +13,9 @@ namespace WilbertVaultCompany.api.Controllers
     [ApiController]
     public class FuneralHomesController : ControllerBase
     {
-        private readonly WilbertFSDatabaseContext _context;
+        private readonly wilbertdbContext _context;
 
-        public FuneralHomesController(WilbertFSDatabaseContext context)
+        public FuneralHomesController(wilbertdbContext context)
         {
             _context = context;
         }

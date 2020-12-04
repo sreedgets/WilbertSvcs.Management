@@ -44,8 +44,5 @@ namespace WilbertVaultCompany.api.Models
         public DateTime TimeInPlant { get; set; }
         public string RemarksOrProblems { get; set; }
         public bool ReviewedByOffice { get; set; }
-
-        public virtual Deceased Deceased { get; set; }
-        public virtual VaultOrder VaultOrder { get; set; }
     }
 }

@@ -12,8 +12,5 @@ namespace WilbertVaultCompany.api.Models
         public byte[] PhotoImage { get; set; }
         public int? FuneralHomeId { get; set; }
         public string TruckId { get; set; }
-
-        public virtual FuneralHome FuneralHome { get; set; }
-        public virtual Truck Truck { get; set; }
     }
 }

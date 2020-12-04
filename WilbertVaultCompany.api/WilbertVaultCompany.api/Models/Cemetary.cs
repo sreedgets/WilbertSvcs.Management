@@ -7,11 +7,6 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class Cemetary
     {
-        public Cemetary()
-        {
-            VaultOrders = new HashSet<VaultOrder>();
-        }
-
         public int CemetaryId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -24,7 +19,5 @@ namespace WilbertVaultCompany.api.Models
         public float Longitude { get; set; }
         public byte[] Map { get; set; }
         public bool UseCoordinates { get; set; }
-
-        public virtual ICollection<VaultOrder> VaultOrders { get; set; }
     }
 }

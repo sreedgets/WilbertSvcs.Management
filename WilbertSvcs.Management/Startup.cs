@@ -33,7 +33,7 @@ namespace WilbertSvcs.Management
                 options.SlidingExpiration = true;
             });
 
-            services.AddTransient<WilbertFSDatabaseContext>();
+            services.AddTransient<wilbertdbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

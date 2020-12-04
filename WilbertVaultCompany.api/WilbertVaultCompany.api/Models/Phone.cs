@@ -15,10 +15,5 @@ namespace WilbertVaultCompany.api.Models
         public int? FuneralHomeContactId { get; set; }
         public int? FuneralHomeId { get; set; }
         public int? PlantId { get; set; }
-
-        public virtual Employee Employee { get; set; }
-        public virtual FuneralHome FuneralHome { get; set; }
-        public virtual FuneralHomeContact FuneralHomeContact { get; set; }
-        public virtual Plant Plant { get; set; }
     }
 }

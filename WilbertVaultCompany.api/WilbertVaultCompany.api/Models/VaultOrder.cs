@@ -7,11 +7,6 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class VaultOrder
     {
-        public VaultOrder()
-        {
-            Deliveries = new HashSet<Delivery>();
-        }
-
         public int VaultOrderId { get; set; }
         public DateTime FuneralDate { get; set; }
         public DateTime FuneralTime { get; set; }
@@ -37,11 +32,5 @@ namespace WilbertVaultCompany.api.Models
         public string Notes { get; set; }
         public int? PlantId { get; set; }
         public int DeceasedId { get; set; }
-
-        public virtual Cemetary Cemetary { get; set; }
-        public virtual Deceased Deceased { get; set; }
-        public virtual Plant Plant { get; set; }
-        public virtual Vault Vault { get; set; }
-        public virtual ICollection<Delivery> Deliveries { get; set; }
     }
 }

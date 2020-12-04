@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace WilbertVaultCompany.api.Models
 {
-    public class ParentFuneralHome
+    public partial class ParentFuneralHome
     {
-        public int id { get; set; }
-        public string parent_funeralhome_name { get; set; }
-        public FuneralHome funral_home { get; set; }
+        public int Id { get; set; }
+        public string ParentFuneralhomeName { get; set; }
+        public int? FunralHomeFuneralHomeId { get; set; }
+
+        public virtual FuneralHome FunralHomeFuneralHome { get; set; }
     }
 }

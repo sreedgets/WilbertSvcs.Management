@@ -7,11 +7,6 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class AllowedToSelect
     {
-        public AllowedToSelect()
-        {
-            Vaults = new HashSet<Vault>();
-        }
-
         public int AllowedToSelectId { get; set; }
         public int VaultId { get; set; }
         public bool FullAccess { get; set; }
@@ -19,7 +14,5 @@ namespace WilbertVaultCompany.api.Models
         public bool Drivers { get; set; }
         public bool PlantManagers { get; set; }
         public bool OfficeStaff { get; set; }
-
-        public virtual ICollection<Vault> Vaults { get; set; }
     }
 }
