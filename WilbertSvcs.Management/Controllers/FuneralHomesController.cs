@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,6 +21,17 @@ namespace WilbertSvcs.Management.Controllers
         // GET: FuneralHomes
         public async Task<IActionResult> Index()
         {
+            
+            var fhl = await _context.FuneralHomes.ToListAsync();
+
+            foreach (var item in fhl)
+            {
+                var pfh = new ParentFuneralHome();
+                pfh = await _context.ParentFuneralHomes.FindAsync(item.ParentFuneralHomeId);
+
+                if (item.ParentName != null)
+                    item.ParentName = pfh.ParentFuneralhomeName.Trim();
+            }
             return View(await _context.FuneralHomes.ToListAsync());
         }
 
@@ -33,6 +44,7 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var funeralHome = await _context.FuneralHomes
+                .Include(f => f.PlantId)
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
             if (funeralHome == null)
             {
@@ -60,10 +72,36 @@ namespace WilbertSvcs.Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(funeralHome);
+                if (_context.ParentFuneralHomes.Count() == 0)
+                {
+                    if (funeralHome.IsParent)
+                    {
+                        initParentList(funeralHome);
+                        addParent(funeralHome);
+                    }
+                    else
+                        initParentList(funeralHome);
+                }
+                else
+                {
+                    if (funeralHome.IsParent)
+                    {
+                        addParent(funeralHome);
+                    }
+                }
+
+                if (funeralHome.ParentFuneralHomeId != null)
+                {
+                    var pfh = new ParentFuneralHome();
+                    pfh = await _context.ParentFuneralHomes.FindAsync(funeralHome.ParentFuneralHomeId);
+                    funeralHome.ParentName = pfh.ParentFuneralhomeName;
+                }
+
+                _context.FuneralHomes.Add(funeralHome);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
 
@@ -80,6 +118,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
 
@@ -88,7 +127,7 @@ namespace WilbertSvcs.Management.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,Name,PlantId,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,Name,PlantId,Address,City,State,ZipCode,County,Email,Website,Phone1,PhoneType1,Phone2,PhoneType2")] FuneralHome funeralHome)
         {
             if (id != funeralHome.FuneralHomeId)
             {
@@ -115,6 +154,7 @@ namespace WilbertSvcs.Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
 
@@ -127,6 +167,7 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var funeralHome = await _context.FuneralHomes
+                .Include(f => f.PlantId)
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
             if (funeralHome == null)
             {
@@ -150,6 +191,24 @@ namespace WilbertSvcs.Management.Controllers
         private bool FuneralHomeExists(int id)
         {
             return _context.FuneralHomes.Any(e => e.FuneralHomeId == id);
+        }
+
+        private void addParent(FuneralHome fh)
+        {
+            ParentFuneralHome pfh = new ParentFuneralHome();
+            pfh.ParentFuneralhomeName = fh.Name;
+            fh.ParentFuneralHomes = new List<ParentFuneralHome>();
+            fh.ParentFuneralHomes.Add(pfh);
+            _context.ParentFuneralHomes.Add(pfh);
+        }
+
+        private void initParentList(FuneralHome fh)
+        {
+            ParentFuneralHome pfh = new ParentFuneralHome();
+            pfh.ParentFuneralhomeName = "";
+            fh.ParentFuneralHomes = new List<ParentFuneralHome>();
+            fh.ParentFuneralHomes.Add(pfh);
+            _context.ParentFuneralHomes.Add(pfh);
         }
     }
 }

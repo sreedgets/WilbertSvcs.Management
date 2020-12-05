@@ -1,0 +1,1021 @@
+﻿@import url(//cloud.typography.com/7796074/716908/css/fonts.css);
+
+body {
+    behavior: url("csshover3.htc");
+    margin: 0 0 0 0;
+    font-family: "Gotham SSm A", "Gotham SSm B";
+    font-weight: 400;
+    line-height: 1.3em;
+    color: #666666;
+}
+
+a {
+    color: #333333;
+    font-weight: bold;
+}
+
+h1, h2, h3, h4 {
+    color: #1991ac;
+}
+
+a:hover {
+    color: #aa1c3b;
+}
+
+/* Table formatting */
+
+table {
+    border-collapse: collapse;
+    width: 99%;
+}
+
+.qty {
+    max-width: 75px !important;
+    font-size: 0.9em !important;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+input, textarea {
+    font-size: 1.1em !important;
+    line-height: 1.2em;
+    margin: 5px 0px;
+    font-family: "Gotham SSm A", "Gotham SSm B";
+    font-weight: 400;
+}
+
+
+#Content_updPanelHazardousCheck input[type=checkbox] {
+    font-size: 1.1em !important;
+    line-height: 1.2em;
+    margin: 5px 0px 5px 25px;
+    width: 60px !important;
+    font-family: "Gotham SSm A", "Gotham SSm B";
+    font-weight: 400;
+}
+
+#Content_updPanelHazardousCheck {
+    font-size: 1.2em !important;
+}
+
+    #Content_updPanelHazardousCheck input[type=checkbox] {
+        transform: scale(1.2);
+    }
+
+
+#Content_ndcTextBoxPart1, #Content_ndcTextBoxPart2, #Content_ndcTextBoxPart3 {
+    width: 100px !important;
+    font-family: "Gotham SSm A", "Gotham SSm B";
+    font-weight: 400;
+}
+
+#Content_Send_Boxes, #Content_Send_Labels, #Content_Send_Both {
+    width: 40px !important;
+}
+
+
+input:focus, textarea:focus {
+    background: rgba(0,0,0,.1);
+    outline: none;
+}
+
+input {
+    height: 1.2em; /* for IE */
+    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
+}
+
+    input[type=submit] {
+        font-size: 1.4em;
+        padding: 5px 20px;
+        background: #ccc;
+        border: 0 none;
+        cursor: pointer;
+        -webkit-border-radius: 5px;
+        width: auto;
+        height: 2.0em;
+        border-radius: 5px;
+    }
+
+#Content_submitInvoice {
+    font-size: 1.4em;
+    padding: 5px 20px;
+    background: #aa1c3b;
+    border: 0 none;
+    cursor: pointer;
+    color: #fff;
+    -webkit-border-radius: 5px;
+    width: auto;
+    height: 2.0em;
+    border-radius: 5px;
+}
+
+#header {
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 90px;
+}
+
+#topBar {
+    background: transparent url('../images/bars/large_bar.jpg') left 19px repeat-x;
+    background: #dcdcdc;
+    height: 80px;
+    width: 100%;
+}
+
+    #topBar div.content {
+        width: 983px;
+        width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.logo {
+    float: left;
+    margin: 2px 0 0 0px;
+    text-indent: -9999px;
+    width: 230px;
+    height: 75px;
+    background: transparent url('../images/NPR-logo.png') top left no-repeat;
+    background-size: 192px 70px;
+}
+
+.client_center {
+    float: right;
+    margin: 19px 0px 0 0;
+    text-indent: -9999px;
+    width: 134px;
+    height: 30px;
+    background: transparent url('../images/application_names/client_center.png') top left no-repeat;
+}
+
+.admin_center {
+    float: right;
+    margin: 19px 0px 0 0;
+    text-indent: -9999px;
+    width: 154px;
+    height: 30px;
+    background: transparent url('../images/application_names/admin_center.png') top left no-repeat;
+}
+
+.salesadmin_center {
+    float: right;
+    margin: 19px 0px 0 0;
+    text-indent: -9999px;
+    width: 180px;
+    height: 30px;
+    background: transparent url('../images/application_names/salesadmin_center.png') top left no-repeat;
+}
+
+.corporateuser_center {
+    float: right;
+    margin: 19px 0px 0 0;
+    text-indent: -9999px;
+    width: 180px;
+    height: 30px;
+    background: transparent url('../images/application_names/corporateuser_center.png') top left no-repeat;
+}
+
+#bottomBar {
+    background: transparent url('../images/bars/small_bar.jpg') top left repeat-x;
+    height: 40px;
+    width: 100%;
+}
+
+    #bottomBar div.content {
+        width: 983px;
+        width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+#navigation {
+    float: left;
+    height: 40px;
+    padding: 10px 0 0 10px;
+}
+
+#welcome {
+    float: right;
+    margin: 10px 0 0 0;
+}
+
+#content {
+    margin: 40px auto 0 auto;
+    width: 1280px;
+    min-height: 750px;
+}
+
+@media only screen and (min-width: 1800px) {
+    #content {
+        width: 1600px;
+    }
+}
+
+
+.content_box {
+    background: url('../images/content_box/content_top.png') no-repeat;
+    background: #ffffff;
+    padding-top: 20px;
+}
+
+    .content_box div.bottom {
+        background: url('../images/content_box/content_bottom.png') bottom left no-repeat;
+        background: #fff;
+        padding-bottom: 20px;
+    }
+
+    .content_box div.middle {
+        background: url('../images/content_box/content_background.png') repeat-y;
+        background: #fff;
+        width: 1240px;
+        padding: 10px 20px 10px 20px;
+    }
+
+
+.dashboard_images {
+    width: 1120px;
+}
+
+@media only screen and (min-width: 1800px) {
+    .content_box div.middle {
+        width: 1600px;
+    }
+}
+
+
+
+@media only screen and (min-width: 1800px) {
+    .content_box div.middle {
+        width: 1600px;
+    }
+
+    .dashboard_images {
+        width: 1340px;
+        margin: 0 auto;
+    }
+
+        .dashboard_images img {
+            width: 90%;
+        }
+}
+
+
+
+#footer {
+    bottom: 0;
+    margin-top: 40px;
+    background: #dcdcdc;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+
+#footer_navigation {
+    color: White;
+    padding-top: 3px;
+}
+
+    #footer_navigation a {
+        color: White;
+    }
+
+.titleLabel {
+    font-weight: bold;
+}
+
+.sectionLabel {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    color: #AC1939;
+}
+
+td.sectionLabel {
+    height: 70px;
+    vertical-align: bottom;
+}
+
+.errorMessage {
+    font-weight: bold;
+    font-size: 18px;
+    color: Red;
+    display: none;
+}
+
+.successMessage {
+    font-weight: bold;
+    color: Green;
+    display: none;
+}
+
+.showMessage {
+    display: block;
+}
+
+.HiddenPageButton {
+    visibility: hidden;
+}
+
+.mainContent {
+    display: block;
+    width: 860px;
+    width: 1120px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    border-top: 2px solid #e4e4e4;
+}
+
+@media only screen and (min-width: 1800px) {
+    .mainContent {
+        width: 1320px;
+        margin: 20px auto;
+    }
+}
+
+
+
+
+.UserText {
+}
+
+.invisibleColumn {
+    visibility: hidden;
+}
+
+
+
+#navigation {
+    z-index: 1000;
+}
+
+    #navigation a {
+        height: 25px;
+        line-height: 25px;
+        float: left;
+        display: block;
+        margin: 0 0 0 0;
+        padding: 0 15px 0 15px;
+        font-size: 14px;
+        color: #ffffff;
+        text-decoration: none;
+        text-align: center;
+    }
+
+        #navigation a:hover {
+            color: #aa1c3b;
+        }
+
+    #navigation ul, #welcome ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+        #navigation ul.nav li.navItem:first-child {
+            border-left: 1px solid #ffffff;
+        }
+
+        #navigation ul li.navItem {
+            float: left;
+            position: relative;
+            text-align: center;
+            border-right: 1px solid #ffffff;
+            color: #FFFFFF;
+        }
+
+    #navigation li ul {
+        display: none;
+        position: absolute;
+        width: 200px;
+    }
+
+    #navigation li > ul {
+        top: 27px;
+        left: auto;
+    }
+
+    #navigation ul li ul li:hover {
+    }
+
+    #navigation ul li ul li {
+        background-color: #818181;
+        width: 325px;
+        border-bottom: 1px solid #FFFFFF;
+    }
+
+        #navigation ul li ul li a {
+            height: 100%;
+            width: 250px;
+            text-align: left;
+            padding: 0px 0px 0 15px;
+        }
+
+    #navigation ul :hover ul, #navigation li.over ul {
+        display: block;
+    }
+
+    #navigation ul li {
+        float: left;
+    }
+
+        #navigation ul li ul {
+            float: left;
+            left: 0px;
+            top: 25px;
+        }
+
+            #navigation ul li ul li {
+                float: left;
+            }
+
+    #navigation ul.nav li.no_link {
+        margin: 4px 0 0 0;
+        padding: 0 15px 0 15px;
+        font-size: 13px;
+        font-family: Verdana;
+        color: #ffffff;
+        border-left: 0;
+    }
+
+#welcome ul li.no_link {
+    margin: 4px 0 0 0;
+    padding: 0 15px 0 0;
+    font-size: 13px;
+    font-family: Verdana;
+    color: #ffffff;
+    border-left: 0;
+}
+
+#welcome ul li {
+    float: left;
+    position: relative;
+    text-align: center;
+    border-right: 1px solid #ffffff;
+    color: #FFFFFF;
+}
+
+    #welcome ul li a {
+        height: 25px;
+        line-height: 25px;
+        float: left;
+        display: block;
+        margin: 0 0 0 0;
+        padding: 0 15px 0 15px;
+        font-size: 13px;
+        font-family: Verdana;
+        color: #ffffff;
+        text-decoration: none;
+        text-align: center;
+    }
+
+#welcome a:hover {
+    filter: alpha(opacity=20);
+    opacity: 0.20;
+    background-color: #000000;
+}
+
+
+.enableButton {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+hr {
+    display: block;
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+    border-style: inset;
+    border-width: 0px;
+}
+
+/* Distance (Vertical Spaces) */
+.vertical-space, .vertical-space1, .vertical-space2, .vertical-space3, .vertical-space4, .vertical-space5 {
+    display: block;
+    width: 100%;
+    margin: 0;
+    clear: both;
+    border: 0 none;
+    height: 10px;
+}
+
+.vertical-space1 {
+    height: 6px !important;
+}
+
+.vertical-space2 {
+    height: 20px;
+}
+
+.vertical-space3 {
+    height: 30px;
+}
+
+.vertical-space4 {
+    height: 40px;
+}
+
+.vertical-space5 {
+    height: 50px;
+}
+
+* + html hr.vertical-space, * + html hr.vertical-space1, * + html hr .vertical-space2, * + html hr.vertical-space3, * + html hr.vertical-space4, * + html hr.vertical-space5 {
+    height: 0px;
+    margin: 10px 0;
+    background: #fff;
+    border: 1px solid #fff;
+}
+
+* + html hr.vertical-space2 {
+    margin: 20px 0;
+}
+
+* + html hr.vertical-space3 {
+    margin: 30px 0;
+}
+
+* + html hr.vertical-space4 {
+    margin: 40px 0;
+}
+
+* + html hr.vertical-space5 {
+    margin: 50px 0;
+}
+
+
+
+
+
+/*
+1200px grid system ~ Core CSS.
+12 Columns ~ Margin left: 10px ~ Margin right: 10px
+
+/*
+
+Forces backgrounds to span full width,
+even if there is horizontal scrolling.
+•Increase this if your layout is wider.
+Note: IE6 works fine without this fix.
+*/
+/* =Containers
+
+--------------------------------------------------------------------------------*/
+
+.container_12 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+}
+
+
+@media only screen and (min-width: 1800px) {
+    .container_12 {
+        width: 1600px;
+    }
+}
+
+
+/*  SECTIONS  ============================================================================= */
+.section {
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*  GROUPING  ============================================================================= */
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+/*  GRID COLUMN SETUP   ==================================================================== */
+.pad {
+    display: block;
+    float: left;
+    margin: 1% 0 1% 1.6%;
+}
+
+    .pad:first-child {
+        margin-left: 0;
+    }
+    /* all browsers except IE6 and lower */
+    .pad:last-child {
+        margin-right: 0;
+    }
+/* all browsers except IE6 and lower */
+
+/*  GRID COLUMN SETUP   ==================================================================== */
+.padbar {
+    display: block;
+    float: left;
+    margin: 1% 0.5% 1% 0.5%;
+}
+
+    .padbar:first-child {
+        margin-left: 0;
+    }
+    /* all browsers except IE6 and lower */
+    .padbar:last-child {
+        margin-right: 0;
+    }
+/* all browsers except IE6 and lower */
+
+.padsub {
+    display: block;
+    float: left;
+    margin: 0% 0 1% 1.6%;
+}
+
+    .padsub:first-child {
+        margin-left: 0;
+    }
+/* all browsers except IE6 and lower */
+
+/*  GRID OF TWO   ============================================================================= */
+.col_2_of_2 {
+    width: 100%;
+}
+
+.col_1_of_2 {
+    width: 49.2%;
+}
+
+
+/*  GRID OF THREE   ============================================================================= */
+.col_3_of_3 {
+    width: 100%;
+}
+
+.col_2_of_3 {
+    width: 66.13%;
+}
+
+.col_1_of_3 {
+    width: 32.26%;
+}
+
+/*  GRID OF FOUR   ============================================================================= */
+
+.col_4_of_4 {
+    width: 100%;
+}
+
+.col_3_of_4 {
+    width: 74.6%;
+}
+
+.col_2_of_4 {
+    width: 49.2%;
+}
+
+.col_1_of_4 {
+    width: 23.8%;
+}
+
+
+/*  GRID OF FIVE   ============================================================================= */
+
+.col_5_of_5 {
+    width: 100%;
+}
+
+.col_4_of_5 {
+    width: 79.68%;
+}
+
+.col_3_of_5 {
+    width: 59.36%;
+}
+
+.col_2_of_5 {
+    width: 39.04%;
+}
+
+.col_1_of_5 {
+    width: 18.72%;
+}
+
+
+/*  GRID OF SIX   ============================================================================= */
+
+.col_6_of_6 {
+    width: 100%;
+}
+
+.col_5_of_6 {
+    width: 83.06%;
+}
+
+.col_4_of_6 {
+    width: 66.13%;
+}
+
+.col_3_of_6 {
+    width: 49.2%;
+}
+
+.col_2_of_6 {
+    width: 32.26%;
+}
+
+.col_1_of_6 {
+    width: 15.33%;
+}
+
+/*  GRID OF SEVEN   ============================================================================= */
+
+.col_7_of_7 {
+    width: 100%;
+}
+
+.col_6_of_7 {
+    width: 85.48%;
+}
+
+.col_5_of_7 {
+    width: 70.97%;
+}
+
+.col_4_of_7 {
+    width: 56.45%;
+}
+
+.col_3_of_7 {
+    width: 41.94%;
+}
+
+.col_2_of_7 {
+    width: 27.42%;
+}
+
+.col_1_of_7 {
+    width: 12.91%;
+}
+
+
+/*  GRID OF EIGHT   ============================================================================= */
+
+
+.col_8_of_8 {
+    width: 100%;
+}
+
+.col_7_of_8 {
+    width: 87.3%;
+}
+
+.col_6_of_8 {
+    width: 74.6%;
+}
+
+.col_5_of_8 {
+    width: 61.9%;
+}
+
+.col_4_of_8 {
+    width: 49.2%;
+}
+
+.col_3_of_8 {
+    width: 36.5%;
+}
+
+.col_2_of_8 {
+    width: 23.8%;
+}
+
+.col_1_of_8 {
+    width: 11.1%;
+}
+
+/*  GRID OF NINE   ============================================================================= */
+
+.col_9_of_9 {
+    width: 100%;
+}
+
+.col_8_of_9 {
+    width: 88.71%;
+}
+
+.col_7_of_9 {
+    width: 77.42%;
+}
+
+.col_6_of_9 {
+    width: 66.13%;
+}
+
+.col_5_of_9 {
+    width: 54.84%;
+}
+
+.col_4_of_9 {
+    width: 43.55%;
+}
+
+.col_3_of_9 {
+    width: 32.26%;
+}
+
+.col_2_of_9 {
+    width: 20.97%;
+}
+
+.col_1_of_9 {
+    width: 9.68%;
+}
+
+/*  GRID OF TEN   ============================================================================= */
+.col_10_of_10 {
+    width: 100%;
+}
+
+.col_9_of_10 {
+    width: 89.84%;
+}
+
+.col_8_of_10 {
+    width: 79.68%;
+}
+
+.col_7_of_10 {
+    width: 69.52%;
+}
+
+.col_6_of_10 {
+    width: 59.36%;
+}
+
+.col_5_of_10 {
+    width: 49.2%;
+}
+
+.col_4_of_10 {
+    width: 39.04%;
+}
+
+.col_3_of_10 {
+    width: 28.88%;
+}
+
+.col_2_of_10 {
+    width: 18.72%;
+}
+
+.col_1_of_10 {
+    width: 8.56%;
+}
+
+/*  GRID OF ELEVEN   ============================================================================= */
+.col_11_of_11 {
+    width: 100%;
+}
+
+.col_10_of_11 {
+    width: 90.76%;
+}
+
+.col_9_of_11 {
+    width: 81.52%;
+}
+
+.col_8_of_11 {
+    width: 72.29%;
+}
+
+.col_7_of_11 {
+    width: 63.05%;
+}
+
+.col_6_of_11 {
+    width: 53.81%;
+}
+
+.col_5_of_11 {
+    width: 44.58%;
+}
+
+.col_4_of_11 {
+    width: 35.34%;
+}
+
+.col_3_of_11 {
+    width: 26.1%;
+}
+
+.col_2_of_11 {
+    width: 16.87%;
+}
+
+.col_1_of_11 {
+    width: 7.63%;
+}
+
+
+/*  GRID OF TWELVE   ============================================================================= */
+.col_12_of_12 {
+    width: 100%;
+}
+
+.col_11_of_12 {
+    width: 91.53%;
+}
+
+.col_10_of_12 {
+    width: 83.06%;
+}
+
+.col_9_of_12 {
+    width: 74.6%;
+}
+
+.col_8_of_12 {
+    width: 66.13%;
+}
+
+.col_7_of_12 {
+    width: 57.66%;
+}
+
+.col_6_of_12 {
+    width: 49.2%;
+}
+
+.col_5_of_12 {
+    width: 40.73%;
+}
+
+.col_4_of_12 {
+    width: 32.26%;
+}
+
+.col_3_of_12 {
+    width: 23.8%;
+}
+
+.col_2_of_12 {
+    width: 15.33%;
+}
+
+.col_1_of_12 {
+    width: 6.86%;
+}
+
+
+----------------------------------------------------------------------------------------------------*/
+/* http://sonspring.com/journal/clearing-floats */
+•.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+
+.clearfix:before,
+.clearfix:after {
+    content: "\0020";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+
+The following zoom:1 rule is specifically for IE6 + IE7.
+
+Move to separate stylesheet if invalid CSS is a problem.
+
+•*/
+
+.clearfix {
+    zoom: 1;
+}
