@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 
 #nullable disable
 
@@ -13,7 +15,11 @@ namespace WilbertVaultCompany.api.Models
         }
 
         public int FuneralHomeId { get; set; }
+
+        [Display(Name = "Parent Home")]
         public int? ParentFuneralHomeId { get; set; }
+
+        [Display(Name ="Funeral Home")]
         public string Name { get; set; }
         public int? PlantId { get; set; }
         public string Address { get; set; }
@@ -27,6 +33,8 @@ namespace WilbertVaultCompany.api.Models
         public string Phone2 { get; set; }
         public string PhoneType1 { get; set; }
         public string PhoneType2 { get; set; }
+
+        [Display(Name = "Parent Home?")]
         public bool IsParent { get; set; }
         public string ParentName { get; set; }
 
