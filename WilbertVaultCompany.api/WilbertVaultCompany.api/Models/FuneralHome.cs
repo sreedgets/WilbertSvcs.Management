@@ -34,7 +34,7 @@ namespace WilbertVaultCompany.api.Models
         public string PhoneType1 { get; set; }
         public string PhoneType2 { get; set; }
 
-        [Display(Name = "Parent Home?")]
+        [Display(Name = "Is Parent Home?")]
         public bool IsParent { get; set; }
         public string ParentName { get; set; }
 

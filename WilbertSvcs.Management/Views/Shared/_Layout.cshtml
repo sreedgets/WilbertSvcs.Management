@@ -8,26 +8,9 @@
     <title>@ViewBag.Title</title>
     <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
-<body class="m-1 p-1">
-    @*<div>
-
-        </div>*@
-
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <div class="main">
-        <div>
-            <a href="http://www.wilbert.com">
-                <img src="/Images/Wilbert.png" alt="Wilbert" />
-            </a>
-        </div>
-        <hr />
-        <div class="content px-4">
+<body class="text-center">
             @RenderBody()
-        </div>
-    </div>
+       
 </body>
 </html>
 @RenderSection("scripts", false)

@@ -1,0 +1,149 @@
+﻿@model Login
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+
+    <title>Login Template for Bootstrap</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Wilbert Vault Co</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Contact</a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+        <center>
+            <h1 class="mt-5">Customer Login</h1>
+            <form method="post" action="./login.aspx" id="form1">
+                <div class="aspNetHidden">
+                    <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTU3NTA5MDQ2NmRkd5sidoJFs7/Q1XRhd0oDFiROnpZZ9YBoaKGUU6Ye/Js=" />
+                </div>
+                <div class="aspNetHidden">
+                    <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="126D43E3" />
+                    <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAQ2/1FRlRuDj8d+ZbVgRDtyVCljrCncr1J7MYQHN26sfVrOg7M+XRkcWBcHQ4gBDJxmMVxwspsrLGu8S+c9N/C3TMX4jg8fcfNxOLtXys/prcL1ddF/ACrBu3fm3wndXvQ=" />
+                </div>
+                <div>
+                    <span id="Content_errorMessage" class="errorMessage"></span>
+                    <table>
+
+                        <tr>
+
+                            <td style="width: 120px;">
+
+                                @*<label class="titleLabel"> Username: </label>*@
+                                <label asp-for="Email">Username</label>
+                               
+
+                            </td>
+
+                            <td>
+
+                                @*<input name="ctl00$Content$userName" type="text" maxlength="100" id="Content_userName" style="width:200px;" />*@
+                                <input asp-for="Email" class="form-control" />
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+
+                                @*<label class="titleLabel"> Password: </label>*@
+                                <label asp-for="Password">Password:</label>
+                                
+
+                            </td>
+
+                            <td>
+
+                                @*<input name="ctl00$Content$password" type="password" maxlength="100" id="Content_password" style="width:200px;" />*@
+                                <input asp-for="Password" class="form-control" />
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td></td>
+
+                            <td>
+
+                                <div style="width: 100%;"> <input type="submit" name="ctl00$Content$loginButton" value="Login" id="Content_loginButton" /> </div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td></td>
+
+                            <td>
+
+                                <div style="width: 100%;"><a href="ForgottenPassword.aspx">Forgotten Password?</a></div>
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </form>
+        </center>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted"><center>Copyright
+            <script type="text/javascript">document.write(new Date().getFullYear());</script> Wilbert Valut Company. | 974 73rd St #5, Des Moines, IA 50324 |  (515) 223-5908</center></span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
