@@ -36,12 +36,13 @@ namespace WilbertSvcs.Management.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(Login login)
+        public async Task<IActionResult> Login(Login login, string returnUrl)
         {
-            //login.ReturnUrl = "dashboard";
+            login.ReturnUrl = returnUrl;
 
             if (ModelState.IsValid)
             {
+
                 WilbertAppUser WilbertAppUser = await userManager.FindByEmailAsync(login.Email);
                 if (WilbertAppUser != null)
                 {
@@ -51,9 +52,7 @@ namespace WilbertSvcs.Management.Controllers
                     {
                         login.wilbertAppUser = WilbertAppUser;
                         login.userManager = userManager;
-                        //return View(login.ReturnUrl, login);
-
-                        //return RedirectToAction("index", "home", login);
+                      
                         return Redirect(login.ReturnUrl ?? "/");
                     }
                 }

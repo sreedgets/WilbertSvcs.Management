@@ -23,19 +23,23 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner">
-                <h3 class="masthead-brand">Wilbert Vault Co</h3>
-                <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="#">Home</a>
-                    <a class="nav-link" href="@Url.Action("Login","Home", null)">Login</a>
-                    <a class="nav-link" href="#">Contact</a>
-                </nav>
+                <a href="http://www.wilbert.com">
+                    <h3 class="masthead-brand">Wilbert Vault Co</h3>
+                    </a> 
+                    <nav class="nav nav-masthead justify-content-center">
+                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link" href="@Url.Action("Login","Home", null)">Login</a>
+                        <a class="nav-link" href="#">Contact</a>
+                    </nav>
             </div>
         </header>
 
         <main role="main" class="inner cover">
             <h1 class="cover-heading">Welcome to Wilbert Vault Company</h1>
             <p>
-                <img src="~/images/wilbert-logo-mono.svg" style="width:800px;">
+                <a href="http://www.wilbert.com">
+                    <img src="~/images/wilbert-logo-mono.svg" style="width:800px;">
+                </a>
             </p>
             <p class="lead">
                 <a href="@Url.Action("Login","Home", null)" class="btn btn-lg btn-secondary">Client Login</a>
@@ -44,8 +48,10 @@
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>Copyright
-                <script type="text/javascript">document.write(new Date().getFullYear());</script> Wilbert Valut Company. | 974 73rd St #5, Des Moines, IA 50324 |  (515) 223-5908</p>
+                <p>
+                    Copyright
+                    <script type="text/javascript">document.write(new Date().getFullYear());</script> Wilbert Valut Company. | 974 73rd St #5, Des Moines, IA 50324 |  (515) 223-5908
+                </p>
             </div>
         </footer>
     </div>
