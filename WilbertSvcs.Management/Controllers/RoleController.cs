@@ -19,7 +19,7 @@ namespace WilbertSvcs.Management.Controllers
             userManager = userMgr;
         }
 
-        public ViewResult Index() => View(roleManager.Roles);
+        public ViewResult Index() => View(roleManager.Roles.ToList());
 
         private void Errors(IdentityResult result)
         {
