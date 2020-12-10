@@ -1,4 +1,4 @@
-﻿@model Login 
+﻿@model Login
 < !doctype html >
 <html lang="en">
 <head>
@@ -148,30 +148,31 @@
                             </div>
                         </div>
                     </div>
-                   @*@if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
-                   {*@
+                    @if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
+                    {
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 @*<img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">*@
-                                <a asp-action="Index" asp-controller="Admin" > 
-                                    <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">Administration</a>
+                                <a asp-action="Index" asp-controller="Admin">
+                                    <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">Administration
+                                </a>
                                 <div class="card-body">
                                     <h3>Admin Utilities</h3>
                                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                                 </div>
                             </div>
                         </div>
-                   
-                        <div class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h3>Change Password</h3>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
+                    }
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h3>Change Password</h3>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </main>
@@ -195,4 +196,4 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-</html>
+</html>	

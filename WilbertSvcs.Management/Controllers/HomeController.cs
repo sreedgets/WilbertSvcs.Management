@@ -27,14 +27,19 @@ namespace WilbertSvcs.Management.Controllers
             return View();
         }
         private bool test;
-        public async Task<IActionResult> DashboardAsync(Login login)
+        
+        public async Task<IActionResult> Dashboard (Login login)
         {
+            waUser = await userManager.FindByEmailAsync(login.Email);
+
             login.wilbertAppUser = waUser;
             login.userManager = userManager;
-            test = await userManager.IsInRoleAsync(waUser, "SUPERUSER");
+
+            test = await userManager.IsInRoleAsync(login.wilbertAppUser, "SUPERUSER");
+
+            var roles = await userManager.GetRolesAsync(waUser);
             return View(login);
         }
-
         [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
