@@ -39,7 +39,6 @@ namespace WilbertSvcs.Management.Controllers
             test = await userManager.IsInRoleAsync(waUser, "SUPERUSER");
             return View(dd);
         }
-
         [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
