@@ -1,4 +1,4 @@
-﻿@model Login 
+﻿@model Dashboarddata 
 < !doctype html >
 <html lang="en">
 <head>
@@ -35,7 +35,7 @@
                         <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Contact</a>
@@ -148,8 +148,8 @@
                             </div>
                         </div>
                     </div>
-                   @*@if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
-                   {*@
+                   @if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
+                   {
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 @*<img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">*@
@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                         </div>
-                   
+                   }
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">

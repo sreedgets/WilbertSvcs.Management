@@ -14,9 +14,7 @@ namespace WilbertSvcs.Management.Models
         public string Password { get; set; }
 
         public string ReturnUrl { get; set; }
-        public UserManager<WilbertAppUser> userManager { get; set; }
-
-        public WilbertAppUser wilbertAppUser { get; set; }
+       
 
     }
 }

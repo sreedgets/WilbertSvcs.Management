@@ -48,10 +48,7 @@ namespace WilbertSvcs.Management.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(WilbertAppUser, login.Password, false, false);
                     if (result.Succeeded)  // Pass to main dashboard
                     {
-                        login.wilbertAppUser = WilbertAppUser;
-                        login.userManager = userManager;
-                        //return View(login.ReturnUrl, login);
-
+                    
                         //return RedirectToAction("index", "home", login);
                         return Redirect(login.ReturnUrl ?? "/");
                     }

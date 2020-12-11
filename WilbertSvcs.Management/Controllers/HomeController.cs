@@ -14,12 +14,14 @@ namespace WilbertSvcs.Management.Controllers
         private UserManager<WilbertAppUser> userManager;
         private SignInManager<WilbertAppUser> signInManager;
         private WilbertAppUser waUser;
+        private Dashboarddata dd;
 
         public HomeController(UserManager<WilbertAppUser> userMgr, SignInManager<WilbertAppUser> signinMgr)
         {
             userManager = userMgr;
             signInManager = signinMgr;
             waUser = new WilbertAppUser();
+            dd = new Dashboarddata();
         }
 
         public IActionResult Index()
@@ -27,12 +29,15 @@ namespace WilbertSvcs.Management.Controllers
             return View();
         }
         private bool test;
-        public async Task<IActionResult> DashboardAsync(Login login)
+
+        [Authorize]
+        public async Task<IActionResult> Dashboard()
         {
-            login.wilbertAppUser = waUser;
-            login.userManager = userManager;
+            dd.wilbertAppUser = waUser;
+            dd.wilbertAppUser = await userManager.FindByEmailAsync(TempData["Email"].ToString());
+            dd.userManager = userManager;
             test = await userManager.IsInRoleAsync(waUser, "SUPERUSER");
-            return View(login);
+            return View(dd);
         }
 
         [AllowAnonymous]
@@ -42,6 +47,7 @@ namespace WilbertSvcs.Management.Controllers
             login.ReturnUrl = returnUrl;
             return View(login);
         }
+
         //TODO: Add Forgot password functionality
         [HttpPost]
         [AllowAnonymous]
@@ -59,10 +65,8 @@ namespace WilbertSvcs.Management.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(waUser, login.Password, false, false);
                     if (result.Succeeded)  // Pass to main dashboard
                     {
-                        login.wilbertAppUser = waUser;
-                        login.userManager = userManager;
-                      
-                        return RedirectToAction(login.ReturnUrl ?? "Dashboard", login);
+                        TempData["Email"] = login.Email;
+                        return RedirectToAction(login.ReturnUrl ?? "Dashboard");
                     }
                 }
                 ModelState.AddModelError(nameof(login.Email), "Login Failed: Invalid Email or password");
