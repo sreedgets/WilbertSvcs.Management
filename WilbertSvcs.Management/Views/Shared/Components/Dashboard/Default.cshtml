@@ -1,0 +1,40 @@
+﻿@inject SignInManager<WilbertAppUser> simgr;
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Wilbert Vault Co.</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link"  asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" asp-controller="Home" asp-action="Dashboard">Dashboard<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Contact</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            @if (simgr.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <form method="post" asp-controller="Home" asp-action="logout">
+                        <button type="submit" class=" nav-link btn btn-link py-0" style="width:auto">
+                            Logout @User.Identity.Name
+                        </button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Login">Login</a>
+                </li>
+            }
+        </ul>
+
+    </div>
+</nav>

@@ -13,6 +13,7 @@ namespace WilbertSvcs.Management.Controllers
     {
         private UserManager<WilbertAppUser> userManager;
         private SignInManager<WilbertAppUser> signInManager;
+
         private WilbertAppUser waUser;
         private Dashboarddata dd;
 
@@ -24,19 +25,22 @@ namespace WilbertSvcs.Management.Controllers
             dd = new Dashboarddata();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
+            await signInManager.SignOutAsync();
             return View();
         }
+        
         private bool test;
 
         [Authorize]
         public async Task<IActionResult> Dashboard()
-        {
+        {   
             dd.wilbertAppUser = waUser;
-            dd.wilbertAppUser = await userManager.FindByEmailAsync(TempData["Email"].ToString());
+           // dd.wilbertAppUser = await userManager.FindByEmailAsync(TempData["Email"].ToString());
+            dd.wilbertAppUser = await userManager.FindByNameAsync(User.Identity.Name.ToString());
             dd.userManager = userManager;
-            test = await userManager.IsInRoleAsync(waUser, "SUPERUSER");
+            
             return View(dd);
         }
         [AllowAnonymous]
@@ -69,9 +73,11 @@ namespace WilbertSvcs.Management.Controllers
                     }
                 }
                 ModelState.AddModelError(nameof(login.Email), "Login Failed: Invalid Email or password");
-            }
+            }   
             return View(login);
         }
+
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
