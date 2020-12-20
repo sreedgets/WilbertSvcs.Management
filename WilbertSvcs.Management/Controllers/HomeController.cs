@@ -30,9 +30,7 @@ namespace WilbertSvcs.Management.Controllers
             await signInManager.SignOutAsync();
             return View();
         }
-        
-        private bool test;
-
+    
         [Authorize]
         public async Task<IActionResult> Dashboard()
         {   
@@ -40,6 +38,7 @@ namespace WilbertSvcs.Management.Controllers
            // dd.wilbertAppUser = await userManager.FindByEmailAsync(TempData["Email"].ToString());
             dd.wilbertAppUser = await userManager.FindByNameAsync(User.Identity.Name.ToString());
             dd.userManager = userManager;
+            dd.activePage = "Dashboard";
             
             return View(dd);
         }

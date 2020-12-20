@@ -1,22 +1,60 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
-@{
-    ViewData["Title"] = "Administration";
-}
+
 <link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 <link href="~/css/Account/dashboard.css" rel="stylesheet" />
 <h1 class="bg-info text-white">Administration</h1>
 
-<div>
-    <table class="dashboard_images">
-        <tr>
-            <td>
-                <a asp-action="Index" asp-controller="Users" class="btn btn-primary btn-lg">Manage Users</a>
-            </td>
-            <td>
-                <a asp-action="Index" asp-controller="role" class="btn btn-primary btn-lg">Manage Roles</a>
-            </td>
+<!-- Bootstrap core CSS -->
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
 
-        </tr>
-    </table>
-</div>
-<a href="/daahboard/index" class="btn btn-link"><< Go Back</a>
+<!-- Custom styles for this template -->
+<link href="~/css/sticky-footer.css" rel="stylesheet" />
+<link href="~/css/custom.css" rel="stylesheet">
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h3>Users</h3>
+                            <a asp-action="Index" asp-controller="Users">Manage Users</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h3>Roles</h3>
+                            <a asp-action="Index" asp-controller="Role">Manage Roles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div>
+        <table class="dashboard_images">
+            <tr>
+                <td>
+                    <a asp-action="Index" asp-controller="Users" class="btn btn-primary btn-lg">Manage Users</a>
+                </td>
+                <td>
+                    <a asp-action="Index" asp-controller="role" class="btn btn-primary btn-lg">Manage Roles</a>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <a href="/daahboard/index" class="btn btn-link"><< Go Back</a>*@
+</main>

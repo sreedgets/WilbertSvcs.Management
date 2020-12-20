@@ -1,14 +1,27 @@
 ﻿@model IEnumerable<WilbertAppUser>
+<head>
+    <title>Dashboard Template</title>
 
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+@await Component.InvokeAsync("Dashboard")
 <h1 class="bg-info text-white">All Users</h1>
 <a asp-action="Create" class="btn btn-secondary">Create a User</a>
 
 <table class="table table-sm table-bordered">
-    <tr><th>ID</th><th>Name</th><th>Email</th><th>Update</th><th>Delete</th></tr>
+    <tr>@*<th>ID</th>*@<th>Name</th><th>Email</th><th>Update</th><th>Delete</th></tr>
     @foreach (WilbertAppUser user in Model)
     {
         <tr>
-            <td>@user.Id</td>
+            @*<td>@user.Id</td>*@
             <td>@user.UserName</td>
             <td>@user.Email</td>
             <td>

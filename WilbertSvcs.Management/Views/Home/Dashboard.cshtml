@@ -1,4 +1,4 @@
-﻿@model Dashboarddata 
+﻿@model Dashboarddata
 < !doctype html >
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@
 
     <header>
         <!-- Fixed navbar -->
-        @await Component.InvokeAsync("Dashboard")
+        @await Component.InvokeAsync("Dashboard",Model)
     </header>
 
     <!-- Begin page content -->
@@ -126,43 +126,45 @@
                             </div>
                         </div>
                     </div>
-                   @*@if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
-                   {*@
-                        <div class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-                                @*<img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">*@
-                                <a asp-action="Index" asp-controller="Admin">
-                                    <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">Administration
-                                </a>
-                                <div class="card-body">
-                                    <h3>Admin Utilities</h3>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                   
-                        <div class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h3>Change Password</h3>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
+                    @if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
+                        {
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                           
+                            <a asp-action="Index" asp-controller="Admin">
+                                <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">Administration
+                            </a>
+                            <div class="card-body">
+                                <h3>Admin Utilities</h3>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             </div>
                         </div>
                     </div>
+                    }
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h3>Change Password</h3>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <span class="text-muted">
-                <center>
+            <center>
+                <span class="text-muted">
+
                     Copyright
                     <script type="text/javascript">document.write(new Date().getFullYear());</script> Wilbert Valut Company. | 974 73rd St #5, Des Moines, IA 50324 |  (515) 223-5908
-                </center>
-            </span>
+
+                </span>
+            </center>
         </div>
     </footer>
 

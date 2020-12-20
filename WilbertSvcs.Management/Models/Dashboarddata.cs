@@ -11,5 +11,7 @@ namespace WilbertSvcs.Management.Models
         public  UserManager<WilbertAppUser> userManager { get; set; }
 
         public  WilbertAppUser wilbertAppUser { get; set; }
+
+        public string activePage { get; set; }
     }
 }
