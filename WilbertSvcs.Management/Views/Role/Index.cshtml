@@ -14,7 +14,7 @@
 <!-- Fixed navbar -->
 @await Component.InvokeAsync("Dashboard")
 <h1 class="bg-info text-white">All Roles</h1>
-
+<a asp-action="Create" class="btn btn-secondary">Create a Role</a>
 
 <table class="table table-sm table-bordered table-bordered">
     <tr><th>ID</th><th>Name</th><th></th><th>Update</th><th>Delete</th></tr>
@@ -36,5 +36,5 @@
         </tr>
     }
 </table>
-<a asp-action="Create" class="btn btn-secondary">Create a Role</a><br/>
+<br/>
 <a asp-action="Index" asp-controller="Admin" class="btn btn-link"><< Go Back</a>

@@ -38,17 +38,17 @@
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/orders.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Orders</h3>
-
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <div style="background:#00446a"><img class="card-img-top" src="~/images/funeral-homes.svg" alt="Card image cap"></div>
-                            <div class="card-body">
-                                <h3>Funeral Homes</h3>
-
-                            </div>
+                            <a asp-action="Index" asp-controller="FuneralHomes">
+                                <div style="background:#00446a"><img class="card-img-top" src="~/images/funeral-homes.svg" alt="Card image cap"></div>
+                                <div class="card-body">
+                                    <h3>Funeral Homes</h3>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -133,7 +133,7 @@
                                 <a asp-action="Index" asp-controller="Admin">
                                     <div style="background:#00446a">
                                         <img class="card-img-top"
-                                             src="~/images/admin.svg"  alt="Admin Functions">
+                                             src="~/images/admin.svg" alt="Admin Functions">
                                     </div>
                                     <div class="card-body">
                                         <h3>Admin Utilities</h3>

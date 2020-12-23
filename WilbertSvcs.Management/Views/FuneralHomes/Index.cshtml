@@ -4,11 +4,24 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="bg-info text-white">Index</h1>
+<head>
+    <title>Dashboard Template</title>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+@await Component.InvokeAsync("Dashboard")
+<br /> <br/> <br />
+<a asp-action="Create" class="btn btn-secondary">Create a Funeral Home</a>
+
+
 <table class="table">
     <thead>
         <tr>

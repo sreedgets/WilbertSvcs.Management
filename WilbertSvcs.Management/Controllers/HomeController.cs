@@ -35,7 +35,6 @@ namespace WilbertSvcs.Management.Controllers
         public async Task<IActionResult> Dashboard()
         {   
             dd.wilbertAppUser = waUser;
-            // dd.wilbertAppUser = await userManager.FindByEmailAsync(TempData["Email"].ToString());
             dd.wilbertAppUser = await userManager.FindByNameAsync(User.Identity.Name.ToString());
             dd.userManager = userManager;
             dd.activePage = "Dashboard";
