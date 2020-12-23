@@ -24,7 +24,7 @@
 
     <header>
         <!-- Fixed navbar -->
-        @await Component.InvokeAsync("Dashboard",Model)
+        @await Component.InvokeAsync("Dashboard", Model)
     </header>
 
     <!-- Begin page content -->
@@ -35,56 +35,56 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/orders.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Orders</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/funeral-homes.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Funeral Homes</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/schedule.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Schedule</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/cemeteries.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Cemeteries</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/deliveries.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Delivery List</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/review.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Office Review</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
 
                             </div>
                         </div>
@@ -92,61 +92,63 @@
 
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/plants.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Plants</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/employees.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Employees</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/inventory.svg" alt="Card image cap"></div>
                             <div class="card-body">
-                                <h3>Products</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <h3>Inventory</h3>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/trucks.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Trucks</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
                     @if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
-                        {
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                           
-                            <a asp-action="Index" asp-controller="Admin">
-                                <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">Administration
-                            </a>
-                            <div class="card-body">
-                                <h3>Admin Utilities</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    {
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <a asp-action="Index" asp-controller="Admin">
+                                    <div style="background:#00446a">
+                                        <img class="card-img-top"
+                                             src="~/images/admin.svg"  alt="Admin Functions">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3>Admin Utilities</h3>
+
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </div>
                     }
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="~/images/thumbnail.jpg" alt="Card image cap">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/password.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Change Password</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
                             </div>
                         </div>
                     </div>
