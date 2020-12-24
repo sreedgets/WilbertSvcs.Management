@@ -36,8 +36,4 @@
     <ProjectReference Include="..\WilbertVaultCompany.api\WilbertVaultCompany.api\WilbertVaultCompany.api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\FuneralHomes\" />
-  </ItemGroup>
-
 </Project>

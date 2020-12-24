@@ -18,7 +18,9 @@
 </head>
 <!-- Fixed navbar -->
 @await Component.InvokeAsync("Dashboard")
-<br /> <br/> <br />
+<br />
+<br />
+<br />
 <a asp-action="Create" class="btn btn-secondary">Create a Funeral Home</a>
 
 
@@ -41,7 +43,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Phone1)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -65,7 +69,7 @@
                     @Html.DisplayFor(modelItem => item.Phone1)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PlantId)
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
                 </td>
 
                 <td>
