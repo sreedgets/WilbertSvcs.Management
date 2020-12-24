@@ -42,8 +42,7 @@ namespace WilbertVaultCompany.api.Controllers
         }
 
         // PUT: api/FuneralHomes/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFuneralHome(int id, FuneralHome funeralHome)
         {
@@ -74,8 +73,7 @@ namespace WilbertVaultCompany.api.Controllers
         }
 
         // POST: api/FuneralHomes
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<FuneralHome>> PostFuneralHome(FuneralHome funeralHome)
         {
@@ -87,7 +85,7 @@ namespace WilbertVaultCompany.api.Controllers
 
         // DELETE: api/FuneralHomes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<FuneralHome>> DeleteFuneralHome(int id)
+        public async Task<IActionResult> DeleteFuneralHome(int id)
         {
             var funeralHome = await _context.FuneralHomes.FindAsync(id);
             if (funeralHome == null)
@@ -98,7 +96,7 @@ namespace WilbertVaultCompany.api.Controllers
             _context.FuneralHomes.Remove(funeralHome);
             await _context.SaveChangesAsync();
 
-            return funeralHome;
+            return NoContent();
         }
 
         private bool FuneralHomeExists(int id)

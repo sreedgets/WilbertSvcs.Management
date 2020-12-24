@@ -1,0 +1,152 @@
+﻿@model WilbertVaultCompany.api.Models.FuneralHome
+@using WilbertVaultCompany.api.Enums
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link href="~/css/WilbertStyle.css" rel="stylesheet" />
+<h1 class="bg-info text-white">Create Funeral Home</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table>
+                <tr valign="top">
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label asp-for="Name" style="width: 100px" class="titleLabel">Name</label>
+                                </td>
+                                <td align="left" colspan="3">
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </td>                            
+                                <td colspan="3">
+                                    <label class="titleLabel" asp-for="IsParent" style="width: 150px"></label>
+                                </td>
+                                <td>
+                                    <input class="form-check-input" asp-for="IsParent" style="vertical-align:middle" />
+                                </td>
+                            
+                                <td>
+                                    <label asp-for="ParentFuneralHomeId" style="width: 100px" class="titleLabel">Parent FH</label>
+                                </td>
+                                <td>
+                                    <select asp-for="ParentFuneralHomeId" style="width: 200px" class="form-control" asp-items="@(new SelectList(Model.ParentFuneralHomes,"Id","ParentFuneralhomeName"))">
+                                    </select>
+                                    <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Address" class="titleLabel"></label>
+                                </td>
+                                <td colspan="3" align="left">
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </td>
+                          
+                                <td>
+                                    <label asp-for="City" class="titleLabel"></label>
+                                </td>
+                                <td colspan="3" align="left">
+                                    <input asp-for="City" class="form-control" />
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </td>
+                           
+                                <td>
+                                    <label asp-for="State" class="titleLabel"></label>
+                                </td>
+                                <td>
+                                    <select asp-for="State" style="width:75px" class="form-control" asp-items="Html.GetEnumSelectList<States>()"></select>
+                                    <span asp-validation-for="State" class="text-danger"></span>
+                                </td>
+                           
+                                <td>
+                                    <label asp-for="ZipCode" class="titleLabel"></label>
+                                </td>
+                                <td colspan="3" align="left">
+                                    <input asp-for="ZipCode" class="form-control" />
+                                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                </td>
+                            
+                                <td>
+                                    <label asp-for="County" class="titleLabel"></label>
+                                </td>
+                                <td colspan="3" align="left">
+                                    <input asp-for="County" class="form-control" />
+                                    <span asp-validation-for="County" class="text-danger"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                     
+                            <tr>
+                                <td>
+                                    <label asp-for="Email" class="titleLabel"></label>
+                                </td>
+                                <td colspan="3" align="left">
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Website" class="titleLabel"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="Website" tyle="width: 100px" class="form-control" />
+                                    <span asp-validation-for="Website" class="text-danger"></span>
+                                </td>
+                                <td>
+
+                                    <label asp-for="Phone1" class="titleLabel"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="Phone1" class="form-control" />
+                                    <span asp-validation-for="Phone1" class="text-danger"></span>
+
+                                </td>
+                                <td>
+                                    <label asp-for="PhoneType1" class="titleLabel"></label>
+                                </td>
+                                <td>
+                                    <select asp-for="PhoneType1" class="form-control" asp-items="Html.GetEnumSelectList<PhoneType>()"></select>
+                                    <span asp-validation-for="PhoneType1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <label asp-for="Phone2" class="titleLabel"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="Phone2" class="form-control" />
+                                    <span asp-validation-for="Phone2" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <label asp-for="PhoneType2" class="titleLabel"></label>
+                                </td>
+                                <td>
+                                    <select asp-for="PhoneType2" class="form-control" asp-items="Html.GetEnumSelectList<PhoneType>()"></select>
+                                    <span asp-validation-for="PhoneType2" class="text-danger"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

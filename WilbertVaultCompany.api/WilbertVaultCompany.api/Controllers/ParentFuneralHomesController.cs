@@ -42,8 +42,7 @@ namespace WilbertVaultCompany.api.Controllers
         }
 
         // PUT: api/ParentFuneralHomes/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParentFuneralHome(int id, ParentFuneralHome parentFuneralHome)
         {
@@ -74,8 +73,7 @@ namespace WilbertVaultCompany.api.Controllers
         }
 
         // POST: api/ParentFuneralHomes
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ParentFuneralHome>> PostParentFuneralHome(ParentFuneralHome parentFuneralHome)
         {
@@ -87,7 +85,7 @@ namespace WilbertVaultCompany.api.Controllers
 
         // DELETE: api/ParentFuneralHomes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ParentFuneralHome>> DeleteParentFuneralHome(int id)
+        public async Task<IActionResult> DeleteParentFuneralHome(int id)
         {
             var parentFuneralHome = await _context.ParentFuneralHomes.FindAsync(id);
             if (parentFuneralHome == null)
@@ -98,7 +96,7 @@ namespace WilbertVaultCompany.api.Controllers
             _context.ParentFuneralHomes.Remove(parentFuneralHome);
             await _context.SaveChangesAsync();
 
-            return parentFuneralHome;
+            return NoContent();
         }
 
         private bool ParentFuneralHomeExists(int id)

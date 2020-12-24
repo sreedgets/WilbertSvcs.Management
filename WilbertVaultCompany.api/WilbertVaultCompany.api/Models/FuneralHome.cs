@@ -19,9 +19,9 @@ namespace WilbertVaultCompany.api.Models
         [Display(Name = "Parent Home")]
         public int? ParentFuneralHomeId { get; set; }
 
-        [Display(Name ="Funeral Home")]
+        [Display(Name = "Funeral Home")]
         public string Name { get; set; }
-        public int? PlantId { get; set; }
+        public virtual Plant Plant { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
