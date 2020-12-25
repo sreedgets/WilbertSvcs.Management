@@ -43,21 +43,17 @@
                     <table>
                         <tr>
                             <td style="width: 120px;">
-                                @*<label class="titleLabel"> Username: </label>*@
                                 <label asp-for="Email">Username</label>
                             </td>
                             <td>
-                                @*<input name="ctl00$Content$userName" type="text" maxlength="100" id="Content_userName" style="width:200px;" />*@
                                 <input asp-for="Email" class="form-control" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                @*<label class="titleLabel"> Password: </label>*@
                                 <label asp-for="Password">Password:</label>
                             </td>
                             <td>
-                                @*<input name="ctl00$Content$password" type="password" maxlength="100" id="Content_password" style="width:200px;" />*@
                                 <input asp-for="Password" class="form-control" />
                             </td>
                         </tr>
@@ -65,7 +61,6 @@
                             <td></td>
                             <td>
                                 <div style="width: 100%;">
-                                    @*<input type="submit" name="loginButton" asp-action="Login" value="Login" id="Content_loginButton" />*@
                                     <button  type="submit">Log In</button>
                                 </div>
                             </td>

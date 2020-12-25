@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WilbertVaultCompany.api.Models;
+using WilbertVaultCompany.api.Enums;
 
 namespace WilbertSvcs.Management.Controllers
 {
@@ -31,6 +32,7 @@ namespace WilbertSvcs.Management.Controllers
 
                 if (item.ParentName != null)
                     item.ParentName = pfh.ParentFuneralhomeName.Trim();
+                
             }
             return View(await _context.FuneralHomes.ToListAsync());
         }
@@ -72,6 +74,7 @@ namespace WilbertSvcs.Management.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 if (_context.ParentFuneralHomes.Count() == 0)
                 {
                     if (funeralHome.IsParent)
