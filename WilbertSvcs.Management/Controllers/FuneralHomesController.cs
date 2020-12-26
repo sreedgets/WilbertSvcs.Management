@@ -32,7 +32,8 @@ namespace WilbertSvcs.Management.Controllers
 
                 if (item.ParentName != null)
                     item.ParentName = pfh.ParentFuneralhomeName.Trim();
-                
+
+                item.State = Enum.GetName(typeof(States), Int32.Parse( item.State));
             }
             return View(await _context.FuneralHomes.ToListAsync());
         }
@@ -52,6 +53,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+            funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
 
             return View(funeralHome);
         }
