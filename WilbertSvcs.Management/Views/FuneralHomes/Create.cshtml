@@ -173,5 +173,26 @@
 </main>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+    function phoneOnKeyDown(phoneTextBox) {
+        if (phoneTextBox.value == '(xxx)xxx-xxxx') {
+            phoneTextBox.value = '';
+            phoneTextBox.style['color'] = 'black';
+        }
+    }
+
+    function phoneOnBlur(phoneTextBox) {
+        if (phoneTextBox.value.trim().length == 0) {
+            phoneTextBox.value = '(xxx)xxx-xxxx';
+            phoneTextBox.style['color'] = 'silver';
+        } else {
+
+            if (phoneTextBox.value.trim().length == 6) {  // 062019
+                phoneTextBox.value = phoneTextBox.value.substring(0, 2) + "/" + phoneTextBox.value.substr(2, 4);
+
+            }
+
+        }
+</script>
 }
 

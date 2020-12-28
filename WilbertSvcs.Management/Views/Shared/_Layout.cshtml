@@ -9,8 +9,11 @@
     <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body class="text-center">
-            @RenderBody()
-       
+    @RenderBody()
+
+    @RenderSection("scripts", false)
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
-@RenderSection("scripts", false)
