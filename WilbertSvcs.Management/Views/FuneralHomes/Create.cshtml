@@ -33,13 +33,7 @@
     <center>
         <h1 class="mt-5">Add Funeral Home</h1>
         <form method="post" asp-action="Create" id="form1">
-            <div class="aspNetHidden">
-                <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTU3NTA5MDQ2NmRkd5sidoJFs7/Q1XRhd0oDFiROnpZZ9YBoaKGUU6Ye/Js=" />
-            </div>
-            <div class="aspNetHidden">
-                <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="126D43E3" />
-                <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAQ2/1FRlRuDj8d+ZbVgRDtyVCljrCncr1J7MYQHN26sfVrOg7M+XRkcWBcHQ4gBDJxmMVxwspsrLGu8S+c9N/C3TMX4jg8fcfNxOLtXys/prcL1ddF/ACrBu3fm3wndXvQ=" />
-            </div>
+           
             <div>
                 <span id="Content_errorMessage" class="errorMessage"></span>
                 <table>
@@ -52,12 +46,21 @@
 
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </td>
-                   
+
                         <td class="form-group form-check">
                             <label class="form-check-label">
                                 <input class="form-check-input" asp-for="IsParent" /> @Html.DisplayNameFor(model => model.IsParent)
                             </label>
                         </td>
+                        <td>
+                            <label asp-for="PlantName">Plant</label>
+                        </td>
+                        <td>
+                            <select asp-for="ParentFuneralHomeId" class="form-control" asp-items="@(new SelectList(Model.ParentFuneralHomes,"Id","ParentFuneralhomeName"))">
+                            </select>
+                            <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
+                        </td>
+
                     </tr>
                     <tr>
                         <td>
@@ -68,7 +71,7 @@
                             </select>
                             <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
                         </td>
-                   
+
                         <td>
                             <label asp-for="Address"></label>
                         </td>
@@ -108,7 +111,7 @@
                             <input asp-for="County" class="form-control" />
                             <span asp-validation-for="County" class="text-danger"></span>
                         </td>
-                    </tr>                
+                    </tr>
                     <tr>
                         <td>
                             <label asp-for="Email"></label>
@@ -131,7 +134,8 @@
                             <label asp-for="Phone1"></label>
                         </td>
                         <td>
-                            <input asp-for="Phone1" class="form-control" />
+                            <input asp-for="Phone1" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
+                                   onblur="phoneOnBlur(this);" />
                             <span asp-validation-for="Phone1" class="text-danger"></span>
 
                         </td>
@@ -148,7 +152,8 @@
                             <label asp-for="Phone2"></label>
                         </td>
                         <td>
-                            <input asp-for="Phone2" class="form-control" />
+                            <input asp-for="Phone2" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
+                                   onblur="phoneOnBlur(this);" />
                             <span asp-validation-for="Phone2" class="text-danger"></span>
                         </td>
                         <td>
@@ -171,28 +176,30 @@
         </form>
     </center>
 </main>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-<script type="text/javascript">
-    function phoneOnKeyDown(phoneTextBox) {
-        if (phoneTextBox.value == '(xxx)xxx-xxxx') {
-            phoneTextBox.value = '';
-            phoneTextBox.style['color'] = 'black';
+@section WilbertScripts {
+
+    <script type="text/javascript">
+        function phoneOnKeyDown(phoneTextBox) {
+            if (phoneTextBox.value == 'xxx-xxx-xxxx') {
+                phoneTextBox.value = '';
+                phoneTextBox.style['color'] = 'black';
+            }
         }
-    }
 
-    function phoneOnBlur(phoneTextBox) {
-        if (phoneTextBox.value.trim().length == 0) {
-            phoneTextBox.value = '(xxx)xxx-xxxx';
-            phoneTextBox.style['color'] = 'silver';
-        } else {
+        function phoneOnBlur(phoneTextBox) {
+            if (phoneTextBox.value.trim().length == 0) {
+                phoneTextBox.value = 'xxx-xxx-xxxx';
+                phoneTextBox.style['color'] = 'silver';
+            } else {
 
-            if (phoneTextBox.value.trim().length == 6) {  // 062019
-                phoneTextBox.value = phoneTextBox.value.substring(0, 2) + "/" + phoneTextBox.value.substr(2, 4);
+                if (phoneTextBox.value.trim().length == 6) {  // 062019
+                    phoneTextBox.value = phoneTextBox.value.substring(0, 2) + "/" + phoneTextBox.value.substr(2, 4);
+
+                }
 
             }
-
         }
-</script>
+    </script>
+    <partial name="_ValidationScriptsPartial" />
 }
 

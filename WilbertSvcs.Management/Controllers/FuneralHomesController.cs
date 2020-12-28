@@ -33,7 +33,7 @@ namespace WilbertSvcs.Management.Controllers
                 if (item.ParentName != null)
                     item.ParentName = pfh.ParentFuneralhomeName.Trim();
 
-                item.State = Enum.GetName(typeof(States), Int32.Parse( item.State));
+                item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
             }
             return View(await _context.FuneralHomes.ToListAsync());
         }
@@ -72,7 +72,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,ParentName")] FuneralHome funeralHome)
         {
             if (ModelState.IsValid)
             {
@@ -132,7 +132,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,ParentName")] FuneralHome funeralHome)
         {
             if (id != funeralHome.FuneralHomeId)
             {

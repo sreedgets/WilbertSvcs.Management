@@ -126,8 +126,7 @@
                             <label asp-for="Phone1"></label>
                         </td>
                         <td>
-                            <input asp-for="Phone1" class="form-control" style="color: silver" value="(xxx)xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
-                                   onblur="phoneOnBlur(this);" />
+                            <input asp-for="Phone1" class="form-control" />
                             <span asp-validation-for="Phone1" class="text-danger"></span>
 
                         </td>
@@ -144,8 +143,7 @@
                             <label asp-for="Phone2"></label>
                         </td>
                         <td>
-                            <input asp-for="Phone2" class="form-control" style="color: silver" value="(xxx)xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
-                                   onblur="phoneOnBlur(this);" />
+                            <input asp-for="Phone2" class="form-control" />
                             <span asp-validation-for="Phone2" class="text-danger"></span>
                         </td>
                         <td>
@@ -169,29 +167,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-
-<script type="text/javascript">
-    function phoneOnKeyDown(phoneTextBox) {
-        if (phoneTextBox.value == '(xxx)xxx-xxxx') {
-            phoneTextBox.value = '';
-            phoneTextBox.style['color'] = 'black';
-        }
-    }
-
-    function phoneOnBlur(phoneTextBox) {
-        if (phoneTextBox.value.trim().length == 0) {
-            phoneTextBox.value = '(xxx)xxx-xxxx';
-            phoneTextBox.style['color'] = 'silver';
-        } else {
-
-            if (phoneTextBox.value.trim().length == 6) {  // 062019
-                phoneTextBox.value = phoneTextBox.value.substring(0, 2) + "/" + phoneTextBox.value.substr(2, 4);
-
-            }
-
-        }
-
-</script>

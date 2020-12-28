@@ -45,15 +45,6 @@ namespace WilbertVaultCompany.api.Models
                     .HasForeignKey(d => d.FunralHomeFuneralHomeId);
             });
 
-            modelBuilder.Entity<Plant>(entity =>
-            {
-                entity.Property(e => e.PlantId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.PlantNavigation)
-                    .WithOne(p => p.Plant)
-                    .HasForeignKey<Plant>(d => d.PlantId);
-            });
-
             OnModelCreatingPartial(modelBuilder);
         }
 

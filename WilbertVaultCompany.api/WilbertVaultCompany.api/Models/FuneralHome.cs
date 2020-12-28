@@ -11,6 +11,7 @@ namespace WilbertVaultCompany.api.Models
         public FuneralHome()
         {
             ParentFuneralHomes = new HashSet<ParentFuneralHome>();
+            Plants = new HashSet<Plant>();
         }
 
         public int FuneralHomeId { get; set; }
@@ -35,8 +36,10 @@ namespace WilbertVaultCompany.api.Models
         public string PhoneType2 { get; set; }
         public bool IsParent { get; set; }
         public string ParentName { get; set; }
-
-        public virtual Plant Plant { get; set; }
         public virtual ICollection<ParentFuneralHome> ParentFuneralHomes { get; set; }
+
+        public string PlantName { get; set; }
+        public virtual ICollection<Plant> Plants { get; set; }
+
     }
 }

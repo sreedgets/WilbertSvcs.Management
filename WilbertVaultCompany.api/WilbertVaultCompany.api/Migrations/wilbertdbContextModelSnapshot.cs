@@ -63,6 +63,9 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("PhoneType2")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PlantName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
@@ -175,7 +178,9 @@ namespace WilbertVaultCompany.api.Migrations
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Plant", b =>
                 {
                     b.Property<int>("PlantId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -204,6 +209,9 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("PlantName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PlantNavigationFuneralHomeId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("PrintCompletedOrders")
                         .HasColumnType("bit");
 
@@ -214,6 +222,8 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("PlantId");
+
+                    b.HasIndex("PlantNavigationFuneralHomeId");
 
                     b.ToTable("Plants");
                 });
@@ -230,10 +240,8 @@ namespace WilbertVaultCompany.api.Migrations
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Plant", b =>
                 {
                     b.HasOne("WilbertVaultCompany.api.Models.FuneralHome", "PlantNavigation")
-                        .WithOne("Plant")
-                        .HasForeignKey("WilbertVaultCompany.api.Models.Plant", "PlantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Plants")
+                        .HasForeignKey("PlantNavigationFuneralHomeId");
 
                     b.Navigation("PlantNavigation");
                 });
@@ -242,7 +250,7 @@ namespace WilbertVaultCompany.api.Migrations
                 {
                     b.Navigation("ParentFuneralHomes");
 
-                    b.Navigation("Plant");
+                    b.Navigation("Plants");
                 });
 #pragma warning restore 612, 618
         }

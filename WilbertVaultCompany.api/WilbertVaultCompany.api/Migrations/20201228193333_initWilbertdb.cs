@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WilbertVaultCompany.api.Migrations
 {
-    public partial class baseWilbertdb : Migration
+    public partial class initWilbertdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,7 @@ namespace WilbertVaultCompany.api.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ZipCode = table.Column<int>(type: "int", nullable: false),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     County = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -48,7 +48,8 @@ namespace WilbertVaultCompany.api.Migrations
                     PhoneType1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneType2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsParent = table.Column<bool>(type: "bit", nullable: false),
-                    ParentName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ParentName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlantName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,7 +100,8 @@ namespace WilbertVaultCompany.api.Migrations
                 name: "Plants",
                 columns: table => new
                 {
-                    PlantId = table.Column<int>(type: "int", nullable: false),
+                    PlantId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PlantName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PlantManagerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -111,23 +113,29 @@ namespace WilbertVaultCompany.api.Migrations
                     Phone1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneType1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneType2 = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PhoneType2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlantNavigationFuneralHomeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Plants", x => x.PlantId);
                     table.ForeignKey(
-                        name: "FK_Plants_FuneralHomes_PlantId",
-                        column: x => x.PlantId,
+                        name: "FK_Plants_FuneralHomes_PlantNavigationFuneralHomeId",
+                        column: x => x.PlantNavigationFuneralHomeId,
                         principalTable: "FuneralHomes",
                         principalColumn: "FuneralHomeId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ParentFuneralHomes_FunralHomeFuneralHomeId",
                 table: "ParentFuneralHomes",
                 column: "FunralHomeFuneralHomeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Plants_PlantNavigationFuneralHomeId",
+                table: "Plants",
+                column: "PlantNavigationFuneralHomeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
