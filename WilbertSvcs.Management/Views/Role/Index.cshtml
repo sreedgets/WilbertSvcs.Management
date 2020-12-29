@@ -13,28 +13,31 @@
 </head>
 <!-- Fixed navbar -->
 @await Component.InvokeAsync("Dashboard")
-<h1 class="bg-info text-white">All Roles</h1>
-<a asp-action="Create" class="btn btn-secondary">Create a Role</a>
 
-<table class="table table-sm table-bordered table-bordered">
-    <tr><th>ID</th><th>Name</th><th></th><th>Update</th><th>Delete</th></tr>
-    @foreach (var role in Model)
-    {
-        <tr>
-            <td>@role.Id</td>
-            <td>@role.Name</td>
-            @*<td><a class="btn btn-sm btn-primary" asp-action="ViewMembers">View Members</a></td>*@
-            <td i-role="@role.Id"></td>
-            <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@role.Id">Update</a></td>
-            <td>
-                <form asp-action="Delete" asp-route-id="@role.Id" method="post">
-                    <button type="submit" class="btn btn-sm btn-danger">
-                        Delete
-                    </button>
-                </form>
-            </td>
-        </tr>
-    }
-</table>
-<br/>
-<a asp-action="Index" asp-controller="Admin" class="btn btn-link"><< Go Back</a>
+<main role="main" class="container">
+    <center>
+        <h1 class="mt-5">Roles</h1>
+        <a asp-action="Create" class="btn btn-secondary">Create a Role</a>
+        <table class="table table-sm table-bordered table-bordered">
+            <tr><th>Name</th><th>Role Members</th><th>Update</th><th>Delete</th></tr>
+            @foreach (var role in Model)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    @*<td><a class="btn btn-sm btn-primary" asp-action="ViewMembers">View Members</a></td>*@
+                    <td i-role="@role.Id"></td>
+                    <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@role.Id">Update</a></td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@role.Id" method="post">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    </center>
+</main>
+<br />
+<a asp-action="Index" asp-controller="Admin" class="btn btn-danger">Admin</a>

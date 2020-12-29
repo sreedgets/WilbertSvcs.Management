@@ -1,39 +1,73 @@
 ﻿@model Users
 
-<h1 class="bg-info text-white">Create User</h1>
-<a asp-action="Index" class="btn btn-secondary">Back</a>
-<div asp-validation-summary="All" class="text-danger"></div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-<form method="post">
-    <div class="form-group">
-        <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="LastName"></label>
-        <input asp-for="LastName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" class="form-control" />
-    </div>
-    @*<div class="form-group">
-            <label asp-for="Age"></label>
-            <input asp-for="Age" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="Country"></label>
-            <select asp-for="Country" class="form-control" asp-items="@new SelectList(Enum.GetNames(typeof(Country)))">
-                <option selected disabled value="Select">Select Country</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label asp-for="Salary"></label>
-            <input asp-for="Salary" class="form-control" />
-        </div>*@
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+    <title>Login Template for Bootstrap</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    <center>
+        <h1 class="mt-5">Create a User</h1>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <hr />
+        <form method="post">
+            <span id="Content_errorMessage" class="errorMessage"></span>
+            <table>
+                <tr>
+                    <td>
+                        <label asp-for="FirstName"></label>
+                    </td>
+                    <td>
+                        <input asp-for="FirstName" class="form-control" />
+                    </td>
+                    <td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="LastName"></label>
+                    </td>
+                    <td>
+                        <input asp-for="LastName" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Email"></label>
+                    </td>
+                    <td>
+                        <input asp-for="Email" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Password"></label>
+                    </td>
+                    <td>
+                        <input asp-for="Password" class="form-control" />
+                </tr>
+            </table>
+            <hr /><br />                <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </center>
+</main>

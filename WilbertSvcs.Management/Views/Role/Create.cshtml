@@ -1,13 +1,38 @@
 ﻿@model string
 
-<h1 class="bg-info text-white">Create a Role</h1>
-<a asp-action="Index" class="btn btn-secondary">Back</a>
-<div asp-validation-summary="All" class="text-danger"></div>
+<head>
+    <title>Dashboard Template</title>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input name="name" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+@await Component.InvokeAsync("Dashboard")
+
+<main role="main" class="container">
+    <center>
+        <h1 class="mt-5">Create a Role</h1>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-action="Create" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <label for="name">Name:</label>
+                    </td>
+                    <td>
+                        <input name="name" class="form-control" />
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+     
+    </center>
+</main>

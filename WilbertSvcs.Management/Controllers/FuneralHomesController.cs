@@ -47,7 +47,12 @@ namespace WilbertSvcs.Management.Controllers
 
             var funeralHome = await _context.FuneralHomes
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
+            
             funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
+            
+            funeralHome.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
+            funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
+
             if (funeralHome == null)
             {
                 return NotFound();
@@ -188,6 +193,12 @@ namespace WilbertSvcs.Management.Controllers
 
             var funeralHome = await _context.FuneralHomes
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
+
+            funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
+
+            funeralHome.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
+            funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
+
             if (funeralHome == null)
             {
                 return NotFound();
