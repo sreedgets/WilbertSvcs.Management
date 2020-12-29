@@ -27,17 +27,23 @@ namespace WilbertVaultCompany.api.Models
         public string Email { get; set; }
         public string Website { get; set; }
 
+        [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber)]
         public string Phone1 { get; set; }
 
+        [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber)]
         public string Phone2 { get; set; }
         public string PhoneType1 { get; set; }
         public string PhoneType2 { get; set; }
+        [Display(Name = "Parent Funeral Home?")]
         public bool IsParent { get; set; }
+
+        [Display(Name = "Parent Name")]
         public string ParentName { get; set; }
         public virtual ICollection<ParentFuneralHome> ParentFuneralHomes { get; set; }
 
+        [Display(Name = "Plant Name")]
         public string PlantName { get; set; }
         public virtual ICollection<Plant> Plants { get; set; }
 

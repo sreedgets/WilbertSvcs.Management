@@ -56,9 +56,9 @@
                             <label asp-for="PlantName">Plant</label>
                         </td>
                         <td>
-                            <select asp-for="ParentFuneralHomeId" class="form-control" asp-items="@(new SelectList(Model.ParentFuneralHomes,"Id","ParentFuneralhomeName"))">
+                            <select asp-for="PlantName" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
                             </select>
-                            <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
+                            <span asp-validation-for="PlantName" class="text-danger"></span>
                         </td>
 
                     </tr>

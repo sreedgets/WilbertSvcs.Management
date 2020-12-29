@@ -53,6 +53,14 @@
                                 <input class="form-check-input" asp-for="IsParent" /> @Html.DisplayNameFor(model => model.IsParent)
                             </label>
                         </td>
+                        <td>
+                            <label asp-for="PlantName">Plant</label>
+                        </td>
+                        <td>
+                            <select asp-for="ParentFuneralHomeId" class="form-control" asp-items="@(new SelectList(Model.Plants,"Id","ParentFuneralhomeName"))">
+                            </select>
+                            <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -166,4 +174,4 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+    

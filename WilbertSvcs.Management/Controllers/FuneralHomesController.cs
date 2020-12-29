@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WilbertVaultCompany.api.Models;
 using WilbertVaultCompany.api.Enums;
+using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
 {
@@ -22,7 +22,6 @@ namespace WilbertSvcs.Management.Controllers
         // GET: FuneralHomes
         public async Task<IActionResult> Index()
         {
-
             var fhl = await _context.FuneralHomes.ToListAsync();
 
             foreach (var item in fhl)
@@ -47,13 +46,12 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var funeralHome = await _context.FuneralHomes
-                //.Include(f => f.PlantId)
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
+            funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
             if (funeralHome == null)
             {
                 return NotFound();
             }
-            funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
 
             return View(funeralHome);
         }
@@ -63,7 +61,7 @@ namespace WilbertSvcs.Management.Controllers
         {
             var fh = new FuneralHome();
             fh.ParentFuneralHomes = _context.ParentFuneralHomes.ToList();
-            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId");
+            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantName");
             return View(fh);
         }
 
@@ -72,7 +70,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,ParentName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
             if (ModelState.IsValid)
             {
@@ -119,11 +117,11 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var funeralHome = await _context.FuneralHomes.FindAsync(id);
+            funeralHome.ParentFuneralHomes = _context.ParentFuneralHomes.ToList();
             if (funeralHome == null)
             {
                 return NotFound();
             }
-            //ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
 
@@ -132,7 +130,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,ParentName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
             if (id != funeralHome.FuneralHomeId)
             {
@@ -141,6 +139,24 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
+                if (_context.ParentFuneralHomes.Count() == 0)
+                {
+                    if (funeralHome.IsParent)
+                    {
+                        initParentList(funeralHome);
+                        addParent(funeralHome);
+                    }
+                    else
+                        initParentList(funeralHome);
+                }
+                else
+                {
+                    if (funeralHome.IsParent)
+                    {
+                        addParent(funeralHome);
+                    }
+                }
+
                 try
                 {
                     _context.Update(funeralHome);
@@ -159,10 +175,8 @@ namespace WilbertSvcs.Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", funeralHome.PlantId);
             return View(funeralHome);
         }
-
 
         // GET: FuneralHomes/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -173,7 +187,6 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var funeralHome = await _context.FuneralHomes
-                //.Include(f => f.PlantId)
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
             if (funeralHome == null)
             {
