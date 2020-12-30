@@ -1,0 +1,139 @@
+﻿@model WilbertVaultCompany.api.Models.Plant
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Login")
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    <center>
+        <h1 class="mt-5">Add Funeral Home</h1>
+        <form asp-action="Create">
+            <div>
+                <span id="Content_errorMessage" class="errorMessage"></span>
+                <table>
+                    <tr>
+                        <td>
+                            <label asp-for="PlantName" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="PlantName" class="form-control" />
+                            <span asp-validation-for="PlantName" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <label asp-for="PlantManagerEmail" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="PlantManagerEmail" class="form-control" />
+                            <span asp-validation-for="PlantManagerEmail" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <label asp-for="PlantManagerTxtNum" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="PlantManagerTxtNum" class="form-control" />
+                            <span asp-validation-for="PlantManagerTxtNum" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Address" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <label asp-for="City" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="City" class="form-control" />
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <label asp-for="State" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="State" class="form-control" />
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="ZipCode" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="ZipCode" class="form-control" />
+                            <span asp-validation-for="ZipCode" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <label asp-for="County" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="County" class="form-control" />
+                            <span asp-validation-for="County" class="text-danger"></span>
+                        </td>
+                        <td class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="PrintCompletedOrders" /> @Html.DisplayNameFor(model => model.PrintCompletedOrders)
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Phone1" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="Phone1" class="form-control" />
+                            <span asp-validation-for="Phone1" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <label asp-for="Phone2" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="Phone2" class="form-control" />
+                            <span asp-validation-for="Phone2" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="PhoneType1" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="PhoneType1" class="form-control" />
+                            <span asp-validation-for="PhoneType1" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <label asp-for="PhoneType2" class="control-label"></label>
+                        </td>
+                        <td>
+                            <input asp-for="PhoneType2" class="form-control" />
+                            <span asp-validation-for="PhoneType2" class="text-danger"></span>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </center>
+</main>
