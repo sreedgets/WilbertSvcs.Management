@@ -10,15 +10,14 @@ using WilbertVaultCompany.api.Models;
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    [Migration("20201229231439_addPlantMgrTxt")]
-    partial class addPlantMgrTxt
+    [Migration("20201231181620_newWilbertdb")]
+    partial class newWilbertdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
-                .HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
@@ -172,7 +171,7 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "FunralHomeFuneralHomeId" }, "IX_ParentFuneralHomes_FunralHomeFuneralHomeId");
+                    b.HasIndex("FunralHomeFuneralHomeId");
 
                     b.ToTable("ParentFuneralHomes");
                 });

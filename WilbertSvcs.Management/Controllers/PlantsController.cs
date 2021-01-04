@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
@@ -38,6 +39,12 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+            plant.State = Enum.GetName(typeof(States), Int32.Parse(plant.State));
+
+            plant.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType1));
+            plant.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType2));
+
 
             return View(plant);
         }
@@ -129,6 +136,11 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+            plant.State = Enum.GetName(typeof(States), Int32.Parse(plant.State));
+
+            plant.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType1));
+            plant.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType2));
 
             return View(plant);
         }

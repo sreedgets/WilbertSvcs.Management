@@ -32,22 +32,6 @@ namespace WilbertVaultCompany.api.Models
             }
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
-            modelBuilder.Entity<ParentFuneralHome>(entity =>
-            {
-                entity.HasIndex(e => e.FunralHomeFuneralHomeId, "IX_ParentFuneralHomes_FunralHomeFuneralHomeId");
-
-                entity.HasOne(d => d.FunralHomeFuneralHome)
-                    .WithMany(p => p.ParentFuneralHomes)
-                    .HasForeignKey(d => d.FunralHomeFuneralHomeId);
-            });
-
-            OnModelCreatingPartial(modelBuilder);
-        }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
+

@@ -10,15 +10,14 @@ using WilbertVaultCompany.api.Models;
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    [Migration("20201228193333_initWilbertdb")]
-    partial class initWilbertdb
+    [Migration("20201231215649_addPlantIdToFH")]
+    partial class addPlantIdToFH
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
-                .HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
@@ -64,6 +63,9 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.Property<string>("PhoneType2")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PlantId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PlantName")
                         .HasColumnType("nvarchar(max)");
@@ -172,7 +174,7 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "FunralHomeFuneralHomeId" }, "IX_ParentFuneralHomes_FunralHomeFuneralHomeId");
+                    b.HasIndex("FunralHomeFuneralHomeId");
 
                     b.ToTable("ParentFuneralHomes");
                 });
@@ -206,6 +208,9 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlantManagerEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlantManagerTxtNum")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlantName")

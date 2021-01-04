@@ -2,22 +2,22 @@
 
 namespace WilbertVaultCompany.api.Migrations
 {
-    public partial class addPlantMgrTxt : Migration
+    public partial class addPlantIdToFH : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "PlantManagerTxtNum",
-                table: "Plants",
-                type: "nvarchar(max)",
+            migrationBuilder.AddColumn<int>(
+                name: "PlantId",
+                table: "FuneralHomes",
+                type: "int",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "PlantManagerTxtNum",
-                table: "Plants");
+                name: "PlantId",
+                table: "FuneralHomes");
         }
     }
 }

@@ -16,7 +16,6 @@ namespace WilbertVaultCompany.api.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
-                .HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
@@ -62,6 +61,9 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.Property<string>("PhoneType2")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PlantId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PlantName")
                         .HasColumnType("nvarchar(max)");
@@ -170,7 +172,7 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "FunralHomeFuneralHomeId" }, "IX_ParentFuneralHomes_FunralHomeFuneralHomeId");
+                    b.HasIndex("FunralHomeFuneralHomeId");
 
                     b.ToTable("ParentFuneralHomes");
                 });

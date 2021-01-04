@@ -22,15 +22,32 @@ namespace WilbertSvcs.Management.Controllers
         // GET: FuneralHomes
         public async Task<IActionResult> Index()
         {
-            var fhl = await _context.FuneralHomes.ToListAsync();
+            //Get list of funeral homes
+            var fhList = await _context.FuneralHomes.ToListAsync();
 
-            foreach (var item in fhl)
+            //Iterate through each item in the list
+            foreach (var item in fhList)
             {
+                //Instantiate a parent
                 var pfh = new ParentFuneralHome();
-                pfh = await _context.ParentFuneralHomes.FindAsync(item.ParentFuneralHomeId);
+                if (item.ParentFuneralHomeId != 0 && item.ParentFuneralHomeId != null)
+                    pfh = await _context.ParentFuneralHomes.FindAsync(item.ParentFuneralHomeId);
 
                 if (item.ParentName != null)
-                    item.ParentName = pfh.ParentFuneralhomeName.Trim();
+                {
+                    if (pfh != null)
+                        item.ParentName = pfh.ParentFuneralhomeName.Trim();
+                }
+
+                var plt = new Plant();
+                if (item.PlantId != 0 && item.PlantId != null)
+                    plt = await _context.Plants.FindAsync(item.PlantId);
+
+                if (item.PlantName != null)
+                {
+                    if (plt != null)
+                        item.PlantName = plt.PlantName;
+                }
 
                 item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
             }
@@ -47,11 +64,11 @@ namespace WilbertSvcs.Management.Controllers
 
             var funeralHome = await _context.FuneralHomes
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
-            
+
             funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
-            
+
             funeralHome.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
-            funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
+            funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2));
 
             if (funeralHome == null)
             {
@@ -66,7 +83,23 @@ namespace WilbertSvcs.Management.Controllers
         {
             var fh = new FuneralHome();
             fh.ParentFuneralHomes = _context.ParentFuneralHomes.ToList();
-            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantName");
+
+            /////////////////////////////////////////////////////////////
+
+            List<Plant> lstPlants = _context.Plants.ToList();
+            fh.Plants.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                fh.Plants.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
             return View(fh);
         }
 
@@ -75,7 +108,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
             if (ModelState.IsValid)
             {
@@ -105,6 +138,12 @@ namespace WilbertSvcs.Management.Controllers
                     funeralHome.ParentName = pfh.ParentFuneralhomeName;
                 }
 
+                if (funeralHome.PlantId != null)
+                {
+                    Plant plt = await _context.Plants.FindAsync(funeralHome.PlantId);
+                    funeralHome.PlantName = plt.PlantName;
+                }
+
                 _context.FuneralHomes.Add(funeralHome);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -120,14 +159,32 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-
-            var funeralHome = await _context.FuneralHomes.FindAsync(id);
-            funeralHome.ParentFuneralHomes = _context.ParentFuneralHomes.ToList();
-            if (funeralHome == null)
+  
+            var fh = await _context.FuneralHomes.FindAsync(id);
+            if (fh == null)
             {
                 return NotFound();
             }
-            return View(funeralHome);
+
+            fh.ParentFuneralHomes = _context.ParentFuneralHomes.ToList();
+
+            List<Plant> lstPlants = _context.Plants.ToList();
+            fh.Plants.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                fh.Plants.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+            
+          
+            return View(fh);
         }
 
         // POST: FuneralHomes/Edit/5
@@ -135,7 +192,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
             if (id != funeralHome.FuneralHomeId)
             {
@@ -144,22 +201,35 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 if (_context.ParentFuneralHomes.Count() == 0)
                 {
-                    if (funeralHome.IsParent)
+
+                    ParentFuneralHome parentFuneralHome = await _context.ParentFuneralHomes.FindAsync(funeralHome.ParentFuneralHomeId);
+                    if (funeralHome.IsParent && parentFuneralHome == null)
                     {
                         initParentList(funeralHome);
                         addParent(funeralHome);
                     }
                     else
                         initParentList(funeralHome);
+
+                    funeralHome.ParentName = parentFuneralHome.ParentFuneralhomeName;
                 }
                 else
                 {
-                    if (funeralHome.IsParent)
+                    ParentFuneralHome parentFuneralHome = await _context.ParentFuneralHomes.FindAsync(funeralHome.ParentFuneralHomeId);
+                    if (funeralHome.IsParent && parentFuneralHome == null)
                     {
                         addParent(funeralHome);
                     }
+                    funeralHome.ParentName = parentFuneralHome.ParentFuneralhomeName;
+                }
+                
+                if (funeralHome.PlantId != null)
+                {
+                    Plant plt = await _context.Plants.FindAsync(funeralHome.PlantId);
+                    funeralHome.PlantName = plt.PlantName;
                 }
 
                 try
@@ -194,15 +264,15 @@ namespace WilbertSvcs.Management.Controllers
             var funeralHome = await _context.FuneralHomes
                 .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
 
-            funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
-
-            funeralHome.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
-            funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
 
             if (funeralHome == null)
             {
                 return NotFound();
             }
+            funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
+
+            funeralHome.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
+            funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2));
 
             return View(funeralHome);
         }
@@ -227,7 +297,7 @@ namespace WilbertSvcs.Management.Controllers
         {
             ParentFuneralHome pfh = new ParentFuneralHome();
             pfh.ParentFuneralhomeName = fh.Name;
-            fh.ParentFuneralHomes = new List<ParentFuneralHome>();
+            fh.ParentFuneralHomes = _context.ParentFuneralHomes.ToList();
             fh.ParentFuneralHomes.Add(pfh);
             _context.ParentFuneralHomes.Add(pfh);
         }

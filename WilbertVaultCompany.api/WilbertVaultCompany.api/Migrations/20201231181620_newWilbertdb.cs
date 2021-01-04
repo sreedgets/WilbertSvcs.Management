@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WilbertVaultCompany.api.Migrations
 {
-    public partial class initWilbertdb : Migration
+    public partial class newWilbertdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -93,7 +93,7 @@ namespace WilbertVaultCompany.api.Migrations
                         column: x => x.FunralHomeFuneralHomeId,
                         principalTable: "FuneralHomes",
                         principalColumn: "FuneralHomeId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,6 +104,7 @@ namespace WilbertVaultCompany.api.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlantName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PlantManagerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlantManagerTxtNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),

@@ -54,12 +54,12 @@
                             </label>
                         </td>
                         <td>
-                            <label asp-for="PlantName">Plant</label>
+                            <label asp-for="PlantId">Plant</label>
                         </td>
                         <td>
-                            <select asp-for="ParentFuneralHomeId" class="form-control" asp-items="@(new SelectList(Model.Plants,"Id","ParentFuneralhomeName"))">
+                            <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
                             </select>
-                            <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
+                            <span asp-validation-for="PlantId" class="text-danger"></span>
                         </td>
                     </tr>
                     <tr>

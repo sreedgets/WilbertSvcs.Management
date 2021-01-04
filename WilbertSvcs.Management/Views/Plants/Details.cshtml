@@ -4,93 +4,128 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Plant</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlantName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlantName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlantManagerEmail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlantManagerEmail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlantManagerTxtNum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlantManagerTxtNum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.State)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.County)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.County)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PrintCompletedOrders)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PrintCompletedOrders)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneType1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneType1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneType2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneType2)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.PlantId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<head>
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    <center>
+        <h1 class="mt-5">Plant Details</h1>
+        <div>
+            <hr />
+            <table>
+                <tr>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.PlantName)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PlantName)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.PlantManagerEmail)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PlantManagerEmail)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.PlantManagerTxtNum)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PlantManagerTxtNum)
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <strong>                        @Html.DisplayNameFor(model => model.Address)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Address)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.City)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.City)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.State)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.State)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.ZipCode)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ZipCode)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.County)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.County)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.PrintCompletedOrders)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PrintCompletedOrders)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.Phone1)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Phone1)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.Phone2)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Phone2)
+                    </td>
+                    <td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.PhoneType1)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PhoneType1)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayNameFor(model => model.PhoneType2)</strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PhoneType2)
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <hr />
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.PlantId" class="btn-primary btn-lg">Edit</a>
+            <a asp-action="Index" class="btn-secondary btn-lg">Back to List</a>
+        </div>
+    </center>
+</main>      
+

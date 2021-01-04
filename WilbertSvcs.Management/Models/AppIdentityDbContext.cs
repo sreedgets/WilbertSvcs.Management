@@ -10,6 +10,6 @@ namespace WilbertSvcs.Management.Models
             : base(options)
         { 
         }
-        public DbSet<WilbertSvcs.Management.Models.Users> Users { get; set; }
+        
     }
 }
