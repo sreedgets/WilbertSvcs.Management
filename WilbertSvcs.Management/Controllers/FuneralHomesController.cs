@@ -108,7 +108,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
             if (ModelState.IsValid)
             {
@@ -159,7 +159,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-  
+
             var fh = await _context.FuneralHomes.FindAsync(id);
             if (fh == null)
             {
@@ -182,8 +182,8 @@ namespace WilbertSvcs.Management.Controllers
                     PlantId = item.PlantId
                 });
             }
-            
-          
+
+
             return View(fh);
         }
 
@@ -201,7 +201,7 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
-                
+
                 if (_context.ParentFuneralHomes.Count() == 0)
                 {
 
@@ -225,7 +225,7 @@ namespace WilbertSvcs.Management.Controllers
                     }
                     funeralHome.ParentName = parentFuneralHome.ParentFuneralhomeName;
                 }
-                
+
                 if (funeralHome.PlantId != null)
                 {
                     Plant plt = await _context.Plants.FindAsync(funeralHome.PlantId);

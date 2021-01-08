@@ -35,8 +35,15 @@ namespace WilbertVaultCompany.api.Models
         [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber)]
         public string Phone2 { get; set; }
+
+        [Display(Name = "Phone")]
+        [DataType(DataType.PhoneNumber)]
+        public string Phone3 { get; set; }
+
         public string PhoneType1 { get; set; }
         public string PhoneType2 { get; set; }
+        public string PhoneType3 { get; set; }
+
         [Display(Name = "Parent Funeral Home?")]
         public bool IsParent { get; set; }
 
