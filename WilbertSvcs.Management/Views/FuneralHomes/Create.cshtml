@@ -30,234 +30,236 @@
 
 <!-- Begin page content -->
 <main role="main" id="fhd" class="container">
-    <div class="album py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th><label class="sectionLabel"></label><h3>General Information</h3></th>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="titleLabel" asp-for="Name">Funeral Home</label>
-                                </td>
-                                <td>
-                                    <input asp-for="Name" maxlength="100" tabindex="1" style="width:300px;" />
+    <form asp-action="Create" method="post">
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th><label class="sectionLabel"></label><h3>General Information</h3></th>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Name">Funeral Home</label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="Name" maxlength="100" tabindex="1" style="width:300px;" />
 
-                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                </td>
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </td>
 
-                            </tr>
-                            <tr>
-                                <td class="form-group form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" asp-for="IsParent" /> @Html.DisplayNameFor(model => model.IsParent)
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="Address"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" />
-                                    <span asp-validation-for="Address" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="Address"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" value="Address line 2" />
-                                    <span asp-validation-for="Address" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="City"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="City" maxlength="100" tabindex="1" style="width:300px;" />
-                                    <span asp-validation-for="City" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="State"></label>
-                                </td>
-                                <td>
-                                    <select asp-for="State" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<States>()"></select>
-                                    <span asp-validation-for="State" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="ZipCode"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="ZipCode" maxlength="100" tabindex="1" style="width:300px;" />
-                                    <span asp-validation-for="ZipCode" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="County"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="County" maxlength="100" tabindex="1" style="width:300px;" />
-                                    <span asp-validation-for="County" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
+                                </tr>
+                                <tr>
+                                    <td class="form-group form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" asp-for="IsParent" /> @Html.DisplayNameFor(model => model.IsParent)
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Address"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Address"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" value="Address line 2" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="City"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="City" maxlength="100" tabindex="1" style="width:300px;" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="State"></label>
+                                    </td>
+                                    <td>
+                                        <select asp-for="State" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<States>()"></select>
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="ZipCode"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="ZipCode" maxlength="100" tabindex="1" style="width:300px;" />
+                                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="County"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="County" maxlength="100" tabindex="1" style="width:300px;" />
+                                        <span asp-validation-for="County" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
 
-                                    <label asp-for="Phone1"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="Phone1" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
-                                           onblur="phoneOnBlur(this);" />
-                                    <span asp-validation-for="Phone1" class="text-danger"></span>
+                                        <label asp-for="Phone1"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="Phone1" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
+                                               onblur="phoneOnBlur(this);" />
+                                        <span asp-validation-for="Phone1" class="text-danger"></span>
 
-                                </td>
-                                <td>
-                                    <label asp-for="PhoneType1"></label>
-                                </td>
-                                <td>
-                                    <select asp-for="PhoneType1" class="form-control" style="width:300px;" asp-items="Html.GetEnumSelectList<PhoneType>()"></select>
-                                    <span asp-validation-for="PhoneType1" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="Phone2"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="Phone2" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
-                                           onblur="phoneOnBlur(this);" />
-                                    <span asp-validation-for="Phone2" class="text-danger"></span>
-                                </td>
-                                <td>
-                                    <label asp-for="PhoneType2"></label>
-                                </td>
-                                <td>
-                                    <select asp-for="PhoneType2" class="form-control" style="width:300px;" asp-items="Html.GetEnumSelectList<PhoneType>()"></select>
-                                    <span asp-validation-for="PhoneType2" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="Phone3"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="Phone3" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
-                                           onblur="phoneOnBlur(this);" />
-                                    <span asp-validation-for="Phone3" class="text-danger"></span>
-                                </td>
-                                <td>
-                                    <label asp-for="PhoneType3"></label>
-                                </td>
-                                <td>
-                                    <select asp-for="PhoneType3" class="form-control" style="width:300px;" asp-items="Html.GetEnumSelectList<PhoneType>()"></select>
-                                    <span asp-validation-for="PhoneType3" class="text-danger"></span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                    <td>
+                                        <label asp-for="PhoneType1"></label>
+                                    </td>
+                                    <td>
+                                        <select asp-for="PhoneType1" class="form-control" style="width:300px;" asp-items="Html.GetEnumSelectList<PhoneType>()"></select>
+                                        <span asp-validation-for="PhoneType1" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Phone2"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="Phone2" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
+                                               onblur="phoneOnBlur(this);" />
+                                        <span asp-validation-for="Phone2" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                        <label asp-for="PhoneType2"></label>
+                                    </td>
+                                    <td>
+                                        <select asp-for="PhoneType2" class="form-control" style="width:300px;" asp-items="Html.GetEnumSelectList<PhoneType>()"></select>
+                                        <span asp-validation-for="PhoneType2" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Phone3"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="Phone3" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
+                                               onblur="phoneOnBlur(this);" />
+                                        <span asp-validation-for="Phone3" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                        <label asp-for="PhoneType3"></label>
+                                    </td>
+                                    <td>
+                                        <select asp-for="PhoneType3" class="form-control" style="width:300px;" asp-items="Html.GetEnumSelectList<PhoneType>()"></select>
+                                        <span asp-validation-for="PhoneType3" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
+                    </div>
+                    <div class="col-md-6">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><label class="sectionLabel"></label><h3>Additional Information</h3></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="ParentFuneralHomeId">Parent FH</label>
+                                    </td>
+                                    <td>
+                                        <select asp-for="ParentFuneralHomeId" class="form-control" asp-items="@(new SelectList(Model.ParentFuneralHomes,"Id","ParentFuneralhomeName"))">
+                                        </select>
+                                        <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Email"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Website"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="Website" class="form-control" />
+                                        <span asp-validation-for="Website" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="PlantId"></label>
+                                    </td>
+                                    <td>
+                                        <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
+                                        </select>
+                                        <span asp-validation-for="PlantId" class="text-danger"></span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><label class="sectionLabel"></label><h3>Additional Information</h3></td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="ParentFuneralHomeId">Parent FH</label>
-                                </td>
-                                <td>
-                                    <select asp-for="ParentFuneralHomeId" class="form-control" asp-items="@(new SelectList(Model.ParentFuneralHomes,"Id","ParentFuneralhomeName"))">
-                                    </select>
-                                    <span asp-validation-for="ParentFuneralHomeId" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="Email"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="Email" class="form-control" />
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="Website"></label>
-                                </td>
-                                <td>
-                                    <input asp-for="Website" class="form-control" />
-                                    <span asp-validation-for="Website" class="text-danger"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="PlantId"></label>
-                                </td>
-                                <td>
-                                    <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
-                                    </select>
-                                    <span asp-validation-for="PlantId" class="text-danger"></span>
-                                </td>
-                            </tr>
+                <hr />
 
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs">
+                            <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Contacts ? "active" :string.Empty)">
+                                <a asp-route-tabname="Contacts" asp-action="SwitchToTabs">Contacts</a>
+                            </li>
+                            <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Interactions ? "active" :string.Empty)">
+                                <a asp-route-tabname="Interactions" asp-action="SwitchToTabs">Interactions</a>
+                            </li>
+                            <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Photos ? "active" :string.Empty)">
+                                <a asp-route-tabname="Photos" asp-action="SwitchToTabs">Photos</a>
+                            </li>
+                        </ul>
+
+                        @switch (Model.ActiveTab)
+                        {
+                            case WilbertVaultCompany.api.Models.FuneralHome.Tab.Contacts:
+                                @await Component.InvokeAsync("Contacts", Model.FuneralHomeId);
+                                break;
+                            case WilbertVaultCompany.api.Models.FuneralHome.Tab.Interactions:
+                                @await Component.InvokeAsync("Interactions", Model.FuneralHomeId);
+                                break;
+                            case WilbertVaultCompany.api.Models.FuneralHome.Tab.Photos:
+                                @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
+                                break;
+
+                        }
+
+                    </div>
                 </div>
-            </div>
-            <hr />
-           
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav nav-tabs">
-                        <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Contacts ? "active" :string.Empty)">
-                            <a asp-route-tabname="Contacts" asp-action="SwitchToTabs">Contacts</a>
-                        </li>
-                        <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Interactions ? "active" :string.Empty)">
-                            <a asp-route-tabname="Interactions" asp-action="SwitchToTabs">Interactions</a>
-                        </li>
-                        <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Photos ? "active" :string.Empty)">
-                            <a asp-route-tabname="Photos" asp-action="SwitchToTabs">Photos</a>
-                        </li>
-                    </ul>
-
-                    @switch (Model.ActiveTab)
-                    {
-                        case WilbertVaultCompany.api.Models.FuneralHome.Tab.Contacts:
-                            @await Component.InvokeAsync("Contacts", Model.FuneralHomeId);
-                            break;
-                        case WilbertVaultCompany.api.Models.FuneralHome.Tab.Interactions:
-                            @await Component.InvokeAsync("Interactions", Model.FuneralHomeId);
-                            break;
-                        case WilbertVaultCompany.api.Models.FuneralHome.Tab.Photos:
-                            @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
-                            break;
-
-                    }
-               
+                <hr />
+                <div>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
                 </div>
-            </div>
-            <hr />
-            <div>
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
         </div>
-    </div>
+        </form>
 </main>
 @section WilbertScripts {
 

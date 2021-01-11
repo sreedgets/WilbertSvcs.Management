@@ -139,7 +139,7 @@ namespace WilbertSvcs.Management.Controllers
                     funeralHome.ParentName = pfh.ParentFuneralhomeName;
                 }
 
-                if (funeralHome.PlantId != null)
+                if (funeralHome.PlantId != 0)
                 {
                     Plant plt = await _context.Plants.FindAsync(funeralHome.PlantId);
                     funeralHome.PlantName = plt.PlantName;
