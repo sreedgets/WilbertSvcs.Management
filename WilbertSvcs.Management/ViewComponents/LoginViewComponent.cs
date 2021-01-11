@@ -5,8 +5,7 @@ namespace WilbertSvcs.Management.ViewComponents
 {
     public class LoginViewComponent : ViewComponent
     {
-        private readonly WilbertAppUser wau;
-        public LoginViewComponent()
+         public LoginViewComponent()
         {
             
         }

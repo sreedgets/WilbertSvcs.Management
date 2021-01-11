@@ -9,7 +9,7 @@ namespace WilbertSvcs.Management.ViewComponents
 {
     public class DashboardViewComponent : ViewComponent
     {
-        private readonly WilbertAppUser wau;
+       
 
         public DashboardViewComponent()
         {

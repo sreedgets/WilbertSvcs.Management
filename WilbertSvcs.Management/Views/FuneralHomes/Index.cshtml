@@ -40,27 +40,28 @@
                     <br />
                     <br />
                     <div>
-                    <table>
-                        <tbody>
-                            <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.Name)</a></th>
-                                <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.City)/@Html.DisplayNameFor(model => model.State)</a></th>
-                                <th scope="col"><a style="color:White;">@Html.DisplayNameFor(model => model.Phone1)</a></th>
-                                <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.ParentName)</a></th>
-                                <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.PlantName)</a></th>
-                            </tr>
-                            @foreach (var item in Model)
-                            {
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;"><a asp-action="Edit" asp-route-id="@item.FuneralHomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-                                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Name)/@Html.DisplayFor(modelItem => item.State)</span></td>
-                                    <td style="width:10%;">@Html.DisplayFor(modelItem => item.Phone1)</td>
-                                    <td style="width:18%;">@Html.DisplayFor(modelItem => item.ParentName)</td>
-                                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.PlantName)</span></td>
+                        <table>
+                            <tbody>
+                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.Name)</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.City)/@Html.DisplayNameFor(model => model.State)</a></th>
+                                    <th scope="col"><a style="color:White;">@Html.DisplayNameFor(model => model.Phone1)</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.ParentName)</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.PlantName)</a></th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="color:#333333;background-color:#ECECEC;">
+                                        <td style="width:18%;"><a asp-action="Edit" asp-route-id="@item.FuneralHomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Name)/@Html.DisplayFor(modelItem => item.State)</span></td>
+                                        <td style="width:10%;">@Html.DisplayFor(modelItem => item.Phone1)</td>
+                                        <td style="width:18%;">@Html.DisplayFor(modelItem => item.ParentName)</td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.PlantName)</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,9 +87,9 @@
             <span class="text-muted">
                 Copyright
                 <script type="text/javascript">document.write(new Date().getFullYear());</script> Wilbert Valut Company. | 974 73rd St #5, Des Moines, IA 50324 |  (515) 223-5908
-            </span>    
+            </span>
         </center>
-        
+
     </div>
 </footer>
 

@@ -1,0 +1,113 @@
+﻿@model IEnumerable<WilbertVaultCompany.api.Models.FuneralHomeContact>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NickName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneType1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneType2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneType3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Spouse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowPrices)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneType1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneType2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneType3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spouse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowPrices)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interests)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FuneralHomeContactId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FuneralHomeContactId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FuneralHomeContactId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

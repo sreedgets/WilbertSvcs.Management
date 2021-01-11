@@ -209,7 +209,7 @@
                                     <label asp-for="PlantId"></label>
                                 </td>
                                 <td>
-                                    <select asp-for="PlantId" class="form-control"  asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
+                                    <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
                                     </select>
                                     <span asp-validation-for="PlantId" class="text-danger"></span>
                                 </td>
@@ -220,79 +220,35 @@
                 </div>
             </div>
             <hr />
+           
             <div class="row">
                 <div class="col-md-12">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td colspan="4"><label class="sectionLabel"></label><h3>Contact Information</h3></td>
-                            </tr>
-                            <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                <th scope="col"><a href="#" style="color:White;">Name</a></th>
-                                <th scope="col"><a href="#" style="color:White;">Title</a></th>
-                                <th scope="col"><a style="color:White;">Phone</a></th>
-                                <th scope="col"><a style="color:White;">&nbsp;</a></th>
-                            </tr>
-                            <tr style="color:#333333;background-color:#ECECEC;">
-                                <td style="width:18%;">Jordan Borcherding</td>
-                                <td style="width:10%;"><span>Funeral Director</span></td>
-                                <td style="width:10%;"><span>(319) 824-3319</span></td>
-                                <td style="width:10%;"><a href="#">Disable Login</a></td>
-                            </tr>
-                            <tr style="color:#333333;background-color:#FFFFFF;">
-                                <td style="width:18%;">Rebecca Camp</td>
-                                <td style="width:10%;"><span>Manager/Funeral Director</span></td>
-                                <td style="width:10%;"><span></span></td>
-                                <td style="width:10%;"><a href="#">Disable Login</a></td>
-                            </tr>
-                            <tr style="color:#333333;background-color:#ECECEC;">
-                                <td style="width:18%;">Adam Recker</td>
-                                <td style="width:10%;"><span>Funeral Director</span></td>
-                                <td style="width:10%;"><span></span></td>
-                                <td style="width:10%;"><a href="#">Disable Login</a></td>
-                            </tr>
-                            <tr style="color:#333333;background-color:#FFFFFF;">
-                                <td style="width:18%;">Bill Kamp</td>
-                                <td style="width:10%;"><span>Manager/Funeral Director</span></td>
-                                <td style="width:10%;"><span></span></td>
-                                <td style="width:10%;"><a href="#">Disable Login</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td colspan="4"><label class="sectionLabel"></label><h3>Interactions</h3></td>
-                            </tr>
-                            <tr style="color:#333333;background-color:#FFFFFF;">
-                                <td><label class="titleLabel">Date:</label></td>
-                                <td><input type="text" maxlength="100" tabindex="1" value="Date" style="width:100px;"></td>
-                                <td><label class="titleLabel">Nature:</label></td>
-                                <td><input type="text" maxlength="100" tabindex="1" value="Nature of Contact" style="width:300px;"></td>
-                            </tr>
-                            <tr style="color:#333333;background-color:#FFFFFF;">
-                                <td><label class="titleLabel">Notes:</label></td>
-                                <td><input type="textbox" rows="2" cols="20" tabindex="2" value="Nature of Contact" style="height:100px;width:400px;"></td>
-                            </tr>
-                            <tr style="color:#333333;background-color:#ffffff;">
-                                <td><label class="titleLabel">Follow Up Date:</label></td>
-                                <td><input type="text" maxlength="100" tabindex="1" value="Date" style="width:100px;"></td>
-                                <td><label class="titleLabel">Reason:</label></td>
-                                <td><input type="text" maxlength="100" tabindex="1" value="Nature of Contact" style="width:200px;"></td>
-                                <td><label class="titleLabel">Completed:</label></td>
-                                <td>
-                                    <input type="radio" value="Yes">
-                                    <label>Yes</label>
-                                    <input type="radio" value="No">
-                                    <label>No</label>
-                                </td>
-                            </tr>
-                            <tr style="color:#333333;background-color:#FFFFFF;">
-                                <td><label class="titleLabel">Outcome:</label></td>
-                                <td><input type="text" rows="2" cols="20" tabindex="2" value="Nature of Contact" style="height:100px;width:400px;"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Contacts ? "active" :string.Empty)">
+                            <a asp-route-tabname="Contacts" asp-action="SwitchToTabs">Contacts</a>
+                        </li>
+                        <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Interactions ? "active" :string.Empty)">
+                            <a asp-route-tabname="Interactions" asp-action="SwitchToTabs">Interactions</a>
+                        </li>
+                        <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Photos ? "active" :string.Empty)">
+                            <a asp-route-tabname="Photos" asp-action="SwitchToTabs">Photos</a>
+                        </li>
+                    </ul>
+
+                    @switch (Model.ActiveTab)
+                    {
+                        case WilbertVaultCompany.api.Models.FuneralHome.Tab.Contacts:
+                            @await Component.InvokeAsync("Contacts", Model.FuneralHomeId);
+                            break;
+                        case WilbertVaultCompany.api.Models.FuneralHome.Tab.Interactions:
+                            @await Component.InvokeAsync("Interactions", Model.FuneralHomeId);
+                            break;
+                        case WilbertVaultCompany.api.Models.FuneralHome.Tab.Photos:
+                            @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
+                            break;
+
+                    }
+               
                 </div>
             </div>
             <hr />

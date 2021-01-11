@@ -8,15 +8,26 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class FuneralHome
     {
+        public Tab ActiveTab { get; set; }
+
+        public enum Tab
+        {
+            Contacts,
+            Interactions,
+            Photos
+        }
+
         public FuneralHome()
         {
             ParentFuneralHomes = new HashSet<ParentFuneralHome>();
             Plants = new HashSet<Plant>();
+            Contacts = new HashSet<FuneralHomeContact>();
         }
 
         public int FuneralHomeId { get; set; }
         public int? ParentFuneralHomeId { get; set; }
         public int? PlantId { get; set; }
+        public int? FuneralHomeContactId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
@@ -54,6 +65,8 @@ namespace WilbertVaultCompany.api.Models
         [Display(Name = "Plant Name")]
         public string PlantName { get; set; }
         public virtual ICollection<Plant> Plants { get; set; }
+        public string ContactName { get; set; }
+        public virtual ICollection<FuneralHomeContact> Contacts { get; set; }
 
     }
 }
