@@ -30,6 +30,7 @@
 
 <!-- Begin page content -->
 <main role="main" id="fhd" class="container">
+    <center>
     <form asp-action="Create" method="post">
         <div class="album py-5">
             <div class="container">
@@ -221,37 +222,21 @@
                     </div>
                 </div>
                 <hr />
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="nav nav-tabs">
-                            <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Contacts ? "active" :string.Empty)">
-                                <a asp-route-tabname="Contacts" asp-action="SwitchToTabs">Contacts</a>
-                            </li>
-                            <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Interactions ? "active" :string.Empty)">
-                                <a asp-route-tabname="Interactions" asp-action="SwitchToTabs">Interactions</a>
-                            </li>
-                            <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHome.Tab.Photos ? "active" :string.Empty)">
-                                <a asp-route-tabname="Photos" asp-action="SwitchToTabs">Photos</a>
-                            </li>
-                        </ul>
-
-                        @switch (Model.ActiveTab)
-                        {
-                            case WilbertVaultCompany.api.Models.FuneralHome.Tab.Contacts:
-                                @await Component.InvokeAsync("Contacts", Model.FuneralHomeId);
-                                break;
-                            case WilbertVaultCompany.api.Models.FuneralHome.Tab.Interactions:
-                                @await Component.InvokeAsync("Interactions", Model.FuneralHomeId);
-                                break;
-                            case WilbertVaultCompany.api.Models.FuneralHome.Tab.Photos:
-                                @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
-                                break;
-
-                        }
-
+                <hr style="border: 10px solid #00446a; border-radius: 5px;" />
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-action="Create" asp-controller="interactions" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD INTERACTIONS</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-action="Create" asp-controller="Home" class="btn btn-primary">ADD PHOTOS</a>
+                        </div>
                     </div>
                 </div>
+      
                 <hr />
                 <div>
                     <input type="submit" value="Create" class="btn btn-primary" />
@@ -260,6 +245,7 @@
             </div>
         </div>
         </form>
+        </center>
 </main>
 @section WilbertScripts {
 

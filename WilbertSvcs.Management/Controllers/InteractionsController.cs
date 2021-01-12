@@ -9,22 +9,22 @@ using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
 {
-    public class FuneralHomeContactsController : Controller
+    public class InteractionsController : Controller
     {
         private readonly wilbertdbContext _context;
 
-        public FuneralHomeContactsController(wilbertdbContext context)
+        public InteractionsController(wilbertdbContext context)
         {
             _context = context;
         }
 
-        // GET: FuneralHomeContacts
+        // GET: Interactions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.FuneralHomeContacts.ToListAsync());
+            return View(await _context.Interactions.ToListAsync());
         }
 
-        // GET: FuneralHomeContacts/Details/5
+        // GET: Interactions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,48 +32,39 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var funeralHomeContact = await _context.FuneralHomeContacts
-                .FirstOrDefaultAsync(m => m.FuneralHomeContactId == id);
-            if (funeralHomeContact == null)
+            var interaction = await _context.Interactions
+                .FirstOrDefaultAsync(m => m.InteractionId == id);
+            if (interaction == null)
             {
                 return NotFound();
             }
 
-            return View(funeralHomeContact);
+            return View(interaction);
         }
 
-        // GET: FuneralHomeContacts/Create
-        public async Task<IActionResult> CreateAsync(int? fhId)
+        // GET: Interactions/Create
+        public IActionResult Create()
         {
-            if (fhId == null)
-            {
-                return NotFound();
-            }
-            var funeralHome = await _context.FuneralHomes
-                .FirstOrDefaultAsync(m => m.FuneralHomeId == fhId);
-
-            ViewBag.fhName = funeralHome.Name;
-
             return View();
         }
 
-        // POST: FuneralHomeContacts/Create
+        // POST: Interactions/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse,ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact, int fhID)
+        public async Task<IActionResult> Create([Bind("InteractionId,Date,Nature,Notes,FollowUpDate,Reason,Completed,Outcome,FuneralHomeId")] Interaction interaction)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(funeralHomeContact);
+                _context.Add(interaction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(funeralHomeContact);
+            return View(interaction);
         }
 
-        // GET: FuneralHomeContacts/Edit/5
+        // GET: Interactions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,22 +72,22 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var funeralHomeContact = await _context.FuneralHomeContacts.FindAsync(id);
-            if (funeralHomeContact == null)
+            var interaction = await _context.Interactions.FindAsync(id);
+            if (interaction == null)
             {
                 return NotFound();
             }
-            return View(funeralHomeContact);
+            return View(interaction);
         }
 
-        // POST: FuneralHomeContacts/Edit/5
+        // POST: Interactions/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse,ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact)
+        public async Task<IActionResult> Edit(int id, [Bind("InteractionId,Date,Nature,Notes,FollowUpDate,Reason,Completed,Outcome,FuneralHomeId")] Interaction interaction)
         {
-            if (id != funeralHomeContact.FuneralHomeContactId)
+            if (id != interaction.InteractionId)
             {
                 return NotFound();
             }
@@ -105,12 +96,12 @@ namespace WilbertSvcs.Management.Controllers
             {
                 try
                 {
-                    _context.Update(funeralHomeContact);
+                    _context.Update(interaction);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FuneralHomeContactExists(funeralHomeContact.FuneralHomeContactId))
+                    if (!InteractionExists(interaction.InteractionId))
                     {
                         return NotFound();
                     }
@@ -121,10 +112,10 @@ namespace WilbertSvcs.Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(funeralHomeContact);
+            return View(interaction);
         }
 
-        // GET: FuneralHomeContacts/Delete/5
+        // GET: Interactions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,30 +123,30 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var funeralHomeContact = await _context.FuneralHomeContacts
-                .FirstOrDefaultAsync(m => m.FuneralHomeContactId == id);
-            if (funeralHomeContact == null)
+            var interaction = await _context.Interactions
+                .FirstOrDefaultAsync(m => m.InteractionId == id);
+            if (interaction == null)
             {
                 return NotFound();
             }
 
-            return View(funeralHomeContact);
+            return View(interaction);
         }
 
-        // POST: FuneralHomeContacts/Delete/5
+        // POST: Interactions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var funeralHomeContact = await _context.FuneralHomeContacts.FindAsync(id);
-            _context.FuneralHomeContacts.Remove(funeralHomeContact);
+            var interaction = await _context.Interactions.FindAsync(id);
+            _context.Interactions.Remove(interaction);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FuneralHomeContactExists(int id)
+        private bool InteractionExists(int id)
         {
-            return _context.FuneralHomeContacts.Any(e => e.FuneralHomeContactId == id);
+            return _context.Interactions.Any(e => e.InteractionId == id);
         }
     }
 }

@@ -29,22 +29,21 @@
                         <h1 class="py-5">Funeral Homes List</h1>
                         <div class="row">
                             <div class="col-md-6" style="text-align:right;">
-                                <a asp-action="Create" class="btn btn-primary">Add New</a>
+                                <a asp-action="Create" class="btn btn-primary">ADD NEW FUNERAL HOME</a>
                             </div>
                             <div class="col-md-6" style="text-align:left;">
-                                <a asp-action="Dashboard" asp-controller="Home" class="btn btn-primary">Back</a>
+                                <a asp-action="Dashboard" asp-controller="Home" class="btn btn-primary">BACK TO DASHBOARD</a>
                             </div>
                         </div>
-                    </div>
-                    <!--Page Actions -->
-                    <br />
-                    <br />
-                    <div>
+                        <!--Page Actions -->
+                        <br />
+                        <br />
                         <table>
                             <tbody>
                                 <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
                                     <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.Name)</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.City)/@Html.DisplayNameFor(model => model.State)</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.City)</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.State)</a></th>
                                     <th scope="col"><a style="color:White;">@Html.DisplayNameFor(model => model.Phone1)</a></th>
                                     <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.ParentName)</a></th>
                                     <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.PlantName)</a></th>
@@ -52,8 +51,9 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr style="color:#333333;background-color:#ECECEC;">
-                                        <td style="width:18%;"><a asp-action="Edit" asp-route-id="@item.FuneralHomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Name)/@Html.DisplayFor(modelItem => item.State)</span></td>
+                                        <td style="width:30%;"><a asp-action="Edit" asp-route-id="@item.FuneralHomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.City)</span></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.State)</span></td>
                                         <td style="width:10%;">@Html.DisplayFor(modelItem => item.Phone1)</td>
                                         <td style="width:18%;">@Html.DisplayFor(modelItem => item.ParentName)</td>
                                         <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.PlantName)</span></td>
