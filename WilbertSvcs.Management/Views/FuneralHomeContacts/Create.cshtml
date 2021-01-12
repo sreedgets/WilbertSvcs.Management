@@ -28,156 +28,61 @@
     @await Component.InvokeAsync("Dashboard")
 </header>
 <main role="main" id="fhc" class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <table>
-                    <tr>
-                        <td>
-                            <label asp-for="FuneralHomeId" class="control-label"></label>
-                        </td>
-                        <td>
-                            <select asp-for="FuneralHomeId" class="form-control" asp-items="ViewBag.FuneralHomeId"></select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label asp-for="FirstName" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="FirstName" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="FirstName" class="text-danger"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label asp-for="LastName" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="LastName" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="LastName" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label class="form-check-label">
-                                <input class="form-check-input" asp-for="ShowPrices" /> @Html.DisplayNameFor(model => model.ShowPrices)
-                            </label>
-                        </td>
-                        @*<td>
-                            <label asp-for="NickName" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="NickName" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="NickName" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="Phone1" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="Phone1" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="Phone1" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="Phone2" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="Phone2" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="Phone2" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="Phone3" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="Phone3" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="Phone3" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="PhoneType1" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="PhoneType1" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="PhoneType1" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="PhoneType2" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="PhoneType2" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="PhoneType2" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="PhoneType3" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="PhoneType3" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="PhoneType3" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="Spouse" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="Spouse" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="Spouse" class="text-danger"></span>
-                        </td>
+    <form asp-action="Create" method="post">
+        <center>
+            <h1 class="mt-5">Funeral Home Contact</h1>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <table>
+                        <tr>
+                            <td>
+                                <label asp-for="fhName" class="control-label" style="width:300px;">Funeral Home</label>
+                            </td>
+                            <td>
+                                <label asp-for="fhName" class="form-control" style="width:400px;">@Model.fhName</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="FirstName" class="control-label" style="width:300px;">First Name</label>
+                            </td>
+                            <td>
+                                <input asp-for="FirstName" class="form-control" />
+                            </td>
+                            <td>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="LastName" style="width:300px;" class="control-label">Last Name</label>
+                            </td>
+                            <td>
+                                <input asp-for="LastName" class="form-control" tabindex="1" style="width:400px;" />
+                            </td>
+                            <td>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="ShowPrices" /> @Html.DisplayNameFor(model => model.ShowPrices)
+                                </label>
+                            </td>
+                        </tr>
 
-                        <td>
-                            <label asp-for="ContactRole" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="ContactRole" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="ContactRole" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="Interests" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="Interests" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="Interests" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <label asp-for="Photo" class="control-label"></label>
-                        </td>
-                        <td>
-                            <input asp-for="Photo" class="form-control" />
-                        </td>
-                        <td>
-                            <span asp-validation-for="Photo" class="text-danger"></span>
-                        </td>*@
-                        <td>
-                            <input type="submit" value="Create" class="btn btn-primary" />
-                        </td>
+                    </table>
+                    <hr />
 
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </center>
+    </form>
 </main>

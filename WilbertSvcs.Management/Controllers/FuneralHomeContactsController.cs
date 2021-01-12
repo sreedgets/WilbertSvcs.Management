@@ -43,18 +43,21 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: FuneralHomeContacts/Create
-        public async Task<IActionResult> CreateAsync(int? fhId)
+        public async Task<IActionResult> CreateAsync(int Id)
         {
-            if (fhId == null)
+            if (Id == 0)
             {
                 return NotFound();
             }
-            var funeralHome = await _context.FuneralHomes
-                .FirstOrDefaultAsync(m => m.FuneralHomeId == fhId);
+            
+            var funeralhome = await _context.FuneralHomes.FindAsync(Id);
+            if (funeralhome == null)
+                return NotFound();
 
-            ViewBag.fhName = funeralHome.Name;
-
-            return View();
+            FuneralHomeContact fhc = new FuneralHomeContact();
+            fhc.fhName = funeralhome.Name;
+            fhc.FuneralHomeId = Id;
+            return View(fhc);
         }
 
         // POST: FuneralHomeContacts/Create
@@ -62,13 +65,19 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse,ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact, int fhID)
+        public async Task<IActionResult> Create(int Id, [Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse,ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact)
         {
+            if (Id == 0)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
+                funeralHomeContact.FuneralHomeId = Id;
                 _context.Add(funeralHomeContact);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Edit", "FuneralHomes", funeralHomeContact.FuneralHomeId);
             }
             return View(funeralHomeContact);
         }

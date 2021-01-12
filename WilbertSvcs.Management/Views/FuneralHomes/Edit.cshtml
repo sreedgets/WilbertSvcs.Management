@@ -168,7 +168,6 @@
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                     <div class="col-md-6">
                         <table>
@@ -220,83 +219,61 @@
                         </table>
                     </div>
                 </div>
-                <hr />
-                <div class="row">
-                    <div class="col-md-12">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td colspan="4"><label class="sectionLabel"></label><h3>Contact Information</h3></td>
-                                </tr>
-                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                    <th scope="col"><a href="#" style="color:White;">Name</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">Title</a></th>
-                                    <th scope="col"><a style="color:White;">Phone</a></th>
-                                    <th scope="col"><a style="color:White;">&nbsp;</a></th>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;">Jordan Borcherding</td>
-                                    <td style="width:10%;"><span>Funeral Director</span></td>
-                                    <td style="width:10%;"><span>(319) 824-3319</span></td>
-                                    <td style="width:10%;"><a href="#">Disable Login</a></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td style="width:18%;">Rebecca Camp</td>
-                                    <td style="width:10%;"><span>Manager/Funeral Director</span></td>
-                                    <td style="width:10%;"><span></span></td>
-                                    <td style="width:10%;"><a href="#">Disable Login</a></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;">Adam Recker</td>
-                                    <td style="width:10%;"><span>Funeral Director</span></td>
-                                    <td style="width:10%;"><span></span></td>
-                                    <td style="width:10%;"><a href="#">Disable Login</a></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td style="width:18%;">Bill Kamp</td>
-                                    <td style="width:10%;"><span>Manager/Funeral Director</span></td>
-                                    <td style="width:10%;"><span></span></td>
-                                    <td style="width:10%;"><a href="#">Disable Login</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td colspan="4"><label class="sectionLabel"></label><h3>Interactions</h3></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td><label class="titleLabel">Date:</label></td>
-                                    <td><input type="text" maxlength="100" tabindex="1" value="Date" style="width:100px;"></td>
-                                    <td><label class="titleLabel">Nature:</label></td>
-                                    <td><input type="text" maxlength="100" tabindex="1" value="Nature of Contact" style="width:300px;"></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td><label class="titleLabel">Notes:</label></td>
-                                    <td><input type="textbox" rows="2" cols="20" tabindex="2" value="Nature of Contact" style="height:100px;width:400px;"></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ffffff;">
-                                    <td><label class="titleLabel">Follow Up Date:</label></td>
-                                    <td><input type="text" maxlength="100" tabindex="1" value="Date" style="width:100px;"></td>
-                                    <td><label class="titleLabel">Reason:</label></td>
-                                    <td><input type="text" maxlength="100" tabindex="1" value="Nature of Contact" style="width:200px;"></td>
-                                    <td><label class="titleLabel">Completed:</label></td>
-                                    <td>
-                                        <input type="radio" value="Yes">
-                                        <label>Yes</label>
-                                        <input type="radio" value="No">
-                                        <label>No</label>
-                                    </td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td><label class="titleLabel">Outcome:</label></td>
-                                    <td><input type="text" rows="2" cols="20" tabindex="2" value="Nature of Contact" style="height:100px;width:400px;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <hr style="border: 10px solid #00446a; border-radius: 5px;" />
+                <table>
+                    <tbody>
+
+                        <tr>
+                            <td colspan="4"><label class="sectionLabel"></label><h3>Contact Information</h3></td>
+                        </tr>
+                        <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                            <th scope="col"><a href="#" style="color:White;">Name</a></th>
+                            <th scope="col"><a href="#" style="color:White;">Title</a></th>
+                            <th scope="col"><a style="color:White;">Phone</a></th>
+                            <th scope="col"><a style="color:White;">&nbsp;</a></th>
+                        </tr>
+                        @foreach (var contact in Model.Contacts)
+                        {
+
+                            <tr style="color:#333333;background-color:#ECECEC;">
+                                <td style="width:18%;">
+                                    <label asp-for="@contact.FirstName" class="control-label"> @contact.FirstName</label>
+                                </td>
+                                <td style="width:10%;">
+                                    <span>
+                                        <label asp-for="@contact.ContactRole" class="control-label">@contact.ContactRole</label>
+                                    </span>
+                                </td>
+                                <td>
+
+                                    <label asp-for="@contact.Phone1">@contact.Phone1</label>
+                                </td>
+                                <td>
+                
+                                </td>
+                                <td style="width:10%;"><a href="#">Disable Login</a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            @*<a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>*@
+
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-action="Create" asp-controller="interactions" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD INTERACTIONS</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-action="Create" asp-controller="Home" class="btn btn-primary">ADD PHOTOS</a>
+                        </div>
                     </div>
                 </div>
-                <hr />
+                <hr style="border: 5px solid #00446a; border-radius: 5px;" />
                 <div>
                     <input type="submit" value="Edit" class="btn btn-primary" />
                     <a asp-action="Index" class="btn btn-secondary">Back to List</a>

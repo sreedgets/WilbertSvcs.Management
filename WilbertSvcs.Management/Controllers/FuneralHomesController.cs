@@ -79,6 +79,7 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: FuneralHomes/Create
+        [HttpGet]
         public IActionResult Create()
         {
             var fh = new FuneralHome();
@@ -161,14 +162,17 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            //Find funeral home by id
             var fh = await _context.FuneralHomes.FindAsync(id);
             if (fh == null)
             {
                 return NotFound();
             }
 
+            //Find parent homes
             fh.ParentFuneralHomes = _context.ParentFuneralHomes.ToList();
 
+            //Find plants
             List<Plant> lstPlants = _context.Plants.ToList();
             fh.Plants.Add(new Plant()
             {
@@ -184,6 +188,18 @@ namespace WilbertSvcs.Management.Controllers
                 });
             }
 
+            //Find Contacts
+            List <FuneralHomeContact> contacts =_context.FuneralHomeContacts.Where(c => c.FuneralHomeId == id).ToList();
+            
+            foreach( var item in contacts)
+            {
+                fh.Contacts.Add(new FuneralHomeContact()
+                {
+                    FirstName = item.FirstName,
+                    ContactRole = item.ContactRole,
+                    Phone1 = item.Phone1
+                });
+            }
 
             return View(fh);
         }
