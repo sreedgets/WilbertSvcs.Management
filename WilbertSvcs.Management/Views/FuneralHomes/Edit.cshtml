@@ -220,58 +220,35 @@
                     </div>
                 </div>
                 <hr style="border: 10px solid #00446a; border-radius: 5px;" />
-                <table>
-                    <tbody>
-
-                        <tr>
-                            <td colspan="4"><label class="sectionLabel"></label><h3>Contact Information</h3></td>
+                @await Component.InvokeAsync("Contacts", Model.FuneralHomeId)
+                <div>
+                    <table>
+                        <tr align="left">
+                            <td>
+                                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+                            </td>
                         </tr>
-                        <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                            <th scope="col"><a href="#" style="color:White;">Name</a></th>
-                            <th scope="col"><a href="#" style="color:White;">Title</a></th>
-                            <th scope="col"><a style="color:White;">Phone</a></th>
-                            <th scope="col"><a style="color:White;">&nbsp;</a></th>
+                    </table>
+                </div>
+                @await Component.InvokeAsync("Interactions", Model.FuneralHomeId);
+                <div>
+                    <table>
+                        <tr align="left">
+                            <td>
+                                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+                            </td>
                         </tr>
-                        @foreach (var contact in Model.Contacts)
-                        {
-
-                            <tr style="color:#333333;background-color:#ECECEC;">
-                                <td style="width:18%;">
-                                    <label asp-for="@contact.FirstName" class="control-label"> @contact.FirstName</label>
-                                </td>
-                                <td style="width:10%;">
-                                    <span>
-                                        <label asp-for="@contact.ContactRole" class="control-label">@contact.ContactRole</label>
-                                    </span>
-                                </td>
-                                <td>
-
-                                    <label asp-for="@contact.Phone1">@contact.Phone1</label>
-                                </td>
-                                <td>
-                
-                                </td>
-                                <td style="width:10%;"><a href="#">Disable Login</a></td>
-                            </tr>
-                        }
-
-                    </tbody>
-                </table>
-                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            @*<a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>*@
-
-                        </div>
-                        <div class="col-md-4">
-                            <a asp-action="Create" asp-controller="interactions" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD INTERACTIONS</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a asp-action="Create" asp-controller="Home" class="btn btn-primary">ADD PHOTOS</a>
-                        </div>
-                    </div>
+                    </table>
+                </div>
+                @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
+                <div>
+                    <table>
+                        <tr align="left">
+                            <td>
+                                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <hr style="border: 5px solid #00446a; border-radius: 5px;" />
                 <div>
