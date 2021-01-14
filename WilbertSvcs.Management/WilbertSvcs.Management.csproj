@@ -16,6 +16,10 @@
     <AspNetCoreHostingModel>inProcess</AspNetCoreHostingModel>
     <UserSecretsId>f97b087b-9696-4ead-a78c-21f0a60d01ca</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\Components\ContactDetails\Default.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />

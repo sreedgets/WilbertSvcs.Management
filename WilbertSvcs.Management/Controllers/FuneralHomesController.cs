@@ -328,22 +328,5 @@ namespace WilbertSvcs.Management.Controllers
             _context.ParentFuneralHomes.Add(pfh);
         }
 
-        public IActionResult SwitchToTabs(string tabname)
-        {
-            var fh = new FuneralHome();
-            switch(tabname)
-            {
-                case "Contacts":
-                    fh.ActiveTab = FuneralHome.Tab.Contacts;
-                    break;
-                case "Interactions":
-                    fh.ActiveTab = FuneralHome.Tab.Interactions;
-                    break;
-                case "Photos":
-                    fh.ActiveTab = FuneralHome.Tab.Photos;
-                    break;                    
-            }
-            return RedirectToAction(nameof(FuneralHomesController.Create), fh);
-        }
     }
 }

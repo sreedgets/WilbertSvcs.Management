@@ -8,15 +8,6 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class FuneralHome
     {
-        public Tab ActiveTab { get; set; }
-
-        public enum Tab
-        {
-            Contacts,
-            Interactions,
-            Photos
-        }
-
         public FuneralHome()
         {
             ParentFuneralHomes = new HashSet<ParentFuneralHome>();

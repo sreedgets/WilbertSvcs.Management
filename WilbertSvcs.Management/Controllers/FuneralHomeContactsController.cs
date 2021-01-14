@@ -166,5 +166,21 @@ namespace WilbertSvcs.Management.Controllers
         {
             return _context.FuneralHomeContacts.Any(e => e.FuneralHomeContactId == id);
         }
+        public IActionResult SwitchToTabs(string tabname, int id)
+        {
+            var fhc = new FuneralHomeContact();
+            switch (tabname)
+            {
+                case "Details":
+                    fhc.ActiveTab = FuneralHomeContact.Tab.Details;
+                    break;
+                case "Preferences":
+                    fhc.ActiveTab = FuneralHomeContact.Tab.Preferences;
+                    break;
+                
+            }
+            return RedirectToAction("Create");
+        }
+
     }
 }

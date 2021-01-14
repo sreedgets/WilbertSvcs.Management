@@ -36,5 +36,13 @@ namespace WilbertVaultCompany.api.Models
         public int ContactRole { get; set; }
         public string Interests { get; set; }
         public byte[] Photo { get; set; }
+        public Tab ActiveTab { get; set; }
+
+        public enum Tab
+        {
+            Details,
+            Preferences
+        }
+
     }
 }
