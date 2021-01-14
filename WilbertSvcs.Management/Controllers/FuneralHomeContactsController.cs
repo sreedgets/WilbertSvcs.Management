@@ -77,7 +77,7 @@ namespace WilbertSvcs.Management.Controllers
                 funeralHomeContact.FuneralHomeId = Id;
                 _context.Add(funeralHomeContact);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Edit", "FuneralHomes", funeralHomeContact.FuneralHomeId);
+                return RedirectToAction("Edit", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });
             }
             return View(funeralHomeContact);
         }

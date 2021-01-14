@@ -221,6 +221,7 @@
                 </div>
                 <hr style="border: 10px solid #00446a; border-radius: 5px;" />
                 @await Component.InvokeAsync("Contacts", Model.FuneralHomeId)
+                <br />
                 <div>
                     <table>
                         <tr align="left">
@@ -230,26 +231,28 @@
                         </tr>
                     </table>
                 </div>
-                @await Component.InvokeAsync("Interactions", Model.FuneralHomeId);
+                <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+                @await Component.InvokeAsync("Interactions", Model.FuneralHomeId)
+                <br />
                 <div>
                     <table>
                         <tr align="left">
                             <td>
-                                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+                                <a asp-action="Create" asp-controller="Interactionx" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD INTERACTIONS</a>
                             </td>
                         </tr>
                     </table>
                 </div>
-                @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
-                <div>
-                    <table>
-                        <tr align="left">
-                            <td>
-                                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                @*  @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
+        <div>
+            <table>
+                <tr align="left">
+                    <td>
+                        <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+                    </td>
+                </tr>
+            </table>
+        </div>*@
                 <hr style="border: 5px solid #00446a; border-radius: 5px;" />
                 <div>
                     <input type="submit" value="Edit" class="btn btn-primary" />

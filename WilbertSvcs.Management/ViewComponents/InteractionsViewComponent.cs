@@ -17,12 +17,9 @@ namespace WilbertSvcs.Management.ViewComponents
 
         public IViewComponentResult Invoke(int id)
         {
-            List<Interaction> fhcl = new List<Interaction>();
+            Interaction fhi = new Interaction();
 
-            return View((from fhcList in _context.Interactions
-                         where fhcList.FuneralHomeId == id
-                         select fhcList).ToList());
-
+            return View(fhi);
         }
     }
 }
