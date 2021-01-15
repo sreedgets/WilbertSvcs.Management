@@ -43,7 +43,7 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: FuneralHomeContacts/Create
-        public async Task<IActionResult> CreateAsync(int Id)
+        public async Task<IActionResult> CreateAsync(int Id, FuneralHomeContact.Tab activeTab)
         {
             if (Id == 0)
             {
@@ -56,6 +56,7 @@ namespace WilbertSvcs.Management.Controllers
 
             FuneralHomeContact fhc = new FuneralHomeContact();
             fhc.fhName = funeralhome.Name;
+            fhc.ActiveTab = activeTab;
             fhc.FuneralHomeId = Id;
             return View(fhc);
         }
@@ -166,9 +167,10 @@ namespace WilbertSvcs.Management.Controllers
         {
             return _context.FuneralHomeContacts.Any(e => e.FuneralHomeContactId == id);
         }
-        public IActionResult SwitchToTabs(string tabname, int id)
+        public IActionResult SwitchToTabs(string tabname, int Id)
         {
             var fhc = new FuneralHomeContact();
+            fhc.FuneralHomeId = Id;
             switch (tabname)
             {
                 case "Details":
@@ -179,7 +181,8 @@ namespace WilbertSvcs.Management.Controllers
                     break;
                 
             }
-            return RedirectToAction("Create");
+            return RedirectToAction(nameof(FuneralHomeContactsController.Create), new { Id = fhc.FuneralHomeId,
+                fhc.ActiveTab});
         }
 
     }

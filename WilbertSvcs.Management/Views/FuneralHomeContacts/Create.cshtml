@@ -90,10 +90,10 @@
             <div class="col-md-12">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHomeContact.Tab.Details ? "active" :string.Empty)">
-                        <a asp-route-tabname="Details" asp-action="SwitchToTabs">Details&nbsp;</a>
+                        <a asp-route-tabname="Details" asp-action="SwitchToTabs" asp-route-id="@Model.FuneralHomeId">Details&nbsp;</a>
                     </li>
                     <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHomeContact.Tab.Preferences ? "active" :string.Empty)">
-                        <a asp-route-tabname="Preferences" asp-action="SwitchToTabs">Interactions&nbsp; </a>
+                        <a asp-route-tabname="Preferences" asp-action="SwitchToTabs" asp-route-id="@Model.FuneralHomeId">Preferences&nbsp; </a>
                     </li>
      
                 </ul>
