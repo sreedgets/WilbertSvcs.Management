@@ -42,7 +42,7 @@ namespace WilbertSvcs.Management.Controllers
             return View(funeralHomeContact);
         }
 
-        // GET: FuneralHomeContacts/Create
+        // GET: FuneralHomeContacts/Create/<FuneralHomeId>
         public async Task<IActionResult> CreateAsync(int Id, FuneralHomeContact.Tab activeTab)
         {
             if (Id == 0)
@@ -91,11 +91,16 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            var funeralhome = await _context.FuneralHomes.FindAsync(id);
+            if (funeralhome == null)
+                return NotFound();
+
             var funeralHomeContact = await _context.FuneralHomeContacts.FindAsync(id);
             if (funeralHomeContact == null)
             {
                 return NotFound();
             }
+            funeralHomeContact.fhName = funeralhome.Name;
             return View(funeralHomeContact);
         }
 

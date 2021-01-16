@@ -1,104 +1,142 @@
 ﻿@model WilbertVaultCompany.api.Models.FuneralHomeContact
-
+@using WilbertVaultCompany.api.Enums
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "eDIT";
 }
 
-<h1>Edit</h1>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-<h4>FuneralHomeContact</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="FuneralHomeContactId" />
-            <div class="form-group">
-                <label asp-for="FuneralHomeId" class="control-label"></label>
-                <select asp-for="FuneralHomeId" class="form-control" asp-items="ViewBag.FuneralHomeId"></select>
-                <span asp-validation-for="FuneralHomeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NickName" class="control-label"></label>
-                <input asp-for="NickName" class="form-control" />
-                <span asp-validation-for="NickName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone1" class="control-label"></label>
-                <input asp-for="Phone1" class="form-control" />
-                <span asp-validation-for="Phone1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone2" class="control-label"></label>
-                <input asp-for="Phone2" class="form-control" />
-                <span asp-validation-for="Phone2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone3" class="control-label"></label>
-                <input asp-for="Phone3" class="form-control" />
-                <span asp-validation-for="Phone3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneType1" class="control-label"></label>
-                <input asp-for="PhoneType1" class="form-control" />
-                <span asp-validation-for="PhoneType1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneType2" class="control-label"></label>
-                <input asp-for="PhoneType2" class="form-control" />
-                <span asp-validation-for="PhoneType2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneType3" class="control-label"></label>
-                <input asp-for="PhoneType3" class="form-control" />
-                <span asp-validation-for="PhoneType3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Spouse" class="control-label"></label>
-                <input asp-for="Spouse" class="form-control" />
-                <span asp-validation-for="Spouse" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="ShowPrices" /> @Html.DisplayNameFor(model => model.ShowPrices)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContactRole" class="control-label"></label>
-                <input asp-for="ContactRole" class="form-control" />
-                <span asp-validation-for="ContactRole" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Interests" class="control-label"></label>
-                <input asp-for="Interests" class="form-control" />
-                <span asp-validation-for="Interests" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
-                <span asp-validation-for="Photo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+    <title>Login Template for Bootstrap</title>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <link rel="canonical" href="#">
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<h3>CONTACT DETAILS</h3>
+<main role="main" id="fhc" class="container">
+    <form asp-action="Create" method="post">
+        <center>
+            <h1 class="mt-5">Funeral Home Contact</h1>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <table>
+                        <tr>
+                            <td>
+                                <label asp-for="fhName" class="control-label" style="width:300px;">Funeral Home</label>
+                            </td>
+                            <td>
+                                <label asp-for="fhName" class="form-control" style="width:400px;">@Model.fhName</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="FirstName" class="control-label" style="width:300px;">First Name</label>
+                            </td>
+                            <td>
+                                <input asp-for="FirstName" class="form-control" />
+                            </td>
+                            <td>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="LastName" style="width:300px;" class="control-label">Last Name</label>
+                            </td>
+                            <td>
+                                <input asp-for="LastName" class="form-control" tabindex="1" style="width:400px;" />
+                            </td>
+                            <td>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="ShowPrices" /> @Html.DisplayNameFor(model => model.ShowPrices)
+                                </label>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <hr />
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHomeContact.Tab.Details ? "active" :string.Empty)">
+                        <a asp-route-tabname="Details" asp-action="SwitchToTabs" asp-route-id="@Model.FuneralHomeId">Details&nbsp;</a>
+                    </li>
+                    <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHomeContact.Tab.Preferences ? "active" :string.Empty)">
+                        <a asp-route-tabname="Preferences" asp-action="SwitchToTabs" asp-route-id="@Model.FuneralHomeId">Preferences&nbsp; </a>
+                    </li>
+
+                </ul>
+
+                @switch (Model.ActiveTab)
+                {
+                    case WilbertVaultCompany.api.Models.FuneralHomeContact.Tab.Details:
+                        @await Component.InvokeAsync("ContactDetails", Model.FuneralHomeContactId);
+                        break;
+                    case WilbertVaultCompany.api.Models.FuneralHomeContact.Tab.Preferences:
+                        @await Component.InvokeAsync("Preferences", Model.FuneralHomeId);
+                        break;
+
+                }
+            </div>
+            <div>
+                <input type="submit" value="Update Contact Info" class="btn btn-primary" />
+                <a asp-action="Edit" class="btn btn-secondary" asp-controller="FuneralHomes" asp-route-id="@Model.FuneralHomeId">Back to Funeral Home</a>
+            </div>
+
+
+
+        </center>
+    </form>
+</main>
+@section WilbertScripts {
+
+    <script type="text/javascript">
+        function phoneOnKeyDown(phoneTextBox) {
+            if (phoneTextBox.value == 'xxx-xxx-xxxx') {
+                phoneTextBox.value = '';
+                phoneTextBox.style['color'] = 'black';
+            }
+        }
+
+        function phoneOnBlur(phoneTextBox) {
+            if (phoneTextBox.value.trim().length == 0) {
+                phoneTextBox.value = 'xxx-xxx-xxxx';
+                phoneTextBox.style['color'] = 'silver';
+            } else {
+
+                if (phoneTextBox.value.trim().length == 6) {  // 062019
+                    phoneTextBox.value = phoneTextBox.value.substring(0, 2) + "/" + phoneTextBox.value.substr(2, 4);
+
+                }
+
+            }
+        }
+    </script>
+    <partial name="_ValidationScriptsPartial" />
 }
+

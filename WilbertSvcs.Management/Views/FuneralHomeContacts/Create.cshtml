@@ -79,14 +79,6 @@
 
                 </div>
             </div>
-            <div>
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Edit" class="btn btn-secondary" asp-controller="FuneralHomes" asp-route-id="@Model.FuneralHomeId">Back to Funeral Home</a>
-            </div>
-
-
-
-
             <div class="col-md-12">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHomeContact.Tab.Details ? "active" :string.Empty)">
@@ -95,7 +87,7 @@
                     <li role="presentation" class="@(Model.ActiveTab == WilbertVaultCompany.api.Models.FuneralHomeContact.Tab.Preferences ? "active" :string.Empty)">
                         <a asp-route-tabname="Preferences" asp-action="SwitchToTabs" asp-route-id="@Model.FuneralHomeId">Preferences&nbsp; </a>
                     </li>
-     
+
                 </ul>
 
                 @switch (Model.ActiveTab)
@@ -108,8 +100,13 @@
                         break;
 
                 }
-
             </div>
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Edit" class="btn btn-secondary" asp-controller="FuneralHomes" asp-route-id="@Model.FuneralHomeId">Back to Funeral Home</a>
+            </div>
+
+
 
         </center>
     </form>

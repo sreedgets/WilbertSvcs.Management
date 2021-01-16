@@ -31,9 +31,10 @@ namespace WilbertVaultCompany.api.Models
         public string PhoneType1 { get; set; }
         public string PhoneType2 { get; set; }
         public string PhoneType3 { get; set; }
+        public string Email { get; set; }
         public string Spouse { get; set; }
         public bool ShowPrices { get; set; }
-        public int ContactRole { get; set; }
+        public string ContactRole { get; set; }
         public string Interests { get; set; }
         public byte[] Photo { get; set; }
         public Tab ActiveTab { get; set; }

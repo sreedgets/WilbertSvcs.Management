@@ -6,6 +6,7 @@ namespace WilbertVaultCompany.api.Enums
 {
     public enum FuneralHomeRole
     {
+        Choose,
         Owner_FuneralDirector,
         FuneralDirector,
         Owner,

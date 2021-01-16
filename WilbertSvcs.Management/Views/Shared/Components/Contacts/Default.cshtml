@@ -14,13 +14,16 @@
                 <th scope="col"><a style="color:White;">Phone</a></th>
                 <th scope="col"><a style="color:White;">&nbsp;</a></th>
                 <th></th>
+                <th></th>
             </tr>
             @foreach (var contact in Model)
             {
 
                 <tr align="left" style="color:#333333;background-color:#ECECEC;">
                     <td style="width:18%;">
-                        <label asp-for="@contact.FirstName" class="control-label"> @contact.FirstName</label>
+                        <a asp-action="Edit" asp-route-id="@contact.FuneralHomeContactId" 
+                           asp-controller="FuneralHomeContacts">@Html.DisplayFor(modelItem => contact.FirstName)</a>
+                        
                     </td>
                     <td style="width:10%;">
                         <span>
@@ -32,10 +35,40 @@
                     </td>
                     <td>
                     </td>
-                    <td style="width:10%;"><a href="#">Disable Login</a></td>
+                    <td style="width:10%;"><a href="#" class="btn btn-secondary">Disable Login</a></td>
+                    
+                    <td>
+                        <a asp-action="Delete" asp-controller="funeralhomecontacts" asp-route-id="@contact.FuneralHomeContactId" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
             }
         }
     </tbody>
 </table>
 
+@section WilbertScripts {
+
+    <script type="text/javascript">
+        function phoneOnKeyDown(phoneTextBox) {
+            if (phoneTextBox.value == 'xxx-xxx-xxxx') {
+                phoneTextBox.value = '';
+                phoneTextBox.style['color'] = 'black';
+            }
+        }
+
+        function phoneOnBlur(phoneTextBox) {
+            if (phoneTextBox.value.trim().length == 0) {
+                phoneTextBox.value = 'xxx-xxx-xxxx';
+                phoneTextBox.style['color'] = 'silver';
+            } else {
+
+                if (phoneTextBox.value.trim().length == 6) {  // 062019
+                    phoneTextBox.value = phoneTextBox.value.substring(0, 2) + "/" + phoneTextBox.value.substr(2, 4);
+
+                }
+
+            }
+        }
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

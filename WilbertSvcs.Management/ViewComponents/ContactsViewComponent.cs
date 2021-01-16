@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.ViewComponents
@@ -21,9 +22,14 @@ namespace WilbertSvcs.Management.ViewComponents
         {
             List<FuneralHomeContact> fhcl = new List<FuneralHomeContact>();
 
-            return View((from fhcList in _context.FuneralHomeContacts
-                         where fhcList.FuneralHomeId == id
-                         select fhcList).ToList());
+            fhcl = (from fhcList in _context.FuneralHomeContacts
+                    where fhcList.FuneralHomeId == id
+                    select fhcList).ToList();
+
+            foreach(var item in fhcl)
+                item.ContactRole = Enum.GetName(typeof(FuneralHomeRole), Int32.Parse(item.ContactRole));
+
+            return View(fhcl);
 
             
             //return View(fhcl);
