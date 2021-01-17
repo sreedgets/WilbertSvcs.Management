@@ -49,7 +49,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-            
+
             var funeralhome = await _context.FuneralHomes.FindAsync(Id);
             if (funeralhome == null)
                 return NotFound();
@@ -91,15 +91,15 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var funeralhome = await _context.FuneralHomes.FindAsync(id);
-            if (funeralhome == null)
-                return NotFound();
 
             var funeralHomeContact = await _context.FuneralHomeContacts.FindAsync(id);
             if (funeralHomeContact == null)
-            {
                 return NotFound();
-            }
+
+
+            var funeralhome = await _context.FuneralHomes.FindAsync(funeralHomeContact.FuneralHomeId);
+            if (funeralhome == null)
+                return NotFound();
             funeralHomeContact.fhName = funeralhome.Name;
             return View(funeralHomeContact);
         }
@@ -111,10 +111,14 @@ namespace WilbertSvcs.Management.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse,ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact)
         {
-            if (id != funeralHomeContact.FuneralHomeContactId)
+            if (id == 0)
             {
                 return NotFound();
             }
+
+            var fhc = await _context.FuneralHomeContacts.FindAsync(id);
+            if (fhc == null)
+                return NotFound();
 
             if (ModelState.IsValid)
             {
@@ -184,10 +188,13 @@ namespace WilbertSvcs.Management.Controllers
                 case "Preferences":
                     fhc.ActiveTab = FuneralHomeContact.Tab.Preferences;
                     break;
-                
+
             }
-            return RedirectToAction(nameof(FuneralHomeContactsController.Create), new { Id = fhc.FuneralHomeId,
-                fhc.ActiveTab});
+            return RedirectToAction(nameof(FuneralHomeContactsController.Create), new
+            {
+                Id = fhc.FuneralHomeId,
+                fhc.ActiveTab
+            });
         }
 
     }

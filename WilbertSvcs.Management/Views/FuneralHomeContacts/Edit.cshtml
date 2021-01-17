@@ -30,7 +30,7 @@
 
 <h3>CONTACT DETAILS</h3>
 <main role="main" id="fhc" class="container">
-    <form asp-action="Create" method="post">
+    <form asp-action="Edit">
         <center>
             <h1 class="mt-5">Funeral Home Contact</h1>
             <hr />
@@ -39,6 +39,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <table>
                         <tr>
+                            
                             <td>
                                 <label asp-for="fhName" class="control-label" style="width:300px;">Funeral Home</label>
                             </td>
@@ -103,9 +104,8 @@
 
                 }
             </div>
-            <div>
-                <input type="submit" value="Update Contact Info" class="btn btn-primary" />
-                <a asp-action="Edit" class="btn btn-secondary" asp-controller="FuneralHomes" asp-route-id="@Model.FuneralHomeId">Back to Funeral Home</a>
+            <div><input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Edit" asp-controller="FuneralHomes" asp-route-id="@Model.FuneralHomeId" class="btn btn-secondary">Back to Funeral Home</a>
             </div>
 
 
