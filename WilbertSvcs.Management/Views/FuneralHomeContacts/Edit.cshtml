@@ -34,13 +34,14 @@
         <center>
             <h1 class="mt-5">Funeral Home Contact</h1>
             <hr />
-            <input type="hidden" asp-for="FuneralHomeId"/>
+            <input type="hidden" asp-for="FuneralHomeId" />
+            <input type="hidden" asp-for="FuneralHomeContactId" />
             <div class="row">
                 <div class="col-md-4">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <table>
                         <tr>
-                            
+
                             <td>
                                 <label asp-for="fhName" class="control-label" style="width:300px;">Funeral Home</label>
                             </td>
@@ -53,7 +54,7 @@
                                 <label asp-for="FirstName" class="control-label" style="width:300px;">First Name</label>
                             </td>
                             <td>
-                                <input asp-for="FirstName" class="form-control" />
+                                <input asp-for="FirstName" class="form-control" tabindex="1" style="width:400px;" />
                             </td>
                             <td>
                                 <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -105,7 +106,8 @@
 
                 }
             </div>
-            <div><input type="submit" value="Save" class="btn btn-primary" />
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
                 <a asp-action="Edit" asp-controller="FuneralHomes" asp-route-id="@Model.FuneralHomeId" class="btn btn-secondary">Back to Funeral Home</a>
             </div>
 

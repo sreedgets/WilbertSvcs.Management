@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
@@ -21,7 +22,16 @@ namespace WilbertSvcs.Management.Controllers
         // GET: FuneralHomeContacts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.FuneralHomeContacts.ToListAsync());
+            List<FuneralHomeContact> fhcl = new List<FuneralHomeContact>();
+
+            fhcl = (from fhcList in _context.FuneralHomeContacts
+                    select fhcList).ToList();
+
+            foreach (var item in fhcl)
+                item.ContactRole = Enum.GetName(typeof(FuneralHomeRole), Int32.Parse(item.ContactRole));
+
+
+            return View(fhcl);
         }
 
         // GET: FuneralHomeContacts/Details/5
@@ -134,7 +144,7 @@ namespace WilbertSvcs.Management.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Edit", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });
             }
             return View(funeralHomeContact);
         }
