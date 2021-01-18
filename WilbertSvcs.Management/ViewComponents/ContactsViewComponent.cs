@@ -30,7 +30,7 @@ namespace WilbertSvcs.Management.ViewComponents
                 item.ContactRole = Enum.GetName(typeof(FuneralHomeRole), Int32.Parse(item.ContactRole));
 
             return View(fhcl);
-
+            //TODO: Format details page
             
             //return View(fhcl);
         }
