@@ -152,9 +152,6 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("Spouse")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("fhName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("FuneralHomeContactId");
 
                     b.HasIndex("FuneralHomeId");
