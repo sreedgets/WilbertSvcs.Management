@@ -11,6 +11,7 @@ namespace WilbertVaultCompany.api.Models
         public int FuneralHomeContactId { get; set; }
         public int FuneralHomeId { get; set; }
 
+        public string fhName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NickName { get; set; }
