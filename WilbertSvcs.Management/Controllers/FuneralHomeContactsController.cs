@@ -85,6 +85,7 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
+                funeralHomeContact.FullName = funeralHomeContact.FirstName + " " + funeralHomeContact.LastName;
                 _context.Add(funeralHomeContact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Edit", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });
@@ -118,7 +119,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,Email,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse,ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact)
+        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,FullName,Email,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse,ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact)
         {
             if (id == 0)
             {
