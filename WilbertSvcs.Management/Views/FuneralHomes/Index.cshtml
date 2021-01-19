@@ -51,16 +51,14 @@
                                 </tr>
                                 @foreach (var item in Model)
                                 {
-                            <tr style="color:#333333;background-color:#ECECEC;">
-                                <td style="width:30%;"><a asp-action="Edit" asp-route-id="@item.FuneralHomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.City)</span></td>
-                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.State)</span></td>
-                                <td style="width:10%;">@Html.DisplayFor(modelItem => item.Phone1)</td>
-                                <td style="width:18%;">@Html.DisplayFor(modelItem => item.ParentName)</td>
-                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.PlantName)</span></td>
-                                <td style="width:10%;"><span><a asp-action="Delete" asp-route-id="@item.FuneralHomeId" class="btn btn-danger">Delete</a></span>
-                                </td>
-                            </tr>
+                                    <tr style="color:#333333;background-color:#ECECEC;">
+                                        <td style="width:30%;"><a asp-action="Edit" asp-route-id="@item.FuneralHomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.City)</span></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.State)</span></td>
+                                        <td style="width:10%;">@Html.DisplayFor(modelItem => item.Phone1)</td>
+                                        <td style="width:18%;">@Html.DisplayFor(modelItem => item.ParentName)</td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.PlantName)</span></td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>

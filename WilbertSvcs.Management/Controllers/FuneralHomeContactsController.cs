@@ -85,7 +85,6 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
-                funeralHomeContact.FuneralHomeId = Id;
                 _context.Add(funeralHomeContact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Edit", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });

@@ -20,7 +20,7 @@ namespace WilbertSvcs.Management.ViewComponents
 
         public IViewComponentResult Invoke(int id)
         {
-            List<FuneralHomeContact> fhcl = new List<FuneralHomeContact>();
+            //List<FuneralHomeContact> fhcl = new List<FuneralHomeContact>();
 
             fhcl = (from fhcList in _context.FuneralHomeContacts
                     where fhcList.FuneralHomeId == id

@@ -12,7 +12,7 @@ namespace WilbertSvcs.Management.ViewComponents
         private readonly wilbertdbContext _context;
         public InteractionsViewComponent(wilbertdbContext context)
         {
-            _context = context;
+            context = _context;
         }
 
         public IViewComponentResult Invoke(int id)
