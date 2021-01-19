@@ -20,7 +20,7 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: FuneralHomeContacts
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             List<FuneralHomeContact> fhcl = new List<FuneralHomeContact>();
 
