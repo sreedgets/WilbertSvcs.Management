@@ -88,7 +88,7 @@ namespace WilbertSvcs.Management.Controllers
                 funeralHomeContact.FullName = funeralHomeContact.FirstName + " " + funeralHomeContact.LastName;
                 _context.Add(funeralHomeContact);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Edit", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });
+                return RedirectToAction("Details", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });
             }
             return View(funeralHomeContact);
         }
@@ -145,7 +145,7 @@ namespace WilbertSvcs.Management.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Edit", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });
+                return RedirectToAction("Details", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });
             }
             return View(funeralHomeContact);
         }

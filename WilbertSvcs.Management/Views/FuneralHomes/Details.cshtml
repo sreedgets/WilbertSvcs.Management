@@ -95,15 +95,7 @@
                             </td>
 
                         </tr>
-                        <tr>
-                            <td>
-                                <strong> @Html.DisplayNameFor(model => model.State)</strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.State)
-                            </td>
-
-                        </tr>
+                     
                         <tr>
                             <td>
                                 <strong> @Html.DisplayNameFor(model => model.County)</strong>
@@ -223,9 +215,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <hr style="border: 10px solid #00446a; border-radius: 5px;" />
-        <hr style="border: 10px solid #00446a; border-radius: 5px;" />
+        </div>        
         @await Component.InvokeAsync("Contacts", Model.FuneralHomeId)
         <br />
         <div>
