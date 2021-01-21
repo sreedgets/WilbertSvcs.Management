@@ -9,10 +9,10 @@
         @if (Model.Count() != 0)
         {
             <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                <th scope="col"><a href="#" style="color:White;">Name</a></th>
-                <th scope="col"><a href="#" style="color:White;">Title</a></th>
-                <th scope="col"><a style="color:White;">Phone</a></th>
-                <th scope="col"><a style="color:White;">&nbsp;</a></th>
+                <th width="200" scope="col"><a href="#" style="color:White;">Name</a></th>
+                <th width="350" scope="col"><a href="#" style="color:White;">Title</a></th>
+                <th width="300" scope="col"><a style="color:White;">Phone</a></th>
+                <th width="300" scope="col"><a style="color:White;">&nbsp;</a></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -20,12 +20,12 @@
             {
 
                 <tr align="left" style="color:#333333;background-color:#ECECEC;">
-                    <td style="width:18%;">
+                    <td >
                         <a asp-action="Edit" asp-route-id="@contact.FuneralHomeContactId"
                            asp-controller="FuneralHomeContacts">@Html.DisplayFor(modelItem => contact.FullName)</a>
 
                     </td>
-                    <td style="width:10%;">
+                    <td >
                         <span>
                             <label asp-for="@contact.ContactRole" class="control-label">@contact.ContactRole</label>
                         </span>

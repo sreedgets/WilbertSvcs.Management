@@ -128,6 +128,7 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
+                funeralHomeContact.FullName = funeralHomeContact.FirstName + " " + funeralHomeContact.LastName;
                 try
                 {
                     _context.Update(funeralHomeContact);

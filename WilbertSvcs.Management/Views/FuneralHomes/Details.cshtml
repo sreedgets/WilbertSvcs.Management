@@ -22,143 +22,242 @@
 
 <!-- Begin page content -->
 <main role="main" class="container">
-    <center>
-        <h1 class="mt-5">Funeral Home Details</h1>
+    <h1 class="mt-5">Funeral Home Details</h1>
+    <div class="album py-5">
+        <!--Page Actions -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <a asp-action="Create" class="btn btn-primary">Add New Entry</a>
+                    <a class="btn btn-primary" asp-action="Delete">Delete Entry</a>
+                    <a class="btn btn-primary" asp-action="Index">Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><label class="sectionLabel"></label><h3>General Information</h3></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong> @Html.DisplayNameFor(model => model.Name)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.IsParent)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.IsParent)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong> @Html.DisplayNameFor(model => model.Address)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Address)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong> @Html.DisplayNameFor(model => model.Address2)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Address2)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong> @Html.DisplayNameFor(model => model.City)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.City)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong> @Html.DisplayNameFor(model => model.State)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.State)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong> @Html.DisplayNameFor(model => model.State)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.State)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong> @Html.DisplayNameFor(model => model.County)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.County)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.Phone1)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Phone1)
+                            </td>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.PhoneType1)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.PhoneType1)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.Phone2)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Phone2)
+                            </td>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.PhoneType2)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.PhoneType2)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.Phone3)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Phone3)
+                            </td>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.PhoneType3)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.PhoneType3)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label class="sectionLabel"></label><h3>Additional Information</h3></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.ParentName)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.ParentName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Email)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.Website)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Website)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.PlantName)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.PlantName)
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr style="border: 10px solid #00446a; border-radius: 5px;" />
+        <hr style="border: 10px solid #00446a; border-radius: 5px;" />
+        @await Component.InvokeAsync("Contacts", Model.FuneralHomeId)
+        <br />
         <div>
-            <hr />
-            <table class="table-bordered table-striped">
-                <tr>
+            <table>
+                <tr align="left">
                     <td>
-                        <strong> @Html.DisplayNameFor(model => model.Name)</strong>
+                        <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
                     </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Name)
-                    </td>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.IsParent)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.IsParent)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.ParentName)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.ParentName)
-                    </td>
-
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.Address)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Address)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.City)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.City)
-                    </td>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.State)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.State)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.ZipCode)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.ZipCode)
-                    </td>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.County)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.County)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.Email)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Email)
-                    </td>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.Website)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Website)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.Phone1)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Phone1)
-                    </td>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.Phone2)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Phone2)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.PhoneType1)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PhoneType1)
-                    </td>
-                    <td>
-                        <strong>
-                            @Html.DisplayNameFor(model => model.PhoneType2)
-                        </strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PhoneType2)
-                    </td>
-
                 </tr>
             </table>
         </div>
-        <br />  <hr />
+        <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+        @await Component.InvokeAsync("Interactions", Model.FuneralHomeId)
+        <br />
         <div>
-            <a asp-action="Edit" asp-route-id="@Model.FuneralHomeId" class="btn-primary btn-lg">Edit</a> 
-            <a asp-action="Index" class="btn-secondary btn-lg" >Back to List</a>
+            <table>
+                <tr align="left">
+                    <td>
+                        <a asp-action="Create" asp-controller="Interactionx" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD INTERACTIONS</a>
+                    </td>
+                </tr>
+            </table>
         </div>
-    </center>
+        @*  @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
+        <div>
+            <table>
+                <tr align="left">
+                    <td>
+                        <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+                    </td>
+                </tr>
+            </table>
+        </div>*@
+    </div>
 </main>

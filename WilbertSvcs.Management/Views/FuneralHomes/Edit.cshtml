@@ -31,6 +31,7 @@
 
 <main role="main" id="fhd" class="container">
     <form asp-action="Edit" method="post">
+        
         <div class="album py-5">
             <div class="container">
                 <div class="row">
@@ -70,11 +71,11 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label asp-for="Address"></label>
+                                        <label asp-for="Address2"></label>
                                     </td>
                                     <td>
-                                        <input asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" value="Address line 2" />
-                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                        <input asp-for="Address2" maxlength="100" tabindex="1" style="width:300px;" />
+                                        <span asp-validation-for="Address2" class="text-danger"></span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -168,7 +169,6 @@
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                     <div class="col-md-6">
                         <table>
@@ -220,43 +220,10 @@
                         </table>
                     </div>
                 </div>
-                <hr style="border: 10px solid #00446a; border-radius: 5px;" />
-                @await Component.InvokeAsync("Contacts", Model.FuneralHomeId)
-                <br />
-                <div>
-                    <table>
-                        <tr align="left">
-                            <td>
-                                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <hr style="border: 5px solid #00446a; border-radius: 5px;" />
-                @await Component.InvokeAsync("Interactions", Model.FuneralHomeId)
-                <br />
-                <div>
-                    <table>
-                        <tr align="left">
-                            <td>
-                                <a asp-action="Create" asp-controller="Interactionx" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD INTERACTIONS</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                @*  @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
-        <div>
-            <table>
-                <tr align="left">
-                    <td>
-                        <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
-                    </td>
-                </tr>
-            </table>
-        </div>*@
+       
                 <hr style="border: 5px solid #00446a; border-radius: 5px;" />
                 <div>
-                    <input type="submit" value="Edit" class="btn btn-primary" />
+                    <input type="submit" value="Save Funeral Home" class="btn btn-primary" />
                     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
                 </div>
             </div>

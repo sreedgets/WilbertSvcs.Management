@@ -69,6 +69,8 @@ namespace WilbertSvcs.Management.Controllers
 
             funeralHome.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
             funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2));
+            funeralHome.PhoneType3 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType3)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType3));
+
 
             if (funeralHome == null)
             {
@@ -109,25 +111,30 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,Address2,City,State,ZipCode,County,Email,Website,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
             if (ModelState.IsValid)
             {
-
+                // If no parent funeralhomes exist...
                 if (_context.ParentFuneralHomes.Count() == 0)
                 {
+                    // if this funeralhome is a parent funeral home...
                     if (funeralHome.IsParent)
                     {
+                        // 1) initialize a list of funeral homes.
                         initParentList(funeralHome);
+                        // 2) add to list of funeral homes.
                         addParent(funeralHome);
                     }
                     else
+                        // if this funeralhome is a parent funeral home...
                         initParentList(funeralHome);
                 }
                 else
                 {
                     if (funeralHome.IsParent)
                     {
+                        // add to list of funeral homes.
                         addParent(funeralHome);
                     }
                 }
@@ -191,11 +198,13 @@ namespace WilbertSvcs.Management.Controllers
         // POST: FuneralHomes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost, ActionName("SaveFuneralHome")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,City,State,ZipCode,County,Email,Website,Phone1,Phone2,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,Address2,City,State,ZipCode,County,Email,Website,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
-            if (id != funeralHome.FuneralHomeId)
+            //if (id != funeralHome.FuneralHomeId)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -203,7 +212,7 @@ namespace WilbertSvcs.Management.Controllers
             if (ModelState.IsValid)
             {
 
-                if (_context.ParentFuneralHomes.Count() == 0)
+                if (_context.ParentFuneralHomes.Count() > 1)
                 {
 
                     ParentFuneralHome parentFuneralHome = await _context.ParentFuneralHomes.FindAsync(funeralHome.ParentFuneralHomeId);
@@ -224,7 +233,8 @@ namespace WilbertSvcs.Management.Controllers
                     {
                         addParent(funeralHome);
                     }
-                    funeralHome.ParentName = parentFuneralHome.ParentFuneralhomeName;
+                    if (parentFuneralHome != null)
+                        funeralHome.ParentName = parentFuneralHome.ParentFuneralhomeName;
                 }
 
                 if (funeralHome.PlantId != null)
