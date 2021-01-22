@@ -14,7 +14,7 @@
                 <th width="300" scope="col"><a style="color:White;">Phone</a></th>
                 <th width="300" scope="col"><a style="color:White;">&nbsp;</a></th>
                 <th></th>
-                <th></th>
+                
             </tr>
             @foreach (var contact in Model)
             {
@@ -37,9 +37,9 @@
                     <td>
                         <a href="#" class="btn btn-primary">Disable Login</a>
                     </td>
-                    <td>
+                    @*<td>
                         <a asp-action="Details" asp-route-id="@contact.FuneralHomeContactId" asp-controller="FuneralHomeContacts" class="btn btn-secondary">Details</a>
-                    </td>
+                    </td>*@
                     <td>
                         <a asp-action="Delete" asp-controller="funeralhomecontacts" asp-route-id="@contact.FuneralHomeContactId" class="btn btn-danger">Delete</a>
                     </td>

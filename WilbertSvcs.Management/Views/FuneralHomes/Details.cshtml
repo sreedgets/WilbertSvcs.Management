@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <a asp-action="Create" class="btn btn-primary">Add New Entry</a>
-                    <a class="btn btn-primary" asp-action="Delete">Delete Entry</a>
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.FuneralHomeId">Delete Entry</a>
                     <a class="btn btn-primary" asp-action="Index">Go Back</a>
                 </div>
             </div>

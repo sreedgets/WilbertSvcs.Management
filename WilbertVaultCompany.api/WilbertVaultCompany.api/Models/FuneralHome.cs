@@ -16,11 +16,13 @@ namespace WilbertVaultCompany.api.Models
         }
 
         public int FuneralHomeId { get; set; }
+        [Display(Name = "Parent Funeral Home")]
         public int? ParentFuneralHomeId { get; set; }
         public int? PlantId { get; set; }
         public int? FuneralHomeContactId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        [Display(Name = "Address Line 2")]
         public string Address2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
@@ -50,7 +52,7 @@ namespace WilbertVaultCompany.api.Models
         [Display(Name = "Parent Funeral Home?")]
         public bool IsParent { get; set; }
 
-        [Display(Name = "Parent Name")]
+        [Display(Name = "Parent Funeral Home")]
         public string ParentName { get; set; }
         public virtual ICollection<ParentFuneralHome> ParentFuneralHomes { get; set; }
 
