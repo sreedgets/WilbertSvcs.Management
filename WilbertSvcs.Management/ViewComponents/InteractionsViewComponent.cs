@@ -12,14 +12,20 @@ namespace WilbertSvcs.Management.ViewComponents
         private readonly wilbertdbContext _context;
         public InteractionsViewComponent(wilbertdbContext context)
         {
-            context = _context;
+            _context = context;
         }
 
         public IViewComponentResult Invoke(int id)
         {
-            Interaction fhi = new Interaction();
+            List<Interaction> fhil = new List<Interaction>();
 
-            return View(fhi);
+            fhil = (from fhiList in _context.Interactions
+                    where fhiList.FuneralHomeId == id
+                    select fhiList).ToList();
+
+            
+            return View(fhil);
+
         }
     }
 }
