@@ -56,12 +56,10 @@
                             <tr style="color:#333333;background-color:#ffffff;">
                                 <td><label class="titleLabel">Reason:</label></td>
                                 <td><select asp-for="Reason" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<FollowUpReason>()"></select></td>
-                                <td><label class="titleLabel">Completed:</label></td>
                                 <td>
-                                    <input asp-for="Completed" type="radio" value="Yes" />
-                                    <label>Yes</label>
-                                    <input asp-for="Completed" type="radio" value="No">
-                                    <label>No</label>
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="Completed" /> @Html.DisplayNameFor(model => model.Completed)
+                                    </label>
                                 </td>
                             </tr>
                             <tr style="color:#333333;background-color:#FFFFFF;">
