@@ -1,65 +1,83 @@
 ﻿@model WilbertVaultCompany.api.Models.Interaction
-
+@using WilbertVaultCompany.api.Enums
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-<h4>Interaction</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
+    <title>Login Template for Bootstrap</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+<main role="main" id="fhc" class="container">
+    <form asp-action="Create" method="post">
+        <center>
+            <h1 class="mt-5">Customer Interaction</h1>
+            <hr />
+            <input type="hidden" asp-for="FuneralHomeId" />
+            <div class="row">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="FuneralHomeId" />
+                    <table>
+                        <tbody>
+                            <tr style="color:#333333;background-color:#FFFFFF;">
+                                <td><label class="titleLabel">Date:</label></td>
+                                <td><input class="form-control" asp-for="Date"></td>
+                                <td><span asp-validation-for="Date" class="text-danger"></span></td>
+                                <td><label class="titleLabel">Nature:</label></td>
+                                <td> <select asp-for="Nature" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<InteractionNature>()"></select></td>
+                            </tr>
+                            <tr style="color:#333333;background-color:#FFFFFF;">
+                                <td><label class="titleLabel">Notes:</label></td>
+                                <td><input type="text" rows="2" cols="20" tabindex="2" asp-for="Notes" style="height:100px;width:400px;"></td>
+
+                                <td><label class="titleLabel">Follow Up Date:</label></td>
+                                <td><input class="form-control" asp-for="FollowUpDate"></td>
+                            </tr>
+                            <tr style="color:#333333;background-color:#ffffff;">
+                                <td><label class="titleLabel">Reason:</label></td>
+                                <td><select asp-for="Reason" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<FollowUpReason>()"></select></td>
+                                <td><label class="titleLabel">Completed:</label></td>
+                                <td>
+                                    <input asp-for="Completed" type="radio" value="Yes" />
+                                    <label>Yes</label>
+                                    <input asp-for="Completed" type="radio" value="No">
+                                    <label>No</label>
+                                </td>
+                            </tr>
+                            <tr style="color:#333333;background-color:#FFFFFF;">
+                                <td><label class="titleLabel">Outcome:</label></td>
+                                <td><input type="text" rows="2" cols="20" tabindex="2" asp-for="Outcome" style="height:100px;width:400px;"></td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Nature" class="control-label"></label>
-                <input asp-for="Nature" class="form-control" />
-                <span asp-validation-for="Nature" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control" />
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FollowUpDate" class="control-label"></label>
-                <input asp-for="FollowUpDate" class="form-control" />
-                <span asp-validation-for="FollowUpDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Reason" class="control-label"></label>
-                <input asp-for="Reason" class="form-control" />
-                <span asp-validation-for="Reason" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Completed" /> @Html.DisplayNameFor(model => model.Completed)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Outcome" class="control-label"></label>
-                <input asp-for="Outcome" class="form-control" />
-                <span asp-validation-for="Outcome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FuneralHomeId" class="control-label"></label>
-                <input asp-for="FuneralHomeId" class="form-control" />
-                <span asp-validation-for="FuneralHomeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div>
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Details" class="btn btn-secondary" asp-controller="FuneralHomes" asp-route-id="@Model.FuneralHomeId">Back to Funeral Home</a>
             </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+        </center>
+    </form>
+</main>

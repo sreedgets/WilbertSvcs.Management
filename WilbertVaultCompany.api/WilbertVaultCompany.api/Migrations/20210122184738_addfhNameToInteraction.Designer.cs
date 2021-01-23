@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210122184738_addfhNameToInteraction")]
+    partial class addfhNameToInteraction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,8 +189,8 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int?>("FuneralHomeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nature")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Nature")
+                        .HasColumnType("int");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
@@ -196,8 +198,8 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("Outcome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Reason")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Reason")
+                        .HasColumnType("int");
 
                     b.Property<string>("fhName")
                         .HasColumnType("nvarchar(max)");

@@ -22,8 +22,8 @@
 
                 <tr align="left" style="color:#333333;background-color:#ECECEC;">
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Date"
-                           asp-controller="FuneralHomeContacts">@Html.DisplayFor(modelItem => item.Date)</a>
+                        <a asp-action="Edit" asp-route-id="@item.InteractionId"
+                           asp-controller="Interactions">@Html.DisplayFor(modelItem => item.Date)</a>
 
                     </td>
                     <td>
@@ -37,9 +37,9 @@
                     <td>
                         <label asp-for="@item.Completed">@item.Completed</label>
                     </td>
-                    @*<td>
+                    <td>
                         <a asp-action="Delete" asp-controller="Interactions" asp-route-id="@item.InteractionId" class="btn btn-danger">Delete</a>
-                    </td>*@
+                    </td>
                 </tr>
             }
         }

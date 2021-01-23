@@ -43,9 +43,24 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: Interactions/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync(int Id)
         {
-            return View();
+            if (Id == 0)
+            {
+                return NotFound();
+            }
+
+            var funeralhome = await _context.FuneralHomes.FindAsync(Id);
+            if (funeralhome == null)
+                return NotFound();
+
+            Interaction fhi = new Interaction();
+            fhi.fhName = funeralhome.Name;
+            fhi.Date = DateTime.Now;
+            fhi.FollowUpDate = DateTime.Now;
+            fhi.FuneralHomeId = Id;
+
+            return View(fhi);
         }
 
         // POST: Interactions/Create
@@ -59,7 +74,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 _context.Add(interaction);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "FuneralHomes", new { Id = interaction.FuneralHomeId });
             }
             return View(interaction);
         }
@@ -110,7 +125,7 @@ namespace WilbertSvcs.Management.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "FuneralHomes", new { Id = interaction.FuneralHomeId });
             }
             return View(interaction);
         }
