@@ -7,6 +7,7 @@ namespace WilbertVaultCompany.api.Enums
 {
     public enum InteractionNature
     {
+        Choose,
         QuestionsOnOrder,
         CourtesyCall,
         Complaint,
