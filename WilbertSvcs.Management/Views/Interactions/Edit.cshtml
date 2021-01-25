@@ -43,6 +43,8 @@
                             <tr style="color:#333333;background-color:#FFFFFF;">
                                 <td><label class="titleLabel">Date:</label></td>
                                 <td><input class="form-control" asp-for="Date"></td>
+                                <td><input class="form-control" asp-for="Date" data-format="yyyy-MM-dd" id="datetimepicker4"></td>
+                                @*<td><input data-format="yyyy-MM-dd" type="text" asp-for="Date" class="form-control" id="datetimepicker4"/></td>*@
                                 <td><span asp-validation-for="Date" class="text-danger"></span></td>
                                 <td><label class="titleLabel">Nature:</label></td>
                                 <td> <select asp-for="Nature" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<InteractionNature>()"></select></td>
@@ -81,3 +83,13 @@
         </center>
     </form>
 </main>
+@section WilbertScripts {
+    <script type="text/javascript">
+        $(function () {
+            // Bootstrap DateTimePicker v4
+            $('#datetimepicker4').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
+    </script>
+}
