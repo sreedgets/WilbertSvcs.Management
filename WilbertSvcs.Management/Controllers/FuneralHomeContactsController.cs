@@ -50,6 +50,13 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            funeralHomeContact.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType1));
+            funeralHomeContact.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType2));
+            funeralHomeContact.PhoneType3 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType3)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType3));
+
+            funeralHomeContact.ContactRole = Enum.GetName(typeof(FuneralHomeRole), Int32.Parse(funeralHomeContact.ContactRole)) == "Choose" ? "" : Enum.GetName(typeof(FuneralHomeRole), Int32.Parse(funeralHomeContact.ContactRole));
+
+
             return View(funeralHomeContact);
         }
 
@@ -165,6 +172,13 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+            funeralHomeContact.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType1));
+            funeralHomeContact.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType2));
+            funeralHomeContact.PhoneType3 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType3)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHomeContact.PhoneType3));
+
+            funeralHomeContact.ContactRole = Enum.GetName(typeof(FuneralHomeRole), Int32.Parse(funeralHomeContact.ContactRole)) == "Choose" ? "" : Enum.GetName(typeof(FuneralHomeRole), Int32.Parse(funeralHomeContact.ContactRole));
+
 
             return View(funeralHomeContact);
         }

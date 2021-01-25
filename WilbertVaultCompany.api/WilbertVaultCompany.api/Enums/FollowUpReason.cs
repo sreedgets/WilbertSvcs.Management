@@ -7,6 +7,7 @@ namespace WilbertVaultCompany.api.Enums
 {
     public enum FollowUpReason
     {
+        Choose,
         GetOrders,
         Schmooze,
         Courtesy

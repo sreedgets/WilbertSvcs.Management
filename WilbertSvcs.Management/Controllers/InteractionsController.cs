@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
@@ -144,6 +145,10 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+            interaction.Nature = Enum.GetName(typeof(InteractionNature), Int32.Parse(interaction.Nature)) == "Choose" ? "" : Enum.GetName(typeof(InteractionNature), Int32.Parse(interaction.Nature));
+
+            interaction.Reason = Enum.GetName(typeof(FollowUpReason), Int32.Parse(interaction.Reason)) == "Choose" ? "" : Enum.GetName(typeof(FollowUpReason), Int32.Parse(interaction.Reason));
 
             return View(interaction);
         }
