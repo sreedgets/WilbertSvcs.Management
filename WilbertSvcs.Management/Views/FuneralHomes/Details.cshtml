@@ -23,18 +23,11 @@
 <!-- Begin page content -->
 <main role="main" class="container">
     <h1 class="mt-5">Funeral Home Details</h1>
-    <div id="fhd" class="album py-5">
-        <!--Page Actions -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <a asp-action="Create" class="btn btn-primary">Add New Entry</a>
-                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.FuneralHomeId">Delete Entry</a>
-                    <a class="btn btn-primary" asp-action="Index">Go Back</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <a asp-action="Create" class="btn btn-primary">Add New Entry</a>
+    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.FuneralHomeId">Delete Entry</a>
+    <a class="btn btn-primary" asp-action="Index">Go Back</a>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -46,12 +39,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <strong> @Html.DisplayNameFor(model => model.Name)</strong>
+                                <strong><label class="titleLabel" asp-for="Name">Funeral Home</label></strong>
                             </td>
                             <td>
                                 @Html.DisplayFor(model => model.Name)
                             </td>
-                        </tr>
+                        </tr>   
                         <tr>
                             <td>
                                 <strong>
@@ -95,7 +88,7 @@
                             </td>
 
                         </tr>
-                     
+
                         <tr>
                             <td>
                                 <strong> @Html.DisplayNameFor(model => model.County)</strong>
@@ -206,7 +199,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>        
+        </div>
         @await Component.InvokeAsync("Contacts", Model.FuneralHomeId)
         <br />
         <div>
@@ -231,14 +224,14 @@
             </table>
         </div>
         @*  @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
-        <div>
-            <table>
-                <tr align="left">
-                    <td>
-                        <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
-                    </td>
-                </tr>
-            </table>
-        </div>*@
+            <div>
+                <table>
+                    <tr align="left">
+                        <td>
+                            <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>*@
     </div>
 </main>

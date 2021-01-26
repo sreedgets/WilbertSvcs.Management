@@ -42,10 +42,6 @@ namespace WilbertSvcs.Management.Controllers
 
             plant.State = Enum.GetName(typeof(States), Int32.Parse(plant.State));
 
-            plant.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType1));
-            plant.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType2));
-
-
             return View(plant);
         }
 
@@ -60,7 +56,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlantId,PlantName,PlantManagerEmail,PlantManagerTxtNum,Address,City,State,ZipCode,County,PrintCompletedOrders,Phone1,Phone2,PhoneType1,PhoneType2")] Plant plant)
+        public async Task<IActionResult> Create([Bind("PlantId,PlantName,PlantManagerEmail,PlantManagerTxtNum,PlantManager,Address,Address2,City,State,ZipCode,County,PrintCompletedOrders,Phone1,Phone2,PhoneType1,PhoneType2")] Plant plant)
         {
             if (ModelState.IsValid)
             {
@@ -80,10 +76,12 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var plant = await _context.Plants.FindAsync(id);
+
             if (plant == null)
             {
                 return NotFound();
             }
+            
             return View(plant);
         }
 
@@ -92,7 +90,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlantId,PlantName,PlantManagerEmail,PlantManagerTxtNum,Address,City,State,ZipCode,County,PrintCompletedOrders,Phone1,Phone2,PhoneType1,PhoneType2")] Plant plant)
+        public async Task<IActionResult> Edit(int id, [Bind("PlantId,PlantName,PlantManagerEmail,PlantManagerTxtNum,PlantManager,Address,Address2,City,State,ZipCode,County,PrintCompletedOrders,Phone1,Phone2,PhoneType1,PhoneType2")] Plant plant)
         {
             if (id != plant.PlantId)
             {
@@ -117,7 +115,7 @@ namespace WilbertSvcs.Management.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { Id = plant.PlantId });
             }
             return View(plant);
         }
@@ -132,6 +130,7 @@ namespace WilbertSvcs.Management.Controllers
 
             var plant = await _context.Plants
                 .FirstOrDefaultAsync(m => m.PlantId == id);
+            
             if (plant == null)
             {
                 return NotFound();
@@ -139,8 +138,6 @@ namespace WilbertSvcs.Management.Controllers
 
             plant.State = Enum.GetName(typeof(States), Int32.Parse(plant.State));
 
-            plant.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType1));
-            plant.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(plant.PhoneType2));
 
             return View(plant);
         }

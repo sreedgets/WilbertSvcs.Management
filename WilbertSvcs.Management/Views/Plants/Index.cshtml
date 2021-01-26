@@ -22,43 +22,65 @@
 <!-- Begin page content -->
 <main role="main" class="container">
     <center>
-        <h1 class="mt-5">Plants</h1>
-        <a asp-action="Create" class="btn btn-secondary">Create Plant</a>
-        <table class="table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PlantName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Phone1)
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PlantName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Phone1)
-                        </td>
-
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.PlantId" class="btn btn-primary">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.PlantId" class="btn btn-secondary">Details</a>
-                        </td>
-                        <td>
-                            <a asp-action="Delete" asp-route-id="@item.PlantId" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="container">
+                        <h1 class="py-5">Plants List</h1>
+                        <div class="row">
+                            <div class="col-md-6" style="text-align:right;">
+                                <a asp-action="Create" class="btn btn-primary">ADD NEW PLANT</a>
+                            </div>
+                            <div class="col-md-6" style="text-align:left;">
+                                <a asp-action="Dashboard" asp-controller="Home" class="btn btn-primary">BACK TO DASHBOARD</a>
+                            </div>
+                        </div>
+                        <!--Page Actions -->
+                        <br />
+                        <br />
+                        <table>
+                            <thead>
+                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                    <th scope="col" width="500"><a href="#" style="color:White;">Plant Name</a></th>
+                                    <th scope="col" width="300">Phone Number</th>
+                                    <th scope="col" width="300">Pant Manager</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-action="Details" asp-route-id="@item.PlantId">@Html.DisplayFor(modelItem => item.PlantName)</a>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Phone1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PlantManager)
+                                        </td>
+                                        
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>             
+                    </div>
+                </div>
+            </div>
+        </div>
     </center>
+</main>
+<main role="main" class="container">
+    <div class="album py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="text-align:right;">
+                    <a class="btn btn-primary" href="#">Prev</a>
+                </div>
+                <div class="col-md-6" style="text-align:left;">
+                    <a class="btn btn-primary" href="#">Next</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>

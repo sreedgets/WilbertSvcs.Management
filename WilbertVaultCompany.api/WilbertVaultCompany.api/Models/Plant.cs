@@ -13,12 +13,16 @@ namespace WilbertVaultCompany.api.Models
         [Display(Name = "Plant Name")]
         public string PlantName { get; set; }
 
+        [Display(Name = "Plant Manager")]
+        public string PlantManager { get; set; }
+
         [Display(Name = "Plant Manager Email")]
         public string PlantManagerEmail { get; set; }
 
         [Display(Name = "Plant Manager Txt Num")]
         public string PlantManagerTxtNum { get; set; }
         public string Address { get; set; }
+        public string Address2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public int ZipCode { get; set; }
@@ -32,7 +36,10 @@ namespace WilbertVaultCompany.api.Models
 
         [Display(Name = "Phone")]
         public string Phone2 { get; set; }
+        
+        [Display(Name = "")]
         public string PhoneType1 { get; set; }
+        [Display(Name = "")] 
         public string PhoneType2 { get; set; }
 
         public virtual FuneralHome PlantNavigation { get; set; }

@@ -23,109 +23,250 @@
 
 <!-- Begin page content -->
 <main role="main" class="container">
-    <center>
-        <h1 class="mt-5">Plant Details</h1>
-        <div>
-            <hr />
-            <table class="table-bordered table-striped">
-                <tr>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PlantName)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PlantName)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PlantManagerEmail)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PlantManagerEmail)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PlantManagerTxtNum)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PlantManagerTxtNum)
-                    </td>
-                </tr>
-                <tr>
+    <h1 class="mt-5">Plant Details</h1>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.PlantId">Edit Plant</a>
+    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.PlantId">Delete Entry</a>
+    <a class="btn btn-primary" asp-action="Index">Go Back</a>
+    <br />
+    <h2 style="margin: 0 auto;color:#e65500!important;">@Model.PlantName</h2>
+    <hr class="vertical-space4">
 
-                    <td>
-                        <strong>                        @Html.DisplayNameFor(model => model.Address)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Address)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.City)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.City)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.State)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.State)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.ZipCode)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.ZipCode)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.County)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.County)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PrintCompletedOrders)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PrintCompletedOrders)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.Phone1)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Phone1)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.Phone2)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Phone2)
-                    </td>
-                    <td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PhoneType1)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PhoneType1)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PhoneType2)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PhoneType2)
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <br />
-        <hr />
-        <div>
-            <a asp-action="Edit" asp-route-id="@Model.PlantId" class="btn-primary btn-lg">Edit</a>
-            <a asp-action="Index" class="btn-secondary btn-lg">Back to List</a>
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th><label class="sectionLabel" style="width:250px;"></label><h3>Plant Information</h3></th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="PlantName"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="PlantName" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="PlantName" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Address"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Address2"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="Address2" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Address2" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="City"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="City" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="State"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly asp-for="State" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="State" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="ZipCode"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="ZipCode" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="County"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="County" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="County" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Phone1">Phone (Business)</label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="Phone1" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Phone1" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th><label class="sectionLabel" style="width:500px;"></label><h3>Plant Manager Information</h3></th>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="PlantManager"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="PlantManager" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="PlantManager" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="PlantManagerEmail"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="PlantManagerEmail" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="PlantManagerEmail" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Phone2">Cell Phone</label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="Phone2" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Phone2" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="PlantManagerTxtNum"></label>
+                                        </td>
+                                        <td>
+                                            <input readonly  asp-for="PlantManagerTxtNum" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="PlantManagerTxtNum" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="vertical-space3">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4"><label class="sectionLabel"><h3>Employees Assigned</h3></label></td>
+                                </tr>
+                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                    <th scope="col"><a href="#" style="color:White;">Name</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Phone</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Title</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">&nbsp;</a></th>
+                                </tr>
+                                <tr style="color:#333333;background-color:#ECECEC;">
+                                    <td style="width:10%;">Chip  Moeller</td>
+                                    <td style="width:10%;">(319) 610-5010</td>
+                                    <td style="width:10%;">Manager</td>
+                                    <td style="width:10%;">
+                                        <a class="btn btn-primary" href="/wilbert/FuneralHomes/Edit/19">Edit</a>
+                                        <a class="btn btn-danger" href="/wilbert/FuneralHomes/Delete/19">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr style="color:#333333;background-color:#ECECEC;">
+                                    <td style="width:10%;">Allen Wilson</td>
+                                    <td style="width:10%;">(319) 504-4676</td>
+                                    <td style="width:10%;">Driver</td>
+                                    <td style="width:10%;">
+                                        <a class="btn btn-primary" href="/wilbert/FuneralHomes/Edit/19">Edit</a>
+                                        <a class="btn btn-danger" href="/wilbert/FuneralHomes/Delete/19">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr style="color:#333333;background-color:#ECECEC;">
+                                    <td style="width:10%;">Troy Niedert</td>
+                                    <td style="width:10%;">(319) 239-5476</td>
+                                    <td style="width:10%;">Driver</td>
+                                    <td style="width:10%;">
+                                        <a class="btn btn-primary" href="/wilbert/FuneralHomes/Edit/19">Edit</a>
+                                        <a class="btn btn-danger" href="/wilbert/FuneralHomes/Delete/19">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="vertical-space2">
+                        <a class="btn btn-primary" href="#">Add New Employee</a>
+                        <hr class="vertical-space2">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4"><label class="sectionLabel"><h3>Trucks Assigned</h3></label></td>
+                                </tr>
+                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                    <th scope="col"><a href="#" style="color:White;">Make and Model</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Year</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Type</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">License Plate</a></th>
+                                </tr>
+                                <tr style="color:#333333;background-color:#ECECEC;">
+                                    <td style="width:10%;">Wilbert Logan</td>
+                                    <td style="width:10%;">2008</td>
+                                    <td style="width:10%;">Trailer</td>
+                                    <td style="width:10%;">BZO 027</td>
+                                </tr>
+                                <tr style="color:#333333;background-color:#ECECEC;">
+                                    <td style="width:10%;">Wilbert Logan</td>
+                                    <td style="width:10%;">2008</td>
+                                    <td style="width:10%;">Trailer</td>
+                                    <td style="width:10%;">140 9NH</td>
+                                </tr>
+                                <tr style="color:#333333;background-color:#ECECEC;">
+                                    <td style="width:10%;">Chevrolet Silverado</td>
+                                    <td style="width:10%;">2013</td>
+                                    <td style="width:10%;">Truck</td>
+                                    <td style="width:10%;">BLZ 737</td>
+                                </tr>
+                                <tr style="color:#333333;background-color:#ECECEC;">
+                                    <td style="width:10%;">Dodge Caravan</td>
+                                    <td style="width:10%;">2011</td>
+                                    <td style="width:10%;">Van</td>
+                                    <td style="width:10%;">CVE 997</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="vertical-space2">
+                    </div>
+                </div>
+            </div>
         </div>
     </center>
-</main>      
+</main>
 

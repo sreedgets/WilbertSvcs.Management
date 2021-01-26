@@ -26,106 +26,157 @@
 <!-- Begin page content -->
 <main role="main" class="container">
     <center>
-        <h1 class="mt-5">Funeral Home Details</h1>
-        <div>
-            <hr />
-            <table class="table-bordered table-striped">
-                <tr>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PlantName)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PlantName)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PlantManagerEmail)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PlantManagerEmail)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PlantManagerTxtNum)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PlantManagerTxtNum)
-                    </td>
-                </tr>
-                <tr>
+        <h2 class="mt-5">Plant Details</h2>
+        <hr class="vertical-space4">
 
-                    <td>
-                        <strong>                        @Html.DisplayNameFor(model => model.Address)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Address)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.City)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.City)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.State)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.State)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.ZipCode)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.ZipCode)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.County)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.County)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PrintCompletedOrders)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PrintCompletedOrders)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.Phone1)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Phone1)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.Phone2)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Phone2)
-                    </td>
-                    <td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PhoneType1)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PhoneType1)
-                    </td>
-                    <td>
-                        <strong>@Html.DisplayNameFor(model => model.PhoneType2)</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PhoneType2)
-                    </td>
-                </tr>
-            </table>
-            <form asp-action="Delete">
-                <input type="hidden" asp-for="PlantId" />
-                <input type="submit" value="Delete" class="btn btn-danger" /> |
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-            </form>
+        <div class="row">
+            <div class="col-md-6">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><label class="sectionLabel" style="width:250px;"></label><h3>Plant Information</h3></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="PlantName"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="PlantName" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="PlantName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="Address"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="Address2"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Address2" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="Address2" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="City"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="City" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="State"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="State" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="State" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="ZipCode"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="ZipCode" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="ZipCode" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="County"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="County" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="County" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="Phone1">Phone (Business)</label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Phone1" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="Phone1" class="text-danger"></span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><label class="sectionLabel" style="width:500px;"></label><h3>Plant Manager Information</h3></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="PlantManager"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="PlantManager" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="PlantManager" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="PlantManagerEmail"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="PlantManagerEmail" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="PlantManagerEmail" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="Phone2">Cell Phone</label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Phone2" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="Phone2" class="text-danger"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="PlantManagerTxtNum"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="PlantManagerTxtNum" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                <span asp-validation-for="PlantManagerTxtNum" class="text-danger"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <hr class="vertical-space3">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="PlantId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Details" asp-route-id="@Model.PlantId" class="btn btn-secondary">Back to @Model.PlantName Plant</a>
+        </form>
     </center>
 </main>
