@@ -1,4 +1,6 @@
 ﻿@model WilbertVaultCompany.api.Models.FuneralHome
+@using WilbertVaultCompany.api.Enums
+
 
 @{
     ViewData["Title"] = "Details";
@@ -27,211 +29,201 @@
     <a asp-action="Create" class="btn btn-primary">Add New Entry</a>
     <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.FuneralHomeId">Delete Entry</a>
     <a class="btn btn-primary" asp-action="Index">Go Back</a>
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="album py-5">
+                    <div class="container">
+                        <div class="album py-5">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th><label class="sectionLabel"></label><h3>General Information</h3></th>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="titleLabel" asp-for="Name">Funeral Home</label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="Name" maxlength="100" tabindex="1" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="form-group form-check">
+                                                        <label class="form-check-label">
+                                                            <input readonly class="form-check-input" asp-for="IsParent" /> @Html.DisplayNameFor(model => model.IsParent)
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="Address"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="Address"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" value="Address line 2" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="City"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="City" maxlength="100" tabindex="1" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="State"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="State" maxlength="100" tabindex="1" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="ZipCode"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="ZipCode" maxlength="100" tabindex="1" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="County"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="County" maxlength="100" tabindex="1" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th><label class="sectionLabel"></label><h3>General Information</h3></th>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong><label class="titleLabel" asp-for="Name">Funeral Home</label></strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Name)
-                            </td>
-                        </tr>   
-                        <tr>
-                            <td>
-                                <strong>
-                                    @Html.DisplayNameFor(model => model.IsParent)
-                                </strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.IsParent)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong> @Html.DisplayNameFor(model => model.Address)</strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Address)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong> @Html.DisplayNameFor(model => model.Address2)</strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Address2)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong> @Html.DisplayNameFor(model => model.City)</strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.City)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong> @Html.DisplayNameFor(model => model.State)</strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.State)
-                            </td>
+                                                        <label asp-for="Phone1"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="Phone1" class="form-control" />
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="PhoneType1" class="form-control" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="Phone2"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="Phone2" class="form-control" />
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="PhoneType2" class="form-control" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="Phone3"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="Phone3" class="form-control" />
 
-                        </tr>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="PhoneType3" class="form-control" style="width:300px;" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 
-                        <tr>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td><label class="sectionLabel"></label><h3>Additional Information</h3></td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="ParentName"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="ParentName" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="Email"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="Email" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="Website"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="Website" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label asp-for="PlantName"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input readonly asp-for="PlantName" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+                @await Component.InvokeAsync("Contacts", Model.FuneralHomeId)
+                <br />
+                <div>
+                    <table>
+                        <tr align="left">
                             <td>
-                                <strong> @Html.DisplayNameFor(model => model.County)</strong>
+                                <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
                             </td>
-                            <td>
-                                @Html.DisplayFor(model => model.County)
-                            </td>
-
                         </tr>
-                        <tr>
+                    </table>
+                </div>
+                <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+                @await Component.InvokeAsync("Interactions", Model.FuneralHomeId)
+                <br />
+                <div>
+                    <table>
+                        <tr align="left">
                             <td>
-                                <strong>
-                                    @Html.DisplayNameFor(model => model.Phone1)
-                                </strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Phone1)
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.PhoneType1)
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>
-                                    @Html.DisplayNameFor(model => model.Phone2)
-                                </strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Phone2)
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.PhoneType2)
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>
-                                    @Html.DisplayNameFor(model => model.Phone3)
-                                </strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Phone3)
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.PhoneType3)
+                                <a asp-action="Create" asp-controller="Interactions" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD INTERACTIONS</a>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
+                    </table>
+                </div>
             </div>
-            <div class="col-md-6">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><label class="sectionLabel"></label><h3>Additional Information</h3></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>
-                                    @Html.DisplayNameFor(model => model.ParentName)
-                                </strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.ParentName)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>
-                                    @Html.DisplayNameFor(model => model.Email)
-                                </strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Email)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>
-                                    @Html.DisplayNameFor(model => model.Website)
-                                </strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Website)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>
-                                    @Html.DisplayNameFor(model => model.PlantName)
-                                </strong>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.PlantName)
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
         </div>
-        @await Component.InvokeAsync("Contacts", Model.FuneralHomeId)
-        <br />
-        <div>
-            <table>
-                <tr align="left">
-                    <td>
-                        <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <hr style="border: 5px solid #00446a; border-radius: 5px;" />
-        @await Component.InvokeAsync("Interactions", Model.FuneralHomeId)
-        <br />
-        <div>
-            <table>
-                <tr align="left">
-                    <td>
-                        <a asp-action="Create" asp-controller="Interactions" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD INTERACTIONS</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        @*  @await Component.InvokeAsync("Photos", Model.FuneralHomeId);
-            <div>
-                <table>
-                    <tr align="left">
-                        <td>
-                            <a asp-action="Create" asp-controller="FuneralHomeContacts" asp-route-id="@Model.FuneralHomeId" class="btn btn-primary">ADD CONTACTS</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>*@
-    </div>
+    </center>
 </main>

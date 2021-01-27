@@ -1,0 +1,108 @@
+﻿@model WilbertVaultCompany.api.Models.Truck
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Truck</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AcquisitionDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AcquisitionDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PlantId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlantId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DriverEmployeeId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DriverEmployeeId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Make)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Make)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RegCounty)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RegCounty)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Vin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Vin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tonnage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tonnage)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LicPlateRenewal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LicPlateRenewal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RegFee)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RegFee)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TruckNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TruckNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Inactive)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Inactive)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InactiveReason)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InactiveReason)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TruckId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

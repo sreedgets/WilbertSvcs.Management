@@ -1,5 +1,5 @@
 ﻿@model Dashboarddata
-< !doctype html >
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,17 +21,14 @@
 </head>
 
 <body>
-
     <header>
         <!-- Fixed navbar -->
         @await Component.InvokeAsync("Dashboard", Model)
     </header>
-
     <!-- Begin page content -->
     <main role="main" class="container">
         <div class="album py-5 bg-light">
             <div class="container">
-
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
@@ -56,17 +53,14 @@
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/schedule.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Schedule</h3>
-
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/cemeteries.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Cemeteries</h3>
-
                             </div>
                         </div>
                     </div>
@@ -75,7 +69,6 @@
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/deliveries.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Delivery List</h3>
-
                             </div>
                         </div>
                     </div>
@@ -84,12 +77,9 @@
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/review.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Office Review</h3>
-
-
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
                             <a asp-action="Index" asp-controller="Plants">
@@ -97,7 +87,7 @@
                                 <div class="card-body">
                                     <h3>Plants</h3>
                                 </div>
-                                </a>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -105,7 +95,6 @@
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/employees.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Employees</h3>
-
                             </div>
                         </div>
                     </div>
@@ -114,17 +103,17 @@
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/inventory.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Inventory</h3>
-
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <div style="background:#00446a"><img class="card-img-top" src="~/images/trucks.svg" alt="Card image cap"></div>
-                            <div class="card-body">
-                                <h3>Trucks</h3>
-
-                            </div>
+                            <a asp-action="Index" asp-controller="Trucks">
+                                <div style="background:#00446a"><img class="card-img-top" src="~/images/trucks.svg" alt="Card image cap"></div>
+                                <div class="card-body">
+                                    <h3>Trucks</h3>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     @if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
@@ -138,7 +127,6 @@
                                     </div>
                                     <div class="card-body">
                                         <h3>Admin Utilities</h3>
-
                                     </div>
                                 </a>
                             </div>
@@ -149,7 +137,6 @@
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/password.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Change Password</h3>
-
                             </div>
                         </div>
                     </div>
@@ -164,7 +151,7 @@
                 <span class="text-muted">
 
                     Copyright
-                    <script type="text/javascript">document.write(new Date().getFullYear());</script> Wilbert Valut Company. | 974 73rd St #5, Des Moines, IA 50324 |  (515) 223-5908
+                    <script type="text/javascript">document.write(new Date().getFullYear());</script> Wilbert Vault Company. | 974 73rd St #5, Des Moines, IA 50324 |  (515) 223-5908
 
                 </span>
             </center>

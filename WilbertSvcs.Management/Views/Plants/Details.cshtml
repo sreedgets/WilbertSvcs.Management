@@ -222,46 +222,22 @@
                                 </tr>
                             </tbody>
                         </table>
+                        @*<div>
+                            <table>
+                                <tr align="left">
+                                    <td>
+                                        <a asp-action="Create" asp-controller="Trucks" asp-route-id="@Model.PlantId" class="btn btn-primary">ADD CONTACTS</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>*@
                         <hr class="vertical-space2">
                         <a class="btn btn-primary" href="#">Add New Employee</a>
                         <hr class="vertical-space2">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td colspan="4"><label class="sectionLabel"><h3>Trucks Assigned</h3></label></td>
-                                </tr>
-                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                    <th scope="col"><a href="#" style="color:White;">Make and Model</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">Year</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">Type</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">License Plate</a></th>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:10%;">Wilbert Logan</td>
-                                    <td style="width:10%;">2008</td>
-                                    <td style="width:10%;">Trailer</td>
-                                    <td style="width:10%;">BZO 027</td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:10%;">Wilbert Logan</td>
-                                    <td style="width:10%;">2008</td>
-                                    <td style="width:10%;">Trailer</td>
-                                    <td style="width:10%;">140 9NH</td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:10%;">Chevrolet Silverado</td>
-                                    <td style="width:10%;">2013</td>
-                                    <td style="width:10%;">Truck</td>
-                                    <td style="width:10%;">BLZ 737</td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:10%;">Dodge Caravan</td>
-                                    <td style="width:10%;">2011</td>
-                                    <td style="width:10%;">Van</td>
-                                    <td style="width:10%;">CVE 997</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @await Component.InvokeAsync("Trucks", Model.PlantId)
+                        <br />
+
+
                         <hr class="vertical-space2">
                     </div>
                 </div>

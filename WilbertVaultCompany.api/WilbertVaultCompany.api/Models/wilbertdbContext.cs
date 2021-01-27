@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using WilbertVaultCompany.api.Models;
 
 #nullable disable
 
@@ -31,6 +32,8 @@ namespace WilbertVaultCompany.api.Models
                 optionsBuilder.UseSqlServer("Server=173.248.151.15,1533;database=wilbertdb;User ID=sa;Password=V3@nd#0r$1Afw;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
+
+        public DbSet<WilbertVaultCompany.api.Models.Truck> Truck { get; set; }
 
     }
 }
