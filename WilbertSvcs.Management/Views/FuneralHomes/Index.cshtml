@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WilbertVaultCompany.api.Models.FuneralHome>
+﻿@model WilbertSvcs.Management.PageControls.PaginatedList<WilbertVaultCompany.api.Models.FuneralHome>
 
 @{
     ViewData["Title"] = "Index";
@@ -41,12 +41,12 @@
                         <table>
                             <thead>
                                 <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.Name)</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.City)</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.State)</a></th>
-                                    <th scope="col"><a style="color:White;">@Html.DisplayNameFor(model => model.Phone1)</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.ParentName)</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">@Html.DisplayNameFor(model => model.PlantName)</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Funeral Home</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">City</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">State</a></th>
+                                    <th scope="col"><a style="color:White;">Phone</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Parent Funeral Home</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Plant</a></th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -77,19 +77,38 @@
     </center>
 </main>
 <main role="main" class="container">
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
     <div class="album py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6" style="text-align:right;">
-                    <a class="btn btn-primary" href="#">Prev</a>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-primary @prevDisabled">
+                        Previous
+                    </a>
                 </div>
                 <div class="col-md-6" style="text-align:left;">
-                    <a class="btn btn-primary" href="#">Next</a>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-primary @nextDisabled">
+                        Next
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
+
 </main>
+
 <footer class="footer">
     <div class="container">
         <center>

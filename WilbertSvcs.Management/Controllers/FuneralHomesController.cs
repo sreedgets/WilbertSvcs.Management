@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WilbertSvcs.Management.PageControls;
 using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
@@ -20,10 +21,26 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: FuneralHomes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
+            ViewData["CurrentSort"] = sortOrder;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            int pageSize = 25;
+
             //Get list of funeral homes
-            var fhList = await _context.FuneralHomes.ToListAsync();
+            //var fhList = await _context.FuneralHomes.ToListAsync();
+
+            var fhList =  from fh in _context.FuneralHomes
+                           select fh;
 
             //Iterate through each item in the list
             foreach (var item in fhList)
@@ -51,8 +68,11 @@ namespace WilbertSvcs.Management.Controllers
 
                 item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
             }
-            return View(await _context.FuneralHomes.ToListAsync());
+            //return View(await _context.FuneralHomes.ToListAsync());
+            return View(await PaginatedList<FuneralHome>.CreateAsync(fhList, pageNumber ?? 1, pageSize));
         }
+
+    
 
         // GET: FuneralHomes/Details/5
         public async Task<IActionResult> Details(int? id)
