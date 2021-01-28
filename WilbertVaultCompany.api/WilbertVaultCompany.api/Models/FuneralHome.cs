@@ -27,6 +27,18 @@ namespace WilbertVaultCompany.api.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+
+        [Display(Name = "Billing Address")]
+        public string BillingAddress { get; set; }
+
+        [Display(Name = "Billing City")]
+        public string BillingCity { get; set; }
+
+        [Display(Name = "Billing State")]
+        public string BillingState { get; set; }
+
+        [Display(Name = "Billing Zip Code")]
+        public string BillingZipCode { get; set; }
         public string County { get; set; }
 
         [DataType(DataType.EmailAddress)]
