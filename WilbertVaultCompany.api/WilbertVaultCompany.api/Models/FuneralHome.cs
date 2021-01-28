@@ -18,6 +18,8 @@ namespace WilbertVaultCompany.api.Models
         public int FuneralHomeId { get; set; }
         [Display(Name = "Parent Funeral Home")]
         public int? ParentFuneralHomeId { get; set; }
+
+        [Display(Name = "Plant")]
         public int? PlantId { get; set; }
         public int? FuneralHomeContactId { get; set; }
         public string Name { get; set; }

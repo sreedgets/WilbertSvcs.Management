@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210128170929_addDriverNametoTruck")]
+    partial class addDriverNametoTruck
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -291,17 +293,12 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TruckId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
                     b.HasKey("PlantId");
 
                     b.HasIndex("PlantNavigationFuneralHomeId");
-
-                    b.HasIndex("TruckId");
 
                     b.ToTable("Plants");
                 });
@@ -391,10 +388,6 @@ namespace WilbertVaultCompany.api.Migrations
                         .WithMany("Plants")
                         .HasForeignKey("PlantNavigationFuneralHomeId");
 
-                    b.HasOne("WilbertVaultCompany.api.Models.Truck", null)
-                        .WithMany("Plants")
-                        .HasForeignKey("TruckId");
-
                     b.Navigation("PlantNavigation");
                 });
 
@@ -404,11 +397,6 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.Navigation("ParentFuneralHomes");
 
-                    b.Navigation("Plants");
-                });
-
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.Truck", b =>
-                {
                     b.Navigation("Plants");
                 });
 #pragma warning restore 612, 618

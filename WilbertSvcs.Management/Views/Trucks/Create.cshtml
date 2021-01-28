@@ -1,5 +1,6 @@
 ﻿@model WilbertVaultCompany.api.Models.Truck
-
+@using WilbertVaultCompany.api.Enums
+   
 @{
     ViewData["Title"] = "Create";
 }
@@ -111,10 +112,11 @@
                                             <label class="titleLabel" asp-for="PlantName"></label>
                                         </td>
                                         <td>
-                                            <input asp-for="PlantName" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="PlantName" class="text-danger"></span>
+                                            <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
+                                            </select>
+                                            <span asp-validation-for="PlantId" class="text-danger"></span>
                                         </td>
+
                                     </tr>
                                     <tr>
                                         <td>
@@ -168,10 +170,10 @@
                                             <label class="titleLabel" asp-for="LicPlateRenewal"></label>
                                         </td>
                                         <td>
-                                            <input asp-for="LicPlateRenewal" maxlength="100" tabindex="1" style="width:300px;" />
-
+                                            <select asp-for="LicPlateRenewal" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<LicDue>()"></select>
                                             <span asp-validation-for="LicPlateRenewal" class="text-danger"></span>
                                         </td>
+
                                     </tr>
                                     <tr>
                                         <td>

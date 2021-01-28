@@ -45,7 +45,24 @@ namespace WilbertSvcs.Management.Controllers
         // GET: Trucks/Create
         public IActionResult Create()
         {
-            return View();
+            var tr = new Truck();
+
+            List<Plant> lstPlants = _context.Plants.ToList();
+            tr.Plants.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                tr.Plants.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+
+            return View(tr);
         }
 
         // POST: Trucks/Create
