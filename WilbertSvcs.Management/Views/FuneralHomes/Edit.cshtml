@@ -32,11 +32,12 @@
 <!-- Begin page content -->
 <main role="main" id="fhd" class="container">
     <center>
-        <form asp-action="Create" method="post">
+        <form asp-action="Edit" method="post">
             <div class="album py-5">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
+                            <input type="hidden" asp-for="FuneralHomeId"/>
                             <table>
                                 <tbody>
                                     <tr>
@@ -71,11 +72,11 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label asp-for="Address"></label>
+                                            <label asp-for="Address2"></label>
                                         </td>
                                         <td>
-                                            <input asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" value="Address line 2" />
-                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                            <input asp-for="Address2" maxlength="100" tabindex="1" style="width:300px;" />
+                                            <span asp-validation-for="Address2" class="text-danger"></span>
                                         </td>
                                     </tr>
                                     <tr>
