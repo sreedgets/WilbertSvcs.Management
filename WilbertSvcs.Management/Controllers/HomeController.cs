@@ -25,10 +25,13 @@ namespace WilbertSvcs.Management.Controllers
             dd = new Dashboarddata();
         }
 
-        public async Task<IActionResult> IndexAsync()
+        [AllowAnonymous]
+        public async Task<IActionResult> IndexAsync(string returnUrl)
         {
+            Login login = new Login();
+            login.ReturnUrl = returnUrl;
             await signInManager.SignOutAsync();
-            return View();
+            return View(login);
         }
     
         [Authorize]
@@ -41,13 +44,14 @@ namespace WilbertSvcs.Management.Controllers
             
             return View(dd);
         }
-        [AllowAnonymous]
-        public IActionResult Login(string returnUrl)
-        {
-            Login login = new Login();
-            login.ReturnUrl = returnUrl;
-            return View(login);
-        }
+
+        //[AllowAnonymous]
+        //public IActionResult Login(string returnUrl)
+        //{
+        //    Login login = new Login();
+        //    login.ReturnUrl = returnUrl;
+        //    return View(login);
+        //}
 
         //TODO: Add Forgot password functionality
         [HttpPost]

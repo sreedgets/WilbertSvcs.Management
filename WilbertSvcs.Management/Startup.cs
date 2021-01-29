@@ -23,7 +23,7 @@ namespace WilbertSvcs.Management
 
             services.AddControllersWithViews();
 
-            services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Home/Login");
+            services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Home/Index");
             services.AddAuthorization();
 
             services.ConfigureApplicationCookie(options =>

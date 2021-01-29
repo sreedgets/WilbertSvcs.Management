@@ -29,7 +29,7 @@
 
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="@Url.Action("Index","Home", null)">Home</a>
-                    <a class="nav-link" href="@Url.Action("Login","Home", null)">Login</a>
+                    <a class="nav-link" href="@Url.Action("Index","Home", null)">Login</a>
                     <a class="nav-link" href="#">Contact</a>
                 </nav>
             </div>
@@ -42,43 +42,45 @@
                     <img src="~/images/wilbert-logo-mono.svg" style="width:800px;">
                 </a>
             </p>
-            <center>
-                <p>
-                    <span id="Content_errorMessage" class="errorMessage"></span>
-                    <table>
-                        <tr>
-                            <td style="width: 120px;">
-                                <label asp-for="Email">Username</label>
-                            </td>
-                            <td>
-                                <input asp-for="Email" class="form-control" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label asp-for="Password">Password:</label>
-                            </td>
-                            <td>
-                                <input asp-for="Password" class="form-control" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <div style="width: 100%;">
-                                    <a href="@Url.Action("Dashboard","Home", null)" class="btn btn-lg btn-secondary">Login</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <div style="width: 100%;"><a href="ForgottenPassword.aspx">Forgotten Password?</a></div>
-                            </td>
-                        </tr>
-                    </table>
-                </p>
-            </center>
+            <form method="post" asp-action="Login" id="form1">
+                <center>
+                    <p>
+                        <span id="Content_errorMessage" class="errorMessage"></span>
+                        <table>
+                            <tr>
+                                <td style="width: 120px;">
+                                    <label asp-for="Email">Username</label>
+                                </td>
+                                <td>
+                                    <input asp-for="Email" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Password">Password:</label>
+                                </td>
+                                <td>
+                                    <input asp-for="Password" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>                   
+                                    <div style="width: 100%;">
+                                        <button type="submit" class="btn-lg btn-light">Log In</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div style="width: 100%;"><a href="ForgottenPassword.aspx">Forgotten Password?</a></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </p>
+                </center>
+             </form>
         </main>
 
         <footer class="mastfoot mt-auto">
