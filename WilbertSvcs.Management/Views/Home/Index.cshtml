@@ -1,4 +1,5 @@
-﻿@*<!doctype html>*@
+﻿@model Login
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -23,14 +24,14 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner">
-               
-                    <h3 class="masthead-brand">Wilbert Vault Co.</h3>
-              
-                    <nav class="nav nav-masthead justify-content-center">
-                        <a class="nav-link active" href="@Url.Action("Index","Home", null)">Home</a>
-                        <a class="nav-link" href="@Url.Action("Login","Home", null)">Login</a>
-                        <a class="nav-link" href="#">Contact</a>
-                    </nav>
+
+                <h3 class="masthead-brand">Wilbert Vault Co.</h3>
+
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="@Url.Action("Index","Home", null)">Home</a>
+                    <a class="nav-link" href="@Url.Action("Login","Home", null)">Login</a>
+                    <a class="nav-link" href="#">Contact</a>
+                </nav>
             </div>
         </header>
 
@@ -41,9 +42,43 @@
                     <img src="~/images/wilbert-logo-mono.svg" style="width:800px;">
                 </a>
             </p>
-            <p class="lead">
-                <a href="@Url.Action("Login","Home", null)" class="btn btn-lg btn-secondary">Client Login</a>
-            </p>
+            <center>
+                <p>
+                    <span id="Content_errorMessage" class="errorMessage"></span>
+                    <table>
+                        <tr>
+                            <td style="width: 120px;">
+                                <label asp-for="Email">Username</label>
+                            </td>
+                            <td>
+                                <input asp-for="Email" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="Password">Password:</label>
+                            </td>
+                            <td>
+                                <input asp-for="Password" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div style="width: 100%;">
+                                    <a href="@Url.Action("Dashboard","Home", null)" class="btn btn-lg btn-secondary">Login</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div style="width: 100%;"><a href="ForgottenPassword.aspx">Forgotten Password?</a></div>
+                            </td>
+                        </tr>
+                    </table>
+                </p>
+            </center>
         </main>
 
         <footer class="mastfoot mt-auto">
