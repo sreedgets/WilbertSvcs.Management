@@ -8,11 +8,6 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class Truck
     {
-        public Truck()
-        {
-            Plants = new HashSet<Plant>();
-        }
-
         [Display(Name = "Plate Number")]
         public string TruckId { get; set; }
    
@@ -57,7 +52,5 @@ namespace WilbertVaultCompany.api.Models
 
         [Display(Name = "Reason inactove")]
         public string InactiveReason { get; set; }
-
-        public virtual ICollection<Plant> Plants { get; set; }
     }
 }

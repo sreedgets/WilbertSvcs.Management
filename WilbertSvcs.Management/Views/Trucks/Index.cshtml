@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WilbertVaultCompany.api.Models.Truck>
+﻿@model IEnumerable<WilbertVaultCompany.api.Models.Plant>
 
 @{
     ViewData["Title"] = "Index";
@@ -39,10 +39,12 @@
                         <!--Page Actions -->
                         <br />
                         <br />
+                        @foreach (var plant in Model)
+                        {
                         <table>
                             <tbody>
                                 <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                    <th colspan="5"><a href="plant-details.html" style="color:White;">Fort Dodge</a></th>
+                                    <th colspan="5"><a href="plant-details.html" style="color:White;"></a>@plant.PlantName</th>
                                 </tr>
                                 <tr align="left" style="color:White;background-color:#999;font-weight:bold;">
                                     <th scope="col">License Plate</th>
@@ -51,6 +53,9 @@
                                     <th scope="col">Driver</th>
                                     <th scope="col">Truck #</th>
                                 </tr>
+
+                                @*----------------------------------------------------------------------------------------------------------------*@
+
                                 <tr style="color:#333333;background-color:#ECECEC;">
                                     <td style="width:18%;"><a href="vehicle-details.html">629 THA<a></td>
                                     <td style="width:10%;"><span>Chevrolet Silverado</span></td>
@@ -58,8 +63,11 @@
                                     <td style="width:10%;"><span>Chris Wood</span></td>
                                     <td style="width:10%;"><span>1004</span></td>
                                 </tr>
+                                @*----------------------------------------------------------------------------------------------------------------*@
+                                @foreach (var truck in Model)
+                                {
                                 <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">465 2MM<a></td>
+                                    <td style="width:18%;"><a asp-action="Details" asp-route-id="@truck.PlantTrucks.Last ">@Html.DisplayFor(modelItem => item.Name)</a><</td>
                                     <td style="width:10%;"><span>Wilbert Logan</span></td>
                                     <td style="width:10%;"><span>2007</span></td>
                                     <td style="width:10%;"><span>Justin Bass</span></td>
@@ -72,8 +80,10 @@
                                     <td style="width:10%;"><span>Justin Bass</span></td>
                                     <td style="width:10%;"><span>1006</span></td>
                                 </tr>
+                                }
                             </tbody>
                         </table>
+                        }
                         <hr class="vertical-space2">
                         <table>
                             <tbody>
