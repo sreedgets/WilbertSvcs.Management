@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api
 {
@@ -20,8 +21,7 @@ namespace WilbertVaultCompany.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            
+            services.AddDbContext<wilbertdbContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("wilbertdbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,38 +5,73 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FuneralHomesController : ControllerBase
+    public class FuneralHomesAPIController : ControllerBase
     {
         private readonly wilbertdbContext _context;
 
-        public FuneralHomesController(wilbertdbContext context)
+        public FuneralHomesAPIController(wilbertdbContext context)
         {
             _context = context;
         }
 
         // GET: api/FuneralHomes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FuneralHome>>> GetFuneralHomes()
+        public async Task<IQueryable<FuneralHome>> GetFuneralHomes()
         {
-            return await _context.FuneralHomes.ToListAsync();
+            //Get list of funeral homes
+            IQueryable<FuneralHome> fhList = from fh in _context.FuneralHomes
+                         select fh;
+
+            //Iterate through each item in the list
+            foreach (var item in fhList)
+            {
+                //Instantiate a parent
+                var pfh = new ParentFuneralHome();
+                if (item.ParentFuneralHomeId != 0 && item.ParentFuneralHomeId != null)
+                    pfh = await _context.ParentFuneralHomes.FindAsync(item.ParentFuneralHomeId);
+
+                if (item.ParentName != null)
+                {
+                    if (pfh != null)
+                        item.ParentName = pfh.ParentFuneralhomeName.Trim();
+                }
+
+                var plt = new Plant();
+                if (item.PlantId != 0 && item.PlantId != null)
+                    plt = await _context.Plants.FindAsync(item.PlantId);
+
+                if (item.PlantName != null)
+                {
+                    if (plt != null)
+                        item.PlantName = plt.PlantName;
+                }
+
+                item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
+            }
+            return fhList;
         }
 
         // GET: api/FuneralHomes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<FuneralHome>> GetFuneralHome(int id)
+        public async Task<FuneralHome>GetFuneralHome(int id)
         {
-            var funeralHome = await _context.FuneralHomes.FindAsync(id);
+            var funeralHome = await _context.FuneralHomes
+                      .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
 
-            if (funeralHome == null)
-            {
-                return NotFound();
-            }
+            funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
+
+            funeralHome.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
+            funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2));
+            funeralHome.PhoneType3 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType3)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType3));
+
+
 
             return funeralHome;
         }
@@ -77,9 +112,6 @@ namespace WilbertVaultCompany.api.Controllers
         [HttpPost]
         public async Task<ActionResult<FuneralHome>> PostFuneralHome(FuneralHome funeralHome)
         {
-            _context.FuneralHomes.Add(funeralHome);
-            await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetFuneralHome", new { id = funeralHome.FuneralHomeId }, funeralHome);
         }
 

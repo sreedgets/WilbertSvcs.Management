@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WilbertSvcs.Management.PageControls;
 using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
+using WilbertVaultCompany.api.Controllers;
 
 namespace WilbertSvcs.Management.Controllers
 {
@@ -35,40 +36,9 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             int pageSize = 25;
-
-            //Get list of funeral homes
-            //var fhList = await _context.FuneralHomes.ToListAsync();
-
-            var fhList =  from fh in _context.FuneralHomes
-                           select fh;
-
-            //Iterate through each item in the list
-            foreach (var item in fhList)
-            {
-                //Instantiate a parent
-                var pfh = new ParentFuneralHome();
-                if (item.ParentFuneralHomeId != 0 && item.ParentFuneralHomeId != null)
-                    pfh = await _context.ParentFuneralHomes.FindAsync(item.ParentFuneralHomeId);
-
-                if (item.ParentName != null)
-                {
-                    if (pfh != null)
-                        item.ParentName = pfh.ParentFuneralhomeName.Trim();
-                }
-
-                var plt = new Plant();
-                if (item.PlantId != 0 && item.PlantId != null)
-                    plt = await _context.Plants.FindAsync(item.PlantId);
-
-                if (item.PlantName != null)
-                {
-                    if (plt != null)
-                        item.PlantName = plt.PlantName;
-                }
-
-                item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
-            }
-            //return View(await _context.FuneralHomes.ToListAsync());
+       
+            FuneralHomesAPIController fhctrl = new FuneralHomesAPIController(_context);
+            var fhList = await fhctrl.GetFuneralHomes();
             return View(await PaginatedList<FuneralHome>.CreateAsync(fhList, pageNumber ?? 1, pageSize));
         }
 
@@ -82,16 +52,10 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var funeralHome = await _context.FuneralHomes
-                .FirstOrDefaultAsync(m => m.FuneralHomeId == id);
+            FuneralHomesAPIController fhctrl = new FuneralHomesAPIController(_context);
 
-            funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
-
-            funeralHome.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType1));
-            funeralHome.PhoneType2 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType2));
-            funeralHome.PhoneType3 = Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType3)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(funeralHome.PhoneType3));
-
-
+            var funeralHome = await fhctrl.GetFuneralHome((int)id);
+          
             if (funeralHome == null)
             {
                 return NotFound();
