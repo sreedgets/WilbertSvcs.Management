@@ -8,7 +8,16 @@ namespace WilbertVaultCompany.api.Models
 {
     public partial class Plant
     {
+        public Plant()
+        {
+            PlantTrucks = new HashSet<Truck>();
+        }
+
+        public string ContactName { get; set; }
+        public virtual ICollection<Truck> PlantTrucks { get; set; }
+
         public int PlantId { get; set; }
+        public int? PlantTruckId { get; set; }
 
         [Display(Name = "Plant Name")]
         public string PlantName { get; set; }

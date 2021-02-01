@@ -21,7 +21,7 @@ namespace WilbertSvcs.Management.Controllers
         // GET: Trucks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Truck.ToListAsync());
+            return View(await _context.Plants.ToListAsync());
         }
 
         // GET: Trucks/Details/5
@@ -47,20 +47,20 @@ namespace WilbertSvcs.Management.Controllers
         {
             var tr = new Truck();
 
-            List<Plant> lstPlants = _context.Plants.ToList();
-            tr.Plants.Add(new Plant()
-            {
-                PlantName = "-Select-",
-                PlantId = 0
-            });
-            foreach (var item in lstPlants)
-            {
-                tr.Plants.Add(new Plant()
-                {
-                    PlantName = item.PlantName,
-                    PlantId = item.PlantId
-                });
-            }
+            //List<Plant> lstPlants = _context.Plants.ToList();
+            //tr.Plants.Add(new Plant()
+            //{
+            //    PlantName = "-Select-",
+            //    PlantId = 0
+            //});
+            //foreach (var item in lstPlants)
+            //{
+            //    tr.Plants.Add(new Plant()
+            //    {
+            //        PlantName = item.PlantName,
+            //        PlantId = item.PlantId
+            //    });
+            //}
 
             return View(tr);
         }
