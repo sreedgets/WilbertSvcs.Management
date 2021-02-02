@@ -17,7 +17,7 @@ namespace WilbertVaultCompany.api.Models
         public virtual ICollection<Truck> PlantTrucks { get; set; }
 
         public int PlantId { get; set; }
-        public int? PlantTruckId { get; set; }
+        //public string PlantTruckId { get; set; }
 
         [Display(Name = "Plant Name")]
         public string PlantName { get; set; }

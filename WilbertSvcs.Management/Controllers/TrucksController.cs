@@ -21,7 +21,16 @@ namespace WilbertSvcs.Management.Controllers
         // GET: Trucks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Plants.ToListAsync());
+            var plants =  _context.Plants.ToList();
+            foreach (var plt in plants)
+            {
+                List<Truck> trklist = new List<Truck>();
+                trklist = await (from p in _context.Truck
+                           where p.PlantId == plt.PlantId
+                           select p).ToListAsync();
+                plt.PlantTrucks = trklist;
+            }
+            return View(plants);
         }
 
         // GET: Trucks/Details/5
@@ -46,21 +55,22 @@ namespace WilbertSvcs.Management.Controllers
         public IActionResult Create()
         {
             var tr = new Truck();
+            tr.AcquisitionDate = DateTime.Now;
 
-            //List<Plant> lstPlants = _context.Plants.ToList();
-            //tr.Plants.Add(new Plant()
-            //{
-            //    PlantName = "-Select-",
-            //    PlantId = 0
-            //});
-            //foreach (var item in lstPlants)
-            //{
-            //    tr.Plants.Add(new Plant()
-            //    {
-            //        PlantName = item.PlantName,
-            //        PlantId = item.PlantId
-            //    });
-            //}
+            List<Plant> lstPlants = _context.Plants.ToList();
+            tr.Plants.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                tr.Plants.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
 
             return View(tr);
         }
@@ -74,6 +84,8 @@ namespace WilbertSvcs.Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                var plant = new Plant();
+                plant = await _context.Plants.FindAsync(truck.PlantId);
                 _context.Add(truck);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -94,6 +106,8 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+           
             return View(truck);
         }
 

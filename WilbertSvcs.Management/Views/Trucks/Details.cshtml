@@ -4,105 +4,214 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Edit</h1>
 
-<div>
-    <h4>Truck</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AcquisitionDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AcquisitionDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlantId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlantId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverEmployeeId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DriverEmployeeId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Make)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Make)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegCounty)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegCounty)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vin)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vin)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tonnage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tonnage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LicPlateRenewal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LicPlateRenewal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegFee)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegFee)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TruckNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TruckNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Inactive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Inactive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InactiveReason)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InactiveReason)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.TruckId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<head>
+    <title>Dashboard Template</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="action">
+    <h1 class="mt-5">Truck Details</h1>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.TruckId">Edit Plant</a>
+    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.TruckId">Delete Entry</a>
+    <a class="btn btn-primary" asp-action="Index">Go Back</a>
+    <br />
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <input readonly type="hidden" asp-for="TruckId" />
+                    <div class="col-md-6">
+                        <br />
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><label class="sectionLabel"></label><h3>Vehicle Information</h3></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Vin"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Vin" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Make"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Make" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Model"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Model" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Year"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Year" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Tonnage"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Tonnage" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="AcquisitionDate"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="AcquisitionDate" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="TruckId"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="TruckId" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="PlantName"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="PlantName" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Type"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Type" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-md-6">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="RegCounty"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="RegCounty" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="LicPlateRenewal"></label>
+                                    </td>
+                                    <td>
+                                        <input asp-for="LicPlateRenewal" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="RegFee"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="RegFee" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="TruckNumber"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="TruckNumber" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="vertical-space3">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4"><label class="sectionLabel"></label><h3>Vehicle Status</h3></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="form-group form-check">
+                                        <label class="form-check-label" asp-for="Inactive"></label>
+                                        <input readonly class="form-check-input" asp-for="Inactive" />Yes
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="InactiveReason"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="InactiveReason" maxlength="100" tabindex="1" style="width:300px;" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <input readonly type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+
+    </center>
+</main>
+

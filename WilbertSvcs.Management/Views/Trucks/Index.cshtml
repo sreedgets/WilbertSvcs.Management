@@ -27,9 +27,9 @@
             <div class="container">
                 <div class="row">
                     <div class="container">
-                        <h1 class="py-5">Funeral Homes List</h1>
+                        <h1 class="py-5">Trucks List</h1>
                         <div class="row">
-                        <div class="col-md-6" style="text-align:right;">
+                            <div class="col-md-6" style="text-align:right;">
                                 <a asp-action="Create" class="btn btn-primary">ADD NEW TRUCK</a>
                             </div>
                             <div class="col-md-6" style="text-align:left;">
@@ -41,121 +41,39 @@
                         <br />
                         @foreach (var plant in Model)
                         {
-                        <table>
-                            <tbody>
-                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                    <th colspan="5"><a href="plant-details.html" style="color:White;"></a>@plant.PlantName</th>
-                                </tr>
-                                <tr align="left" style="color:White;background-color:#999;font-weight:bold;">
-                                    <th scope="col">License Plate</th>
-                                    <th scope="col">Make/Model</th>
-                                    <th scope="col">Year</th>
-                                    <th scope="col">Driver</th>
-                                    <th scope="col">Truck #</th>
-                                </tr>
+                            @if (plant.PlantTrucks.Count > 0)
+                            {
+                                <table>
+                                    <tbody>
+                                        <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                            <th colspan="5"><a href="plant-details.html" style="color:White;"></a>@plant.PlantName</th>
+                                        </tr>
+                                        <tr align="left" style="color:White;background-color:#999;font-weight:bold;">
+                                            <th scope="col">License Plate</th>
+                                            <th scope="col">Make/Model</th>
+                                            <th scope="col">Year</th>
+                                            <th scope="col">Driver</th>
+                                            <th scope="col">Truck #</th>
+                                        </tr>
 
-                                @*----------------------------------------------------------------------------------------------------------------*@
+                                        @foreach (var truck in plant.PlantTrucks)
+                                        {
+                                            <tr style="color:#333333;background-color:#ECECEC;">
+                                                <td style="width:18%;"><a asp-action="Details" asp-route-id="@truck.TruckId">@Html.DisplayFor(modelItem => truck.TruckId)</a></td>
+                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => truck.Make)  @Html.DisplayFor(modelItem => truck.Model)</span></td>
+                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => truck.Year)</span></td>
+                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => truck.DriverName)</span></td>
+                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => truck.TruckNumber)</span></td>
+                                            </tr>
 
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">629 THA<a></td>
-                                    <td style="width:10%;"><span>Chevrolet Silverado</span></td>
-                                    <td style="width:10%;"><span>2007</span></td>
-                                    <td style="width:10%;"><span>Chris Wood</span></td>
-                                    <td style="width:10%;"><span>1004</span></td>
-                                </tr>
-                                @*----------------------------------------------------------------------------------------------------------------*@
-                                @foreach (var truck in Model)
-                                {
-                                <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td style="width:18%;"><a asp-action="Details" asp-route-id="@truck.PlantTrucks.Last ">@Html.DisplayFor(modelItem => item.Name)</a><</td>
-                                    <td style="width:10%;"><span>Wilbert Logan</span></td>
-                                    <td style="width:10%;"><span>2007</span></td>
-                                    <td style="width:10%;"><span>Justin Bass</span></td>
-                                    <td style="width:10%;"><span>1006</span></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">DSR 198<a></td>
-                                    <td style="width:10%;"><span>Ford Super Duty F550</span></td>
-                                    <td style="width:10%;"><span>2013</span></td>
-                                    <td style="width:10%;"><span>Justin Bass</span></td>
-                                    <td style="width:10%;"><span>1006</span></td>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
                         }
+
                         <hr class="vertical-space2">
-                        <table>
-                            <tbody>
-                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                    <th colspan="5"><a href="plant-details.html" style="color:White;">Mason City</a></th>
-                                </tr>
-                                <tr align="left" style="color:White;background-color:#999;font-weight:bold;">
-                                    <th scope="col">License Plate</th>
-                                    <th scope="col">Make/Model</th>
-                                    <th scope="col">Year</th>
-                                    <th scope="col">Driver</th>
-                                    <th scope="col">Truck #</th>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">EL3 837<a></td>
-                                    <td style="width:10%;"><span>Wilbert Logan</span></td>
-                                    <td style="width:10%;"><span>2008</span></td>
-                                    <td style="width:10%;"><span>Dan Clark</span></td>
-                                    <td style="width:10%;"><span>2503</span></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">EL8 431<a></td>
-                                    <td style="width:10%;"><span>Wilbert Blue Logan</span></td>
-                                    <td style="width:10%;"><span>2006</span></td>
-                                    <td style="width:10%;"><span> </span></td>
-                                    <td style="width:10%;"><span>2501</span></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">AEP 011<a></td>
-                                    <td style="width:10%;"><span>International 4700</span></td>
-                                    <td style="width:10%;"><span>1995</span></td>
-                                    <td style="width:10%;"><span></span></td>
-                                    <td style="width:10%;"><span>2002</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <hr class="vertical-space2">
-                        <table>
-                            <tbody>
-                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                    <th colspan="5"><a href="plant-details.html" style="color:White;">Waterloo</a></th>
-                                </tr>
-                                <tr align="left" style="color:White;background-color:#999;font-weight:bold;">
-                                    <th scope="col">License Plate</th>
-                                    <th scope="col">Make/Model</th>
-                                    <th scope="col">Year</th>
-                                    <th scope="col">Driver</th>
-                                    <th scope="col">Truck #</th>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">BON 068<a></td>
-                                    <td style="width:10%;"><span>International</span></td>
-                                    <td style="width:10%;"><span>1998</span></td>
-                                    <td style="width:10%;"><span>Chip Moeller</span></td>
-                                    <td style="width:10%;"><span>1001</span></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#FFFFFF;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">859 8ML<a></td>
-                                    <td style="width:10%;"><span>Wilbert Logan</span></td>
-                                    <td style="width:10%;"><span>2007</span></td>
-                                    <td style="width:10%;"><span>Jesse Lang</span></td>
-                                    <td style="width:10%;"><span>3502</span></td>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:18%;"><a href="vehicle-details.html">CVE 997<a></td>
-                                    <td style="width:10%;"><span>Dodge Caravan</span></td>
-                                    <td style="width:10%;"><span>2011</span></td>
-                                    <td style="width:10%;"><span>Chip Moeller</span></td>
-                                    <td style="width:10%;"><span>3006</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+
                     </div>
                 </div>
             </div>

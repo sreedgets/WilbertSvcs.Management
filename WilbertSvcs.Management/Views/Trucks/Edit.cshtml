@@ -1,4 +1,5 @@
 ﻿@model WilbertVaultCompany.api.Models.Truck
+@using WilbertVaultCompany.api.Enums
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,99 +7,232 @@
 
 <h1>Edit</h1>
 
-<h4>Truck</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="TruckId" />
-            <div class="form-group">
-                <label asp-for="AcquisitionDate" class="control-label"></label>
-                <input asp-for="AcquisitionDate" class="form-control" />
-                <span asp-validation-for="AcquisitionDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PlantId" class="control-label"></label>
-                <input asp-for="PlantId" class="form-control" />
-                <span asp-validation-for="PlantId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DriverEmployeeId" class="control-label"></label>
-                <input asp-for="DriverEmployeeId" class="form-control" />
-                <span asp-validation-for="DriverEmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Make" class="control-label"></label>
-                <input asp-for="Make" class="form-control" />
-                <span asp-validation-for="Make" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Model" class="control-label"></label>
-                <input asp-for="Model" class="form-control" />
-                <span asp-validation-for="Model" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Year" class="control-label"></label>
-                <input asp-for="Year" class="form-control" />
-                <span asp-validation-for="Year" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RegCounty" class="control-label"></label>
-                <input asp-for="RegCounty" class="form-control" />
-                <span asp-validation-for="RegCounty" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Vin" class="control-label"></label>
-                <input asp-for="Vin" class="form-control" />
-                <span asp-validation-for="Vin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tonnage" class="control-label"></label>
-                <input asp-for="Tonnage" class="form-control" />
-                <span asp-validation-for="Tonnage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LicPlateRenewal" class="control-label"></label>
-                <input asp-for="LicPlateRenewal" class="form-control" />
-                <span asp-validation-for="LicPlateRenewal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RegFee" class="control-label"></label>
-                <input asp-for="RegFee" class="form-control" />
-                <span asp-validation-for="RegFee" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TruckNumber" class="control-label"></label>
-                <input asp-for="TruckNumber" class="form-control" />
-                <span asp-validation-for="TruckNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Inactive" /> @Html.DisplayNameFor(model => model.Inactive)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="InactiveReason" class="control-label"></label>
-                <input asp-for="InactiveReason" class="form-control" />
-                <span asp-validation-for="InactiveReason" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+<head>
+    <title>Dashboard Template</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="action">
+    <center>
+        <form asp-action="Edit" method="post">
+            <div class="album py-5">
+                <div class="container">
+                    <div class="row">
+                        <input type="hidden" asp-for="TruckId" />
+                        <div class="col-md-6">
+                            <br />
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><label class="sectionLabel"></label><h3>Vehicle Information</h3></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Vin"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Vin" maxlength="100" tabindex="1" style="width:300px;" />
+                                            <span asp-validation-for="Vin" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Make"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Make" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Make" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Model"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Model" maxlength="100" tabindex="1" style="width:300px;" />
+                                            <span asp-validation-for="Model" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Year"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Year" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Year" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Tonnage"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Tonnage" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Tonnage" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="AcquisitionDate"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="AcquisitionDate" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="AcquisitionDate" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="TruckId"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="TruckId" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="TruckId" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="PlantName"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="PlantName" class="form-control" />
+                                            <span asp-validation-for="PlantName" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Type"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Type" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Type" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="RegCounty"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="RegCounty" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="RegCounty" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="LicPlateRenewal"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="LicPlateRenewal" maxlength="100" tabindex="1" style="width:300px;" />
+                                            <span asp-validation-for="LicPlateRenewal" class="text-danger"></span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="RegFee"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="RegFee" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="RegFee" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="TruckNumber"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="TruckNumber" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="TruckNumber" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr class="vertical-space3">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4"><label class="sectionLabel"></label><h3>Vehicle Status</h3></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="form-group form-check">
+                                            <label class="form-check-label" asp-for="Inactive"></label>
+                                            <input class="form-check-input" asp-for="Inactive" />Yes
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="InactiveReason"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="InactiveReason" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="InactiveReason" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+                        <input type="submit" value="Save Truck Information" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
             </div>
         </form>
-    </div>
-</div>
+    </center>
+</main>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
