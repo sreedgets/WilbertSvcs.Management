@@ -37,7 +37,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="hidden" asp-for="FuneralHomeId"/>
+                            <input type="hidden" asp-for="FuneralHomeId" />
                             <table>
                                 <tbody>
                                     <tr>
@@ -115,16 +115,19 @@
                                             <span asp-validation-for="County" class="text-danger"></span>
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+                            <hr />
+                            <table>
+                                <tbody>
                                     <tr>
                                         <td>
-
                                             <label asp-for="Phone1"></label>
                                         </td>
                                         <td>
                                             <input asp-for="Phone1" class="form-control" placeholder="xxx-xxx-xxxx" onkeydown="phoneOnKeyDown(this);"
                                                    onblur="phoneOnBlur(this);" />
                                             <span asp-validation-for="Phone1" class="text-danger"></span>
-
                                         </td>
                                         <td>
                                         </td>
@@ -223,7 +226,7 @@
                     <hr style="border: 5px solid #00446a; border-radius: 5px;" />
                     <div>
                         <input type="submit" value="Save Funeral Home" class="btn btn-primary" />
-                        <a asp-action="Details"  asp-route-id="@Model.FuneralHomeId" class="btn btn-secondary">Back to Details Page</a>
+                        <a asp-action="Details" asp-route-id="@Model.FuneralHomeId" class="btn btn-secondary">Back to Details Page</a>
                     </div>
                 </div>
             </div>
