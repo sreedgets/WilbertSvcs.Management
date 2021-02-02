@@ -113,7 +113,7 @@ namespace WilbertVaultCompany.api.Controllers
         // POST: api/FuneralHomes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<FuneralHome>> PostFuneralHome(FuneralHome funeralHome)
+        public ActionResult<FuneralHome> PostFuneralHome(FuneralHome funeralHome)
         {
             return CreatedAtAction("GetFuneralHome", new { id = funeralHome.FuneralHomeId }, funeralHome);
         }

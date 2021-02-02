@@ -91,7 +91,7 @@ namespace WilbertSvcs.Management.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(truck);
+            return RedirectToAction(nameof(Create));
         }
 
         // GET: Trucks/Edit/5

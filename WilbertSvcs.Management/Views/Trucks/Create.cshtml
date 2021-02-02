@@ -109,7 +109,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label asp-for="PlantId"></label>
+                                            <label asp-for="PlantId">Assigned Plant</label>
                                         </td>
                                         <td>
                                             <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">Assigned Plant

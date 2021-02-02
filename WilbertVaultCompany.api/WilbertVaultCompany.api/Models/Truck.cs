@@ -16,11 +16,13 @@ namespace WilbertVaultCompany.api.Models
         public virtual ICollection<Plant> Plants { get; set; }
 
         [Display(Name = "Plate Number")]
+        [Required]
         public string TruckId { get; set; }
    
         [Display(Name = "Acquisition Date")]
         public DateTime AcquisitionDate { get; set; }
         
+        [Range(1, 999, ErrorMessage = "Please select a plant")]
         public int PlantId { get; set; }
 
         [Display(Name ="Assigned Plant")]
@@ -41,6 +43,7 @@ namespace WilbertVaultCompany.api.Models
         [Display(Name = "Reg County")]
         public string RegCounty { get; set; }
 
+        [Display(Name = "VIN")]
         public string Vin { get; set; }
 
         public int Tonnage { get; set; }
