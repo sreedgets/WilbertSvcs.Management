@@ -27,7 +27,7 @@ namespace WilbertVaultCompany.api.Controllers
         {
             //Get list of funeral homes
             IQueryable<FuneralHome> fhList = from fh in _context.FuneralHomes
-                         select fh;
+                                             select fh;
 
             //Iterate through each item in the list
             foreach (var item in fhList)
@@ -43,16 +43,19 @@ namespace WilbertVaultCompany.api.Controllers
                         item.ParentName = pfh.ParentFuneralhomeName.Trim();
                 }
 
-                var plt = new Plant();
-                if (item.PlantId != 0 && item.PlantId != null)
-                    plt = await _context.Plants.FindAsync(item.PlantId);
+                // Get Plants
+                //var additives = p.Additives.ToList();
+                var plants = item.Plants.ToList();
 
-                if (item.PlantName != null)
+                foreach (var p in plants)
                 {
-                    if (plt != null)
-                        item.PlantName = plt.PlantName;
+                    if (p.PlantId ==item.PlantId)
+                    {
+                        item.Plants.Add(p);
+                        item.PlantName = p.PlantName;
+                    }
                 }
-
+                
                 item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
             }
             return fhList;
@@ -60,7 +63,7 @@ namespace WilbertVaultCompany.api.Controllers
 
         // GET: api/FuneralHomes/5
         [HttpGet("{id}")]
-        public async Task<FuneralHome>GetFuneralHome(int id)
+        public async Task<FuneralHome> GetFuneralHome(int id)
         {
             var funeralHome = await _context.FuneralHomes
                       .FirstOrDefaultAsync(m => m.FuneralHomeId == id);

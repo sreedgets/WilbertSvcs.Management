@@ -112,11 +112,10 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label asp-for="PlantName"></label>
+                                            <label asp-for="PlantId">Assigned Plant</label>
                                         </td>
                                         <td>
-                                            <select asp-for="PlantName" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
-                                                Assigned Plant
+                                            <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
                                             </select>
                                             <span asp-validation-for="PlantId" class="text-danger"></span>
                                         </td>
@@ -230,7 +229,7 @@
                     <hr />
                     <div>
                         <input type="submit" value="Save Truck Information" class="btn btn-primary" />
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <a asp-action="Details" asp-route-id="@Model.TruckId" class="btn btn-secondary">Back to Details Page</a>
                     </div>
                 </div>
             </div>
