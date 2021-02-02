@@ -106,7 +106,7 @@
                                         <label asp-for="PlantName"></label>
                                     </td>
                                     <td>
-                                        <input asp-for="PlantName" class="form-control" />
+                                        <input readonly asp-for="PlantName" class="form-control" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -205,10 +205,6 @@
                     </div>
                 </div>
                 <hr />
-                <div>
-                    <input readonly type="submit" value="Create" class="btn btn-primary" />
-                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                </div>
             </div>
         </div>
 

@@ -4,6 +4,23 @@
     ViewData["Title"] = "Delete";
 }
 
+<head>
+    <title>Dashboard Template</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+@await Component.InvokeAsync("Dashboard")
+
+<!-- Begin page content -->
+
 <h1>Delete</h1>
 <!-- Begin page content -->
 <main role="main" class="action">
@@ -191,6 +208,6 @@
 <form asp-action="Delete">
     <input type="hidden" asp-for="TruckId" />
     <input type="submit" value="Delete" class="btn btn-danger" /> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </form>
 </div>

@@ -86,6 +86,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 var plant = new Plant();
                 plant = await _context.Plants.FindAsync(truck.PlantId);
+                truck.PlantName = plant.PlantName;
                 _context.Add(truck);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -102,6 +103,22 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var truck = await _context.Truck.FindAsync(id);
+
+            List<Plant> lstPlants = _context.Plants.ToList();
+            truck.Plants.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                truck.Plants.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+
             if (truck == null)
             {
                 return NotFound();
@@ -127,6 +144,9 @@ namespace WilbertSvcs.Management.Controllers
             {
                 try
                 {
+                    Plant plt = new Plant();
+                    plt = await _context.Plants.FindAsync(truck.PlantId);
+                    truck.PlantName = plt.PlantName;
                     _context.Update(truck);
                     await _context.SaveChangesAsync();
                 }
