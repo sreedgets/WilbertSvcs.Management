@@ -3,21 +3,38 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210203212702_addEmployeeListToPlant")]
+    partial class addEmployeeListToPlant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
+
+            modelBuilder.Entity("PlantTruck", b =>
+                {
+                    b.Property<string>("PlantTrucksTruckId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("PlantsPlantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PlantTrucksTruckId", "PlantsPlantId");
+
+                    b.HasIndex("PlantsPlantId");
+
+                    b.ToTable("PlantTruck");
+                });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
                 {
@@ -392,6 +409,9 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("PlantId")
                         .HasColumnType("int");
 
+                    b.Property<string>("PlantName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RegCounty")
                         .HasColumnType("nvarchar(max)");
 
@@ -415,20 +435,33 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.HasKey("TruckId");
 
-                    b.HasIndex("PlantId");
-
                     b.ToTable("Truck");
+                });
+
+            modelBuilder.Entity("PlantTruck", b =>
+                {
+                    b.HasOne("WilbertVaultCompany.api.Models.Truck", null)
+                        .WithMany()
+                        .HasForeignKey("PlantTrucksTruckId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WilbertVaultCompany.api.Models.Plant", null)
+                        .WithMany()
+                        .HasForeignKey("PlantsPlantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
                 {
-                    b.HasOne("WilbertVaultCompany.api.Models.Plant", "PlantEmployee")
+                    b.HasOne("WilbertVaultCompany.api.Models.Plant", "EmployeeNavigation")
                         .WithMany("Employees")
                         .HasForeignKey("PlantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("PlantEmployee");
+                    b.Navigation("EmployeeNavigation");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.FuneralHomeContact", b =>
@@ -458,17 +491,6 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Navigation("PlantNavigation");
                 });
 
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.Truck", b =>
-                {
-                    b.HasOne("WilbertVaultCompany.api.Models.Plant", "AssignedPlant")
-                        .WithMany("Trucks")
-                        .HasForeignKey("PlantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AssignedPlant");
-                });
-
             modelBuilder.Entity("WilbertVaultCompany.api.Models.FuneralHome", b =>
                 {
                     b.Navigation("Contacts");
@@ -481,8 +503,6 @@ namespace WilbertVaultCompany.api.Migrations
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Plant", b =>
                 {
                     b.Navigation("Employees");
-
-                    b.Navigation("Trucks");
                 });
 #pragma warning restore 612, 618
         }

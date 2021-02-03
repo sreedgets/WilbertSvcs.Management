@@ -21,14 +21,14 @@ namespace WilbertSvcs.Management.Controllers
         // GET: Trucks
         public async Task<IActionResult> Index()
         {
-            var plants =  _context.Plants.ToList();
+            var plants = _context.Plants.ToList();
             foreach (var plt in plants)
             {
                 List<Truck> trklist = new List<Truck>();
                 trklist = await (from p in _context.Truck
-                           where p.PlantId == plt.PlantId
-                           select p).ToListAsync();
-                plt.PlantTrucks = trklist;
+                                 where p.PlantId == plt.PlantId
+                                 select p).ToListAsync();
+                plt.Trucks = trklist;
             }
             return View(plants);
         }
@@ -86,7 +86,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 var plant = new Plant();
                 plant = await _context.Plants.FindAsync(truck.PlantId);
-                truck.PlantName = plant.PlantName;
+                truck.AssignedPlant.PlantName = plant.PlantName;
                 _context.Add(truck);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -124,7 +124,7 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-           
+
             return View(truck);
         }
 
@@ -146,7 +146,7 @@ namespace WilbertSvcs.Management.Controllers
                 {
                     Plant plt = new Plant();
                     plt = await _context.Plants.FindAsync(truck.PlantId);
-                    truck.PlantName = plt.PlantName;
+                    truck.AssignedPlant.PlantName = plt.PlantName;
                     _context.Update(truck);
                     await _context.SaveChangesAsync();
                 }

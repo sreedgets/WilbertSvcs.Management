@@ -35,6 +35,8 @@ namespace WilbertVaultCompany.api.Models
 
         public DbSet<WilbertVaultCompany.api.Models.Truck> Truck { get; set; }
 
+        public DbSet<WilbertVaultCompany.api.Models.Employee> Employee { get; set; }
+
     }
 }
 

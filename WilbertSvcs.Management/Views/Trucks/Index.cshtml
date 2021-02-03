@@ -41,7 +41,7 @@
                         <br />
                         @foreach (var plant in Model)
                         {
-                            @if (plant.PlantTrucks.Count > 0)
+                            @if (plant.Trucks.Count > 0)
                             {
                                 <table>
                                     <tbody>
@@ -56,7 +56,7 @@
                                             <th scope="col">Truck #</th>
                                         </tr>
 
-                                        @foreach (var truck in plant.PlantTrucks)
+                                        @foreach (var truck in plant.Trucks)
                                         {
                                             <tr style="color:#333333;background-color:#ECECEC;">
                                                 <td style="width:18%;"><a asp-action="Details" asp-route-id="@truck.TruckId">@Html.DisplayFor(modelItem => truck.TruckId)</a></td>

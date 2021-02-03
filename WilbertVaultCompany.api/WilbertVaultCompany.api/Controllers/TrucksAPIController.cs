@@ -11,23 +11,23 @@ namespace WilbertVaultCompany.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TrucksController : ControllerBase
+    public class TrucksAPIController : ControllerBase
     {
         private readonly wilbertdbContext _context;
 
-        public TrucksController(wilbertdbContext context)
+        public TrucksAPIController(wilbertdbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Trucks
+        // GET: api/TrucksAPK
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Truck>>> GetTruck()
         {
             return await _context.Truck.ToListAsync();
         }
 
-        // GET: api/Trucks/5
+        // GET: api/TrucksAPK/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Truck>> GetTruck(string id)
         {
@@ -41,7 +41,7 @@ namespace WilbertVaultCompany.api.Controllers
             return truck;
         }
 
-        // PUT: api/Trucks/5
+        // PUT: api/TrucksAPK/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTruck(string id, Truck truck)
@@ -72,7 +72,7 @@ namespace WilbertVaultCompany.api.Controllers
             return NoContent();
         }
 
-        // POST: api/Trucks
+        // POST: api/TrucksAPK
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Truck>> PostTruck(Truck truck)
@@ -97,7 +97,7 @@ namespace WilbertVaultCompany.api.Controllers
             return CreatedAtAction("GetTruck", new { id = truck.TruckId }, truck);
         }
 
-        // DELETE: api/Trucks/5
+        // DELETE: api/TrucksAPK/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTruck(string id)
         {

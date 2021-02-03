@@ -16,7 +16,6 @@
     <Compile Remove="Models\Cemetary.cs" />
     <Compile Remove="Models\Deceased.cs" />
     <Compile Remove="Models\Delivery.cs" />
-    <Compile Remove="Models\Employee.cs" />
     <Compile Remove="Models\Phone.cs" />
     <Compile Remove="Models\Vault.cs" />
     <Compile Remove="Models\VaultOrder.cs" />

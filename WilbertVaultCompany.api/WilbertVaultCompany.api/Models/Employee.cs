@@ -8,7 +8,6 @@ namespace WilbertVaultCompany.api.Models
     public partial class Employee
     {
         public int EmployeeId { get; set; }
-        public int PlantId { get; set; }
         public bool CanDoFollowUps { get; set; }
         public int Title { get; set; }
         public string FirstName { get; set; }
@@ -20,7 +19,11 @@ namespace WilbertVaultCompany.api.Models
         public int ZipCode { get; set; }
         public string County { get; set; }
         public string Email { get; set; }
-        public bool Active { get; set; }
+        public bool Active { get; set; }        
         public byte[] PhotoImage { get; set; }
+
+        /**********************************************************************/
+        public int PlantId { get; set; }
+        public virtual Plant PlantEmployee { get; set; }
     }
 }

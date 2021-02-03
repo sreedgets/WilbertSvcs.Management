@@ -107,7 +107,7 @@
                                             <span asp-validation-for="TruckId" class="text-danger"></span>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    @*<tr>
                                         <td>
                                             <label asp-for="PlantId">Assigned Plant</label>
                                         </td>
@@ -115,7 +115,7 @@
                                             <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">Assigned Plant
                                             </select>
                                             <span asp-validation-for="PlantId" class="text-danger"></span>
-                                        </td>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>

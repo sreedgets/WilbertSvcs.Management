@@ -11,23 +11,23 @@ namespace WilbertVaultCompany.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlantsController : ControllerBase
+    public class PlantsAPIController : ControllerBase
     {
         private readonly wilbertdbContext _context;
 
-        public PlantsController(wilbertdbContext context)
+        public PlantsAPIController(wilbertdbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Plants
+        // GET: api/PlantsAPI
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Plant>>> GetPlants()
         {
             return await _context.Plants.ToListAsync();
         }
 
-        // GET: api/Plants/5
+        // GET: api/PlantsAPI/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Plant>> GetPlant(int id)
         {
@@ -41,7 +41,7 @@ namespace WilbertVaultCompany.api.Controllers
             return plant;
         }
 
-        // PUT: api/Plants/5
+        // PUT: api/PlantsAPI/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlant(int id, Plant plant)
@@ -72,7 +72,7 @@ namespace WilbertVaultCompany.api.Controllers
             return NoContent();
         }
 
-        // POST: api/Plants
+        // POST: api/PlantsAPI
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Plant>> PostPlant(Plant plant)
@@ -83,7 +83,7 @@ namespace WilbertVaultCompany.api.Controllers
             return CreatedAtAction("GetPlant", new { id = plant.PlantId }, plant);
         }
 
-        // DELETE: api/Plants/5
+        // DELETE: api/PlantsAPI/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePlant(int id)
         {
