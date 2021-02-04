@@ -6,6 +6,7 @@ namespace WilbertVaultCompany.api.Enums
 {
     public enum PlantRole
     {
+        Choose,
         FranchiseOwner,
         FranchiseManager,
         Driver,

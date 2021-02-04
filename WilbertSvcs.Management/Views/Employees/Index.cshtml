@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WilbertVaultCompany.api.Models.Plant>
+﻿    @model IEnumerable<WilbertVaultCompany.api.Models.Plant>
 
 @{
     ViewData["Title"] = "Index";
@@ -41,7 +41,7 @@
                         <br />
                         @foreach (var plant in Model)
                         {
-                            @if (plant.Trucks.Count > 0)
+                            @if (plant.Employees.Count > 0)
                             {
                                 <table>
                                     <tbody>
@@ -58,13 +58,13 @@
 
                                         @foreach (var emp in plant.Employees)
                                         {
-                                            <tr style="color:#333333;background-color:#ECECEC;">
-                                                <td style="width:18%;"><a asp-action="Details" asp-route-id="@emp.EmployeeId">@Html.DisplayFor(modelItem => emp.EmployeeId)</a></td>
-                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.FirstName)  @Html.DisplayFor(modelItem => emp.LastName)</span></td>
-                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.Title)</span></td>
-                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.Phone1)</span></td>
-                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.PhoneType1)</span></td>
-                                            </tr>
+                                    <tr style="color:#333333;background-color:#ECECEC;">
+                                        <td style="width:18%;"><a asp-action="Details" asp-route-id="@emp.EmployeeId">@Html.DisplayFor(modelItem => emp.FirstName)  @Html.DisplayFor(modelItem => emp.LastName)</a></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.Title)</span></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.Phone1)</span></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.PhoneType1)</span></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.Active)</span></td>
+                                    </tr>
 
                                         }
                                     </tbody>

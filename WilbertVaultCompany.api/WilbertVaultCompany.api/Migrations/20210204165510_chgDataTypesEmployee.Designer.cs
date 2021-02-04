@@ -3,41 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210204165510_chgDataTypesEmployee")]
+    partial class chgDataTypesEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
-
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.AnswerVm", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Answer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("AnswerVm");
-                });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
                 {
@@ -83,9 +65,6 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.Property<int>("PlantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SelectedAnswer")
                         .HasColumnType("int");
 
                     b.Property<string>("State")
@@ -449,13 +428,6 @@ namespace WilbertVaultCompany.api.Migrations
                     b.ToTable("Truck");
                 });
 
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.AnswerVm", b =>
-                {
-                    b.HasOne("WilbertVaultCompany.api.Models.Employee", null)
-                        .WithMany("Answers")
-                        .HasForeignKey("EmployeeId");
-                });
-
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
                 {
                     b.HasOne("WilbertVaultCompany.api.Models.Plant", "PlantEmployee")
@@ -503,11 +475,6 @@ namespace WilbertVaultCompany.api.Migrations
                         .IsRequired();
 
                     b.Navigation("AssignedPlant");
-                });
-
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
-                {
-                    b.Navigation("Answers");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.FuneralHome", b =>

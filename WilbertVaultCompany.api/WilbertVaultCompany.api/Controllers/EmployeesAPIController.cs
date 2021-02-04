@@ -22,9 +22,18 @@ namespace WilbertVaultCompany.api.Controllers
 
         // GET: api/EmployeesAPI
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
+        public async Task<ActionResult<IEnumerable<Plant>>> GetEmployees()
         {
-            return await _context.Employee.ToListAsync();
+            var plants = _context.Plants.ToList();
+            foreach (var plt in plants)
+            {
+                List<Employee> emplist = new List<Employee>();
+                emplist = await (from e in _context.Employee
+                                 where e.PlantId == plt.PlantId
+                                 select e).ToListAsync();
+                plt.Employees = emplist;
+            }
+            return plants;
         }
 
         // GET: api/EmployeesAPI/5

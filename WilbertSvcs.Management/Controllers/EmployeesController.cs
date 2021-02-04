@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WilbertVaultCompany.api.Models;
+using WilbertVaultCompany.api.Controllers;
+using WilbertVaultCompany.api.Enums;
 
 namespace WilbertSvcs.Management.Controllers
 {
@@ -18,11 +20,26 @@ namespace WilbertSvcs.Management.Controllers
             _context = context;
         }
 
+
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var wilbertdbContext = _context.Employee.Include(e => e.PlantEmployee);
-            return View(await wilbertdbContext.ToListAsync());
+            var plants = _context.Plants.ToList();
+            foreach (var plt in plants)
+            {
+                List<Employee> emplist = new List<Employee>();
+                emplist = await (from e in _context.Employee
+                                 where e.PlantId == plt.PlantId
+                                 select e).ToListAsync();
+
+                foreach (var emp in emplist)
+                {
+                    emp.Title = Enum.GetName(typeof(PlantRole), Int32.Parse(emp.Title));
+                    emp.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(emp.PhoneType1));
+                }
+                plt.Employees = emplist;
+            }
+            return View(plants);
         }
 
         // GET: Employees/Details/5
@@ -41,14 +58,45 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            employee.Answers = new List<AnswerVm>
+                    {
+                        new AnswerVm {Id = 1, Answer= "Yes"},
+                        new AnswerVm {Id = 2, Answer= "No"}
+                    };
+
+            employee.State = Enum.GetName(typeof(States), Int32.Parse(employee.State));
+            employee.Title = Enum.GetName(typeof(PlantRole), Int32.Parse(employee.Title));
+            employee.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(employee.PhoneType1));
+
             return View(employee);
         }
 
         // GET: Employees/Create
         public IActionResult Create()
         {
-            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId");
-            return View();
+            var emp = new Employee();
+            emp.Answers = new List<AnswerVm>
+                    {
+                        new AnswerVm {Id = 1, Answer= "Yes"},
+                        new AnswerVm {Id = 2, Answer= "No"}
+                    };
+
+            List<Plant> lstPlants = _context.Plants.ToList();
+            emp.Plants = new List<Plant>();
+            emp.Plants.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                emp.Plants.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+            return View(emp);
         }
 
         // POST: Employees/Create
@@ -56,16 +104,20 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,CanDoFollowUps,Title,FirstName,LastName,MiddleName,Address,City,State,ZipCode,County,Email,Active,PhotoImage,PlantId")] Employee employee)
+        public async Task<IActionResult> Create([Bind("EmployeeId,CanDoFollowUps,Title,FirstName,LastName,MiddleName,Address,City,State,ZipCode,County,Email,Phone1,PhoneType1,Active,PhotoImage,PlantId,SelectedAnswer")] Employee employee)
         {
             if (ModelState.IsValid)
             {
+                employee.Active = employee.SelectedAnswer == 1;
+                var plant = new Plant();
+                plant = await _context.Plants.FindAsync(employee.PlantId);
+                employee.PlantEmployee = new Plant();
+                employee.PlantEmployee = plant;
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", employee.PlantId);
-            return View(employee);
+            return RedirectToAction(nameof(Create));
         }
 
         // GET: Employees/Edit/5
@@ -76,13 +128,36 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employee.FindAsync(id);
-            if (employee == null)
+            var emp = await _context.Employee.FindAsync(id);
+            emp.Answers = new List<AnswerVm>
+                    {
+                        new AnswerVm {Id = 1, Answer= "Yes"},
+                        new AnswerVm {Id = 2, Answer= "No"}
+                    };
+
+            List<Plant> lstPlants = _context.Plants.ToList();
+            emp.Plants = new List<Plant>();
+            emp.Plants.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                emp.Plants.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+
+            if (emp == null)
             {
                 return NotFound();
             }
-            ViewData["PlantId"] = new SelectList(_context.Plants, "PlantId", "PlantId", employee.PlantId);
-            return View(employee);
+
+
+            return View(emp);
         }
 
         // POST: Employees/Edit/5
@@ -90,7 +165,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,CanDoFollowUps,Title,FirstName,LastName,MiddleName,Address,City,State,ZipCode,County,Email,Active,PhotoImage,PlantId")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,CanDoFollowUps,Title,FirstName,LastName,MiddleName,Address,City,State,ZipCode,County,Email,Phone1,PhoneType1,Active,PhotoImage,PlantId,SelectedAnswer")] Employee employee)
         {
             if (id != employee.EmployeeId)
             {
@@ -99,6 +174,8 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
+                employee.Active = employee.SelectedAnswer == 1;
+                    
                 try
                 {
                     _context.Update(employee);
@@ -132,10 +209,20 @@ namespace WilbertSvcs.Management.Controllers
             var employee = await _context.Employee
                 .Include(e => e.PlantEmployee)
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
+
+            employee.Answers = new List<AnswerVm>
+                    {
+                        new AnswerVm {Id = 1, Answer= "Yes"},
+                        new AnswerVm {Id = 2, Answer= "No"}
+                    };
+
             if (employee == null)
             {
                 return NotFound();
             }
+            employee.State = Enum.GetName(typeof(States), Int32.Parse(employee.State));
+            employee.Title = Enum.GetName(typeof(PlantRole), Int32.Parse(employee.Title));
+            employee.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(employee.PhoneType1));
 
             return View(employee);
         }
