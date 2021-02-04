@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WilbertVaultCompany.api.Models.Plant>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <title>Dashboard Template</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+@await Component.InvokeAsync("Dashboard")
+
+<!-- Begin page content -->
+
+<main role="main" class="action">
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="container">
+                        <h1 class="py-5">Employees List</h1>
+                        <div class="row">
+                            <div class="col-md-6" style="text-align:right;">
+                                <a asp-action="Create" class="btn btn-primary">ADD NEW EMPLOYEE</a>
+                            </div>
+                            <div class="col-md-6" style="text-align:left;">
+                                <a asp-action="Dashboard" asp-controller="Home" class="btn btn-primary">BACK TO DASHBOARD</a>
+                            </div>
+                        </div>
+                        <!--Page Actions -->
+                        <br />
+                        <br />
+                        @foreach (var plant in Model)
+                        {
+                            @if (plant.Trucks.Count > 0)
+                            {
+                                <table>
+                                    <tbody>
+                                        <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                            <th colspan="5"><a href="plant-details.html" style="color:White;"></a>@plant.PlantName</th>
+                                        </tr>
+                                        <tr align="left" style="color:White;background-color:#999;font-weight:bold;">
+                                            <th scope="col">Full Name</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Active</th>
+                                        </tr>
+
+                                        @foreach (var emp in plant.Employees)
+                                        {
+                                            <tr style="color:#333333;background-color:#ECECEC;">
+                                                <td style="width:18%;"><a asp-action="Details" asp-route-id="@emp.EmployeeId">@Html.DisplayFor(modelItem => emp.EmployeeId)</a></td>
+                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.FirstName)  @Html.DisplayFor(modelItem => emp.LastName)</span></td>
+                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.Title)</span></td>
+                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.Phone1)</span></td>
+                                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => emp.PhoneType1)</span></td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        }
+
+                        <hr class="vertical-space2">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</main>

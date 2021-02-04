@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -18,6 +19,10 @@ namespace WilbertVaultCompany.api.Models
         public string State { get; set; }
         public int ZipCode { get; set; }
         public string County { get; set; }
+        [Display(Name = "Phone")]
+        [DataType(DataType.PhoneNumber)]
+        public string Phone1 { get; set; }
+        public string PhoneType1 { get; set; }
         public string Email { get; set; }
         public bool Active { get; set; }        
         public byte[] PhotoImage { get; set; }
