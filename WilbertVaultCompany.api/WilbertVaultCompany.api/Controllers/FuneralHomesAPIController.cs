@@ -49,13 +49,13 @@ namespace WilbertVaultCompany.api.Controllers
 
                 foreach (var p in plants)
                 {
-                    if (p.PlantId ==item.PlantId)
+                    if (p.PlantId == item.PlantId)
                     {
                         item.Plants.Add(p);
                         item.PlantName = p.PlantName;
                     }
                 }
-                
+
                 item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
             }
             return fhList;

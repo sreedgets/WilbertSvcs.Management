@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -36,7 +37,7 @@ namespace WilbertVaultCompany.api.Models
         public int Tonnage { get; set; }
 
         [Display(Name = "Month License Due")]
-        public int LicPlateRenewal { get; set; }
+        public string LicPlateRenewal { get; set; }
 
         [Display(Name = "Reg fee")]
         public decimal RegFee { get; set; }
@@ -49,6 +50,10 @@ namespace WilbertVaultCompany.api.Models
 
         [Display(Name = "Reason inactove")]
         public string InactiveReason { get; set; }
+
+        [NotMapped]
+        public  List<Plant> Plants { get; set; }
+
 
         /********************************************************************/
 

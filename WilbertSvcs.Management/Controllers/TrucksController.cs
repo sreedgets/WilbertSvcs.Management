@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
@@ -48,6 +49,9 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            truck.AssignedPlant = await _context.Plants.FindAsync(truck.PlantId);
+            //funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
+            truck.LicPlateRenewal = Enum.GetName(typeof(LicDue), Int32.Parse(truck.LicPlateRenewal));
             return View(truck);
         }
 
@@ -58,6 +62,7 @@ namespace WilbertSvcs.Management.Controllers
             tr.AcquisitionDate = DateTime.Now;
 
             List<Plant> lstPlants = _context.Plants.ToList();
+            tr.Plants = new List<Plant>();
             tr.Plants.Add(new Plant()
             {
                 PlantName = "-Select-",
@@ -86,7 +91,8 @@ namespace WilbertSvcs.Management.Controllers
             {
                 var plant = new Plant();
                 plant = await _context.Plants.FindAsync(truck.PlantId);
-                truck.AssignedPlant.PlantName = plant.PlantName;
+                truck.AssignedPlant = new Plant();
+                truck.AssignedPlant = plant;
                 _context.Add(truck);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -105,6 +111,7 @@ namespace WilbertSvcs.Management.Controllers
             var truck = await _context.Truck.FindAsync(id);
 
             List<Plant> lstPlants = _context.Plants.ToList();
+            truck.Plants = new List<Plant>();
             truck.Plants.Add(new Plant()
             {
                 PlantName = "-Select-",
@@ -146,7 +153,8 @@ namespace WilbertSvcs.Management.Controllers
                 {
                     Plant plt = new Plant();
                     plt = await _context.Plants.FindAsync(truck.PlantId);
-                    truck.AssignedPlant.PlantName = plt.PlantName;
+                    truck.AssignedPlant = new Plant();
+                    truck.AssignedPlant = plt;
                     _context.Update(truck);
                     await _context.SaveChangesAsync();
                 }
@@ -180,7 +188,7 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-
+            truck.LicPlateRenewal = Enum.GetName(typeof(LicDue), Int32.Parse(truck.LicPlateRenewal));
             return View(truck);
         }
 

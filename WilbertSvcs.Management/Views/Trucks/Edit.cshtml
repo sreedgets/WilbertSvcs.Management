@@ -110,7 +110,7 @@
                                             <span asp-validation-for="TruckId" class="text-danger"></span>
                                         </td>
                                     </tr>
-                                    @*<tr>
+                                    <tr>
                                         <td>
                                             <label asp-for="PlantId">Assigned Plant</label>
                                         </td>
@@ -119,7 +119,7 @@
                                             </select>
                                             <span asp-validation-for="PlantId" class="text-danger"></span>
                                         </td>
-                                    </tr>*@
+                                    </tr>
                                     <tr>
                                         <td>
                                             <label class="titleLabel" asp-for="Type"></label>
@@ -172,7 +172,7 @@
                                             <label class="titleLabel" asp-for="LicPlateRenewal"></label>
                                         </td>
                                         <td>
-                                            <input asp-for="LicPlateRenewal" maxlength="100" tabindex="1" style="width:300px;" />
+                                            <select asp-for="LicPlateRenewal" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<LicDue>()"></select>
                                             <span asp-validation-for="LicPlateRenewal" class="text-danger"></span>
                                         </td>
 
