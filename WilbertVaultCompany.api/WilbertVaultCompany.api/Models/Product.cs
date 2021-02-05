@@ -18,7 +18,7 @@ namespace WilbertProductCompany.api.Models
         public int AllowedToSelectId { get; set; }
         public bool UpChargeForLegacy { get; set; }
         public decimal UpChargeAmount { get; set; }
-        public int ProductCategory { get; set; }
+        public string ProductCategory { get; set; }
         public int Color { get; set; }
         public string Color1 { get; set; }
         public string Color2 { get; set; }
