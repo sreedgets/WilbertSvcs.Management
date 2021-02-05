@@ -3,81 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210205010057_chgActiveDatatypeEmployee")]
+    partial class chgActiveDatatypeEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
-
-            modelBuilder.Entity("WilbertProductCompany.api.Models.Product", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("AllowedToSelectId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Color1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Color2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Comments")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Decoration")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Legacy")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Ovation")
-                        .HasColumnType("bit");
-
-                    b.Property<byte[]>("PhotoImage")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProductCategory")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("UpChargeAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("UpChargeForLegacy")
-                        .HasColumnType("bit");
-
-                    b.HasKey("ProductId");
-
-                    b.ToTable("Product");
-                });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.AnswerVm", b =>
                 {

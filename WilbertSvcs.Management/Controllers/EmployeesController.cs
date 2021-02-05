@@ -108,7 +108,11 @@ namespace WilbertSvcs.Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                employee.Active = employee.SelectedAnswer == 1;
+                if (employee.SelectedAnswer == 1)
+                    employee.Active = "Yes";
+                else
+                    employee.Active = "No";
+
                 var plant = new Plant();
                 plant = await _context.Plants.FindAsync(employee.PlantId);
                 employee.PlantEmployee = new Plant();
@@ -174,8 +178,11 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
-                employee.Active = employee.SelectedAnswer == 1;
-                    
+                if (employee.SelectedAnswer == 1)
+                    employee.Active = "Yes";
+                else
+                    employee.Active = "No";
+
                 try
                 {
                     _context.Update(employee);

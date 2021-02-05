@@ -34,7 +34,7 @@ namespace WilbertVaultCompany.api.Models
         public string PhoneType1 { get; set; }
         public string Email { get; set; }
         [Display(Name = "Employee Active")]
-        public bool Active { get; set; }        
+        public string Active { get; set; }        
         public byte[] PhotoImage { get; set; }
 
         public IEnumerable<AnswerVm> Answers { set; get; }
