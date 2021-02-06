@@ -1,0 +1,109 @@
+﻿@model IEnumerable<WilbertProductCompany.api.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <title>Dashboard Template</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+@await Component.InvokeAsync("Dashboard")
+
+<!-- Begin page content -->
+<main role="main" id="fhl" class="container">
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="container">
+                        <h1 class="py-5">Products List</h1>
+                        <div class="row">
+                            <div class="col-md-6" style="text-align:right;">
+                                <a asp-action="Create" class="btn btn-primary">ADD NEW PRODUCT</a>
+                            </div>
+                            <div class="col-md-6" style="text-align:left;">
+                                <a asp-action="Dashboard" asp-controller="Home" class="btn btn-primary">BACK TO DASHBOARD</a>
+                            </div>
+                        </div>
+                        <!--Page Actions -->
+                        <br />
+                        <br />
+                        <table>
+                            <thead>
+                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                    <th scope="col"><a href="#" style="color:White;">Product Description</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Product Code</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Size</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Category</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Price</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Ovation</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Legcy</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Decoration</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Legacy Upcharge</a></th>
+                                    <th scope="col"><a href="#" style="color:White;"></a>Amount</th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                            <tr style="color:#333333;background-color:#ECECEC;">
+                                <td style="width:30%;"><a asp-action="Details" asp-route-id="@item.ProductId">@Html.DisplayFor(modelItem => item.Description)</a></td>
+                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.ProductCode)</span></td>
+                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Size)</span></td>
+                                <td style="width:10%;">@Html.DisplayFor(modelItem => item.ProductCategory)</td>
+                                <td style="width:18%;">@Html.DisplayFor(modelItem => item.Price)</td>
+                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Ovation)</span></td>
+                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Legacy)</span></td>
+                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Decoration)</span></td>
+                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.UpChargeForLegacy)</span></td>
+                                <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.UpChargeAmount)</span></td>
+                            </tr>
+                                }
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</main>
+@*<main role="main" class="container">
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <div class="album py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="text-align:right;">
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-primary @prevDisabled">
+                        Previous
+                    </a>
+                </div>
+                <div class="col-md-6" style="text-align:left;">
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-primary @nextDisabled">
+                        Next
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>*@
+

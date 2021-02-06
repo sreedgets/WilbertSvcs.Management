@@ -21,6 +21,16 @@
 </head>
 
 <body>
+    @{var funeralHomeOwner = await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "FRANCHISE OWNER"); }
+    @{var funeralHomeDirector = await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "FUNERAL DIRECTOR"); }
+    @{var funeralHomeStaff = await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "0OFFICE/ADMIN"); }
+
+    @{var plantMgr = await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "PLANT MANAGER"); }
+    @{var driver = await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "DRIVER"); }
+    @{var franchiseAdmin = await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "ADMIN"); }
+    @{var superAdmin = await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "SUPERUSER"); }
+
+
     <header>
         <!-- Fixed navbar -->
         @await Component.InvokeAsync("Dashboard", Model)
@@ -102,10 +112,12 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <div style="background:#00446a"><img class="card-img-top" src="~/images/inventory.svg" alt="Card image cap"></div>
-                            <div class="card-body">
-                                <h3>Inventory</h3>
-                            </div>
+                            <a asp-action="Index" asp-controller="Products">
+                                <div style="background:#00446a"><img class="card-img-top" src="~/images/inventory.svg" alt="Card image cap"></div>
+                                <div class="card-body">
+                                    <h3>Products</h3>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -118,7 +130,7 @@
                             </a>
                         </div>
                     </div>
-                    @if (await Model.userManager.IsInRoleAsync(Model.wilbertAppUser, "Superuser"))
+                    @if (superAdmin || franchiseAdmin)
                     {
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
