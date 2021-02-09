@@ -35,211 +35,173 @@
         <div class="album py-5">
             <div class="container">
                 <div class="row">
-                    
-                        <div class="col-md-6">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th><label class="sectionLabel" style="width:250px;"></label><h3>Plant Information</h3></th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="PlantName"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="PlantName" maxlength="100" tabindex="1" style="width:300px;" />
 
-                                            <span asp-validation-for="PlantName" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="Address"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="Address" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="Address2"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="Address2" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="Address2" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="City"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="City" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="City" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="State"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly asp-for="State" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="State" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="ZipCode"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="ZipCode" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="ZipCode" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="County"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="County" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="County" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="Phone1">Phone (Business)</label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="Phone1" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="Phone1" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th><label class="sectionLabel" style="width:500px;"></label><h3>Plant Manager Information</h3></th>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="PlantManager"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="PlantManager" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="PlantManager" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="PlantManagerEmail"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="PlantManagerEmail" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="PlantManagerEmail" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="Phone2">Cell Phone</label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="Phone2" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="Phone2" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <label class="titleLabel" asp-for="PlantManagerTxtNum"></label>
-                                        </td>
-                                        <td>
-                                            <input readonly  asp-for="PlantManagerTxtNum" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="PlantManagerTxtNum" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <hr class="vertical-space3">
+                    <div class="col-md-6">
                         <table>
                             <tbody>
                                 <tr>
-                                    <td colspan="4"><label class="sectionLabel"><h3>Employees Assigned</h3></label></td>
+                                    <th><label class="sectionLabel" style="width:250px;"></label><h3>Plant Information</h3></th>
                                 </tr>
-                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                                    <th scope="col"><a href="#" style="color:White;">Name</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">Phone</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">Title</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">&nbsp;</a></th>
-                                </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:10%;">Chip  Moeller</td>
-                                    <td style="width:10%;">(319) 610-5010</td>
-                                    <td style="width:10%;">Manager</td>
-                                    <td style="width:10%;">
-                                        <a class="btn btn-primary" href="/wilbert/FuneralHomes/Edit/19">Edit</a>
-                                        <a class="btn btn-danger" href="/wilbert/FuneralHomes/Delete/19">Delete</a>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="PlantName"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="PlantName" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="PlantName" class="text-danger"></span>
                                     </td>
                                 </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:10%;">Allen Wilson</td>
-                                    <td style="width:10%;">(319) 504-4676</td>
-                                    <td style="width:10%;">Driver</td>
-                                    <td style="width:10%;">
-                                        <a class="btn btn-primary" href="/wilbert/FuneralHomes/Edit/19">Edit</a>
-                                        <a class="btn btn-danger" href="/wilbert/FuneralHomes/Delete/19">Delete</a>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Address"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Address" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="Address" class="text-danger"></span>
                                     </td>
                                 </tr>
-                                <tr style="color:#333333;background-color:#ECECEC;">
-                                    <td style="width:10%;">Troy Niedert</td>
-                                    <td style="width:10%;">(319) 239-5476</td>
-                                    <td style="width:10%;">Driver</td>
-                                    <td style="width:10%;">
-                                        <a class="btn btn-primary" href="/wilbert/FuneralHomes/Edit/19">Edit</a>
-                                        <a class="btn btn-danger" href="/wilbert/FuneralHomes/Delete/19">Delete</a>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Address2"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Address2" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="Address2" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="City"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="City" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="State"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="State" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="ZipCode"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="ZipCode" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="County"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="County" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="County" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Phone1">Phone (Business)</label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Phone1" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="Phone1" class="text-danger"></span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th><label class="sectionLabel" style="width:500px;"></label><h3>Plant Manager Information</h3></th>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="PlantManager"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="PlantManager" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="PlantManager" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="PlantManagerEmail"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="PlantManagerEmail" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="PlantManagerEmail" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="Phone2">Cell Phone</label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Phone2" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="Phone2" class="text-danger"></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label class="titleLabel" asp-for="PlantManagerTxtNum"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="PlantManagerTxtNum" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                        <span asp-validation-for="PlantManagerTxtNum" class="text-danger"></span>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        @*<div>
-                            <table>
-                                <tr align="left">
-                                    <td>
-                                        <a asp-action="Create" asp-controller="Trucks" asp-route-id="@Model.PlantId" class="btn btn-primary">ADD CONTACTS</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>*@
-                        <hr class="vertical-space2">
-                        <a class="btn btn-primary" href="#">Add New Employee</a>
-                        <hr class="vertical-space2">
-                        @await Component.InvokeAsync("Trucks", Model.PlantId)
-                        <br />
-
-
-                        <hr class="vertical-space2">
                     </div>
+
+                </div>
+                <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+                @await Component.InvokeAsync("Employee", Model.PlantId)
+                <br />
+                <div>
+                    <table>
+                        <tr align="left">
+                            <td>
+                                <a asp-action="Create" asp-controller="Employees" asp-route-id="@Model.PlantId" class="btn btn-primary">ADD EMPLOYEE</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+                @await Component.InvokeAsync("Trucks", Model.PlantId)
+                <br />
+                <div>
+                    <table>
+                        <tr align="left">
+                            <td>
+                                <a asp-action="Create" asp-controller="Trucks" asp-route-id="@Model.PlantId" class="btn btn-primary">ADD TRUCK</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
