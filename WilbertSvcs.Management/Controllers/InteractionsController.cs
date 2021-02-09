@@ -33,12 +33,19 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+
             var interaction = await _context.Interactions
                 .FirstOrDefaultAsync(m => m.InteractionId == id);
             if (interaction == null)
             {
                 return NotFound();
             }
+
+            interaction.Answers = new List<CompletedVm>
+            {
+                new CompletedVm {Id = 1 , Answer= "Yes"},
+                new CompletedVm {Id = 2 , Answer= "No"}
+            };
 
             return View(interaction);
         }
@@ -56,6 +63,13 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
 
             Interaction fhi = new Interaction();
+
+            fhi.Answers = new List<CompletedVm>
+            {
+                new CompletedVm {Id = 1 , Answer= "Yes"},
+                new CompletedVm {Id = 2 , Answer= "No"}
+            };
+
             fhi.fhName = funeralhome.Name;
             fhi.Date = DateTime.Now;
             fhi.FollowUpDate = DateTime.Now;
@@ -69,10 +83,15 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InteractionId,Date,Nature,Notes,FollowUpDate,Reason,Completed,Outcome,FuneralHomeId")] Interaction interaction)
+        public async Task<IActionResult> Create([Bind("InteractionId,Date,Nature,Notes,FollowUpDate,Reason,Completed,Outcome,FuneralHomeId,SelectedAnswer")] Interaction interaction)
         {
             if (ModelState.IsValid)
             {
+                if (interaction.SelectedAnswer == 1)
+                    interaction.Completed = "Yes";
+                else
+                    interaction.Completed = "No";
+
                 _context.Add(interaction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "FuneralHomes", new { Id = interaction.FuneralHomeId });
@@ -93,6 +112,13 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+            interaction.Answers = new List<CompletedVm>
+            {
+                new CompletedVm {Id = 1 , Answer= "Yes"},
+                new CompletedVm {Id = 2 , Answer= "No"}
+            };
+
             return View(interaction);
         }
 
@@ -101,15 +127,20 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InteractionId,Date,Nature,Notes,FollowUpDate,Reason,Completed,Outcome,FuneralHomeId")] Interaction interaction)
+        public async Task<IActionResult> Edit(int id, [Bind("InteractionId,Date,Nature,Notes,FollowUpDate,Reason,Completed,Outcome,FuneralHomeId,SelectedAnswer")] Interaction interaction)
         {
-            if (id != interaction.InteractionId)
+            if (id != interaction.InteractionId) 
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                if (interaction.SelectedAnswer == 1)
+                    interaction.Completed = "Yes";
+                else
+                    interaction.Completed = "No";
+
                 try
                 {
                     _context.Update(interaction);
@@ -145,6 +176,12 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+            interaction.Answers = new List<CompletedVm>
+            {
+                new CompletedVm {Id = 1 , Answer= "Yes"},
+                new CompletedVm {Id = 1 , Answer= "No"}
+            };
 
             interaction.Nature = Enum.GetName(typeof(InteractionNature), Int32.Parse(interaction.Nature)) == "Choose" ? "" : Enum.GetName(typeof(InteractionNature), Int32.Parse(interaction.Nature));
 

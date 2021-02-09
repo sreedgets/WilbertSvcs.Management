@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210208214937_chgBool2StringCompletedInteraction")]
+    partial class chgBool2StringCompletedInteraction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,9 +165,6 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.Property<int>("PlantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SelectedAnswer")
                         .HasColumnType("int");
 
                     b.Property<string>("State")
@@ -375,9 +374,6 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.Property<string>("Reason")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SelectedAnswer")
-                        .HasColumnType("int");
 
                     b.Property<string>("fhName")
                         .HasColumnType("nvarchar(max)");

@@ -35,6 +35,8 @@ namespace WilbertVaultCompany.api.Models
         public string Email { get; set; }
         public string Spouse { get; set; }
         public bool ShowPrices { get; set; }
+
+        [Display(Name = "Contact Role")]
         public string ContactRole { get; set; }
         public string Interests { get; set; }
         public byte[] Photo { get; set; }

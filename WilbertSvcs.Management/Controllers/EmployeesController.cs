@@ -58,10 +58,10 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            employee.Answers = new List<AnswerVm>
+            employee.Answers = new List<ActiveVm>
                     {
-                        new AnswerVm {Id = 1, Answer= "Yes"},
-                        new AnswerVm {Id = 2, Answer= "No"}
+                        new ActiveVm {Id = 1, Answer= "Yes"},
+                        new ActiveVm {Id = 2, Answer= "No"}
                     };
 
             employee.State = Enum.GetName(typeof(States), Int32.Parse(employee.State));
@@ -75,10 +75,10 @@ namespace WilbertSvcs.Management.Controllers
         public IActionResult Create()
         {
             var emp = new Employee();
-            emp.Answers = new List<AnswerVm>
+            emp.Answers = new List<ActiveVm>
                     {
-                        new AnswerVm {Id = 1, Answer= "Yes"},
-                        new AnswerVm {Id = 2, Answer= "No"}
+                        new ActiveVm {Id = 1, Answer= "Yes"},
+                        new ActiveVm {Id = 2, Answer= "No"}
                     };
 
             List<Plant> lstPlants = _context.Plants.ToList();
@@ -133,10 +133,10 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var emp = await _context.Employee.FindAsync(id);
-            emp.Answers = new List<AnswerVm>
+            emp.Answers = new List<ActiveVm>
                     {
-                        new AnswerVm {Id = 1, Answer= "Yes"},
-                        new AnswerVm {Id = 2, Answer= "No"}
+                        new ActiveVm {Id = 1, Answer= "Yes"},
+                        new ActiveVm {Id = 2, Answer= "No"}
                     };
 
             List<Plant> lstPlants = _context.Plants.ToList();
@@ -217,10 +217,10 @@ namespace WilbertSvcs.Management.Controllers
                 .Include(e => e.PlantEmployee)
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
 
-            employee.Answers = new List<AnswerVm>
+            employee.Answers = new List<ActiveVm>
                     {
-                        new AnswerVm {Id = 1, Answer= "Yes"},
-                        new AnswerVm {Id = 2, Answer= "No"}
+                        new ActiveVm {Id = 1, Answer= "Yes"},
+                        new ActiveVm {Id = 2, Answer= "No"}
                     };
 
             if (employee == null)

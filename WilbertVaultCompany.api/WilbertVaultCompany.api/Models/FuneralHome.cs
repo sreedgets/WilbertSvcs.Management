@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -18,6 +19,9 @@ namespace WilbertVaultCompany.api.Models
         public int FuneralHomeId { get; set; }
         [Display(Name = "Parent Funeral Home")]
         public int? ParentFuneralHomeId { get; set; }
+
+        [NotMapped]
+        public string SearchTerm { get; set; }
 
         [Display(Name = "Plant")]
         public int? PlantId { get; set; }

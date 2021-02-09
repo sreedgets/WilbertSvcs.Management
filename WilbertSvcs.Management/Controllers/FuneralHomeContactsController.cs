@@ -191,7 +191,7 @@ namespace WilbertSvcs.Management.Controllers
             var funeralHomeContact = await _context.FuneralHomeContacts.FindAsync(id);
             _context.FuneralHomeContacts.Remove(funeralHomeContact);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "FuneralHomes", new { Id = funeralHomeContact.FuneralHomeId });
         }
 
         private bool FuneralHomeContactExists(int id)

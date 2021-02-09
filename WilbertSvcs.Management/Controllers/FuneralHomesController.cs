@@ -9,9 +9,11 @@ using WilbertSvcs.Management.PageControls;
 using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 using WilbertVaultCompany.api.Controllers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WilbertSvcs.Management.Controllers
 {
+    [Authorize(Roles = "Franchise Owner, Office / Admin, Sales, Franchise Manager, Owner / Funeral Director, Admin, Funeral Director, Superuser, Owner, Driver, Plant Manager")]
     public class FuneralHomesController : Controller
     {
         private readonly wilbertdbContext _context;
@@ -22,9 +24,30 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: FuneralHomes
-        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber, string Fhsearch)
         {
+
+            int pageSize = 25;
+
+            ViewData["GetFuneralHomeSearched"] = Fhsearch;
             ViewData["CurrentSort"] = sortOrder;
+
+            var funeralHomeQuery = from x in _context.FuneralHomes select x;
+            if (!String.IsNullOrEmpty(Fhsearch))
+            {
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                funeralHomeQuery = funeralHomeQuery.Where(n => n.Name.Contains(Fhsearch));
+                return View(await PaginatedList<FuneralHome>.CreateAsync(funeralHomeQuery, pageNumber ?? 1, pageSize));
+            }
+
 
             if (searchString != null)
             {
@@ -35,14 +58,12 @@ namespace WilbertSvcs.Management.Controllers
                 searchString = currentFilter;
             }
 
-            int pageSize = 25;
-       
             FuneralHomesAPIController fhctrl = new FuneralHomesAPIController(_context);
             var fhList = await fhctrl.GetFuneralHomes();
             return View(await PaginatedList<FuneralHome>.CreateAsync(fhList, pageNumber ?? 1, pageSize));
         }
 
-    
+
 
         // GET: FuneralHomes/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -55,7 +76,7 @@ namespace WilbertSvcs.Management.Controllers
             FuneralHomesAPIController fhctrl = new FuneralHomesAPIController(_context);
 
             var funeralHome = await fhctrl.GetFuneralHome((int)id);
-          
+
             if (funeralHome == null)
             {
                 return NotFound();
@@ -65,6 +86,7 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: FuneralHomes/Create
+        [Authorize(Roles = "ADMIN, Superuser")]
         public IActionResult Create()
         {
             var fh = new FuneralHome();
@@ -95,6 +117,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ADMIN, Superuser")]
         public async Task<IActionResult> Create([Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,Address2,City,State,ZipCode,County,Email,Website,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
             if (ModelState.IsValid)
@@ -191,7 +214,7 @@ namespace WilbertSvcs.Management.Controllers
             if (id == 0)
             {
                 return NotFound();
-            }    
+            }
 
             if (ModelState.IsValid)
             {
@@ -249,6 +272,7 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: FuneralHomes/Delete/5
+        [Authorize(Roles = "ADMIN, Superuser")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

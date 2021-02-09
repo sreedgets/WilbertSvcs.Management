@@ -61,9 +61,14 @@
                                 <td><select asp-for="Reason" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<FollowUpReason>()"></select></td>
 
                                 <td>
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" asp-for="Completed" /> @Html.DisplayNameFor(model => model.Completed)
-                                    </label>
+                                    <label class="titleLabel" asp-for="Completed"></label>
+                                </td>
+                                <td>
+                                    @foreach (var item in Model.Answers)
+                                    {
+                                        <input asp-for="SelectedAnswer" type="radio" value="@item.Id" /> @item.Answer
+                                    }
+                                    <span asp-validation-for="Completed" class="text-danger"></span>
                                 </td>
                             </tr>
                             <tr style="color:#333333;background-color:#FFFFFF;">

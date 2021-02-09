@@ -44,7 +44,15 @@
                         <div class="card mb-4 shadow-sm">
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/orders.svg" alt="Card image cap"></div>
                             <div class="card-body">
-                                <h3>Orders</h3>
+                                <h3>New Orders</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/orders.svg" alt="Card image cap"></div>
+                            <div class="card-body">
+                                <h3>Current Orders</h3>
                             </div>
                         </div>
                     </div>
@@ -60,9 +68,26 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/deliveries.svg" alt="Card image cap"></div>
+                            <div class="card-body">
+                                <h3>Delivery List</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
                             <div style="background:#00446a"><img class="card-img-top" src="~/images/schedule.svg" alt="Card image cap"></div>
                             <div class="card-body">
                                 <h3>Schedule</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <div style="background:#00446a"><img class="card-img-top" src="~/images/review.svg" alt="Card image cap"></div>
+                            <div class="card-body">
+                                <h3>Office Review</h3>
                             </div>
                         </div>
                     </div>
@@ -74,28 +99,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <div style="background:#00446a"><img class="card-img-top" src="~/images/deliveries.svg" alt="Card image cap"></div>
-                            <div class="card-body">
-                                <h3>Delivery List</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <div style="background:#00446a"><img class="card-img-top" src="~/images/review.svg" alt="Card image cap"></div>
-                            <div class="card-body">
-                                <h3>Office Review</h3>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
                             <a asp-action="Index" asp-controller="Plants">
                                 <div style="background:#00446a"><img class="card-img-top" src="~/images/plants.svg" alt="Card image cap"></div>
                                 <div class="card-body">
                                     <h3>Plants</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <a asp-action="Index" asp-controller="Trucks">
+                                <div style="background:#00446a"><img class="card-img-top" src="~/images/trucks.svg" alt="Card image cap"></div>
+                                <div class="card-body">
+                                    <h3>Trucks</h3>
                                 </div>
                             </a>
                         </div>
@@ -111,6 +131,16 @@
                         </div>
                     </div>
                     <div class="col-md-4">
+                        <a href="reports.html">
+                            <div class="card mb-4 shadow-sm">
+                                <div style="background:#00446a"><img class="card-img-top" src="~/images/reports.svg" alt="Card image cap"></div>
+                                <div class="card-body">
+                                    <h3>Reports</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
                             <a asp-action="Index" asp-controller="Products">
                                 <div style="background:#00446a"><img class="card-img-top" src="~/images/inventory.svg" alt="Card image cap"></div>
@@ -120,16 +150,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <a asp-action="Index" asp-controller="Trucks">
-                                <div style="background:#00446a"><img class="card-img-top" src="~/images/trucks.svg" alt="Card image cap"></div>
-                                <div class="card-body">
-                                    <h3>Trucks</h3>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+
                     @if (superAdmin || franchiseAdmin)
                     {
                         <div class="col-md-4">
@@ -153,6 +174,16 @@
                                 <h3>Change Password</h3>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="exit.html">
+                            <div class="card mb-4 shadow-sm">
+                                <div style="background:#00446a"><img class="card-img-top" src="~/images/exit.svg" alt="Card image cap"></div>
+                                <div class="card-body">
+                                    <h3>Exit</h3>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

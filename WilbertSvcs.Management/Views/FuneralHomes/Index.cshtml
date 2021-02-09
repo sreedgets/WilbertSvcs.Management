@@ -35,6 +35,15 @@
                                 <a asp-action="Dashboard" asp-controller="Home" class="btn btn-primary">BACK TO DASHBOARD</a>
                             </div>
                         </div>
+                        <br />
+                        <form method="get" asp-action="Index" >
+                            <div class="input-group">
+                              <input class="form-control" type="search" placeholder="Enter funeral home name..." value="@ViewData["GetFuneralHomeSearched"]" name="Fhsearch"/>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search Funeral Home</button>
+                                </div>
+                            </div>
+                        </form>
                         <!--Page Actions -->
                         <br />
                         <br />
@@ -45,19 +54,19 @@
                                     <th scope="col"><a href="#" style="color:White;">City</a></th>
                                     <th scope="col"><a href="#" style="color:White;">State</a></th>
                                     <th scope="col"><a style="color:White;">Phone</a></th>
-                                    <th scope="col"><a href="#" style="color:White;">Parent Funeral Home</a></th>
+                                    @*<th scope="col"><a href="#" style="color:White;">Parent Funeral Home</a></th>*@
                                     <th scope="col"><a href="#" style="color:White;">Plant</a></th>
                                     <th></th>
                                     <th></th>
                                 </tr>
-                                @foreach (var item in Model.Take(10))
+                                @foreach (var item in Model)
                                 {
                                     <tr style="color:#333333;background-color:#ECECEC;">
                                         <td style="width:30%;"><a asp-action="Details" asp-route-id="@item.FuneralHomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
                                         <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.City)</span></td>
                                         <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.State)</span></td>
                                         <td style="width:10%;">@Html.DisplayFor(modelItem => item.Phone1)</td>
-                                        <td style="width:18%;">@Html.DisplayFor(modelItem => item.ParentName)</td>
+                                        @*<td style="width:18%;">@Html.DisplayFor(modelItem => item.ParentName)</td>*@
                                         <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.PlantName)</span></td>
                                         <td style="width:10%;">
                                             <span><a asp-action="Edit" asp-route-id="@item.FuneralHomeId" class="btn btn-secondary">Edit</a></span>

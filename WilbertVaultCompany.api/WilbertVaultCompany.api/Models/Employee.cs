@@ -34,22 +34,25 @@ namespace WilbertVaultCompany.api.Models
         public string PhoneType1 { get; set; }
         public string Email { get; set; }
         [Display(Name = "Employee Active")]
-        public string Active { get; set; }        
+        
         public byte[] PhotoImage { get; set; }
-
-        public IEnumerable<AnswerVm> Answers { set; get; }
-        public int SelectedAnswer { set; get; }
-
-       
+               
         /********************************************************************/
-        [NotMapped]
-        public List<Plant> Plants { get; set; }
 
-        /**********************************************************************/
+        [NotMapped]
+        public List<Plant> Plants { get; set; }        
         public int PlantId { get; set; }
         public virtual Plant PlantEmployee { get; set; }
+
+        /*********************************************************************/
+        public IEnumerable<ActiveVm> Answers { set; get; }
+        
+     
+        public int SelectedAnswer { set; get; }
+
+        public string Active { get; set; }
     }
-    public class AnswerVm
+    public class ActiveVm
     {
         public int Id { set; get; }
         public string Answer { set; get; }
