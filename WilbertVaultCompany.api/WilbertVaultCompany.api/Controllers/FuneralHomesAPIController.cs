@@ -26,9 +26,9 @@ namespace WilbertVaultCompany.api.Controllers
         public async Task<IQueryable<FuneralHome>> GetFuneralHomes()
         {
             //Get list of funeral homes
-            IQueryable<FuneralHome> fhList = from fh in _context.FuneralHomes
+            IQueryable<FuneralHome> fhList = from fh in _context.FuneralHomes orderby fh.Name
                                              select fh;
-
+            _context.Database.CloseConnection();
             //Iterate through each item in the list
             foreach (var item in fhList)
             {
