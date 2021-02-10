@@ -1,6 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
+
 .bg-dark {
     background-color: #00446a!important;
 }
 #fhl .text-center, #fhd .text-center {
     text-align: left !important;
+}
+
+th, td {
+    padding: 5px;
+}
+
+ body, button, input[type=email], input[type=password], input[type=tel], input[type=text], input[type=submit], input[type=reset], input[type=button], select, span.date_label, textarea {
+    font-family: Roboto,sans-serif;
+    font-weight: 300;
+    font-size: 120%;
+    line-height: 1.3em;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
