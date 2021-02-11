@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,9 +16,11 @@ namespace WilbertVaultCompany.api.Models
    
         [Display(Name = "Acquisition Date")]
         public DateTime AcquisitionDate { get; set; }
-               
+
+        [Display(Name = "Driver Name")]
         public int? DriverEmployeeId { get; set; }
 
+        [Display(Name = "Driver Name")]
         public string DriverName { get; set; }
 
         public string Make { get; set; }
@@ -48,13 +51,23 @@ namespace WilbertVaultCompany.api.Models
         [Display(Name = "Vehicle Inactive?")]
         public bool Inactive { get; set; }
 
-        [Display(Name = "Reason inactove")]
+        [Display(Name = "Reason inactive")]
         public string InactiveReason { get; set; }
 
         [NotMapped]
         public  List<Plant> Plants { get; set; }
 
+        [NotMapped]
+        public List<Employee> Drivers { get; set; }
 
+        //[NotMapped]
+        //public IEnumerable<SelectListItem> DriverListItems
+        //{
+        //    get
+        //    {
+        //        return new SelectList(Drivers, "EmployeeId", "FirstName");
+        //    }
+        //}
         /********************************************************************/
 
         [Range(1, 999, ErrorMessage = "Please select a plant")]

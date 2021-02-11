@@ -112,19 +112,20 @@
                                             <label asp-for="PlantId">Assigned Plant</label>
                                         </td>
                                         <td>
-                                            <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">Assigned Plant
+                                            <select asp-for="PlantId" class="form-control" asp-items="@(new SelectList(Model.Plants,"PlantId","PlantName"))">
+                                                Assigned Plant
                                             </select>
                                             <span asp-validation-for="PlantId" class="text-danger"></span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label class="titleLabel" asp-for="Type"></label>
+                                            <label asp-for="DriverEmployeeId"></label>
                                         </td>
                                         <td>
-                                            <input asp-for="Type" maxlength="100" tabindex="1" style="width:300px;" />
-
-                                            <span asp-validation-for="Type" class="text-danger"></span>
+                                            <select asp-for="DriverEmployeeId" class="form-control" asp-items="@(new SelectList(Model.Drivers,"EmployeeId","FirstName"))">
+                                            </select>
+                                            <span asp-validation-for="DriverEmployeeId" class="text-danger"></span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -153,6 +154,16 @@
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
+                                    </tr>
+                                      <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Type"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Type" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Type" class="text-danger"></span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>

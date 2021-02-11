@@ -77,6 +77,26 @@ namespace WilbertSvcs.Management.Controllers
                 });
             }
 
+            /********************************************************************************/
+
+            List<Employee> lstEmp = (from e in _context.Employee
+                                     where e.PlantId == tr.PlantId
+                                     select e).ToList();
+
+            tr.Drivers = new List<Employee>();
+            tr.Drivers.Add(new Employee()
+            {
+                FirstName = "-Select-",
+                EmployeeId = 0
+            });
+            foreach (var item in lstEmp)
+            {
+                tr.Drivers.Add(new Employee()
+                {
+                    FirstName = item.FirstName + " " + item.LastName,
+                    EmployeeId = item.EmployeeId
+                });
+            }
             return View(tr);
         }
 
@@ -85,7 +105,7 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TruckId,AcquisitionDate,PlantId,DriverEmployeeId,Make,Model,Year,Type,RegCounty,Vin,Tonnage,LicPlateRenewal,RegFee,TruckNumber,Inactive,InactiveReason")] Truck truck)
+        public async Task<IActionResult> Create([Bind("TruckId,AcquisitionDate,PlantId,DriverEmployeeId,DriverName,Make,Model,Year,Type,RegCounty,Vin,Tonnage,LicPlateRenewal,RegFee,TruckNumber,Inactive,InactiveReason")] Truck truck)
         {
             if (ModelState.IsValid)
             {
@@ -93,6 +113,13 @@ namespace WilbertSvcs.Management.Controllers
                 plant = await _context.Plants.FindAsync(truck.PlantId);
                 truck.AssignedPlant = new Plant();
                 truck.AssignedPlant = plant;
+
+                Employee e = new Employee();
+                e = await _context.Employee.FindAsync(truck.DriverEmployeeId);
+
+                if (e.FirstName != null)
+                    truck.DriverName = e.FirstName + " " + e.LastName;
+
                 _context.Add(truck);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -108,39 +135,79 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var truck = await _context.Truck.FindAsync(id);
+            var tr = await _context.Truck.FindAsync(id);
+
+            if (tr == null)
+                return NotFound();
 
             List<Plant> lstPlants = _context.Plants.ToList();
-            truck.Plants = new List<Plant>();
-            truck.Plants.Add(new Plant()
+            tr.Plants = new List<Plant>();
+            tr.Plants.Add(new Plant()
             {
                 PlantName = "-Select-",
                 PlantId = 0
             });
             foreach (var item in lstPlants)
             {
-                truck.Plants.Add(new Plant()
+                tr.Plants.Add(new Plant()
                 {
                     PlantName = item.PlantName,
                     PlantId = item.PlantId
                 });
             }
 
-            if (truck == null)
+            /********************************************************************************/
+
+            //var tr = await _context.Truck.FindAsync(id);
+
+            List<Employee> lstEmp = (from e in _context.Employee
+                                     where e.PlantId == tr.PlantId
+                                     select e).ToList();
+
+            tr.Drivers = new List<Employee>();
+            tr.Drivers.Add(new Employee()
             {
-                return NotFound();
+                FirstName = "-Select-",
+                EmployeeId = 0
+            });
+            foreach (var item in lstEmp)
+            {
+                tr.Drivers.Add(new Employee()
+                {
+                    FirstName = item.FirstName + " " + item.LastName,
+                    EmployeeId = item.EmployeeId
+                });
             }
 
-
-            return View(truck);
+            return View(tr);
         }
 
+        /// <summary>  
+        /// This method will return PartialView with Employee Model  
+        /// </summary>  
+        /// <param name="EmployeeId"></param>  
+        /// <returns></returns>  
+        /// 
+        // GetEmployeeRecord
+        public async Task<PartialViewResult> GetDriversForPlant(string truckId, int PlantId)
+        {
+            var tr = await _context.Truck.FindAsync(truckId);
+            tr.Drivers = await _context.Employee.ToListAsync();
+            var driver = tr.Drivers.Where(e => e.PlantId == PlantId).FirstOrDefault();
+            
+            //Set default emp records  
+            tr.DriverEmployeeId = driver.EmployeeId;
+            driver.FirstName = driver.FirstName + " " + driver.LastName;
+            
+
+            return PartialView("_DriverListPartial", tr.Drivers);
+        }
         // POST: Trucks/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("TruckId,AcquisitionDate,PlantId,DriverEmployeeId,Make,Model,Year,Type,RegCounty,Vin,Tonnage,LicPlateRenewal,RegFee,TruckNumber,Inactive,InactiveReason")] Truck truck)
+        public async Task<IActionResult> Edit(string id, [Bind("TruckId,AcquisitionDate,PlantId,DriverEmployeeId,DriverName,Make,Model,Year,Type,RegCounty,Vin,Tonnage,LicPlateRenewal,RegFee,TruckNumber,Inactive,InactiveReason")] Truck truck)
         {
             if (id != truck.TruckId)
             {
@@ -155,6 +222,12 @@ namespace WilbertSvcs.Management.Controllers
                     plt = await _context.Plants.FindAsync(truck.PlantId);
                     truck.AssignedPlant = new Plant();
                     truck.AssignedPlant = plt;
+
+                    Employee e = new Employee();
+                    e = await _context.Employee.FindAsync(truck.DriverEmployeeId);
+                    if (e.FirstName != null)
+                        truck.DriverName = e.FirstName + " " + e.LastName;
+
                     _context.Update(truck);
                     await _context.SaveChangesAsync();
                 }

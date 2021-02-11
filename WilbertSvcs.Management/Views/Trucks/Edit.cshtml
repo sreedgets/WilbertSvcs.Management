@@ -122,14 +122,25 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label class="titleLabel" asp-for="Type"></label>
+                                            <label asp-for="DriverName"></label>
                                         </td>
                                         <td>
-                                            <input asp-for="Type" maxlength="100" tabindex="1" style="width:300px;" />
+                                            @*@Html.DropDownListFor(m => m.DriverEmployeeId, Model.DriverListItems, "-Select-", new
+                                                {
+                                                    Class = "ddlStyle",
+                                                id = "ddlEmployee"
+                                                })
+                                            <div>
+                                                @Html.PartialAsync("_DriverListPartial")
+                                            </div>*@
 
-                                            <span asp-validation-for="Type" class="text-danger"></span>
+
+                                            <select asp-for="DriverEmployeeId" class="form-control" asp-items="@(new SelectList(Model.Drivers,"EmployeeId","FirstName"))">
+                                            </select>
+                                            <span asp-validation-for="DriverEmployeeId" class="text-danger"></span>
                                         </td>
                                     </tr>
+
                                 </tbody>
                             </table>
 
@@ -156,6 +167,16 @@
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="titleLabel" asp-for="Type"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Type" maxlength="100" tabindex="1" style="width:300px;" />
+
+                                            <span asp-validation-for="Type" class="text-danger"></span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -200,7 +221,7 @@
                                 </tbody>
                             </table>
                             <hr class="vertical-space3">
-                         
+
                         </div>
                     </div>
                     <hr />
@@ -213,4 +234,26 @@
         </form>
     </center>
 </main>
+@section WilbertScripts {
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ddlEmployee").on("change", function () {
+                $.ajax(
+                    {
+                        url: '/Trucks/GetDriversForPlant?TruckId&EmployeeId=' + $(this).attr("value"),
+                        type: 'GET',
+                        data: "",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            $("#partialDiv").html(data);
+                        },
+                        error: function () {
+                            alert("error");
+                        }
+                    });
+            });
+        }); 
+    </script>
+}
+        
