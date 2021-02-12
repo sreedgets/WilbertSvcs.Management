@@ -49,9 +49,9 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            truck.AssignedPlant = await _context.Plants.FindAsync(truck.PlantId);
-            //funeralHome.State = Enum.GetName(typeof(States), Int32.Parse(funeralHome.State));
+            truck.AssignedPlant = await _context.Plants.FindAsync(truck.PlantId);            
             truck.LicPlateRenewal = Enum.GetName(typeof(LicDue), Int32.Parse(truck.LicPlateRenewal));
+
             return View(truck);
         }
 
@@ -128,14 +128,14 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: Trucks/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string id) // Id is license plate of Truck
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tr = await _context.Truck.FindAsync(id);
+            var tr = await _context.Truck.FindAsync(id); // "BR 549" - Thank you Junior Samples!
 
             if (tr == null)
                 return NotFound();
@@ -158,10 +158,8 @@ namespace WilbertSvcs.Management.Controllers
 
             /********************************************************************************/
 
-            //var tr = await _context.Truck.FindAsync(id);
-
             List<Employee> lstEmp = (from e in _context.Employee
-                                     where e.PlantId == tr.PlantId
+                                     where e.PlantId == tr.PlantId  && e.Title == "3"
                                      select e).ToList();
 
             tr.Drivers = new List<Employee>();
@@ -185,22 +183,16 @@ namespace WilbertSvcs.Management.Controllers
         /// <summary>  
         /// This method will return PartialView with Employee Model  
         /// </summary>  
-        /// <param name="EmployeeId"></param>  
+        /// <param name="PlantId"></param>  
         /// <returns></returns>  
         /// 
         // GetEmployeeRecord
-        public async Task<PartialViewResult> GetDriversForPlant(string truckId, int PlantId)
+        public PartialViewResult GetDriversForPlant(int PlantId)
         {
-            var tr = await _context.Truck.FindAsync(truckId);
-            tr.Drivers = await _context.Employee.ToListAsync();
-            var driver = tr.Drivers.Where(e => e.PlantId == PlantId).FirstOrDefault();
+            Truck truck = new Truck();
+            truck.Drivers = _context.Employee.Where(e => e.Title == "3" && e.PlantId == PlantId).ToList();
             
-            //Set default emp records  
-            tr.DriverEmployeeId = driver.EmployeeId;
-            driver.FirstName = driver.FirstName + " " + driver.LastName;
-            
-
-            return PartialView("_DriverListPartial", tr.Drivers);
+            return PartialView("_DriverListPartial", truck);
         }
         // POST: Trucks/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -225,7 +217,7 @@ namespace WilbertSvcs.Management.Controllers
 
                     Employee e = new Employee();
                     e = await _context.Employee.FindAsync(truck.DriverEmployeeId);
-                    if (e.FirstName != null)
+                    if (e != null)
                         truck.DriverName = e.FirstName + " " + e.LastName;
 
                     _context.Update(truck);
@@ -261,7 +253,10 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+            truck.AssignedPlant = await _context.Plants.FindAsync(truck.PlantId);
             truck.LicPlateRenewal = Enum.GetName(typeof(LicDue), Int32.Parse(truck.LicPlateRenewal));
+
             return View(truck);
         }
 

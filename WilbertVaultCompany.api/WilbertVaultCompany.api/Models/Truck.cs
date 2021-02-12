@@ -60,14 +60,6 @@ namespace WilbertVaultCompany.api.Models
         [NotMapped]
         public List<Employee> Drivers { get; set; }
 
-        //[NotMapped]
-        //public IEnumerable<SelectListItem> DriverListItems
-        //{
-        //    get
-        //    {
-        //        return new SelectList(Drivers, "EmployeeId", "FirstName");
-        //    }
-        //}
         /********************************************************************/
 
         [Range(1, 999, ErrorMessage = "Please select a plant")]
