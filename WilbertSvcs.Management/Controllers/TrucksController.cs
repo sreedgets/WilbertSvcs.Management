@@ -215,13 +215,22 @@ namespace WilbertSvcs.Management.Controllers
                     truck.AssignedPlant = new Plant();
                     truck.AssignedPlant = plt;
 
-                    Employee e = new Employee();
-                    e = await _context.Employee.FindAsync(truck.DriverEmployeeId);
-                    if (e != null)
-                        truck.DriverName = e.FirstName + " " + e.LastName;
+                    Employee emp = new Employee();
+                    emp = (from e in _context.Employee
+                           where e.EmployeeId == truck.DriverEmployeeId && e.PlantId == truck.PlantId select e).FirstOrDefault();
 
+                    if (emp != null)
+                        truck.DriverName = emp.FirstName + " " + emp.LastName;
+                    else
+                    {
+                        truck.DriverName = null;
+                        _context.Update(truck);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("Edit", "Trucks", new { Id = truck.TruckId });
+                    }
                     _context.Update(truck);
                     await _context.SaveChangesAsync();
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
