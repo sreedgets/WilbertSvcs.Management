@@ -40,6 +40,8 @@ namespace WilbertVaultCompany.api.Models
 
         public DbSet<WilbertProductCompany.api.Models.Product> Product { get; set; }
 
+        public DbSet<WilbertVaultCompany.api.Models.VaultOrder> VaultOrder { get; set; }
+
     }
 }
 

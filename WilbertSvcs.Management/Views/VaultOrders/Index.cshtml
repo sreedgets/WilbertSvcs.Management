@@ -1,0 +1,173 @@
+﻿@model IEnumerable<WilbertVaultCompany.api.Models.VaultOrder>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FuneralDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuneralTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CemetaryTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderingPlant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveringPlant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuneralHome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NewFuneralHome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuneralDirector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NewFuneralDirector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CemetaryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VaultId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenetianCarapace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TentWith6Chairs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtraChairs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegisterStand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MilitarySetup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwningOverCasket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fdrequest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlantId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeceasedId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuneralDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuneralTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CemetaryTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderingPlant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveringPlant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuneralHome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewFuneralHome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuneralDirector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewFuneralDirector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CemetaryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaultId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VenetianCarapace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TentWith6Chairs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExtraChairs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisterStand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MilitarySetup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AwningOverCasket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fdrequest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlantId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeceasedId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.VaultOrderId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.VaultOrderId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.VaultOrderId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
