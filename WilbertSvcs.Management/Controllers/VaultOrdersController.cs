@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WilbertSvcs.Management.PageControls;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
@@ -19,9 +20,42 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: VaultOrders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber, string VOrdSearch)
         {
-            return View(await _context.VaultOrder.ToListAsync());
+            int pageSize = 25;
+
+            ViewData["GetVaultOrderSearched"] = VOrdSearch;
+            ViewData["CurrentSort"] = sortOrder;
+
+            var vaultOrderQuery = from x in _context.VaultOrder select x;
+            if (!String.IsNullOrEmpty(VOrdSearch))
+            {
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                vaultOrderQuery = vaultOrderQuery.Where(n => n.FH.Name.Contains(VOrdSearch));
+                return View(await PaginatedList<VaultOrder>.CreateAsync(vaultOrderQuery, pageNumber ?? 1, pageSize));
+            }
+
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var VOlist = await _context.VaultOrder.ToListAsync();
+
+            return View(await PaginatedList<VaultOrder>.CreateAsync(vaultOrderQuery, pageNumber ?? 1, pageSize));
         }
 
         // GET: VaultOrders/Details/5

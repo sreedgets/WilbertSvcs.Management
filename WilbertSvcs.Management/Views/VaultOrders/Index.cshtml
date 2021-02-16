@@ -1,173 +1,136 @@
-﻿@model IEnumerable<WilbertVaultCompany.api.Models.VaultOrder>
+﻿@model WilbertSvcs.Management.PageControls.PaginatedList<WilbertVaultCompany.api.Models.VaultOrder>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<head>
+    <title>Dashboard Template</title>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FuneralDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuneralTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CemetaryTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderingPlant)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeliveringPlant)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuneralHome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NewFuneralHome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuneralDirector)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NewFuneralDirector)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CemetaryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VaultId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VenetianCarapace)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TentWith6Chairs)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExtraChairs)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegisterStand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MilitarySetup)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AwningOverCasket)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fdrequest)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlantId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeceasedId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuneralDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuneralTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CemetaryTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderingPlant)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveringPlant)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuneralHome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NewFuneralHome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuneralDirector)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NewFuneralDirector)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CemetaryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VaultId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VenetianCarapace)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TentWith6Chairs)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExtraChairs)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegisterStand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MilitarySetup)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AwningOverCasket)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fdrequest)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlantId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeceasedId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.VaultOrderId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.VaultOrderId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.VaultOrderId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+@await Component.InvokeAsync("Dashboard")
+
+<!-- Begin page content -->
+<main role="main" id="fhl" class="container">
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <!--Page Actions -->
+                    <div class="container">
+                        <h1 class="py-5">Vault Orders List</h1>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a asp-action="Create" class="btn btn-primary">Add New Order</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a asp-action="Details" class="btn btn-primary">Order Search</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a asp-action="Dashboard" asp-controller="Home" class="btn btn-primary">Back to Dashboard</a>
+                            </div>
+                        </div>
+                        <br />
+                        <form method="get" asp-action="Index">
+                            <div class="input-group">
+                                <input class="form-control" type="search" placeholder="Order Search..." value="@ViewData["GetVaultOrderSearched"]" name="VOrdSearch" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search Vault Order</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!--Page Actions -->
+                        <br />
+                        <br />
+                        <table>
+                            <tbody>
+                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                    <th scope="col"><a href="#" style="color:White;">Order #</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Deceased Name</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Funeral Date/Time</a></th>
+                                    <th scope="col"><a style="color:White;">Cemetery</a></th>
+                                    <th scope="col"><a style="color:White;">Funeral Home</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">FH Director</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Plant</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Order Status</a></th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="color:#333333;background-color:#ECECEC;">
+                                        <td style="width:30%;"><a asp-action="Details" asp-route-id="@item.VaultOrderId">@Html.DisplayFor(modelItem => item.VaultOrderId)</a></td>
+                                        @*<td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.lstDecesased.FirstName) @Html.DisplayFor(modelItem => item.deceased.LastName)</span></td>*@
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.FuneralDate)</span></td>
+                                        <td style="width:10%;">@Html.DisplayFor(modelItem => item.CemetaryId)</td>    @*Add Cemetary Class*@
+                                        <td style="width:18%;">@Html.DisplayFor(modelItem => item.FH.Name)</td>     @*Add Funeral Home Class*@
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.FH.ContactName)</span></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.DeliveringPlant)</span></td> @*Add Plant Class*@
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Status)</span></td>
+                                        <td style="width:10%;">
+                                            <span><a asp-action="Edit" asp-route-id="@item.VaultOrderId" class="btn btn-secondary">Edit</a></span>
+                                        </td>
+                                        <td style="width:10%;">
+                                            <span><a asp-action="Delete" asp-route-id="@item.VaultOrderId" class="btn btn-danger">Delete</a></span>
+                                        </td>
+
+                                    </tr>
+                                }
+                                <tr style="color:#333333;background-color:#ECECEC;">
+                                    <td style="width:18%;"><a href="order-details.html">23759</a></td>
+                                    <td style="width:10%;"><span>John Doe</span></td>
+                                    <td style="width:10%;"><span>1/20/2021 - 10:00AM</span></td>
+                                    <td style="width:18%;">Elgin Cemetery Elgin</td>
+                                    <td style="width:18%;">Abels Funeral and Cremation Service</td>
+                                    <td style="width:10%;">Michael Ross</td>
+                                    <td style="width:10%;"><span>Waterloo</span></td>
+                                    <td style="width:10%;"><span>Entered</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</main>
+<main role="main" class="container">
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <div class="album py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="text-align:right;">
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-primary @prevDisabled">
+                        Previous
+                    </a>
+                </div>
+                <div class="col-md-6" style="text-align:left;">
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-primary @nextDisabled">
+                        Next
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+

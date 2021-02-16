@@ -42,6 +42,10 @@ namespace WilbertVaultCompany.api.Models
 
         public DbSet<WilbertVaultCompany.api.Models.VaultOrder> VaultOrder { get; set; }
 
+        public DbSet<WilbertVaultCompany.api.Models.Deceased> Deceased { get; set; }
+
+        public DbSet<WilbertVaultCompany.api.Models.Cemetary> Cemetary { get; set; }
+
     }
 }
 

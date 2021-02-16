@@ -50,10 +50,12 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <div style="background:#00446a"><img class="card-img-top" src="~/images/orders.svg" alt="Card image cap"></div>
-                            <div class="card-body">
-                                <h3>Current Orders</h3>
-                            </div>
+                            <a asp-action="Index" asp-controller="VaultOrders">
+                                <div style="background:#00446a"><img class="card-img-top" src="~/images/orders.svg" alt="Card image cap"></div>
+                                <div class="card-body">
+                                    <h3>Current Orders</h3>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4">

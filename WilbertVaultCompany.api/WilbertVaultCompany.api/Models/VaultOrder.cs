@@ -11,15 +11,21 @@ namespace WilbertVaultCompany.api.Models
         public DateTime FuneralDate { get; set; }
         public DateTime FuneralTime { get; set; }
         public DateTime CemetaryTime { get; set; }
-        public int Location { get; set; }
-        public string OrderingPlant { get; set; }
-        public string DeliveringPlant { get; set; }
-        public string FuneralHome { get; set; }
+        public string Location { get; set; }
+        public string GraveLocation { get; set; }
+        public virtual ICollection<Plant> OrderingPlant { get; set; }
+
+        public virtual ICollection<Plant> DeliveringPlant { get; set; }
+
+        public string ZipCode { get; set; }
+        
+        public FuneralHome FH { get; set; }
+        public virtual ICollection<FuneralHome> FuneralHomes { get; set; }
         public string NewFuneralHome { get; set; }
         public string FuneralDirector { get; set; }
         public string NewFuneralDirector { get; set; }
         public int CemetaryId { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
         public int Category { get; set; }
         public int? VaultId { get; set; }
         public int VenetianCarapace { get; set; }
@@ -31,6 +37,7 @@ namespace WilbertVaultCompany.api.Models
         public string Fdrequest { get; set; }
         public string Notes { get; set; }
         public int? PlantId { get; set; }
-        public int DeceasedId { get; set; }
+        public virtual ICollection<Deceased> lstDecesased { get; set; }
+        public virtual ICollection<Cemetary> lstCemetaries { get; set; }
     }
 }

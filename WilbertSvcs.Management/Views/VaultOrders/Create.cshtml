@@ -1,148 +1,228 @@
 ﻿@model WilbertVaultCompany.api.Models.VaultOrder
-
+@using WilbertVaultCompany.api.Enums
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-<h4>VaultOrder</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FuneralDate" class="control-label"></label>
-                <input asp-for="FuneralDate" class="form-control" />
-                <span asp-validation-for="FuneralDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FuneralTime" class="control-label"></label>
-                <input asp-for="FuneralTime" class="form-control" />
-                <span asp-validation-for="FuneralTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CemetaryTime" class="control-label"></label>
-                <input asp-for="CemetaryTime" class="form-control" />
-                <span asp-validation-for="CemetaryTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Location" class="control-label"></label>
-                <input asp-for="Location" class="form-control" />
-                <span asp-validation-for="Location" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrderingPlant" class="control-label"></label>
-                <input asp-for="OrderingPlant" class="form-control" />
-                <span asp-validation-for="OrderingPlant" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeliveringPlant" class="control-label"></label>
-                <input asp-for="DeliveringPlant" class="form-control" />
-                <span asp-validation-for="DeliveringPlant" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FuneralHome" class="control-label"></label>
-                <input asp-for="FuneralHome" class="form-control" />
-                <span asp-validation-for="FuneralHome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NewFuneralHome" class="control-label"></label>
-                <input asp-for="NewFuneralHome" class="form-control" />
-                <span asp-validation-for="NewFuneralHome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FuneralDirector" class="control-label"></label>
-                <input asp-for="FuneralDirector" class="form-control" />
-                <span asp-validation-for="FuneralDirector" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NewFuneralDirector" class="control-label"></label>
-                <input asp-for="NewFuneralDirector" class="form-control" />
-                <span asp-validation-for="NewFuneralDirector" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CemetaryId" class="control-label"></label>
-                <input asp-for="CemetaryId" class="form-control" />
-                <span asp-validation-for="CemetaryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VaultId" class="control-label"></label>
-                <input asp-for="VaultId" class="form-control" />
-                <span asp-validation-for="VaultId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VenetianCarapace" class="control-label"></label>
-                <input asp-for="VenetianCarapace" class="form-control" />
-                <span asp-validation-for="VenetianCarapace" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="TentWith6Chairs" /> @Html.DisplayNameFor(model => model.TentWith6Chairs)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExtraChairs" class="control-label"></label>
-                <input asp-for="ExtraChairs" class="form-control" />
-                <span asp-validation-for="ExtraChairs" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="RegisterStand" /> @Html.DisplayNameFor(model => model.RegisterStand)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="MilitarySetup" /> @Html.DisplayNameFor(model => model.MilitarySetup)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="AwningOverCasket" /> @Html.DisplayNameFor(model => model.AwningOverCasket)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fdrequest" class="control-label"></label>
-                <input asp-for="Fdrequest" class="form-control" />
-                <span asp-validation-for="Fdrequest" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control" />
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PlantId" class="control-label"></label>
-                <input asp-for="PlantId" class="form-control" />
-                <span asp-validation-for="PlantId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeceasedId" class="control-label"></label>
-                <input asp-for="DeceasedId" class="form-control" />
-                <span asp-validation-for="DeceasedId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+    <title>Login Template for Bootstrap</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" id="fhd" class="container">
+    <center>
+        <form asp-action="Create" method="post">
+            <div class="album py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th><label class="sectionLabel"></label><h3>Funeral Information</h3></th>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="Status"></label>
+                                        </td>
+                                        <td>
+                                            <select asp-for="Status" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<OrderStatus>()"></select>
+                                            <span asp-validation-for="Status" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="FuneralDate"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="FuneralDate" class="form-control" />
+                                            <span asp-validation-for="FuneralDate" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="CemetaryTime"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="CemetaryTime" class="form-control" />
+                                            <span asp-validation-for="CemetaryTime" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="Location"></label>
+                                        </td>
+                                        <td>
+                                            <select asp-for="Location" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<FuneralLocation>()"></select>
+                                            <span asp-validation-for="Location" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="OrderingPlant"></label>
+                                        </td>
+                                        <td>
+                                            <select asp-for="OrderingPlant" class="form-control" asp-items="@(new SelectList(Model.OrderingPlant,"PlantId","PlantName"))">
+                                            </select>
+                                            <span asp-validation-for="OrderingPlant" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="DeliveringPlant"></label>
+                                        </td>
+                                        <td>
+                                            <select asp-for="DeliveringPlant" class="form-control" asp-items="@(new SelectList(Model.DeliveringPlant,"PlantId","PlantName"))">
+                                            </select>
+                                            <span asp-validation-for="DeliveringPlant" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="ZipCode"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="ZipCode" class="form-control" />
+                                            <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="FuneralHomes"></label>
+                                        </td>
+                                        <td>
+                                            <select asp-for="FuneralHomes" class="form-control" asp-items="@(new SelectList(Model.FuneralHomes,"FuneralHomeId","Name"))">
+                                            </select>
+                                            <span asp-validation-for="FuneralHomes" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                          <td>
+                                            <label asp-for="FH.Contacts"></label>
+                                        </td>
+                                        <td>
+                                            <select asp-for="FH.Contacts" class="form-control" asp-items="@(new SelectList(Model.FH.Contacts,"FuneralHomeContactId","FullName"))">
+                                            </select>
+                                            <span asp-validation-for="FH.Contacts" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="lstCemetaries"></label>
+                                        </td>
+                                        <td>
+                                            <select asp-for="lstCemetaries" class="form-control" asp-items="@(new SelectList(Model.lstCemetaries,"CemetaryId","Name"))">
+                                            </select>
+                                            <span asp-validation-for="lstCemetaries" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="GraveLocation"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="GraveLocation" class="form-control" />
+                                            <span asp-validation-for="GraveLocation" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><label class="sectionLabel"></label><h3>Deceased Information</h3></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Deceased Salutation:</label></td>
+                                        <td><input type="text" maxlength="100" tabindex="1" value="" style="width:300px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">First Name:</label></td>
+                                        <td><input type="text" maxlength="100" tabindex="1" value="Irene" style="width:300px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Middle Name:</label></td>
+                                        <td><input type="text" maxlength="100" tabindex="1" value="Jane" style="width:300px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Last Name:</label></td>
+                                        <td><input type="text" maxlength="100" tabindex="1" value="Fredericksen" style="width:300px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Suffix:</label></td>
+                                        <td><input type="text" maxlength="100" tabindex="1" value="" style="width:300px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Born:</label></td>
+                                        <td><input type="text" maxlength="100" tabindex="1" value="1926" style="width:300px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Died:</label></td>
+                                        <td><input type="text" maxlength="100" tabindex="1" value="01/11/2021" style="width:300px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Full Name:</label></td>
+                                        <td><input type="text" maxlength="100" tabindex="1" value="Irene Fredericksen" style="width:300px;"></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <hr class="vertical-space3">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4"><label class="sectionLabel"><h3>Additional Notes</h3></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Order Notes:</label></td>
+                                        <td><textarea name="message" rows="3" cols="50">Donec vitae nunc ac tortor pretium sagittis. Quisque posuere nisl id pellentesque ultricies. Nulla facilisi. Phasellus euismod feugiat efficitur.</textarea></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    </tbody>
+                    </table>
+                </div>
+                    </div>
+                    <hr />
+                    <div>
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+    </center>
+</main>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
