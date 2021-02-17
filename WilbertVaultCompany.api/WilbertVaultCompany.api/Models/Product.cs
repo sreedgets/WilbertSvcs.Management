@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace WilbertProductCompany.api.Models
+namespace WilbertVaultCompany.api.Models
 {
     public partial class Product
     {

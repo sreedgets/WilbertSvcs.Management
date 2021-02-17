@@ -39,7 +39,7 @@ namespace WilbertSvcs.Management.Controllers
                     searchString = currentFilter;
                 }
 
-                vaultOrderQuery = vaultOrderQuery.Where(n => n.FH.Name.Contains(VOrdSearch));
+                vaultOrderQuery = vaultOrderQuery.Where(n => n.funeralhome.Name.Contains(VOrdSearch));
                 return View(await PaginatedList<VaultOrder>.CreateAsync(vaultOrderQuery, pageNumber ?? 1, pageSize));
             }
 

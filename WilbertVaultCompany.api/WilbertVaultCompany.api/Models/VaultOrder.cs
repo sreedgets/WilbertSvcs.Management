@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -9,17 +10,19 @@ namespace WilbertVaultCompany.api.Models
     {
         public int VaultOrderId { get; set; }
         public DateTime FuneralDate { get; set; }
-        public DateTime FuneralTime { get; set; }
         public DateTime CemetaryTime { get; set; }
         public string Location { get; set; }
-        public string GraveLocation { get; set; }
+        public string GraveLocationSection { get; set; }
         public virtual ICollection<Plant> OrderingPlant { get; set; }
 
         public virtual ICollection<Plant> DeliveringPlant { get; set; }
 
         public string ZipCode { get; set; }
-        
-        public FuneralHome FH { get; set; }
+
+        public int FuneralHomeId { get; set; }
+        public FuneralHome funeralhome { get; set; }
+
+        [NotMapped]
         public virtual ICollection<FuneralHome> FuneralHomes { get; set; }
         public string NewFuneralHome { get; set; }
         public string FuneralDirector { get; set; }
@@ -37,7 +40,9 @@ namespace WilbertVaultCompany.api.Models
         public string Fdrequest { get; set; }
         public string Notes { get; set; }
         public int? PlantId { get; set; }
-        public virtual ICollection<Deceased> lstDecesased { get; set; }
+        public int DeceasedId { get; set; }
+        public Deceased theDecesased { get; set; }
+        [NotMapped]
         public virtual ICollection<Cemetary> lstCemetaries { get; set; }
     }
 }

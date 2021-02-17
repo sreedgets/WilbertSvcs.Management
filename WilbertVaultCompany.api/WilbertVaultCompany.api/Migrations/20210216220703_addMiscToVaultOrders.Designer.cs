@@ -10,23 +10,23 @@ using WilbertVaultCompany.api.Models;
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    [Migration("20210205013001_addProduct")]
-    partial class addProduct
+    [Migration("20210216220703_addMiscToVaultOrders")]
+    partial class addMiscToVaultOrders
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AllowedToSelectId")
                         .HasColumnType("int");
@@ -61,8 +61,8 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductCategory")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductCategory")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductCode")
                         .HasColumnType("nvarchar(max)");
@@ -81,12 +81,12 @@ namespace WilbertVaultCompany.api.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.AnswerVm", b =>
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.ActiveVm", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Answer")
                         .HasColumnType("nvarchar(max)");
@@ -98,7 +98,105 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("AnswerVm");
+                    b.ToTable("ActiveVm");
+                });
+
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.Cemetary", b =>
+                {
+                    b.Property<int>("CemetaryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("County")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Directions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Lattitude")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Longitude")
+                        .HasColumnType("real");
+
+                    b.Property<byte[]>("Map")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("UseCoordinates")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("CemetaryId");
+
+                    b.ToTable("Cemetary");
+                });
+
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.CompletedVm", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("InteractionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InteractionId");
+
+                    b.ToTable("CompletedVm");
+                });
+
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.Deceased", b =>
+                {
+                    b.Property<int>("DeceasedId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BornDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Salutation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Suffix")
+                        .HasColumnType("int");
+
+                    b.HasKey("DeceasedId");
+
+                    b.ToTable("Deceased");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
@@ -106,7 +204,7 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Active")
                         .HasColumnType("nvarchar(max)");
@@ -171,7 +269,7 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("FuneralHomeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -261,7 +359,7 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("FuneralHomeContactId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ActiveTab")
                         .HasColumnType("int");
@@ -332,10 +430,10 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("InteractionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Completed")
-                        .HasColumnType("bit");
+                    b.Property<string>("Completed")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -358,6 +456,9 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("Reason")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SelectedAnswer")
+                        .HasColumnType("int");
+
                     b.Property<string>("fhName")
                         .HasColumnType("nvarchar(max)");
 
@@ -371,7 +472,7 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("FunralHomeFuneralHomeId")
                         .HasColumnType("int");
@@ -391,7 +492,7 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("PlantId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -441,12 +542,22 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("VaultOrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VaultOrderId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
                     b.HasKey("PlantId");
 
                     b.HasIndex("PlantNavigationFuneralHomeId");
+
+                    b.HasIndex("VaultOrderId");
+
+                    b.HasIndex("VaultOrderId1");
 
                     b.ToTable("Plants");
                 });
@@ -511,11 +622,98 @@ namespace WilbertVaultCompany.api.Migrations
                     b.ToTable("Truck");
                 });
 
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.AnswerVm", b =>
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.VaultOrder", b =>
+                {
+                    b.Property<int>("VaultOrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("AwningOverCasket")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CemetaryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CemetaryTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ExtraChairs")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Fdrequest")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FuneralDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FuneralDirector")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FuneralHomeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GraveLocationSection")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MilitarySetup")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NewFuneralDirector")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewFuneralHome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PlantId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("RegisterStand")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TentWith6Chairs")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("VaultId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VenetianCarapace")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("VaultOrderId");
+
+                    b.HasIndex("FuneralHomeId");
+
+                    b.ToTable("VaultOrder");
+                });
+
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.ActiveVm", b =>
                 {
                     b.HasOne("WilbertVaultCompany.api.Models.Employee", null)
                         .WithMany("Answers")
                         .HasForeignKey("EmployeeId");
+                });
+
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.CompletedVm", b =>
+                {
+                    b.HasOne("WilbertVaultCompany.api.Models.Interaction", null)
+                        .WithMany("Answers")
+                        .HasForeignKey("InteractionId");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
@@ -553,6 +751,14 @@ namespace WilbertVaultCompany.api.Migrations
                         .WithMany("Plants")
                         .HasForeignKey("PlantNavigationFuneralHomeId");
 
+                    b.HasOne("WilbertVaultCompany.api.Models.VaultOrder", null)
+                        .WithMany("DeliveringPlant")
+                        .HasForeignKey("VaultOrderId");
+
+                    b.HasOne("WilbertVaultCompany.api.Models.VaultOrder", null)
+                        .WithMany("OrderingPlant")
+                        .HasForeignKey("VaultOrderId1");
+
                     b.Navigation("PlantNavigation");
                 });
 
@@ -565,6 +771,17 @@ namespace WilbertVaultCompany.api.Migrations
                         .IsRequired();
 
                     b.Navigation("AssignedPlant");
+                });
+
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.VaultOrder", b =>
+                {
+                    b.HasOne("WilbertVaultCompany.api.Models.FuneralHome", "funeralhome")
+                        .WithMany()
+                        .HasForeignKey("FuneralHomeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("funeralhome");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
@@ -581,11 +798,23 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Navigation("Plants");
                 });
 
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.Interaction", b =>
+                {
+                    b.Navigation("Answers");
+                });
+
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Plant", b =>
                 {
                     b.Navigation("Employees");
 
                     b.Navigation("Trucks");
+                });
+
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.VaultOrder", b =>
+                {
+                    b.Navigation("DeliveringPlant");
+
+                    b.Navigation("OrderingPlant");
                 });
 #pragma warning restore 612, 618
         }

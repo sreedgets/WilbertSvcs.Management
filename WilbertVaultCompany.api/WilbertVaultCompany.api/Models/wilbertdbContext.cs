@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using WilbertVaultCompany.api.Models;
-using WilbertProductCompany.api.Models;
 
 #nullable disable
 
@@ -38,7 +37,7 @@ namespace WilbertVaultCompany.api.Models
 
         public DbSet<WilbertVaultCompany.api.Models.Employee> Employee { get; set; }
 
-        public DbSet<WilbertProductCompany.api.Models.Product> Product { get; set; }
+        public DbSet<WilbertVaultCompany.api.Models.Product> Product { get; set; }
 
         public DbSet<WilbertVaultCompany.api.Models.VaultOrder> VaultOrder { get; set; }
 

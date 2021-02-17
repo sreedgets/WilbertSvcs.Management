@@ -12,7 +12,8 @@ namespace WilbertVaultCompany.api.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public int Suffix { get; set; }
+        public string FullName { get; set; }
+        public string Suffix { get; set; }
         public DateTime BornDate { get; set; }
         public DateTime DiedDate { get; set; }
     }

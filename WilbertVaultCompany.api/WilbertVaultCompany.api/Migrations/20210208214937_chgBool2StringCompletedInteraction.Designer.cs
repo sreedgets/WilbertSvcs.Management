@@ -21,7 +21,7 @@ namespace WilbertVaultCompany.api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("WilbertProductCompany.api.Models.Product", b =>
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()

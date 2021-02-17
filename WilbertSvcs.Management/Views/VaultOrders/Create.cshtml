@@ -118,13 +118,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                          <td>
-                                            <label asp-for="FH.Contacts"></label>
+                                        <td>
+                                            <label asp-for="funeralhome.Contacts"></label>
                                         </td>
                                         <td>
-                                            <select asp-for="FH.Contacts" class="form-control" asp-items="@(new SelectList(Model.FH.Contacts,"FuneralHomeContactId","FullName"))">
+                                            <select asp-for="funeralhome.Contacts" class="form-control" asp-items="@(new SelectList(Model.funeralhome.Contacts,"FuneralHomeContactId","FullName"))">
                                             </select>
-                                            <span asp-validation-for="FH.Contacts" class="text-danger"></span>
+                                            <span asp-validation-for="funeralhome.Contacts" class="text-danger"></span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -139,11 +139,11 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label asp-for="GraveLocation"></label>
+                                            <label asp-for="GraveLocationSection"></label>
                                         </td>
                                         <td>
-                                            <input asp-for="GraveLocation" class="form-control" />
-                                            <span asp-validation-for="GraveLocation" class="text-danger"></span>
+                                            <input asp-for="GraveLocationSection" class="form-control" />
+                                            <span asp-validation-for="GraveLocationSection" class="text-danger"></span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -158,36 +158,83 @@
                                         <td>&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td><label class="titleLabel">Deceased Salutation:</label></td>
-                                        <td><input type="text" maxlength="100" tabindex="1" value="" style="width:300px;"></td>
+                                        <td>
+                                            <label asp-for="theDecesased.Salutation"></label>
+                                        </td>
+
+                                        <td>
+                                            <select asp-for="theDecesased.Salutation" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<Salutations>()"></select>
+                                            <span asp-validation-for="theDecesased.Salutation" class="text-danger"></span>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td><label class="titleLabel">First Name:</label></td>
-                                        <td><input type="text" maxlength="100" tabindex="1" value="Irene" style="width:300px;"></td>
+                                        <td>
+                                            <label asp-for="theDecesased.FirstName"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="theDecesased.FirstName" class="form-control" />
+                                            <span asp-validation-for="theDecesased.FirstName" class="text-danger"></span>
+                                        </td>
+
                                     </tr>
                                     <tr>
-                                        <td><label class="titleLabel">Middle Name:</label></td>
-                                        <td><input type="text" maxlength="100" tabindex="1" value="Jane" style="width:300px;"></td>
+                                        <td>
+                                            <label asp-for="theDecesased.MiddleName"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="theDecesased.MiddleName" class="form-control" />
+                                            <span asp-validation-for="theDecesased.MiddleName" class="text-danger"></span>
+                                        </td>
+
                                     </tr>
                                     <tr>
-                                        <td><label class="titleLabel">Last Name:</label></td>
-                                        <td><input type="text" maxlength="100" tabindex="1" value="Fredericksen" style="width:300px;"></td>
+                                        <td>
+                                            <label asp-for="theDecesased.LastName"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="theDecesased.LastName" class="form-control" />
+                                            <span asp-validation-for="theDecesased.LastName" class="text-danger"></span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label asp-for="theDecesased.Suffix"></label>
+                                        </td>
+                                        <td>
+                                            <select asp-for="theDecesased.Suffix" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<Suffix>()"></select>
+                                            <span asp-validation-for=" theDecesased.Suffix" class="text-danger"></span>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td><label class="titleLabel">Suffix:</label></td>
-                                        <td><input type="text" maxlength="100" tabindex="1" value="" style="width:300px;"></td>
+                                        <td>
+                                            <label asp-for="theDecesased.BornDate"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="theDecesased.BornDate" class="form-control" />
+                                            <span asp-validation-for="theDecesased.BornDate" class="text-danger"></span>
+                                        </td>
+
                                     </tr>
                                     <tr>
-                                        <td><label class="titleLabel">Born:</label></td>
-                                        <td><input type="text" maxlength="100" tabindex="1" value="1926" style="width:300px;"></td>
+                                        <td>
+                                            <label asp-for="theDecesased.DiedDate"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="theDecesased.DiedDate" class="form-control" />
+                                            <span asp-validation-for="theDecesased.DiedDate" class="text-danger"></span>
+                                        </td>
+
                                     </tr>
                                     <tr>
-                                        <td><label class="titleLabel">Died:</label></td>
-                                        <td><input type="text" maxlength="100" tabindex="1" value="01/11/2021" style="width:300px;"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="titleLabel">Full Name:</label></td>
-                                        <td><input type="text" maxlength="100" tabindex="1" value="Irene Fredericksen" style="width:300px;"></td>
+                                        <td>
+                                            <label asp-for="theDecesased.FullName"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="theDecesased.FullName" class="form-control" />
+                                            <span asp-validation-for="theDecesased.FullName" class="text-danger"></span>
+                                        </td>
+
                                     </tr>
 
                                 </tbody>
@@ -199,26 +246,24 @@
                                         <td colspan="4"><label class="sectionLabel"><h3>Additional Notes</h3></label></td>
                                     </tr>
                                     <tr>
-                                        <td><label class="titleLabel">Order Notes:</label></td>
-                                        <td><textarea name="message" rows="3" cols="50">Donec vitae nunc ac tortor pretium sagittis. Quisque posuere nisl id pellentesque ultricies. Nulla facilisi. Phasellus euismod feugiat efficitur.</textarea></td>
+                                        <td>
+                                            <label asp-for="Notes"></label>
+                                        </td>
+                                        <td>
+                                            <input asp-for="Notes" class="form-control" />
+                                            <span asp-validation-for="Notes" class="text-danger"></span>
+                                        </td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
-                    </tbody>
-                    </table>
                 </div>
-                    </div>
-                    <hr />
-                    <div>
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                    </div>
-                </div>
+            </div>
+            <hr />
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
         </form>
     </center>

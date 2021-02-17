@@ -19,7 +19,7 @@ namespace WilbertVaultCompany.api.Migrations
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WilbertProductCompany.api.Models.Product", b =>
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -136,15 +136,10 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<bool>("UseCoordinates")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("VaultOrderId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
                     b.HasKey("CemetaryId");
-
-                    b.HasIndex("VaultOrderId");
 
                     b.ToTable("Cemetary");
                 });
@@ -197,12 +192,7 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("Suffix")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VaultOrderId")
-                        .HasColumnType("int");
-
                     b.HasKey("DeceasedId");
-
-                    b.HasIndex("VaultOrderId");
 
                     b.ToTable("Deceased");
                 });
@@ -649,6 +639,9 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<DateTime>("CemetaryTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DeceasedId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ExtraChairs")
                         .HasColumnType("int");
 
@@ -664,11 +657,11 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("FuneralHomeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("FuneralTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("GraveLocationSection")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Location")
-                        .HasColumnType("int");
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("MilitarySetup")
                         .HasColumnType("bit");
@@ -688,8 +681,8 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<bool>("RegisterStand")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TentWith6Chairs")
                         .HasColumnType("bit");
@@ -700,7 +693,12 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<int>("VenetianCarapace")
                         .HasColumnType("int");
 
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("VaultOrderId");
+
+                    b.HasIndex("DeceasedId");
 
                     b.HasIndex("FuneralHomeId");
 
@@ -714,25 +712,11 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasForeignKey("EmployeeId");
                 });
 
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.Cemetary", b =>
-                {
-                    b.HasOne("WilbertVaultCompany.api.Models.VaultOrder", null)
-                        .WithMany("lstCemetaries")
-                        .HasForeignKey("VaultOrderId");
-                });
-
             modelBuilder.Entity("WilbertVaultCompany.api.Models.CompletedVm", b =>
                 {
                     b.HasOne("WilbertVaultCompany.api.Models.Interaction", null)
                         .WithMany("Answers")
                         .HasForeignKey("InteractionId");
-                });
-
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.Deceased", b =>
-                {
-                    b.HasOne("WilbertVaultCompany.api.Models.VaultOrder", null)
-                        .WithMany("lstDecesased")
-                        .HasForeignKey("VaultOrderId");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
@@ -794,13 +778,21 @@ namespace WilbertVaultCompany.api.Migrations
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.VaultOrder", b =>
                 {
-                    b.HasOne("WilbertVaultCompany.api.Models.FuneralHome", "funeralHome")
+                    b.HasOne("WilbertVaultCompany.api.Models.Deceased", "theDecesased")
+                        .WithMany()
+                        .HasForeignKey("DeceasedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WilbertVaultCompany.api.Models.FuneralHome", "funeralhome")
                         .WithMany()
                         .HasForeignKey("FuneralHomeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("funeralHome");
+                    b.Navigation("funeralhome");
+
+                    b.Navigation("theDecesased");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
@@ -832,10 +824,6 @@ namespace WilbertVaultCompany.api.Migrations
             modelBuilder.Entity("WilbertVaultCompany.api.Models.VaultOrder", b =>
                 {
                     b.Navigation("DeliveringPlant");
-
-                    b.Navigation("lstCemetaries");
-
-                    b.Navigation("lstDecesased");
 
                     b.Navigation("OrderingPlant");
                 });

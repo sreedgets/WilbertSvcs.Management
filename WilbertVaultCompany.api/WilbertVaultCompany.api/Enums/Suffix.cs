@@ -1,4 +1,4 @@
-﻿namespace WilbertFSvcs.Models.Entities
+﻿namespace WilbertVaultCompany.api.Enums
 {
     public enum Suffix
     {
