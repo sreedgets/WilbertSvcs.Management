@@ -47,19 +47,19 @@
                     <input type="hidden" asp-for="FuneralHomeId" />
                     <table>
                         <tbody>
-                            <tr style="color:#333333;background-color:#FFFFFF;">                        
+                            <tr style="color:#333333;background-color:#FFFFFF;">
                                 <td>
                                     <label class="titleLabel">Date:</label>
-                                </td>                               
+                                </td>
                                 <td>
-                                    <input class="form-control"  asp-for="Date" placeholder="MM/DD/YYYY" type="text" />
+                                    <input class="form-control" asp-for="Date" placeholder="MM/DD/YYYY" type="text" />
                                 </td>
                                 <td>
                                     <span asp-validation-for="Date" class="text-danger"></span>
                                 </td>
                                 <td>
                                     <label class="titleLabel">Nature:</label>
-                                </td>                                 
+                                </td>
                                 <td>
                                     <select asp-for="Nature" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<InteractionNature>()"></select>
                                 </td>
@@ -76,7 +76,7 @@
                                     <label class="titleLabel">Follow Up Date:</label>
                                 </td>
                                 <td>
-                                    <input class="form-control" asp-for="FollowUpDate" style="width:300px"  placeholder="MM/DD/YYYY" type="text">
+                                    <input class="form-control" asp-for="FollowUpDate" style="width:300px" placeholder="MM/DD/YYYY" type="text">
                                 </td>
                             </tr>
                             <tr style="color:#333333;background-color:#ffffff;">
@@ -89,7 +89,7 @@
                                 <td>
                                     @foreach (var item in Model.Answers)
                                     {
-                                    <input asp-for="SelectedAnswer" type="radio" value="@item.Id" />  @item.Answer
+                                        <input asp-for="SelectedAnswer" type="radio" value="@item.Id" /> @item.Answer
                                     }
                                     <span asp-validation-for="Completed" class="text-danger"></span>
                                 </td>
@@ -112,7 +112,6 @@
     </form>
 </main>
 @section WilbertScripts {
-
     <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
     <!-- Include jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -131,7 +130,7 @@
                 todayHighlight: true,
                 autoclose: true,
             })
-            
+
             var date_input2 = $('input[name="FollowUpDate"]');
             date_input2.datepicker({
                 format: 'mm/dd/yyyy',

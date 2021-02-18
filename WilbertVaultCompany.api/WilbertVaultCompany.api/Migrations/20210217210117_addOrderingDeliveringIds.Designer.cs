@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210217210117_addOrderingDeliveringIds")]
+    partial class addOrderingDeliveringIds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -284,9 +286,6 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VaultOrderId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Website")
                         .HasColumnType("nvarchar(max)");
 
@@ -294,8 +293,6 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FuneralHomeId");
-
-                    b.HasIndex("VaultOrderId");
 
                     b.ToTable("FuneralHomes");
                 });
@@ -744,13 +741,6 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Navigation("PlantEmployee");
                 });
 
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.FuneralHome", b =>
-                {
-                    b.HasOne("WilbertVaultCompany.api.Models.VaultOrder", null)
-                        .WithMany("FuneralHomes")
-                        .HasForeignKey("VaultOrderId");
-                });
-
             modelBuilder.Entity("WilbertVaultCompany.api.Models.FuneralHomeContact", b =>
                 {
                     b.HasOne("WilbertVaultCompany.api.Models.FuneralHome", null)
@@ -845,8 +835,6 @@ namespace WilbertVaultCompany.api.Migrations
             modelBuilder.Entity("WilbertVaultCompany.api.Models.VaultOrder", b =>
                 {
                     b.Navigation("DeliveringPlant");
-
-                    b.Navigation("FuneralHomes");
 
                     b.Navigation("OrderingPlant");
                 });

@@ -113,11 +113,13 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+         
             interaction.Answers = new List<CompletedVm>
             {
                 new CompletedVm {Id = 1 , Answer= "Yes"},
                 new CompletedVm {Id = 2 , Answer= "No"}
             };
+
 
             return View(interaction);
         }

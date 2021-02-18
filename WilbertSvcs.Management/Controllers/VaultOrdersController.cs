@@ -79,7 +79,97 @@ namespace WilbertSvcs.Management.Controllers
         // GET: VaultOrders/Create
         public IActionResult Create()
         {
-            return View();
+            var VO = new VaultOrder();
+
+            VO.FuneralDate = DateTime.Now;
+            VO.CemetaryTime = DateTime.Now;
+            VO.theDeceased = new Deceased();
+            VO.theDeceased.BornDate = DateTime.Now;
+            VO.theDeceased.DiedDate = DateTime.Now;
+
+            //Ordering plant
+            List<Plant> lstPlants = _context.Plants.ToList();
+            VO.OrderingPlant.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                VO.OrderingPlant.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+
+            //Delivering plant            
+            VO.DeliveringPlant.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                VO.DeliveringPlant.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+
+            //Funeral Home
+            List<FuneralHome> fhs = _context.FuneralHomes.ToList();
+            VO.FuneralHomes.Add(new FuneralHome()
+            {
+                Name = "-Select-",
+                FuneralHomeId = 0
+            });
+            foreach(var item in fhs)
+            {
+                VO.FuneralHomes.Add(new FuneralHome()
+                {
+                    Name = item.Name,
+                    FuneralHomeId = item.FuneralHomeId
+                });
+            }
+
+            //Funeral Home Contact (Funeral Director).  TODO: Take the id of the selected funeral home and look up the contacts who are funeral directors and put them
+            //in the select list
+
+            List<FuneralHomeContact> fhcts = _context.FuneralHomeContacts.ToList();
+            VO.funeralhome.Contacts.Add(new FuneralHomeContact()
+            {
+                FullName = "-Select-",
+                FuneralHomeContactId = 0
+            });
+
+            foreach(var item in fhcts)
+            {
+                VO.funeralhome.Contacts.Add(new FuneralHomeContact()
+                {
+                    FullName = item.FullName,
+                    FuneralHomeContactId = item.FuneralHomeContactId
+                });
+            }
+
+            //Cemetery
+            List<Cemetary> cems = _context.Cemetary.ToList();
+            VO.lstCemetaries.Add(new Cemetary()
+            {
+                Name = "-Select-",
+                CemetaryId = 0
+            }); 
+
+            foreach(var item in cems)
+            {
+                VO.lstCemetaries.Add(new Cemetary
+                {
+                    Name = item.Name,
+                    CemetaryId = item.CemetaryId
+                });
+            }
+            return View(VO);
         }
 
         // POST: VaultOrders/Create

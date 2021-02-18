@@ -1,0 +1,269 @@
+﻿@model WilbertVaultCompany.api.Models.VaultOrder
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<head>
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    <h1 class="mt-5">Funeral Home Details</h1>
+
+    <a asp-action="Edit" asp-route-id="@Model.VaultOrderId" class="btn btn-primary">Edit Order</a>
+    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.VaultOrderId">Delete Order</a>
+    <a class="btn btn-primary" asp-action="Index">Back to Order List</a>
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="row">
+                        <h2 style="margin: 0 auto;color:#e65500!important;">Order# @Model.VaultOrderId</h2>
+                        <hr class="vertical-space4">
+                    </div>
+                    <div class="col-md-6">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th><label class="sectionLabel"></label><h3>Funeral Information</h3></th>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Status"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Status" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<OrderStatus>()" />
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="FuneralDate"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="FuneralDate" class="form-control" />
+                                        <span asp-validation-for="FuneralDate" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="CemetaryTime"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="CemetaryTime" class="form-control" />
+                                        <span asp-validation-for="CemetaryTime" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Location"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Location" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<FuneralLocation>()" />
+                                        <span asp-validation-for="Location" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="OrderingPlant"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="OrderingPlant" class="form-control" asp-items="@(new SelectList(Model.OrderingPlant,"PlantId","PlantName"))" />
+                                        <span asp-validation-for="OrderingPlant" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="DeliveringPlant"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="DeliveringPlant" class="form-control" asp-items="@(new SelectList(Model.DeliveringPlant,"PlantId","PlantName"))" />
+                                        <span asp-validation-for="DeliveringPlant" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="ZipCode"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="ZipCode" class="form-control" />
+                                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="FuneralHomes"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="FuneralHomes" class="form-control" asp-items="@(new SelectList(Model.FuneralHomes,"FuneralHomeId","Name"))" />
+                                        <span asp-validation-for="FuneralHomes" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="funeralhome.Contacts"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="funeralhome.Contacts" class="form-control" asp-items="@(new SelectList(Model.funeralhome.Contacts,"FuneralHomeContactId","FullName"))" />
+                                        <span asp-validation-for="funeralhome.Contacts" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="lstCemetaries"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="lstCemetaries" class="form-control" asp-items="@(new SelectList(Model.lstCemetaries,"CemetaryId","Name"))" />
+                                        <span asp-validation-for="lstCemetaries" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="GraveLocationSection"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="GraveLocationSection" class="form-control" />
+                                        <span asp-validation-for="GraveLocationSection" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-md-6">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><label class="sectionLabel"></label><h3>Deceased Information</h3></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="theDeceased.Salutation"></label>
+                                    </td>
+
+                                    <td>
+                                        <input readonly asp-for="theDeceased.Salutation" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<Salutations>()" />
+                                        <span asp-validation-for="theDeceased.Salutation" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="theDeceased.FirstName"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="theDeceased.FirstName" class="form-control" />
+                                        <span asp-validation-for="theDeceased.FirstName" class="text-danger"></span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="theDeceased.MiddleName"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="theDeceased.MiddleName" class="form-control" />
+                                        <span asp-validation-for="theDeceased.MiddleName" class="text-danger"></span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="theDeceased.LastName"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="theDeceased.LastName" class="form-control" />
+                                        <span asp-validation-for="theDeceased.LastName" class="text-danger"></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label asp-for="theDeceased.Suffix"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="theDeceased.Suffix" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<Suffix>()" />
+                                        <span asp-validation-for=" theDeceased.Suffix" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="theDeceased.BornDate"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="theDeceased.BornDate" class="form-control" />
+                                        <span asp-validation-for="theDeceased.BornDate" class="text-danger"></span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="theDeceased.DiedDate"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="theDeceased.DiedDate" class="form-control" />
+                                        <span asp-validation-for="theDeceased.DiedDate" class="text-danger"></span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="theDeceased.FullName"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="theDeceased.FullName" class="form-control" />
+                                        <span asp-validation-for="theDeceased.FullName" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="vertical-space3">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4"><label class="sectionLabel"></label><h3>Additional Notes</h3></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Notes"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Notes" class="form-control" />
+                                        <span asp-validation-for="Notes" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+        @await Component.InvokeAsync("Products", Model.VaultOrderId)
+        <br />
+        <div>
+            <table>
+                <tr align="left">
+                    <td>
+                        <a asp-action="Create" asp-controller="Products" asp-route-id="@Model.VaultOrderId" class="btn btn-primary">ADD NEW PRODUCT</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </center>
+</main>

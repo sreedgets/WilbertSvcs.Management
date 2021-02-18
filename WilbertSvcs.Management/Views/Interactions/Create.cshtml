@@ -21,6 +21,13 @@
     <!-- Custom styles for this template -->
     <link href="~/css/sticky-footer.css" rel="stylesheet" />
     <link href="~/css/custom.css" rel="stylesheet">
+
+    <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
 </head>
 
 <header>
@@ -39,19 +46,30 @@
                     <input type="hidden" asp-for="FuneralHomeId" />
                     <table>
                         <tbody>
-                            <tr style="color:#333333;background-color:#FFFFFF;" >
-                                <td><label class="titleLabel">Date:</label></td>
-                                <td><input class="form-control" asp-for="Date" id='datetimepicker4'></td>
-                                <td><span asp-validation-for="Date" class="text-danger"></span></td>
-                                <td><label class="titleLabel">Nature:</label></td>
-                                <td> <select asp-for="Nature" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<InteractionNature>()"></select></td>
+                            <tr style="color:#333333;background-color:#FFFFFF;">
+                                <td>
+                                    <label class="titleLabel">Date:</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" asp-for="Date" placeholder="MM/DD/YYYY" type="text" value="">
+
+                                </td>
+                                <td>
+                                    <span asp-validation-for="Date" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <label class="titleLabel">Nature:</label>
+                                </td>
+                                <td>
+                                    <select asp-for="Nature" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<InteractionNature>()"></select>
+                                </td>
                             </tr>
                             <tr style="color:#333333;background-color:#FFFFFF;">
                                 <td><label class="titleLabel">Notes:</label></td>
                                 <td><input type="text" rows="2" cols="20" tabindex="2" asp-for="Notes" style="height:100px;width:400px;"></td>
 
                                 <td><label class="titleLabel">Follow Up Date:</label></td>
-                                <td><input class="form-control" asp-for="FollowUpDate"></td>
+                                <td><input class="form-control" asp-for="FollowUpDate" placeholder="MM/DD/YYYY" type="text" value="" style="width:300px"></td>
                             </tr>
                             <tr style="color:#333333;background-color:#ffffff;">
                                 <td><label class="titleLabel">Reason:</label></td>
@@ -84,13 +102,34 @@
         </center>
     </form>
 </main>
+
 @section WilbertScripts {
-    <script type="text/javascript">
-        $(function () {
-            // Bootstrap DateTimePicker v4
-            $('#datetimepicker4').datetimepicker({
-                format: 'DD/MM/YYYY'
-            });
-        });
+    <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+    <script>
+        $(document).ready(function () {
+            var date_input = $('input[name="Date"]'); // our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+
+            var date_input2 = $('input[name="FollowUpDate"]');
+            date_input2.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+        })
     </script>
 }
