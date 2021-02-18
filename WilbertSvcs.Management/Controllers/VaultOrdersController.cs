@@ -181,6 +181,12 @@ namespace WilbertSvcs.Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(vaultOrder.OrderingPlantId != 0)
+                {
+                    var ordPlant = new Plant();
+                    ordPlant = await _context.Plants.FindAsync(vaultOrder.OrderingPlantId);
+                    vaultOrder.OrderingPlantName = ordPlant.PlantName;
+                }
                 _context.Add(vaultOrder);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

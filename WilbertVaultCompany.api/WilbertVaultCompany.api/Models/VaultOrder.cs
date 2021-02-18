@@ -34,10 +34,12 @@ namespace WilbertVaultCompany.api.Models
 
         [Display(Name = "Ordering Plant")]
         public int OrderingPlantId { get; set; }
+        public string OrderingPlantName { get; set; }
         public virtual ICollection<Plant> OrderingPlant { get; set; }
 
         [Display(Name = "Delivering Plant")]
         public int DeliveringPlantId { get; set; }
+        public string DeliveringPlantName { get; set; }
         public virtual ICollection<Plant> DeliveringPlant { get; set; }
 
         public string ZipCode { get; set; }
