@@ -7,19 +7,19 @@ namespace WilbertVaultCompany.api.Enums
 {
     public enum FuneralHomeRole
     {
-        [Display(Name ="- Select -")]
+        [Display(Name ="- Select -")]                   // 0
         Choose,
         
-        [Display(Name = "Owner & Funeral Director")]
+        [Display(Name = "Owner & Funeral Director")]    // 1
         Owner_FuneralDirector,
         
-        [Display(Name = "Director")]
+        [Display(Name = "Funeral Director")]            // 2
         FuneralDirector,
         
-        [Display(Name = "Owner")]
+        [Display(Name = "Owner")]                       // 3
         Owner,
         
-        [Display(Name = "Admin Staff")]
+        [Display(Name = "Admin Staff")]                 // 4
         OfficeAdmin
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model WilbertVaultCompany.api.Models.VaultOrder
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
 }
 
 <head>
@@ -19,16 +19,14 @@
     <!-- Fixed navbar -->
     @await Component.InvokeAsync("Dashboard")
 </header>
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
 
 <!-- Begin page content -->
 <main role="main" class="container">
-    <h1 class="mt-5">Vault Order Details</h1>
-    <h2 style="margin: 0 auto;color:#e65500!important;">Order# @Model.VaultOrderId</h2>
-    <br />  
-    <a asp-action="Edit" asp-route-id="@Model.VaultOrderId" class="btn btn-primary">Edit Order</a>
-    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.VaultOrderId">Delete Order</a>
-    <a class="btn btn-primary" asp-action="Index">Back to Order List</a>
     <center>
+        <h1 class="mt-5">Vault Order Details</h1>
         <div class="album py-5">
             <div class="container">
                 <div class="row">
@@ -81,14 +79,14 @@
                                     </td>
                                     <td>
                                         <input readonly asp-for="OrderingPlantName" class="form-control" />
-                                                                            </td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <label asp-for="DeliveringPlant"></label>
                                     </td>
                                     <td>
-                                        <input readonly asp-for="DeliveringPlantName" class="form-control" />                                        
+                                        <input readonly asp-for="DeliveringPlantName" class="form-control" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -106,7 +104,7 @@
                                     </td>
                                     <td>
                                         <input readonly asp-for="funeralhome" class="form-control" />
-                                        
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -114,7 +112,7 @@
                                         <label asp-for="FuneralDirector"></label>
                                     </td>
                                     <td>
-                                        <input readonly asp-for="FuneralDirector" class="form-control" />                                        
+                                        <input readonly asp-for="FuneralDirector" class="form-control" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -123,7 +121,7 @@
                                     </td>
                                     <td>
                                         <input readonly asp-for="CemetaryName" class="form-control" />
-                                        
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -243,20 +241,15 @@
                             </tbody>
                         </table>
                     </div>
+                    <hr />
+                    <br />
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="VaultOrderId" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </form>
                 </div>
             </div>
-        </div>
-        <hr style="border: 5px solid #00446a; border-radius: 5px;" />
-        @await Component.InvokeAsync("Products", Model.VaultOrderId)
-        <br />
-        <div>
-            <table>
-                <tr align="left">
-                    <td>
-                        <a asp-action="Create" asp-controller="Products" asp-route-id="@Model.VaultOrderId" class="btn btn-primary">ADD NEW PRODUCT</a>
-                    </td>
-                </tr>
-            </table>
         </div>
     </center>
 </main>

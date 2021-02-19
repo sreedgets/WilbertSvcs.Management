@@ -1,7 +1,8 @@
 ﻿@model WilbertVaultCompany.api.Models.VaultOrder
 @using WilbertVaultCompany.api.Enums
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <head>
@@ -11,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-    <title>Login Template for Bootstrap</title>
+    <title>Funeral Home</title>
 
     <link rel="canonical" href="#">
 
@@ -21,29 +22,22 @@
     <!-- Custom styles for this template -->
     <link href="~/css/sticky-footer.css" rel="stylesheet" />
     <link href="~/css/custom.css" rel="stylesheet">
-
-    <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
-    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
-    <!--Font Awesome (added because you use icons in your prepend/append)-->
-    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
-
 </head>
-
 
 <header>
     <!-- Fixed navbar -->
-    @await Component.InvokeAsync("Dashboard")
+    @await Component.InvokeAsync("Login")
 </header>
 
 <!-- Begin page content -->
 <main role="main" id="fhd" class="container">
     <center>
-        <form asp-action="Create" method="post">
+        <form asp-action="Edit" method="post">
             <div class="album py-5">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
+                            <input type="hidden" asp-for="VaultOrderId" />
                             <table>
                                 <tbody>
                                     <tr>
@@ -64,7 +58,7 @@
                                             <label asp-for="FuneralDate"></label>
                                         </td>
                                         <td>
-                                            <input maxlength="100" style="width:300px;" asp-for="FuneralDate" class="form-control" placeholder="MM/DD/YYYY" type="text" value="" />
+                                            <input maxlength="100" style="width:300px;" asp-for="FuneralDate" class="form-control" type="text" />
                                             <span asp-validation-for="FuneralDate" class="text-danger"></span>
                                         </td>
                                     </tr>
@@ -218,7 +212,7 @@
                                             <label asp-for="BornDate"></label>
                                         </td>
                                         <td>
-                                            <input maxlength="100" style="width:300px;" asp-for="BornDate" class="form-control" placeholder="MM/DD/YYYY" type="text" value="" />
+                                            <input maxlength="100" style="width:300px;" asp-for="BornDate" class="form-control"  type="text"/>
                                             <span asp-validation-for="BornDate" class="text-danger"></span>
                                         </td>
 
@@ -228,7 +222,7 @@
                                             <label asp-for="DiedDate"></label>
                                         </td>
                                         <td>
-                                            <input maxlength="100" style="width:300px;" asp-for="DiedDate" class="form-control" placeholder="MM/DD/YYYY" type="text" value="" />
+                                            <input maxlength="100" style="width:300px;" asp-for="DiedDate" type="text" />
                                             <span asp-validation-for="DiedDate" class="text-danger"></span>
                                         </td>
 
@@ -263,61 +257,13 @@
                             </table>
                         </div>
                     </div>
+                    <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+                    <div>
+                        <input type="submit" value="Save Vault Order" class="btn btn-primary" />
+                        <a asp-action="Details" asp-route-id="@Model.VaultOrderId" class="btn btn-secondary">Back to List</a>
+                    </div>
                 </div>
-            </div>
-            <hr />
-            <div>
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
         </form>
     </center>
 </main>
-@section WilbertScripts {
-    <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
-    <!-- Include jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-    <!-- Include Date Range Picker -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-
-    <script>
-        $(document).ready(function () {
-            var funeralDate = $('input[name="FuneralDate"]'); // our date input has the name "date"
-            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-            funeralDate.datepicker({
-                format: 'mm/dd/yyyy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-            })
-
-            //var cemetery = $('input[name="CemetaryTime"]');
-            //cemetery.datepicker({
-            //    format: 'hh:mm',
-            //    container: container,
-            //    todayHighlight: true,
-            //    autoclose: true,
-            //})
-
-            var born = $('input[name="BornDate"]');
-            born.datepicker({
-                format: 'mm/dd/yyyy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-            })
-
-            var died = $('input[name="DiedDate"]');
-            died.datepicker({
-                format: 'mm/dd/yyyy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-            })
-
-        })
-    </script>
-    <partial name="_ValidationScriptsPartial" />
-}

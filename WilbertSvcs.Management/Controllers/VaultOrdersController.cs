@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WilbertSvcs.Management.PageControls;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
@@ -39,7 +40,7 @@ namespace WilbertSvcs.Management.Controllers
                     searchString = currentFilter;
                 }
 
-                vaultOrderQuery = vaultOrderQuery.Where(n => n.funeralhome.Name.Contains(VOrdSearch));
+                vaultOrderQuery = vaultOrderQuery.Where(n => n.funeralhome.Contains(VOrdSearch));
                 return View(await PaginatedList<VaultOrder>.CreateAsync(vaultOrderQuery, pageNumber ?? 1, pageSize));
             }
 
@@ -54,7 +55,10 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             var VOlist = await _context.VaultOrder.ToListAsync();
-
+            foreach (var item in VOlist)
+            {
+                item.Status = Enum.GetName(typeof(OrderStatus), Int32.Parse(item.Status));
+            }
             return View(await PaginatedList<VaultOrder>.CreateAsync(vaultOrderQuery, pageNumber ?? 1, pageSize));
         }
 
@@ -73,19 +77,24 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            vaultOrder.Status = Enum.GetName(typeof(OrderStatus), Int32.Parse(vaultOrder.Status));
+            vaultOrder.Location = Enum.GetName(typeof(FuneralLocation), Int32.Parse(vaultOrder.Location));
+            vaultOrder.Salutation = Enum.GetName(typeof(Salutations), Int32.Parse(vaultOrder.Salutation));
+            vaultOrder.Suffix = Enum.GetName(typeof(Suffix), Int32.Parse(vaultOrder.Suffix));
+
             return View(vaultOrder);
         }
 
-        // GET: VaultOrders/Create
+        // GET: VaultOrders/Create    // GET: VaultOrders/Create
         public IActionResult Create()
         {
             var VO = new VaultOrder();
-
+            var dateNow = DateTime.Now;
             VO.FuneralDate = DateTime.Now;
             VO.CemetaryTime = DateTime.Now;
-            VO.theDeceased = new Deceased();
-            VO.theDeceased.BornDate = DateTime.Now;
-            VO.theDeceased.DiedDate = DateTime.Now;
+            
+            VO.BornDate = DateTime.Now;
+            VO.DiedDate = DateTime.Now;
 
             //Ordering plant
             List<Plant> lstPlants = _context.Plants.ToList();
@@ -119,13 +128,13 @@ namespace WilbertSvcs.Management.Controllers
             }
 
             //Funeral Home
-            List<FuneralHome> fhs = _context.FuneralHomes.ToList();
+            var fhs = _context.FuneralHomes.ToList().OrderBy(fh => fh.Name);
             VO.FuneralHomes.Add(new FuneralHome()
             {
                 Name = "-Select-",
                 FuneralHomeId = 0
             });
-            foreach(var item in fhs)
+            foreach (var item in fhs)
             {
                 VO.FuneralHomes.Add(new FuneralHome()
                 {
@@ -138,15 +147,15 @@ namespace WilbertSvcs.Management.Controllers
             //in the select list
 
             List<FuneralHomeContact> fhcts = _context.FuneralHomeContacts.ToList();
-            VO.funeralhome.Contacts.Add(new FuneralHomeContact()
+            VO.Contacts.Add(new FuneralHomeContact()
             {
                 FullName = "-Select-",
                 FuneralHomeContactId = 0
             });
 
-            foreach(var item in fhcts)
+            foreach (var item in fhcts)
             {
-                VO.funeralhome.Contacts.Add(new FuneralHomeContact()
+                VO.Contacts.Add(new FuneralHomeContact()
                 {
                     FullName = item.FullName,
                     FuneralHomeContactId = item.FuneralHomeContactId
@@ -159,9 +168,9 @@ namespace WilbertSvcs.Management.Controllers
             {
                 Name = "-Select-",
                 CemetaryId = 0
-            }); 
+            });
 
-            foreach(var item in cems)
+            foreach (var item in cems)
             {
                 VO.lstCemetaries.Add(new Cemetary
                 {
@@ -177,16 +186,41 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VaultOrderId,FuneralDate,FuneralTime,CemetaryTime,Location,OrderingPlant,DeliveringPlant,FuneralHome,NewFuneralHome,FuneralDirector,NewFuneralDirector,CemetaryId,Status,Category,VaultId,VenetianCarapace,TentWith6Chairs,ExtraChairs,RegisterStand,MilitarySetup,AwningOverCasket,Fdrequest,Notes,PlantId,DeceasedId")] VaultOrder vaultOrder)
+        public async Task<IActionResult> Create([Bind("VaultOrderId,strFuneralDate,FuneralDate," +
+            "CemetaryTime,strCemeteryTime,Location,GraveLocationSection,OrderingPlantId," +
+            "OrderingPlantName,DeliveringPlantId,DeliveringPlantName,ZipCode,FuneralHomeId," +
+            "NewFuneralHome,FuneralDirector,NewFuneralDirector,CemetaryId,Status,Category,VaultId," +
+            "VenetianCarapace,TentWith6Chairs,ExtraChairs,RegisterStand,MilitarySetup,AwningOverCasket," +
+            "Fdrequest,Notes,PlantId,ContactId," +
+            "Salutation,FirstName,MiddleName,LastName,FullName,Suffix,BornDate,DiedDate")] VaultOrder vaultOrder)
         {
             if (ModelState.IsValid)
             {
-                if(vaultOrder.OrderingPlantId != 0)
+                if (vaultOrder.OrderingPlantId != 0)
                 {
                     var ordPlant = new Plant();
                     ordPlant = await _context.Plants.FindAsync(vaultOrder.OrderingPlantId);
                     vaultOrder.OrderingPlantName = ordPlant.PlantName;
                 }
+                if (vaultOrder.DeliveringPlantId != 0)
+                {
+                    var delPlant = new Plant();
+                    delPlant = await _context.Plants.FindAsync(vaultOrder.DeliveringPlantId);
+                    vaultOrder.DeliveringPlantName = delPlant.PlantName;
+                }
+
+                if(vaultOrder.FuneralHomeId != 0)
+                {
+                    vaultOrder.funeralhome = (from f in _context.FuneralHomes.Where(i => i.FuneralHomeId == vaultOrder.FuneralHomeId)
+                                              select f.Name).FirstOrDefault();                    
+                }
+
+                if(vaultOrder.FuneralHomeContactId != 0)
+                {
+                    vaultOrder.FuneralDirector = (from f in _context.FuneralHomeContacts.Where(i => i.FuneralHomeContactId == vaultOrder.FuneralHomeContactId)
+                                                  select f.FullName).FirstOrDefault();
+                }
+
                 _context.Add(vaultOrder);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -202,12 +236,98 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var vaultOrder = await _context.VaultOrder.FindAsync(id);
-            if (vaultOrder == null)
+            var VO = await _context.VaultOrder.FindAsync(id);
+            if (VO == null)
             {
                 return NotFound();
             }
-            return View(vaultOrder);
+
+       
+            //Ordering plant
+            List<Plant> lstPlants = _context.Plants.ToList();
+            VO.OrderingPlant.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                VO.OrderingPlant.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+
+            //Delivering plant            
+            VO.DeliveringPlant.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                VO.DeliveringPlant.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+
+            //Funeral Home
+            var fhs = _context.FuneralHomes.ToList().OrderBy(fh => fh.Name);
+            VO.FuneralHomes.Add(new FuneralHome()
+            {
+                Name = "-Select-",
+                FuneralHomeId = 0
+            });
+            foreach (var item in fhs)
+            {
+                VO.FuneralHomes.Add(new FuneralHome()
+                {
+                    Name = item.Name,
+                    FuneralHomeId = item.FuneralHomeId
+                });
+            }
+
+            //Funeral Home Contact (Funeral Director).  TODO: Take the id of the selected funeral home and look up the contacts who are funeral directors and put them
+            //in the select list
+
+            List<FuneralHomeContact> fhcts = _context.FuneralHomeContacts.ToList();
+            VO.Contacts.Add(new FuneralHomeContact()
+            {
+                FullName = "-Select-",
+                FuneralHomeContactId = 0
+            });
+
+            foreach (var item in fhcts)
+            {
+                VO.Contacts.Add(new FuneralHomeContact()
+                {
+                    FullName = item.FullName,
+                    FuneralHomeContactId = item.FuneralHomeContactId
+                });
+            }
+
+            //Cemetery
+            List<Cemetary> cems = _context.Cemetary.ToList();
+            VO.lstCemetaries.Add(new Cemetary()
+            {
+                Name = "-Select-",
+                CemetaryId = 0
+            });
+
+            foreach (var item in cems)
+            {
+                VO.lstCemetaries.Add(new Cemetary
+                {
+                    Name = item.Name,
+                    CemetaryId = item.CemetaryId
+                });
+            }
+
+            ViewData["FuneralHomeId"] = new SelectList(_context.FuneralHomes, "FuneralHomeId", "FuneralHomeId", VO.FuneralHomeId);
+            return View(VO);
         }
 
         // POST: VaultOrders/Edit/5
@@ -215,7 +335,13 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VaultOrderId,FuneralDate,FuneralTime,CemetaryTime,Location,OrderingPlant,DeliveringPlant,FuneralHome,NewFuneralHome,FuneralDirector,NewFuneralDirector,CemetaryId,Status,Category,VaultId,VenetianCarapace,TentWith6Chairs,ExtraChairs,RegisterStand,MilitarySetup,AwningOverCasket,Fdrequest,Notes,PlantId,DeceasedId")] VaultOrder vaultOrder)
+        public async Task<IActionResult> Edit(int id, [Bind("VaultOrderId,strFuneralDate,FuneralDate," +
+            "CemetaryTime,strCemeteryTime,Location,GraveLocationSection,OrderingPlantId," +
+            "OrderingPlantName,DeliveringPlantId,DeliveringPlantName,ZipCode,FuneralHomeId," +
+            "NewFuneralHome,FuneralDirector,NewFuneralDirector,CemetaryId,Status,Category,VaultId," +
+            "VenetianCarapace,TentWith6Chairs,ExtraChairs,RegisterStand,MilitarySetup,AwningOverCasket," +
+            "Fdrequest,Notes,PlantId,FuneralHomeContactId," +
+            "Salutation,FirstName,MiddleName,LastName,FullName,Suffix,BornDate,DiedDate")] VaultOrder vaultOrder)
         {
             if (id != vaultOrder.VaultOrderId)
             {
@@ -224,6 +350,31 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
+                if (vaultOrder.OrderingPlantId != 0)
+                {
+                    var ordPlant = new Plant();
+                    ordPlant = await _context.Plants.FindAsync(vaultOrder.OrderingPlantId);
+                    vaultOrder.OrderingPlantName = ordPlant.PlantName;
+                }
+                if (vaultOrder.DeliveringPlantId != 0)
+                {
+                    var delPlant = new Plant();
+                    delPlant = await _context.Plants.FindAsync(vaultOrder.DeliveringPlantId);
+                    vaultOrder.DeliveringPlantName = delPlant.PlantName;
+                }
+
+                if (vaultOrder.FuneralHomeId != 0)
+                {
+                    vaultOrder.funeralhome = (from f in _context.FuneralHomes.Where(i => i.FuneralHomeId == vaultOrder.FuneralHomeId)
+                                              select f.Name).FirstOrDefault();
+                }
+
+                if (vaultOrder.FuneralHomeContactId != 0)
+                {
+                    vaultOrder.FuneralDirector = (from f in _context.FuneralHomeContacts.Where(i => i.FuneralHomeContactId == vaultOrder.FuneralHomeContactId)
+                                                  select f.FullName).FirstOrDefault();
+                }
+
                 try
                 {
                     _context.Update(vaultOrder);
@@ -242,6 +393,8 @@ namespace WilbertSvcs.Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["FuneralHomeId"] = new SelectList(_context.FuneralHomes, "FuneralHomeId", "FuneralHomeId", vaultOrder.FuneralHomeId);
+            
             return View(vaultOrder);
         }
 
@@ -253,12 +406,17 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var vaultOrder = await _context.VaultOrder
+            var vaultOrder = await _context.VaultOrder               
                 .FirstOrDefaultAsync(m => m.VaultOrderId == id);
             if (vaultOrder == null)
             {
                 return NotFound();
             }
+
+            vaultOrder.Status = Enum.GetName(typeof(OrderStatus), Int32.Parse(vaultOrder.Status));
+            vaultOrder.Location = Enum.GetName(typeof(FuneralLocation), Int32.Parse(vaultOrder.Location));
+            vaultOrder.Salutation = Enum.GetName(typeof(Salutations), Int32.Parse(vaultOrder.Salutation));
+            vaultOrder.Suffix = Enum.GetName(typeof(Suffix), Int32.Parse(vaultOrder.Suffix));
 
             return View(vaultOrder);
         }

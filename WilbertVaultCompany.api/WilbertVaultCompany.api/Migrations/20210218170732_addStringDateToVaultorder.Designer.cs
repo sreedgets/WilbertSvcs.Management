@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210218170732_addStringDateToVaultorder")]
+    partial class addStringDateToVaultorder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,15 +78,10 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<bool>("UseCoordinates")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("VaultOrderId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
                     b.HasKey("CemetaryId");
-
-                    b.HasIndex("VaultOrderId");
 
                     b.ToTable("Cemetary");
                 });
@@ -366,17 +363,12 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("Spouse")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VaultOrderId")
-                        .HasColumnType("int");
-
                     b.Property<string>("fhName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FuneralHomeContactId");
 
                     b.HasIndex("FuneralHomeId");
-
-                    b.HasIndex("VaultOrderId");
 
                     b.ToTable("FuneralHomeContacts");
                 });
@@ -648,20 +640,17 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<bool>("AwningOverCasket")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("BornDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
                     b.Property<int>("CemetaryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CemetaryName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CemetaryTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DeceasedId")
+                        .HasColumnType("int");
 
                     b.Property<int>("DeliveringPlantId")
                         .HasColumnType("int");
@@ -669,19 +658,10 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("DeliveringPlantName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DiedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("ExtraChairs")
                         .HasColumnType("int");
 
                     b.Property<string>("Fdrequest")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FuneralDate")
@@ -690,26 +670,23 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("FuneralDirector")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FuneralHomeContactId")
-                        .HasColumnType("int");
-
                     b.Property<int>("FuneralHomeId")
                         .HasColumnType("int");
 
                     b.Property<string>("GraveLocationSection")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("MilitarySetup")
                         .HasColumnType("bit");
+
+                    b.Property<string>("NewFuneralDirector")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewFuneralHome")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
@@ -726,13 +703,7 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<bool>("RegisterStand")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Salutation")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Suffix")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TentWith6Chairs")
@@ -747,9 +718,6 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("funeralhome")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("strCemeteryTime")
                         .HasColumnType("nvarchar(max)");
 
@@ -757,6 +725,10 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VaultOrderId");
+
+                    b.HasIndex("DeceasedId");
+
+                    b.HasIndex("FuneralHomeId");
 
                     b.ToTable("VaultOrder");
                 });
@@ -766,13 +738,6 @@ namespace WilbertVaultCompany.api.Migrations
                     b.HasOne("WilbertVaultCompany.api.Models.Employee", null)
                         .WithMany("Answers")
                         .HasForeignKey("EmployeeId");
-                });
-
-            modelBuilder.Entity("WilbertVaultCompany.api.Models.Cemetary", b =>
-                {
-                    b.HasOne("WilbertVaultCompany.api.Models.VaultOrder", null)
-                        .WithMany("lstCemetaries")
-                        .HasForeignKey("VaultOrderId");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.CompletedVm", b =>
@@ -807,10 +772,6 @@ namespace WilbertVaultCompany.api.Migrations
                         .HasForeignKey("FuneralHomeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("WilbertVaultCompany.api.Models.VaultOrder", null)
-                        .WithMany("Contacts")
-                        .HasForeignKey("VaultOrderId");
                 });
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.ParentFuneralHome", b =>
@@ -850,6 +811,25 @@ namespace WilbertVaultCompany.api.Migrations
                     b.Navigation("AssignedPlant");
                 });
 
+            modelBuilder.Entity("WilbertVaultCompany.api.Models.VaultOrder", b =>
+                {
+                    b.HasOne("WilbertVaultCompany.api.Models.Deceased", "theDeceased")
+                        .WithMany()
+                        .HasForeignKey("DeceasedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WilbertVaultCompany.api.Models.FuneralHome", "funeralhome")
+                        .WithMany()
+                        .HasForeignKey("FuneralHomeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("funeralhome");
+
+                    b.Navigation("theDeceased");
+                });
+
             modelBuilder.Entity("WilbertVaultCompany.api.Models.Employee", b =>
                 {
                     b.Navigation("Answers");
@@ -878,13 +858,9 @@ namespace WilbertVaultCompany.api.Migrations
 
             modelBuilder.Entity("WilbertVaultCompany.api.Models.VaultOrder", b =>
                 {
-                    b.Navigation("Contacts");
-
                     b.Navigation("DeliveringPlant");
 
                     b.Navigation("FuneralHomes");
-
-                    b.Navigation("lstCemetaries");
 
                     b.Navigation("OrderingPlant");
                 });
