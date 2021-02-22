@@ -9,30 +9,30 @@
         @if (Model.Count() != 0)
         {
             <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
-                <th scope="col"><a href="#" style="color:White;">Product Description</a></th>
-                <th scope="col"><a href="#" style="color:White;">Product Code</a></th>
-                <th scope="col"><a href="#" style="color:White;">Size</a></th>
+                <th scope="col"><a href="#" style="color:White;">Product</a></th>
+                <th scope="col"><a href="#" style="color:White;">Code</a></th>
                 <th scope="col"><a href="#" style="color:White;">Category</a></th>
-                <th scope="col"><a href="#" style="color:White;">Price</a></th>
-                <th scope="col"><a href="#" style="color:White;">Ovation</a></th>
-                <th scope="col"><a href="#" style="color:White;">Legcy</a></th>
-                <th scope="col"><a href="#" style="color:White;">Decoration</a></th>
-                <th scope="col"><a href="#" style="color:White;">Legacy Upcharge</a></th>
-                <th scope="col"><a href="#" style="color:White;"></a>Amount</th>
+                <th scope="col"><a href="#" style="color:White;">Color</a></th>
+                <th scope="col"><a style="color:White;">Size</a></th>
+                <th scope="col"><a style="color:White;">Price</a></th>
+                <th scope="col"><a style="color:White;">Ovation</a></th>
+                <th scope="col"><a style="color:White;">Venetian Carapace</a></th>
             </tr>
+
+
+
             @foreach (var item in Model)
             {
                 <tr style="color:#333333;background-color:#ECECEC;">
                     <td style="width:30%;"><a asp-action="Details" asp-route-id="@item.ProductId">@Html.DisplayFor(modelItem => item.Description)</a></td>
                     <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.ProductCode)</span></td>
-                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Size)</span></td>
                     <td style="width:10%;">@Html.DisplayFor(modelItem => item.ProductCategory)</td>
+                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Color)</span></td>
+                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Size)</span></td>
                     <td style="width:18%;">@Html.DisplayFor(modelItem => item.Price)</td>
                     <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Ovation)</span></td>
-                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Legacy)</span></td>
-                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Decoration)</span></td>
-                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.UpChargeForLegacy)</span></td>
-                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.UpChargeAmount)</span></td>
+                    <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.VenetianCarapace)</span></td>
+
                 </tr>
             }
         }

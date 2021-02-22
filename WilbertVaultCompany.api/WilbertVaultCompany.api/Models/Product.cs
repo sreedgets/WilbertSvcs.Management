@@ -13,6 +13,8 @@ namespace WilbertVaultCompany.api.Models
         public bool Ovation { get; set; }
         public bool Decoration { get; set; }
         public bool Legacy { get; set; }
+        [Display(Name = "Venetian Carapace")]
+        public string VenetianCarapace { get; set; }
         public string Size { get; set; }
         public decimal Price { get; set; }
         
@@ -41,5 +43,7 @@ namespace WilbertVaultCompany.api.Models
 
         [Display(Name = "Photo Image")]
         public byte[] PhotoImage { get; set; }
+        public int? VaultOrderId { get; set; }
+
     }
 }

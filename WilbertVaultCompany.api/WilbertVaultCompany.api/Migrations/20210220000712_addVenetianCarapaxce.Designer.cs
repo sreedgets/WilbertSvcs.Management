@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertVaultCompany.api.Migrations
 {
     [DbContext(typeof(wilbertdbContext))]
-    partial class wilbertdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210220000712_addVenetianCarapaxce")]
+    partial class addVenetianCarapaxce
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -572,9 +574,6 @@ namespace WilbertVaultCompany.api.Migrations
 
                     b.Property<bool>("UpChargeForLegacy")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("VaultOrderId")
-                        .HasColumnType("int");
 
                     b.Property<string>("VenetianCarapace")
                         .HasColumnType("nvarchar(max)");
