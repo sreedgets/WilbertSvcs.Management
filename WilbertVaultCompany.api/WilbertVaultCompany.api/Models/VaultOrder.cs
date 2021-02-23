@@ -85,14 +85,16 @@ namespace WilbertVaultCompany.api.Models
         public virtual ICollection<Cemetary> lstCemetaries { get; set; }
 
         /*****************************************************/
+        public int? VaultId { get; set; }
+        public string ProductName { get; set; }
+        public virtual ICollection<Product> ProductsOnOrder { get; set; }
+
+        /*****************************************************/
 
         [Display(Name = "Order Status")]
         public string Status { get; set; }
 
-        public int Category { get; set; }
-
-        public int? VaultId { get; set; }
-
+        public int Category { get; set; }     
         public int VenetianCarapace { get; set; }
 
         public bool TentWith6Chairs { get; set; }
@@ -108,10 +110,8 @@ namespace WilbertVaultCompany.api.Models
         public string Fdrequest { get; set; }
 
         
-        [Display(Name = "Order Notes")]
-        
-        public string Notes { get; set; }
-        
+        [Display(Name = "Order Notes")]        
+        public string VaultOrderNotes { get; set; }
         public int? PlantId { get; set; }
         
         public string Salutation { get; set; }

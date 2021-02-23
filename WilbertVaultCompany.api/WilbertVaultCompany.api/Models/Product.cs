@@ -32,7 +32,7 @@ namespace WilbertVaultCompany.api.Models
         
         [Display(Name = "Category")]
         public string ProductCategory { get; set; }
-        public int Color { get; set; }
+        public string Color { get; set; }
 
         [Display(Name = " Color 1")]
         public string Color1 { get; set; }
@@ -43,7 +43,6 @@ namespace WilbertVaultCompany.api.Models
 
         [Display(Name = "Photo Image")]
         public byte[] PhotoImage { get; set; }
-        public int? VaultOrderId { get; set; }
 
     }
 }

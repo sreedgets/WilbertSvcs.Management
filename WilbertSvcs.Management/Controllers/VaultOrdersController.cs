@@ -191,7 +191,7 @@ namespace WilbertSvcs.Management.Controllers
             "OrderingPlantName,DeliveringPlantId,DeliveringPlantName,ZipCode,FuneralHomeId," +
             "NewFuneralHome,FuneralDirector,NewFuneralDirector,CemetaryId,Status,Category,VaultId," +
             "VenetianCarapace,TentWith6Chairs,ExtraChairs,RegisterStand,MilitarySetup,AwningOverCasket," +
-            "Fdrequest,Notes,PlantId,ContactId," +
+            "Fdrequest,VaultOrderNotes,PlantId,ContactId," +
             "Salutation,FirstName,MiddleName,LastName,FullName,Suffix,BornDate,DiedDate")] VaultOrder vaultOrder)
         {
             if (ModelState.IsValid)
@@ -229,9 +229,9 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: VaultOrders/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -330,7 +330,7 @@ namespace WilbertSvcs.Management.Controllers
             return View(VO);
         }
 
-        // POST: VaultOrders/Edit/5
+        // POST: VaultO rders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -340,7 +340,7 @@ namespace WilbertSvcs.Management.Controllers
             "OrderingPlantName,DeliveringPlantId,DeliveringPlantName,ZipCode,FuneralHomeId," +
             "NewFuneralHome,FuneralDirector,NewFuneralDirector,CemetaryId,Status,Category,VaultId," +
             "VenetianCarapace,TentWith6Chairs,ExtraChairs,RegisterStand,MilitarySetup,AwningOverCasket," +
-            "Fdrequest,Notes,PlantId,FuneralHomeContactId," +
+            "Fdrequest,VaultOrderNotes,PlantId,ContactId," +
             "Salutation,FirstName,MiddleName,LastName,FullName,Suffix,BornDate,DiedDate")] VaultOrder vaultOrder)
         {
             if (id != vaultOrder.VaultOrderId)

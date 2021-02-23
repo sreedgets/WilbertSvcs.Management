@@ -38,6 +38,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <input type="hidden" asp-for="VaultOrderId" />
+                            <input type="hidden" asp-for="VaultId" />
                             <table>
                                 <tbody>
                                     <tr>
@@ -212,7 +213,7 @@
                                             <label asp-for="BornDate"></label>
                                         </td>
                                         <td>
-                                            <input maxlength="100" style="width:300px;" asp-for="BornDate" class="form-control"  type="text"/>
+                                            <input maxlength="100" style="width:300px;" asp-for="BornDate" class="form-control" type="text" />
                                             <span asp-validation-for="BornDate" class="text-danger"></span>
                                         </td>
 
@@ -239,31 +240,122 @@
                                 </tbody>
                             </table>
                             <hr class="vertical-space3">
+                        </div>
+                    </div>
+                    <hr style="border: 5px solid #00446a; border-radius: 5px;" />
+                    <div class="container">
+                        <div class="row">
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td colspan="4" align="left"><label class="sectionLabel"></label><h3>Additional Notes</h3></td>
+                                        <td colspan="4"><label class="sectionLabel"></label><h3>Funeral Director Requests</h3></td>
                                     </tr>
                                     <tr>
-                                        <td align="left">
-                                            <label asp-for="Notes"></label>
+                                        <td class="form-group form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" asp-for="TentWith6Chairs" />
+                                                Tent With Six Chairs
+                                            </label>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">No of Extra Chairs:</label></td>
                                         <td>
-                                            <input maxlength="100" style="width:300px;" asp-for="Notes" class="form-control" />
-                                            <span asp-validation-for="Notes" class="text-danger"></span>
+                                            <input asp-for="ExtraChairs" type="text" class="form-control" />
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                        <td class="form-group form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" asp-for="RegisterStand" />
+                                                Register Stand
+                                            </label>
+                                        </td>
+                                        <td class="form-group form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" asp-for="MilitarySetup" />
+                                                Military Setup
+                                            </label>
+                                        </td>
+                                        <td class="form-group form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" asp-for="AwningOverCasket" />
+                                                Awning Over Casket
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">FHD Special Request:</label></td>
+                                        <td>
+                                            <textarea asp-for="Fdrequest" rows="5" cols="50" class="form-control"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="titleLabel">Order Notes:</label></td>
+                                        <td>
+                                            <textarea asp-for="VaultOrderNotes" rows="5" cols="50" class="form-control"></textarea>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <hr style="border: 5px solid #00446a; border-radius: 5px;" />
                     <div>
                         <input type="submit" value="Save Vault Order" class="btn btn-primary" />
-                        <a asp-action="Details" asp-route-id="@Model.VaultOrderId" class="btn btn-secondary">Back to List</a>
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
                     </div>
                 </div>
             </div>
         </form>
     </center>
 </main>
+@section WilbertScripts {
+    <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+    <script>
+        $(document).ready(function () {
+            var funeralDate = $('input[name="FuneralDate"]'); // our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            funeralDate.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+
+            //var cemetery = $('input[name="CemetaryTime"]');
+            //cemetery.datepicker({
+            //    format: 'hh:mm',
+            //    container: container,
+            //    todayHighlight: true,
+            //    autoclose: true,
+            //})
+
+            var born = $('input[name="BornDate"]');
+            born.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+
+            var died = $('input[name="DiedDate"]');
+            died.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+
+        })
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

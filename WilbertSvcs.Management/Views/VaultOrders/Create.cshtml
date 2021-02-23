@@ -245,22 +245,7 @@
                                 </tbody>
                             </table>
                             <hr class="vertical-space3">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="4" align="left"><label class="sectionLabel"></label><h3>Additional Notes</h3></td>
-                                    </tr>
-                                    <tr>
-                                        <td align="left">
-                                            <label asp-for="Notes"></label>
-                                        </td>
-                                        <td>
-                                            <input maxlength="100" style="width:300px;" asp-for="Notes" class="form-control" />
-                                            <span asp-validation-for="Notes" class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                           
                         </div>
                     </div>
                 </div>
@@ -269,6 +254,53 @@
             <div>
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td colspan="4"><label class="sectionLabel"></label><h3>Funeral Director Requests</h3></td>
+                            </tr>
+                            <tr>
+                                <td><label class="titleLabel">Tent W/6 Chairs:</label></td>
+                                <td>
+                                    <input class="form-check-input" asp-for="TentWith6Chairs" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label class="titleLabel">No of Extra Chairs:</label></td>
+                                <td>
+                                    <input asp-for="ExtraChairs" class="form-control" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-check-input" asp-for="RegisterStand" />
+                                    <label for="rstand">Register Stand</label>
+                                    <input class="form-check-input" asp-for="MilitarySetup" />
+                                    <label for="msetup">Military Setup</label>
+                                    <input class="form-check-input" asp-for="AwningOverCasket" />
+                                    <label for="AOC">Awning Over Casket</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="titleLabel">FHD Special Request:</label></td>
+                                <td>
+                                    <textarea asp-for="Fdrequest" rows="5" cols="50" class="form-control"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="titleLabel">Order Notes:</label></td>
+                                <td>
+                                    <textarea asp-for="VaultOrderNotes" rows="5" cols="50" class="form-control"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </form>
     </center>

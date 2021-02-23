@@ -56,8 +56,44 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-            //product.VaultOrderId = (int?)TempData["VOid"];
+          //  product.VaultOrderId = (int?)TempData["VOid"];
             return View(product);
+        }
+
+        // POST: Products/AddToVaultOrder/int VaultOrderId
+        [HttpPost]
+        public async Task<IActionResult> AddToVaultOrder(int Id, [Bind("ProductId,Description,Ovation,Decoration,Legacy,Size,Price,ProductCode," +
+            "AllowedToSelectId,UpChargeForLegacy,UpChargeAmount,ProductCategory,Color,Color1,Color2,Comments,PhotoImage,VaultOrderId")] Product product)
+        {
+            if (Id != 0)
+            {
+                // Find VaultOrder in VaultOrder table
+                var VO = await _context.VaultOrder.FindAsync(Id);
+                if (VO != null)
+                {
+                    VO.VaultId = product.ProductId;
+                    try
+                    {
+                        _context.Update(VO);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ProductExists(product.ProductId))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                }
+                return RedirectToAction(nameof(Details),"VaultOrders", new { id = Id });
+            
+            }
+            return View();
         }
         /********************************************************/
         // GET: Products/Create
@@ -194,6 +230,10 @@ namespace WilbertSvcs.Management.Controllers
         private bool ProductExists(int id)
         {
             return _context.Product.Any(e => e.ProductId == id);
+        }
+        private bool VaultOrderExists(int id)
+        {
+            return _context.VaultOrder.Any(e => e.VaultOrderId == id);
         }
     }
 }

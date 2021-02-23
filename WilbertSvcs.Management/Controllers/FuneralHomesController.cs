@@ -221,7 +221,9 @@ namespace WilbertSvcs.Management.Controllers
         //[HttpPost, ActionName("SaveFuneralHome")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,PlantId,Name,Address,Address2,City,State,ZipCode,County,Email,Website,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
+        public async Task<IActionResult> Edit(int id, [Bind("FuneralHomeId,ParentFuneralHomeId,PlantId," +
+            "Name,Address,Address2,City,State,ZipCode,County,Email,Website,Phone1,Phone2,Phone3," +
+            "PhoneType1,PhoneType2,PhoneType3,IsParent,ParentName,PlantName")] FuneralHome funeralHome)
         {
             //if (id != funeralHome.FuneralHomeId)
             if (id == 0)

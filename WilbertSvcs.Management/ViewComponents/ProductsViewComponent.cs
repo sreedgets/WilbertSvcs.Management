@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.ViewComponents
@@ -25,6 +26,8 @@ namespace WilbertSvcs.Management.ViewComponents
                        where prods.ProductId == id
                        select prods).ToList();
 
+            foreach(var item in lstProd)
+                item.Color = Enum.GetName(typeof(VaultColor), Int32.Parse(item.Color));
 
             return View(lstProd);
         }
