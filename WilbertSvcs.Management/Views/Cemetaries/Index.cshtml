@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WilbertVaultCompany.api.Models.Cemetary>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <title>Dashboard Template</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+@await Component.InvokeAsync("Dashboard")
+
+<!-- Begin page content -->
+<main role="main" id="fhl" class="container">
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="container">
+                        <h1 class="py-5">Cemeteries List</h1>
+                        <div class="row">
+                            <div class="col-md-6" style="text-align:right;">
+                                <a asp-action="Create" class="btn btn-primary">ADD NEW CEMETERY</a>
+                            </div>
+                            <div class="col-md-6" style="text-align:left;">
+                                <a asp-action="Dashboard" asp-controller="Home" class="btn btn-primary">BACK TO DASHBOARD</a>
+                            </div>
+                        </div>
+                        <!--Page Actions -->
+                        <br />
+                        <form method="get" action="/Wilbert/FuneralHomes">
+                            <div class="input-group">
+                                <input class="form-control" type="search" placeholder="Enter cemetery name..." name="Fhsearch" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search Cemetery</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!--Page Actions -->
+                        <br />
+                        <br />
+                        <table>
+
+                            <thead>
+
+                                <tr align="left" style="color:White;background-color:#00446a;font-weight:bold;">
+                                    <th scope="col"><a href="#" style="color:White;">Cemetery Name</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">City</a></th>
+                                    <th scope="col"><a style="color:White;">State</a></th>
+                                    <th scope="col"><a href="#" style="color:White;">Zipcode</a></th>
+                                    <th></th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="color:#333333;background-color:#ECECEC;">
+                                        <td style="width:30%;">
+                                            <a asp-action="Details"
+                                               asp-route-id="@item.CemetaryId">@Html.DisplayFor(modelItem => item.Name)</a>
+                                        </td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.City)</span></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.State)</span></td>
+                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.ZipCode)</span></td>
+                                        <td style="width:10%;">
+                                            <span><a asp-action="Edit" asp-route-id="@item.CemetaryId" class="btn btn-secondary">Edit</a></span>
+                                        </td>
+                                        <td style="width:10%;">
+                                            <span><a asp-action="Delete" asp-route-id="@item.CemetaryId" class="btn btn-danger">Delete</a></span>
+                                        </td>
+                                    </tr>
+                                }
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</main>

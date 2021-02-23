@@ -338,7 +338,7 @@ namespace WilbertSvcs.Management.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("VaultOrderId,strFuneralDate,FuneralDate," +
             "CemetaryTime,strCemeteryTime,Location,GraveLocationSection,OrderingPlantId," +
             "OrderingPlantName,DeliveringPlantId,DeliveringPlantName,ZipCode,FuneralHomeId," +
-            "NewFuneralHome,FuneralDirector,NewFuneralDirector,CemetaryId,Status,Category,VaultId," +
+            "FuneralHomeContactId,FuneralDirector,NewFuneralDirector,CemetaryId,Status,Category,VaultId," +
             "VenetianCarapace,TentWith6Chairs,ExtraChairs,RegisterStand,MilitarySetup,AwningOverCasket," +
             "Fdrequest,VaultOrderNotes,PlantId,ContactId," +
             "Salutation,FirstName,MiddleName,LastName,FullName,Suffix,BornDate,DiedDate")] VaultOrder vaultOrder)

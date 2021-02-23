@@ -263,11 +263,12 @@
                                 <td colspan="4"><label class="sectionLabel"></label><h3>Funeral Director Requests</h3></td>
                             </tr>
                             <tr>
-                                <td><label class="titleLabel">Tent W/6 Chairs:</label></td>
-                                <td>
-                                    <input class="form-check-input" asp-for="TentWith6Chairs" />
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input disabled="disabled" readonly class="form-check-input" asp-for="TentWith6Chairs" />
+                                        Tent With Six Chairs
+                                    </label>
                                 </td>
-
                             </tr>
                             <tr>
                                 <td><label class="titleLabel">No of Extra Chairs:</label></td>
@@ -276,14 +277,25 @@
                                 </td>
 
                             </tr>
-                            <tr>
+                            <tr style="display: inline-block; margin-right: 20px;">
                                 <td colspan="2">
-                                    <input class="form-check-input" asp-for="RegisterStand" />
-                                    <label for="rstand">Register Stand</label>
-                                    <input class="form-check-input" asp-for="MilitarySetup" />
-                                    <label for="msetup">Military Setup</label>
-                                    <input class="form-check-input" asp-for="AwningOverCasket" />
-                                    <label for="AOC">Awning Over Casket</label>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="RegisterStand" />
+                                        Register Stand
+                                    </label>
+                                </td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="MilitarySetup" />
+                                        Military Setup
+                                    </label>
+                                </td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="AwningOverCasket" />
+                                        Awning Over Casket
+                                    </label>
                                 </td>
                             </tr>
                             <tr>
