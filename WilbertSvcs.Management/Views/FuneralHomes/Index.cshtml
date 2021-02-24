@@ -57,15 +57,15 @@
                                     @*<th scope="col"><a href="#" style="color:White;">Parent Funeral Home</a></th>*@
                                     <th scope="col"><a href="#" style="color:White;">Plant</a></th>
                                     <th></th>
-                                    <th></th>
+                                  
                                 </tr>
                                 @foreach (var item in Model)
                                 {
                                     <tr style="color:#333333;background-color:#ECECEC;">
                                         <td style="width:30%;"><a asp-action="Details" asp-route-id="@item.FuneralHomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.City)</span></td>
+                                        <td style="width:15%;"><span>@Html.DisplayFor(modelItem => item.City)</span></td>
                                         <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.State)</span></td>
-                                        <td style="width:10%;">@Html.DisplayFor(modelItem => item.Phone1)</td>
+                                        <td style="width:15%;">@Html.DisplayFor(modelItem => item.Phone1)</td>
                                         @*<td style="width:18%;">@Html.DisplayFor(modelItem => item.ParentName)</td>*@
                                         <td style="width:15%;"><span>@Html.DisplayFor(modelItem => item.PlantName)</span></td>
                                         <td style="width:15%;">
