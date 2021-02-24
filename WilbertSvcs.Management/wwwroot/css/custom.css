@@ -65,3 +65,7 @@ th, td {
         max-width: 1280px;
     }
 }
+
+.card-img-top {
+    width: 80%!important;
+}
