@@ -176,34 +176,12 @@
                 <hr class="vertical-space3" />
             </div>
         </div>
-
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8MhIXbKc3rVLqs6Mc79NDgx0bmlbuwumTh6xj01hcID0_9Qo_xaIDwUm-2v1vLc-1cYNADx60p9DtwMkvuttrX4vHV7ma20u8WFjubcS8vkrWenfsr40t9EF60jEmQrAyh-iKjwrIATBEwcdIujAITU6AUSu5K8BUUYFhFswJMqkeQJudftq9bvTCy0e2FE8LQ" />
+        <input name="IsParent" type="hidden" value="false" />
     </center>
 </main>
 
 @section WilbertScripts {
-    <script src="/Wilbert/lib/jquery/jquery.min.js"></script>
-    <script src="/Wilbert/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
-        function phoneOnKeyDown(phoneTextBox) {
-            if (phoneTextBox.value == 'xxx-xxx-xxxx') {
-                phoneTextBox.value = '';
-                phoneTextBox.style['color'] = 'black';
-            }
-        }
-
-        function phoneOnBlur(phoneTextBox) {
-            if (phoneTextBox.value.trim().length == 0) {
-                phoneTextBox.value = 'xxx-xxx-xxxx';
-                phoneTextBox.style['color'] = 'silver';
-            } else {
-
-                if (phoneTextBox.value.trim().length == 6) {  // 062019
-                    phoneTextBox.value = phoneTextBox.value.substring(0, 2) + "/" + phoneTextBox.value.substr(2, 4);
-
-                }
-            }
-        }
-    </script>
     <script>
         function initMap() {
             // Create a new StyledMapType object, passing it an array of styles,

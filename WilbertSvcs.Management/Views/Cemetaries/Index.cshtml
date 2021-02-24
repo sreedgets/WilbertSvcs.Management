@@ -71,10 +71,10 @@
                                         <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.State)</span></td>
                                         <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.ZipCode)</span></td>
                                         <td style="width:10%;">
-                                            <span><a asp-action="Edit" asp-route-id="@item.CemetaryId" class="btn btn-secondary">Edit</a></span>
+                                            <a asp-action="Edit" asp-route-id="@item.CemetaryId" class="btn btn-secondary">Edit</a>
                                         </td>
                                         <td style="width:10%;">
-                                            <span><a asp-action="Delete" asp-route-id="@item.CemetaryId" class="btn btn-danger">Delete</a></span>
+                                            <a asp-action="Delete" asp-route-id="@item.CemetaryId" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 }

@@ -54,10 +54,11 @@ namespace WilbertSvcs.Management.Controllers
                 searchString = currentFilter;
             }
 
-            var ctlist = await _context.Cemetary.ToListAsync();
-            foreach(var item in ctlist)
+            var ctList = from ct in _context.Cemetary orderby ct.Name select ct;
+
+            foreach(var item in ctList)
                     item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
-            return View(ctlist);
+            return View(await PaginatedList<Cemetary>.CreateAsync(ctList, pageNumber ?? 1, pageSize));
         }
 
         // GET: Cemetaries/Details/5
