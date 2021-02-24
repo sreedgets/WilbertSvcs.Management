@@ -13,9 +13,10 @@ namespace WilbertVaultCompany.api.Models
             Plants = new HashSet<Plant>();
         }
         public int CemetaryId { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Address { get; set; }
-        [Display(Name = "Address sLine 2")]
+        [Display(Name = "Address Line 2")]
         public string Address2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
@@ -23,6 +24,7 @@ namespace WilbertVaultCompany.api.Models
         public string County { get; set; }
 
         [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone")]
         public string Phone1 { get; set; }
         public string PhoneType1 { get; set; }
         public string Directions { get; set; }
@@ -32,7 +34,7 @@ namespace WilbertVaultCompany.api.Models
         public bool UseCoordinates { get; set; }
 
         /**********************************************/
-
+        [Display(Name = "Serving Plant")]
         public int PlantId { get; set; }
 
         [Display(Name = "Serving Plant")]

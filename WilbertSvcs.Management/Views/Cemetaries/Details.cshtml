@@ -4,81 +4,236 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-<div>
-    <h4>Cemetary</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.State)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.County)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.County)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Directions)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Directions)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lattitude)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Lattitude)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Longitude)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Longitude)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Map)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Map)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UseCoordinates)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UseCoordinates)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.CemetaryId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <title>Funeral Home</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" id="fhd" class="container">
+    <h1 class="mt-5">Vault Order Details</h1>
+    <h2 style="margin: 0 auto;color:#e65500!important;">@Model.Name</h2>
+    <br />
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.CemetaryId">Edit Cemetery</a>
+    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.CemetaryId">Delete Cemetery</a>
+    <a class="btn btn-primary" asp-action="Index">Back to Order List</a>
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" asp-for="CemetaryId" />
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th><label class="sectionLabel"></label><h3>General Information</h3></th>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Name"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Address"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Address" class="form-control" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Address2"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Address2" class="form-control" />
+                                        <span asp-validation-for="Address2" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="City"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="City" class="form-control" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="State"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="State" maxlength="100" tabindex="1" style="width:300px;" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="ZipCode"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="ZipCode" type="text" class="form-control" />
+                                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="County"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="County" class="form-control" />
+                                        <span asp-validation-for="County" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Phone1"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Phone1" class="form-control" />
+                                        <span asp-validation-for="Phone1" class="text-danger"></span>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="PhoneType1" class="form-control" style="width:300px;" />
+                                        <span asp-validation-for="PhoneType1" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><label class="sectionLabel"></label><h3>Additional Information</h3></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="PlantId"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="PlantName" class="form-control" />
+                                        <span asp-validation-for="PlantId" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Lattitude"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Lattitude" class="form-control" />
+                                        <span asp-validation-for="Lattitude" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Longitude"></label>
+                                    </td>
+                                    <td>
+                                        <input readonly asp-for="Longitude" class="form-control" />
+                                        <span asp-validation-for="Longitude" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr style="border: 1px solid #00446a; border-radius: 1px;" />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="map" style="width:100%;min-height:500px;"></div>
+                    </div>
+                </div>
+                <hr class="vertical-space3" />
+            </div>
+        </div>
+
+    </center>
+</main>
+
+@section WilbertScripts {
+    <script src="/Wilbert/lib/jquery/jquery.min.js"></script>
+    <script src="/Wilbert/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        function phoneOnKeyDown(phoneTextBox) {
+            if (phoneTextBox.value == 'xxx-xxx-xxxx') {
+                phoneTextBox.value = '';
+                phoneTextBox.style['color'] = 'black';
+            }
+        }
+
+        function phoneOnBlur(phoneTextBox) {
+            if (phoneTextBox.value.trim().length == 0) {
+                phoneTextBox.value = 'xxx-xxx-xxxx';
+                phoneTextBox.style['color'] = 'silver';
+            } else {
+
+                if (phoneTextBox.value.trim().length == 6) {  // 062019
+                    phoneTextBox.value = phoneTextBox.value.substring(0, 2) + "/" + phoneTextBox.value.substr(2, 4);
+
+                }
+            }
+        }
+    </script>
+    <script>
+        function initMap() {
+            // Create a new StyledMapType object, passing it an array of styles,
+            // and the name to be displayed on the map type control.
+            // Create a map object, and include the MapTypeId to add
+            // to the map type control.
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 43.140018, lng: -93.2025 },
+                zoom: 12,
+                mapTypeControlOptions: {
+                    mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain']
+                }
+            });
+
+            var dsm = { lat: 43.140018, lng: -93.2025 };
+            var marker = new google.maps.Marker({ position: dsm, map: map });
+
+            //Associate the styled map with the MapTypeId and set it to display.
+            map.mapTypes.set('styled_map', styledMapType);
+            map.setMapTypeId('styled_map');
+        }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe-g-4Kv85124vInfbgRmRBw0KVBJ3IGA&callback=initMap"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js" crossorigin="anonymous" integrity="sha384-rZfj/ogBloos6wzLGpPkkOr/gpkBNLZ6b6yLy4o+ok+t/SAKlL5mvXLr0OXNi1Hp">
+    </script>
+    <script>(window.jQuery && window.jQuery.validator || document.write("\u003Cscript src=\u0022/Wilbert/lib/jquery-validation/dist/jquery.validate.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-rZfj/ogBloos6wzLGpPkkOr/gpkBNLZ6b6yLy4o\u002Bok\u002Bt/SAKlL5mvXLr0OXNi1Hp\u0022\u003E\u003C/script\u003E"));</script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.9/jquery.validate.unobtrusive.min.js" crossorigin="anonymous" integrity="sha384-ifv0TYDWxBHzvAk2Z0n8R434FL1Rlv/Av18DXE43N/1rvHyOG4izKst0f2iSLdds">
+    </script>
+    <script>(window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive || document.write("\u003Cscript src=\u0022/Wilbert/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-ifv0TYDWxBHzvAk2Z0n8R434FL1Rlv/Av18DXE43N/1rvHyOG4izKst0f2iSLdds\u0022\u003E\u003C/script\u003E"));</script>
+    <partial name="_ValidationScriptsPartial" />
+}

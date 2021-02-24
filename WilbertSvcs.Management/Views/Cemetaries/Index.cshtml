@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WilbertVaultCompany.api.Models.Cemetary>
+﻿@model WilbertSvcs.Management.PageControls.PaginatedList<WilbertVaultCompany.api.Models.Cemetary>
 
 @{
     ViewData["Title"] = "Index";
@@ -58,6 +58,7 @@
                                     <th scope="col"><a style="color:White;">State</a></th>
                                     <th scope="col"><a href="#" style="color:White;">Zipcode</a></th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                                 @foreach (var item in Model)
                                 {
@@ -84,4 +85,34 @@
             </div>
         </div>
     </center>
+</main>
+<main role="main" class="container">
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <div class="album py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="text-align:right;">
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-primary @prevDisabled">
+                        Previous
+                    </a>
+                </div>
+                <div class="col-md-6" style="text-align:left;">
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-primary @nextDisabled">
+                        Next
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>

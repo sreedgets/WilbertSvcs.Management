@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WilbertSvcs.Management.PageControls;
+using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
 
 namespace WilbertSvcs.Management.Controllers
@@ -19,9 +21,43 @@ namespace WilbertSvcs.Management.Controllers
         }
 
         // GET: Cemetaries
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber, string CtrySearch)
         {
-            return View(await _context.Cemetary.ToListAsync());
+            int pageSize = 25;
+
+            ViewData["GetCemeterySearched"] = CtrySearch;
+            ViewData["CurrentSort"] = sortOrder;
+
+            var cemeteryQuery = from x in _context.Cemetary select x;
+            if (!String.IsNullOrEmpty(CtrySearch))
+            {
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                cemeteryQuery = cemeteryQuery.Where(n => n.Name.Contains(CtrySearch));
+                return View(await PaginatedList<Cemetary>.CreateAsync(cemeteryQuery, pageNumber ?? 1, pageSize));
+            }
+
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var ctlist = await _context.Cemetary.ToListAsync();
+            foreach(var item in ctlist)
+                    item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
+            return View(ctlist);
         }
 
         // GET: Cemetaries/Details/5
@@ -39,6 +75,9 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            cemetary.State = Enum.GetName(typeof(States), Int32.Parse(cemetary.State));
+
+            cemetary.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(cemetary.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(cemetary.PhoneType1));
             return View(cemetary);
         }
 
@@ -72,7 +111,8 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CemetaryId,Name,Address,City,State,ZipCode,County,Directions,Lattitude,Longitude,Map,UseCoordinates")] Cemetary cemetary)
+        public async Task<IActionResult> Create([Bind("CemetaryId,Name,Address,City,State,ZipCode,County," +
+            "Phone1,PhoneType1,PlantId,PlantName,Directions,Lattitude,Longitude,Map,UseCoordinates")] Cemetary cemetary)
         {
             if (ModelState.IsValid)
             {
@@ -80,6 +120,13 @@ namespace WilbertSvcs.Management.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            if (cemetary.PlantId != 0)
+            {
+                Plant plt = await _context.Plants.FindAsync(cemetary.PlantId);
+                cemetary.PlantName = plt.PlantName;
+            }
+
             return View(cemetary);
         }
 
@@ -96,6 +143,22 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
+
+            List<Plant> lstPlants = _context.Plants.ToList();
+            cemetary.Plants.Add(new Plant()
+            {
+                PlantName = "-Select-",
+                PlantId = 0
+            });
+            foreach (var item in lstPlants)
+            {
+                cemetary.Plants.Add(new Plant()
+                {
+                    PlantName = item.PlantName,
+                    PlantId = item.PlantId
+                });
+            }
+
             return View(cemetary);
         }
 
@@ -104,7 +167,8 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CemetaryId,Name,Address,City,State,ZipCode,County,Directions,Lattitude,Longitude,Map,UseCoordinates")] Cemetary cemetary)
+        public async Task<IActionResult> Edit(int id, [Bind("CemetaryId,Name,Address,City,State,ZipCode,County," +
+            "Phone1,PhoneType1,PlantId,PlantName,Directions,Lattitude,Longitude,Map,UseCoordinates")] Cemetary cemetary)
         {
             if (id != cemetary.CemetaryId)
             {
@@ -113,6 +177,11 @@ namespace WilbertSvcs.Management.Controllers
 
             if (ModelState.IsValid)
             {
+                if (cemetary.PlantId != 0)
+                {
+                    Plant plt = await _context.Plants.FindAsync(cemetary.PlantId);
+                    cemetary.PlantName = plt.PlantName;
+                }
                 try
                 {
                     _context.Update(cemetary);
@@ -148,7 +217,8 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-
+            cemetary.State = Enum.GetName(typeof(States), Int32.Parse(cemetary.State));
+            cemetary.PhoneType1 = Enum.GetName(typeof(PhoneType), Int32.Parse(cemetary.PhoneType1)) == "Choose" ? "" : Enum.GetName(typeof(PhoneType), Int32.Parse(cemetary.PhoneType1));
             return View(cemetary);
         }
 
