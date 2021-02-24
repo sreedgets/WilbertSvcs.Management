@@ -7,14 +7,48 @@
     text-align: left !important;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
 th, td {
     padding: 5px;
+}
+
+.vertical-space, .vertical-space1, .vertical-space2, .vertical-space3, .vertical-space4, .vertical-space5 {
+    display: block;
+    width: 100%;
+    margin: 0;
+    clear: both;
+    border: 0;
+    height: 10px
+}
+
+.vertical-space1 {
+    height: 10px
+}
+
+.vertical-space2 {
+    height: 20px
+}
+
+.vertical-space3 {
+    height: 30px
+}
+
+.vertical-space4 {
+    height: 40px
+}
+
+.vertical-space5 {
+    height: 50px
 }
 
  body, button, input[type=email], input[type=password], input[type=tel], input[type=text], input[type=submit], input[type=reset], input[type=button], select, span.date_label, textarea {
     font-family: Roboto,sans-serif;
     font-weight: 300;
-    font-size: 120%;
+    font-size: 110%;
     line-height: 1.3em;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
