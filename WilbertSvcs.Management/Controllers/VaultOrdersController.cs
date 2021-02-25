@@ -77,6 +77,13 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            if(vaultOrder.CemetaryId != 0)
+            {
+                vaultOrder.CemetaryName = (from c in _context.Cemetary
+                                           where c.CemetaryId == vaultOrder.CemetaryId
+                                           select c.Name).FirstOrDefault();
+            }
+
             vaultOrder.Status = Enum.GetName(typeof(OrderStatus), Int32.Parse(vaultOrder.Status));
             vaultOrder.Location = Enum.GetName(typeof(FuneralLocation), Int32.Parse(vaultOrder.Location));
             vaultOrder.Salutation = Enum.GetName(typeof(Salutations), Int32.Parse(vaultOrder.Salutation));
@@ -413,6 +420,10 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
+            vaultOrder.CemetaryName = (from c in _context.Cemetary
+                                       where c.CemetaryId == vaultOrder.CemetaryId
+                                       select c.Name).FirstOrDefault();
+
             vaultOrder.Status = Enum.GetName(typeof(OrderStatus), Int32.Parse(vaultOrder.Status));
             vaultOrder.Location = Enum.GetName(typeof(FuneralLocation), Int32.Parse(vaultOrder.Location));
             vaultOrder.Salutation = Enum.GetName(typeof(Salutations), Int32.Parse(vaultOrder.Salutation));
@@ -435,6 +446,23 @@ namespace WilbertSvcs.Management.Controllers
         private bool VaultOrderExists(int id)
         {
             return _context.VaultOrder.Any(e => e.VaultOrderId == id);
+        }
+
+        public async Task<IActionResult> ProductDetails(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Product
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
     }
 }

@@ -61,6 +61,7 @@
                                     <th scope="col"><a href="#" style="color:White;">Plant</a></th>
                                     <th scope="col"><a href="#" style="color:White;">Order Status</a></th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                                 @foreach (var item in Model)
                                 {
@@ -73,11 +74,8 @@
                                         <td style="width:10%;"><span> @Html.DisplayFor(modelItem => item.FuneralDirector) </span></td>
                                         <td style="width:10%;"><span> @Html.DisplayFor(modelItem => item.DeliveringPlant) </span></td> @*Add Plant Class*@
                                         <td style="width:8%;"><span>@Html.DisplayFor(modelItem => item.Status)</span></td>
-                                        <td style="width:10%;">
-                                            <span><a asp-action="Edit" asp-route-id="@item.VaultOrderId" class="btn btn-secondary">Edit</a></span>
-                                            <span><a asp-action="Delete" asp-route-id="@item.VaultOrderId" class="btn btn-danger">Delete</a></span>
-                                        </td>
-
+                                        <td style="width:10%;"><span><a asp-action="Edit" asp-route-id="@item.VaultOrderId" class="btn btn-secondary">Edit</a></span></td>
+                                        <td style="width:10%;"><span><a asp-action="Delete" asp-route-id="@item.VaultOrderId" class="btn btn-danger">Delete</a></span></td>
                                     </tr>
                                 }                               
                             </tbody>

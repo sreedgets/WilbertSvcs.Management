@@ -67,7 +67,7 @@
                                             <label asp-for="CemetaryTime"></label>
                                         </td>
                                         <td>
-                                            <input maxlength="100" style="width:300px;" asp-for="CemetaryTime" class="form-control" />
+                                            <input maxlength="100" style="width:300px;" type="time" asp-for="CemetaryTime" class="form-control"/>
                                             <span asp-validation-for="CemetaryTime" class="text-danger"></span>
                                         </td>
                                     </tr>
@@ -333,7 +333,7 @@
 
             //var cemetery = $('input[name="CemetaryTime"]');
             //cemetery.datepicker({
-            //    format: 'hh:mm',
+            //    format: 'HH:mm',
             //    container: container,
             //    todayHighlight: true,
             //    autoclose: true,

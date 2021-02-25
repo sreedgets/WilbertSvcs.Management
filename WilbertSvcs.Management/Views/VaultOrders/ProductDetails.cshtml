@@ -1,0 +1,140 @@
+﻿@model WilbertVaultCompany.api.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<head>
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    <h1 class="mt-5">Product Details</h1>
+
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.ProductId">Edit Product</a>
+    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.ProductId">Delete Product</a>
+    @*<a class="btn btn-primary" asp-action="AddToVO" asp-route-id="@Model.VaultOrderId">Add To Order</a>*@
+
+    <a class="btn btn-primary" asp-action="Index">Go Back</a>
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="album py-5">
+                    <div class="container">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label class="titleLabel" asp-for="Description"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="Description" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                                <td></td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input disabled="disabled" readonly class="form-check-input" asp-for="Ovation" /> @Html.DisplayNameFor(model => model.Ovation)
+                                    </label>
+                                </td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input disabled="disabled" readonly class="form-check-input" asp-for="Decoration" /> @Html.DisplayNameFor(model => model.Decoration)
+                                    </label>
+                                </td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input disabled="disabled" readonly class="form-check-input" asp-for="Legacy" /> @Html.DisplayNameFor(model => model.Legacy)
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Size"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="Size" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Price"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="Price" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="ProductCode"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="ProductCode" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="AllowedToSelectId"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="AllowedToSelectId" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label asp-for="UpChargeForLegacy"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="UpChargeForLegacy" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="UpChargeAmount"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="UpChargeAmount" class="form-control" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label asp-for="Color1"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="Color1" class="form-control" />
+                                </td>
+
+                                <td>
+                                    <label asp-for="Color2"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="Color2" class="form-control" />
+                                </td>
+
+                                <td>
+                                    <label asp-for="PhotoImage"></label>
+                                </td>
+                                <td>
+                                    <input readonly asp-for="PhotoImage" class="form-control" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</main>

@@ -24,7 +24,7 @@
             @foreach (var item in Model)
             {
                 <tr style="color:#333333;background-color:#ECECEC;">
-                    <td style="width:30%;"><a asp-action="Details" asp-route-id="@item.ProductId">@Html.DisplayFor(modelItem => item.Description)</a></td>
+                    <td style="width:30%;"><a asp-action="Details" asp-route-id="@item.ProductId" asp-controller="Products">@Html.DisplayFor(modelItem => item.Description)</a></td>
                     <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.ProductCode)</span></td>
                     <td style="width:10%;">@Html.DisplayFor(modelItem => item.ProductCategory)</td>
                     <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Color)</span></td>

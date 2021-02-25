@@ -27,273 +27,269 @@
 <main role="main" class="container">
     <center>
         <h1 class="mt-5">Vault Order Details</h1>
-        <div class="album py-5">
+        <div class="row">
+            <div class="col-md-6">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><label class="sectionLabel"></label><h3>Funeral Information</h3></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="Status"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Status" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<OrderStatus>()" />
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="FuneralDate"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="FuneralDate" class="form-control" />
+                                <span asp-validation-for="FuneralDate" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="CemetaryTime"></label>
+                            </td>
+                            <td>
+                                <input readonly maxlength="100" style="width:300px;" type="time" asp-for="CemetaryTime" class="form-control" />
+                                <span asp-validation-for="CemetaryTime" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="Location"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Location" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<FuneralLocation>()" />
+                                <span asp-validation-for="Location" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="OrderingPlantId"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="OrderingPlantName" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="DeliveringPlant"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="DeliveringPlantName" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="ZipCode"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="ZipCode" class="form-control" />
+                                <span asp-validation-for="ZipCode" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="funeralhome"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="funeralhome" class="form-control" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="FuneralDirector"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="FuneralDirector" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="CemetaryId"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="CemetaryName" class="form-control" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="GraveLocationSection"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="GraveLocationSection" class="form-control" />
+                                <span asp-validation-for="GraveLocationSection" class="text-danger"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label class="sectionLabel"></label><h3>Deceased Information</h3></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="Salutation"></label>
+                            </td>
+
+                            <td>
+                                <input readonly asp-for="Salutation" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<Salutations>()" />
+                                <span asp-validation-for="Salutation" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="FirstName"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="MiddleName"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="MiddleName" class="form-control" />
+                                <span asp-validation-for="MiddleName" class="text-danger"></span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="LastName"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label asp-for="Suffix"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Suffix" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<Suffix>()" />
+                                <span asp-validation-for=" Suffix" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="BornDate"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="BornDate" class="form-control" />
+                                <span asp-validation-for="BornDate" class="text-danger"></span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="DiedDate"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="DiedDate" class="form-control" />
+                                <span asp-validation-for="DiedDate" class="text-danger"></span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="FullName"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="FullName" class="form-control" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="vertical-space3">
+            </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th><label class="sectionLabel"></label><h3>Funeral Information</h3></th>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="Status"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="Status" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<OrderStatus>()" />
-                                        <span asp-validation-for="Status" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="FuneralDate"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="FuneralDate" class="form-control" />
-                                        <span asp-validation-for="FuneralDate" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="CemetaryTime"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="CemetaryTime" class="form-control" />
-                                        <span asp-validation-for="CemetaryTime" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="Location"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="Location" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<FuneralLocation>()" />
-                                        <span asp-validation-for="Location" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="OrderingPlantId"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="OrderingPlantName" class="form-control" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="DeliveringPlant"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="DeliveringPlantName" class="form-control" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="ZipCode"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="ZipCode" class="form-control" />
-                                        <span asp-validation-for="ZipCode" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="funeralhome"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="funeralhome" class="form-control" />
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td colspan="4"><label class="sectionLabel"></label><h3>Funeral Director Requests</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input disabled="disabled" readonly class="form-check-input" asp-for="TentWith6Chairs" />
+                                        Tent With Six Chairs
+                                    </label>
+                                </td>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="FuneralDirector"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="FuneralDirector" class="form-control" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="CemetaryId"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="CemetaryName" class="form-control" />
+                            </tr>
+                            <tr>
+                                <td><label class="titleLabel">No of Extra Chairs:</label></td>
+                                <td>
+                                    <input readonly asp-for="ExtraChairs" class="form-control" />
+                                </td>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="GraveLocationSection"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="GraveLocationSection" class="form-control" />
-                                        <span asp-validation-for="GraveLocationSection" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td><label class="sectionLabel"></label><h3>Deceased Information</h3></td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="Salutation"></label>
-                                    </td>
-
-                                    <td>
-                                        <input readonly asp-for="Salutation" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<Salutations>()" />
-                                        <span asp-validation-for="Salutation" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="FirstName"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="FirstName" class="form-control" />
-                                        <span asp-validation-for="FirstName" class="text-danger"></span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="MiddleName"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="MiddleName" class="form-control" />
-                                        <span asp-validation-for="MiddleName" class="text-danger"></span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="LastName"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="LastName" class="form-control" />
-                                        <span asp-validation-for="LastName" class="text-danger"></span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <label asp-for="Suffix"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="Suffix" maxlength="100" tabindex="1" style="width:300px;" asp-items="Html.GetEnumSelectList<Suffix>()" />
-                                        <span asp-validation-for=" Suffix" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="BornDate"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="BornDate" class="form-control" />
-                                        <span asp-validation-for="BornDate" class="text-danger"></span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="DiedDate"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="DiedDate" class="form-control" />
-                                        <span asp-validation-for="DiedDate" class="text-danger"></span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="FullName"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="FullName" class="form-control" />
-                                        <span asp-validation-for="FullName" class="text-danger"></span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <hr class="vertical-space3">
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="4"><label class="sectionLabel"></label><h3>Funeral Director Requests</h3></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="form-group form-check">
-                                            <label class="form-check-label">
-                                                <input disabled="disabled" readonly class="form-check-input" asp-for="TentWith6Chairs" />
-                                                Tent With Six Chairs
-                                            </label>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><label class="titleLabel">No of Extra Chairs:</label></td>
-                                        <td>
-                                            <input readonly asp-for="ExtraChairs" class="form-control" />
-                                        </td>
-
-                                    </tr>
-                                    <tr style="display: inline-block; margin-right: 20px;">
-                                        <td colspan="2">
-                                        <td class="form-group form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" asp-for="RegisterStand" readonly disabled="disabled" />
-                                                Register Stand
-                                            </label>
-                                        </td>
-                                        <td class="form-group form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" asp-for="MilitarySetup" readonly disabled="disabled" />
-                                                Military Setup
-                                            </label>
-                                        </td>
-                                        <td class="form-group form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" asp-for="AwningOverCasket" readonly disabled="disabled" />
-                                                Awning Over Casket
-                                            </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="titleLabel">FHD Special Request:</label></td>
-                                        <td>
-                                            <input readonly asp-for="Fdrequest" class="form-control" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="titleLabel">Order VaultOrderNotes:</label></td>
-                                        <td>
-                                            <input readonly asp-for="VaultOrderNotes" class="form-control" />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <hr />
-                    <br />
-                    <form asp-action="Delete">
-                        <input type="hidden" asp-for="VaultOrderId" />
-                        <input type="submit" value="Delete" class="btn btn-danger" />
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                    </form>
+                            </tr>
+                            <tr style="display: inline-block; margin-right: 20px;">
+                                <td colspan="2">
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="RegisterStand" readonly disabled="disabled" />
+                                        Register Stand
+                                    </label>
+                                </td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="MilitarySetup" readonly disabled="disabled" />
+                                        Military Setup
+                                    </label>
+                                </td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="AwningOverCasket" readonly disabled="disabled" />
+                                        Awning Over Casket
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="titleLabel">FHD Special Request:</label></td>
+                                <td>
+                                    <input readonly asp-for="Fdrequest" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="titleLabel">Order VaultOrderNotes:</label></td>
+                                <td>
+                                    <input readonly asp-for="VaultOrderNotes" class="form-control" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
+        </div> 
+        <hr />
+        <br />
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="VaultOrderId" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </form>
     </center>
 </main>

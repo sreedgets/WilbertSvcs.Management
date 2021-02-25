@@ -27,10 +27,11 @@ namespace WilbertVaultCompany.api.Models
         public string strFuneralDate { get; set; }
         
         
-        [Display(Name = "Funeral Date/Time")] 
+        [Display(Name = "Funeral Date/Time")]
+        [DataType(DataType.Date)]
         public DateTime FuneralDate { get; set; }
 
-        
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         [Display(Name = "Cemetery Time")]
         public DateTime CemetaryTime { get; set; }
 
@@ -125,9 +126,11 @@ namespace WilbertVaultCompany.api.Models
         public string FullName { get; set; }
         
         public string Suffix { get; set; }
-        
+
+        [DataType(DataType.Date)]
         public DateTime BornDate { get; set; }
-        
+
+        [DataType(DataType.Date)]
         public DateTime DiedDate { get; set; }        
     }
 }
