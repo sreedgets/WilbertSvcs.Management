@@ -76,7 +76,7 @@
                                     <label class="titleLabel">Follow Up Date:</label>
                                 </td>
                                 <td>
-                                    <input class="form-control" asp-for="FollowUpDate" style="width:300px" placeholder="MM/DD/YYYY" type="text">
+                                    <input class="form-control" asp-for="FollowUpDate" placeholder="MM/DD/YYYY" type="text" />
                                 </td>
                             </tr>
                             <tr style="color:#333333;background-color:#ffffff;">
@@ -121,23 +121,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
     <script>
-        $(document).ready(function () {
-            var date_input = $('input[name="Date"]'); // our date input has the name "date"
-            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-            date_input.datepicker({
-                format: 'mm/dd/yyyy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-            })
+       // $(document).ready(function () {
+            //var date_input = $('input[name="Date"]'); // our date input has the name "date"
+            //var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            //date_input.datepicker({
+            //    format: 'mm/dd/yyyy',
+            //    container: container,
+            //    todayHighlight: true,
+            //    autoclose: true,
+            //})
 
-            var date_input2 = $('input[name="FollowUpDate"]');
-            date_input2.datepicker({
-                format: 'mm/dd/yyyy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-            })
-        })
+            //var date_input2 = $('input[name="FollowUpDate"]');
+            //date_input2.datepicker({
+            //    format: 'mm/dd/yyyy',
+            //    container: container,
+            //    todayHighlight: true,
+            //    autoclose: true,
+            //})
+        //})
     </script>
 }

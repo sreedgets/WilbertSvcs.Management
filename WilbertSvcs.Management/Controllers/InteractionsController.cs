@@ -200,7 +200,7 @@ namespace WilbertSvcs.Management.Controllers
             var interaction = await _context.Interactions.FindAsync(id);
             _context.Interactions.Remove(interaction);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "FuneralHomes", new { Id = interaction.FuneralHomeId });
         }
 
         private bool InteractionExists(int id)

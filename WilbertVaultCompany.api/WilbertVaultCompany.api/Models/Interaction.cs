@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
@@ -9,9 +10,13 @@ namespace WilbertVaultCompany.api.Models
     public partial class Interaction
     {
         public int InteractionId { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         public string Nature { get; set; }
         public string Notes { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime FollowUpDate { get; set; }
         public string Reason { get; set; }
 
