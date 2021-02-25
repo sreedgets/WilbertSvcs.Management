@@ -61,23 +61,20 @@
                                     <th scope="col"><a href="#" style="color:White;">Plant</a></th>
                                     <th scope="col"><a href="#" style="color:White;">Order Status</a></th>
                                     <th></th>
-                                    <th></th>
                                 </tr>
                                 @foreach (var item in Model)
                                 {
                                     <tr style="color:#333333;background-color:#ECECEC;">
-                                        <td style="width:30%;"><a asp-action="Details" asp-route-id="@item.VaultOrderId">@Html.DisplayFor(modelItem => item.VaultOrderId)</a></td>
-                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.FullName)</span></td>
-                                        <td style="width:10%;">@Html.DisplayFor(modelItem => item.FuneralDate)</td>    @*Add Cemetary Class*@
-                                        <td style="width:10%;">@Html.DisplayFor(modelItem => item.CemetaryName)</td>
-                                        <td style = "width:18%;"> @Html.DisplayFor(modelItem => item.funeralhome) </td>@*Add Funeral Home Class*@
-                                        <td style = "width:10%;"><span> @Html.DisplayFor(modelItem => item.FuneralDirector) </span></td>
-                                        <td style = "width:10%;"><span> @Html.DisplayFor(modelItem => item.DeliveringPlant) </span></td> @*Add Plant Class*@
-                                        <td style="width:10%;"><span>@Html.DisplayFor(modelItem => item.Status)</span></td>
+                                        <td style="width:8%;"><a asp-action="Details" asp-route-id="@item.VaultOrderId">@Html.DisplayFor(modelItem => item.VaultOrderId)</a></td>
+                                        <td style="width:12%;"><span>@Html.DisplayFor(modelItem => item.FullName)</span></td>
+                                        <td style="width:15%;">@Html.DisplayFor(modelItem => item.FuneralDate)</td>    @*Add Cemetary Class*@
+                                        <td style="width:12%;">@Html.DisplayFor(modelItem => item.CemetaryName)</td>
+                                        <td style="width:15%;"> @Html.DisplayFor(modelItem => item.funeralhome) </td>@*Add Funeral Home Class*@
+                                        <td style="width:10%;"><span> @Html.DisplayFor(modelItem => item.FuneralDirector) </span></td>
+                                        <td style="width:10%;"><span> @Html.DisplayFor(modelItem => item.DeliveringPlant) </span></td> @*Add Plant Class*@
+                                        <td style="width:8%;"><span>@Html.DisplayFor(modelItem => item.Status)</span></td>
                                         <td style="width:10%;">
                                             <span><a asp-action="Edit" asp-route-id="@item.VaultOrderId" class="btn btn-secondary">Edit</a></span>
-                                        </td>
-                                        <td style="width:10%;">
                                             <span><a asp-action="Delete" asp-route-id="@item.VaultOrderId" class="btn btn-danger">Delete</a></span>
                                         </td>
 
