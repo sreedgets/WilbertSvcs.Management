@@ -84,7 +84,9 @@ namespace WilbertSvcs.Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int Id, [Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,Email,Phone1,Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse,ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact)
+        public async Task<IActionResult> Create(int Id, [Bind("FuneralHomeContactId,FuneralHomeId,FirstName,LastName,NickName,Email,Phone1," +
+            "Phone2,Phone3,PhoneType1,PhoneType2,PhoneType3,Spouse," +
+            "ShowPrices,ContactRole,Interests,Photo")] FuneralHomeContact funeralHomeContact)
         {
             if (Id == 0)
             {

@@ -33,115 +33,110 @@
                 <div class="container">
                     <div class="row">
                         <input type="hidden" asp-for="ProductId" />
-                        <div class="col-md-6">
-                            <br />
+                        <br />
+                        <table>
+                            <tr>
+                                <td>
+                                    <label class="titleLabel" asp-for="Description"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="Description" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                                <td></td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="Ovation" /> @Html.DisplayNameFor(model => model.Ovation)
+                                    </label>
+                                </td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="Decoration" /> @Html.DisplayNameFor(model => model.Decoration)
+                                    </label>
+                                </td>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="Legacy" /> @Html.DisplayNameFor(model => model.Legacy)
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Size"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="Size" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Price"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="Price" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="ProductCode"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="ProductCode" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="AllowedToSelectId"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="AllowedToSelectId" maxlength="100" tabindex="1" style="width:300px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input disabled="disabled" readonly class="form-check-input" asp-for="UpChargeForLegacy" /> @Html.DisplayNameFor(model => model.UpChargeForLegacy)
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="UpChargeAmount"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="UpChargeAmount" class="form-control" />
+                                </td>
+                            </tr>
 
-                            <table>
-                                <tr>
-                                    <td>
-                                        <label class="titleLabel" asp-for="Description"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="Description" maxlength="100" tabindex="1" style="width:300px;" />
-                                    </td>
-                                    <td></td>
-                                    <td class="form-group form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" asp-for="Ovation" /> @Html.DisplayNameFor(model => model.Ovation)
-                                        </label>
-                                    </td>
-                                    <td class="form-group form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" asp-for="Decoration" /> @Html.DisplayNameFor(model => model.Decoration)
-                                        </label>
-                                    </td>
-                                    <td class="form-group form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" asp-for="Legacy" /> @Html.DisplayNameFor(model => model.Legacy)
-                                        </label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="Size"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="Size" maxlength="100" tabindex="1" style="width:300px;" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="Price"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="Price" maxlength="100" tabindex="1" style="width:300px;" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="ProductCode"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="ProductCode" maxlength="100" tabindex="1" style="width:300px;" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="AllowedToSelectId"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="AllowedToSelectId" maxlength="100" tabindex="1" style="width:300px;" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                            <tr>
+                                <td>
+                                    <label asp-for="Color1"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="Color1" class="form-control" />
+                                </td>
 
-                                        <label asp-for="UpChargeForLegacy"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="UpChargeForLegacy" class="form-control" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label asp-for="UpChargeAmount"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="UpChargeAmount" class="form-control" />
-                                    </td>
-                                </tr>
+                                <td>
+                                    <label asp-for="Color2"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="Color2" class="form-control" />
+                                </td>
 
-                                <tr>
-                                    <td>
-                                        <label asp-for="Color1"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="Color1" class="form-control" />
-                                    </td>
-
-                                    <td>
-                                        <label asp-for="Color2"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="Color2" class="form-control" />
-                                    </td>
-
-                                    <td>
-                                        <label asp-for="PhotoImage"></label>
-                                    </td>
-                                    <td>
-                                        <input asp-for="PhotoImage" class="form-control" />
-                                    </td>
-                                </tr>
-                            </table>
-                            <hr class="vertical-space3">
-                        </div>
+                                <td>
+                                    <label asp-for="PhotoImage"></label>
+                                </td>
+                                <td>
+                                    <input asp-for="PhotoImage" class="form-control" />
+                                </td>
+                            </tr>
+                        </table>
+                        <hr class="vertical-space3">
                     </div>
-                    <hr />
-                    <div>
-                        <input type="submit" value="Save Truck Information" class="btn btn-primary" />
-                        <a asp-action="Details" asp-route-id="@Model.ProductId" class="btn btn-secondary">Back to Details Page</a>
-                    </div>
+                </div>
+                <hr />
+                <div>
+                    <input type="submit" value="Save Truck Information" class="btn btn-primary" />
+                    <a asp-action="Details" asp-route-id="@Model.ProductId" class="btn btn-secondary">Back to Details Page</a>
                 </div>
             </div>
         </form>

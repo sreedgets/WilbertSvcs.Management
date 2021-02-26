@@ -17,6 +17,7 @@ namespace WilbertVaultCompany.api.Models
             //funeralhome = new FuneralHome();
             Contacts = new HashSet<FuneralHomeContact>();
             lstCemetaries = new HashSet<Cemetary>();
+            ProductsOnOrder = new HashSet<Product>();
         }
  
 

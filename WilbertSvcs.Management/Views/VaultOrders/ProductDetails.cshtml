@@ -1,4 +1,4 @@
-﻿@model WilbertVaultCompany.api.Models.Product
+﻿@model WilbertVaultCompany.api.Models.ProductsOnVaultOrder
 
 @{
     ViewData["Title"] = "Details";
@@ -24,11 +24,9 @@
 <main role="main" class="container">
     <h1 class="mt-5">Product Details</h1>
 
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.ProductId">Edit Product</a>
-    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.ProductId">Delete Product</a>
-    @*<a class="btn btn-primary" asp-action="AddToVO" asp-route-id="@Model.VaultOrderId">Add To Order</a>*@
-
-    <a class="btn btn-primary" asp-action="Index">Go Back</a>
+    @*<a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.ProductsOnVaultOrderId">Edit Product</a>*@
+    <a class="btn btn-primary" asp-action="DeleteProductsOnVaultOrder" asp-route-id="@Model.ProductsOnVaultOrderId">Delete Product From Order</a>
+    <a class="btn btn-primary" asp-action="Details" asp-controller="Vaultorders" asp-route-id="@TempData["OrderId"] ">Go Back</a>
     <center>
         <div class="album py-5">
             <div class="container">
@@ -92,12 +90,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-
-                                    <label asp-for="UpChargeForLegacy"></label>
+                                <td class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input disabled="disabled" readonly class="form-check-input" asp-for="UpChargeForLegacy" /> @Html.DisplayNameFor(model => model.UpChargeForLegacy)
+                                    </label>
                                 </td>
-                                <td>
-                                    <input readonly asp-for="UpChargeForLegacy" class="form-control" />
                                 </td>
                             </tr>
                             <tr>

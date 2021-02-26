@@ -45,16 +45,19 @@
                                     </td>
                                     <td></td>
                                     <td class="form-group form-check">
+                                        <input type="hidden" asp-for="Ovation"/>
                                         <label class="form-check-label">
                                             <input disabled="disabled" readonly class="form-check-input" asp-for="Ovation" /> @Html.DisplayNameFor(model => model.Ovation)
                                         </label>
                                     </td>
                                     <td class="form-group form-check">
+                                        <input type="hidden" asp-for="Decoration"/>
                                         <label class="form-check-label">
                                             <input disabled="disabled" readonly class="form-check-input" asp-for="Decoration" /> @Html.DisplayNameFor(model => model.Decoration)
                                         </label>
                                     </td>
                                     <td class="form-group form-check">
+                                        <input type="hidden" asp-for="Legacy"/>
                                         <label class="form-check-label">
                                             <input disabled="disabled" readonly class="form-check-input" asp-for="Legacy" /> @Html.DisplayNameFor(model => model.Legacy)
                                         </label>
@@ -93,12 +96,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-
-                                        <label asp-for="UpChargeForLegacy"></label>
-                                    </td>
-                                    <td>
-                                        <input readonly asp-for="UpChargeForLegacy" class="form-control" />
+                                    <td class="form-group form-check">
+                                        <label class="form-check-label">
+                                            <input disabled="disabled" readonly class="form-check-input" asp-for="UpChargeForLegacy" /> @Html.DisplayNameFor(model => model.UpChargeForLegacy)
+                                        </label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -109,7 +110,8 @@
                                         <input readonly asp-for="UpChargeAmount" class="form-control" />
                                     </td>
                                 </tr>
-
+                                <input type="hidden" asp-for="Color" />
+                                <input type="hidden" asp-for="ProductCategory" />
                                 <tr>
                                     <td>
                                         <label asp-for="Color1"></label>

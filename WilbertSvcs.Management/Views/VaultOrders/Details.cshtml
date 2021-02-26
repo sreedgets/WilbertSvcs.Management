@@ -32,6 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
+                        <input type="hidden" asp-for="VaultOrderId"/>
                         <table>
                             <tbody>
                                 <tr>
@@ -243,9 +244,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
         <hr style="border: 5px solid #00446a; border-radius: 5px;" />
-        @await Component.InvokeAsync("Products", Model.VaultId)
+        @await Component.InvokeAsync("Products", Model.VaultOrderId)
         <br />
         <div>
             <table>

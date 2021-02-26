@@ -65,10 +65,13 @@ namespace WilbertSvcs.Management.Controllers
         // GET: VaultOrders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
+    
+            TempData["OrderId"] = id;
 
             var vaultOrder = await _context.VaultOrder
                 .FirstOrDefaultAsync(m => m.VaultOrderId == id);
@@ -76,8 +79,8 @@ namespace WilbertSvcs.Management.Controllers
             {
                 return NotFound();
             }
-
-            if(vaultOrder.CemetaryId != 0)
+            
+            if (vaultOrder.CemetaryId != 0)
             {
                 vaultOrder.CemetaryName = (from c in _context.Cemetary
                                            where c.CemetaryId == vaultOrder.CemetaryId
@@ -88,7 +91,7 @@ namespace WilbertSvcs.Management.Controllers
             vaultOrder.Location = Enum.GetName(typeof(FuneralLocation), Int32.Parse(vaultOrder.Location));
             vaultOrder.Salutation = Enum.GetName(typeof(Salutations), Int32.Parse(vaultOrder.Salutation));
             vaultOrder.Suffix = Enum.GetName(typeof(Suffix), Int32.Parse(vaultOrder.Suffix));
-
+          
             return View(vaultOrder);
         }
 
@@ -432,6 +435,34 @@ namespace WilbertSvcs.Management.Controllers
             return View(vaultOrder);
         }
 
+        // GET: VaultOrders/Delete/5
+        public async Task<IActionResult> DeleteProductsOnVaultOrder(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var poo = await _context.ProductsOnVaultOrder.FirstOrDefaultAsync(vo => vo.ProductsOnVaultOrderId == id);
+
+            if (poo == null)
+                return NotFound();
+
+            return View(poo);
+        }
+
+        // POST: VaultOrders/Delete/5
+        [HttpPost, ActionName("DeleteProductsOnVaultOrder")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteProductsOnVaultOrderConfirmed(int id)
+        {
+            var poo = await _context.ProductsOnVaultOrder.FindAsync(id);
+            _context.ProductsOnVaultOrder.Remove(poo);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details), new { ID = poo.VaultOrderId });
+        }
+
+
         // POST: VaultOrders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -455,8 +486,8 @@ namespace WilbertSvcs.Management.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+            var product = await _context.ProductsOnVaultOrder
+                .FirstOrDefaultAsync(m => m.ProductsOnVaultOrderId == id);
             if (product == null)
             {
                 return NotFound();

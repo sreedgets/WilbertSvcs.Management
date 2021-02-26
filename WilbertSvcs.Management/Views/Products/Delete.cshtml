@@ -87,12 +87,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-
-                        <label asp-for="UpChargeForLegacy"></label>
-                    </td>
-                    <td>
-                        <input readonly asp-for="UpChargeForLegacy" class="form-control" />
+                    <td class="form-group form-check">
+                        <label class="form-check-label">
+                            <input disabled="disabled" readonly class="form-check-input" asp-for="UpChargeForLegacy" /> @Html.DisplayNameFor(model => model.UpChargeForLegacy)
+                        </label>
                     </td>
                 </tr>
                 <tr>
@@ -138,4 +136,4 @@
 
     </center>
 </main>
-v>
+

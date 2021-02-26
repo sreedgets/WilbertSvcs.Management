@@ -19,16 +19,16 @@ namespace WilbertSvcs.Management.ViewComponents
 
         public IViewComponentResult Invoke(int id)
         {
-            List<Product> lstProd = new List<Product>();
+            List<ProductsOnVaultOrder> lstProd = new List<ProductsOnVaultOrder>();
 
 
-            lstProd = (from prods in _context.Product
-                       where prods.ProductId == id
+            lstProd = (from prods in _context.ProductsOnVaultOrder
+                       where prods.VaultOrderId == id
                        select prods).ToList();
 
             foreach(var item in lstProd)
-                item.Color = Enum.GetName(typeof(VaultColor), Int32.Parse(item.Color));
-
+                item.Color = Enum.GetName(typeof(VaultColor), Int32.Parse(item.Color)) == "Choose" ? "Not Selected" : Enum.GetName(typeof(VaultColor), Int32.Parse(item.Color));
+            
             return View(lstProd);
         }
     }

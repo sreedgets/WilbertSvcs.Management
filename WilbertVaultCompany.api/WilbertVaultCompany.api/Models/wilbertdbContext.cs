@@ -45,6 +45,8 @@ namespace WilbertVaultCompany.api.Models
 
         public DbSet<WilbertVaultCompany.api.Models.Cemetary> Cemetary { get; set; }
 
+        public DbSet<WilbertVaultCompany.api.Models.ProductsOnVaultOrder> ProductsOnVaultOrder { get; set; }
+
     }
 }
 

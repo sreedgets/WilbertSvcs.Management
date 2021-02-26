@@ -63,7 +63,8 @@ namespace WilbertSvcs.Management.Controllers
         // POST: Products/AddToVaultOrder/int VaultOrderId
         [HttpPost]
         public async Task<IActionResult> AddToVaultOrder(int Id, [Bind("ProductId,Description,Ovation,Decoration,Legacy,Size,Price,ProductCode," +
-            "AllowedToSelectId,UpChargeForLegacy,UpChargeAmount,ProductCategory,Color,Color1,Color2,Comments,PhotoImage,VaultOrderId")] Product product)
+            "AllowedToSelectId,UpChargeForLegacy,UpChargeAmount,ProductCategory," +
+            "Color,Color1,Color2,Comments,PhotoImage,VaultOrderId")] Product product)
         {
             if (Id != 0)
             {
@@ -71,10 +72,28 @@ namespace WilbertSvcs.Management.Controllers
                 var VO = await _context.VaultOrder.FindAsync(Id);
                 if (VO != null)
                 {
-                    VO.VaultId = product.ProductId;
+                    var POVO = new ProductsOnVaultOrder();
+                    POVO.VaultOrderId = VO.VaultOrderId;
+                    POVO.ProductCode = product.ProductCode;
+                    POVO.ProductCategory = product.ProductCategory;
+                    POVO.VenetianCarapace = product.VenetianCarapace;
+                    POVO.Description = product.Description;
+                    POVO.Size = product.Size;
+                    POVO.Price = product.Price;
+                    POVO.AllowedToSelectId = product.AllowedToSelectId;
+                    POVO.UpChargeForLegacy = product.UpChargeForLegacy;
+                    POVO.UpChargeAmount = product.UpChargeAmount;
+                    POVO.Legacy = product.Legacy;
+                    POVO.Decoration = product.Decoration;
+                    POVO.Ovation = product.Ovation;
+                    POVO.Color = product.Color;
+                    POVO.Color1 = product.Color1;
+                    POVO.Color2 = product.Color2;
+                    POVO.PhotoImage = product.PhotoImage;
+
                     try
                     {
-                        _context.Update(VO);
+                        _context.ProductsOnVaultOrder.Add(POVO);
                         await _context.SaveChangesAsync();
                     }
                     catch (DbUpdateConcurrencyException)
@@ -231,9 +250,9 @@ namespace WilbertSvcs.Management.Controllers
         {
             return _context.Product.Any(e => e.ProductId == id);
         }
-        private bool VaultOrderExists(int id)
+        private bool POVOExists(int id)
         {
-            return _context.VaultOrder.Any(e => e.VaultOrderId == id);
+            return _context.ProductsOnVaultOrder.Any(e => e.ProductsOnVaultOrderId == id);
         }
     }
 }

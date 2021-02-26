@@ -8,7 +8,7 @@ namespace WilbertVaultCompany.api.Enums
     public enum FuneralLocation
     {
         Graveside,
-        [Display(Name = "Funersl Home")]
+        [Display(Name = "Funeral Home")]
         FuneralHome,
         Church,
         [Display(Name ="Service,  Lunch Before Burial")]

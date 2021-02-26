@@ -1,0 +1,149 @@
+﻿@model WilbertVaultCompany.api.Models.ProductsOnVaultOrder
+
+@{
+    ViewData["Title"] = "DeleteProductsOnVaultOrder";
+}
+
+<h1>DeleteProductsOnVaultOrder</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+
+    <title>Funeral Home</title>
+
+    <link rel="canonical" href="#">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sticky-footer.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+</head>
+
+<header>
+    <!-- Fixed navbar -->
+    @await Component.InvokeAsync("Dashboard")
+</header>
+
+<!-- Begin page content -->
+<main role="main" id="fhd" class="container">
+    <center>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row">
+                    <input type="hidden" asp-for="ProductsOnVaultOrderId" />
+                    <table>
+                        <tr>
+                            <td>
+                                <label class="titleLabel" asp-for="Description"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Description" maxlength="100" tabindex="1" style="width:300px;" />
+                            </td>
+                            <td></td>
+                            <td class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input disabled="disabled" readonly class="form-check-input" asp-for="Ovation" /> @Html.DisplayNameFor(model => model.Ovation)
+                                </label>
+                            </td>
+                            <td class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input disabled="disabled" readonly class="form-check-input" asp-for="Decoration" /> @Html.DisplayNameFor(model => model.Decoration)
+                                </label>
+                            </td>
+                            <td class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input disabled="disabled" readonly class="form-check-input" asp-for="Legacy" /> @Html.DisplayNameFor(model => model.Legacy)
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="Size"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Size" maxlength="100" tabindex="1" style="width:300px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="Price"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Price" maxlength="100" tabindex="1" style="width:300px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="ProductCode"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="ProductCode" maxlength="100" tabindex="1" style="width:300px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="AllowedToSelectId"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="AllowedToSelectId" maxlength="100" tabindex="1" style="width:300px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input disabled="disabled" readonly class="form-check-input" asp-for="UpChargeForLegacy" /> @Html.DisplayNameFor(model => model.UpChargeForLegacy)
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="UpChargeAmount"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="UpChargeAmount" class="form-control" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label asp-for="Color1"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Color1" class="form-control" />
+                            </td>
+
+                            <td>
+                                <label asp-for="Color2"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="Color2" class="form-control" />
+                            </td>
+
+                            <td>
+                                <label asp-for="PhotoImage"></label>
+                            </td>
+                            <td>
+                                <input readonly asp-for="PhotoImage" class="form-control" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <hr />
+            <br />
+            <form asp-action="DeleteProductsOnVaultOrder">
+                <input type="hidden" asp-for="ProductsOnVaultOrderId" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                <a asp-action="Details" asp-route-id="@Model.VaultOrderId" class="btn btn-secondary">Back to List</a>
+            </form>
+        </div>        
+    </center>
+</main>
