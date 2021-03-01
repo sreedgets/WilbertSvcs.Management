@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WilbertVaultCompany.api.Enums;
 using WilbertVaultCompany.api.Models;
+using WilbertVaultCompany.api.Data;
 
 namespace WilbertVaultCompany.api.Controllers
 {
@@ -15,50 +16,19 @@ namespace WilbertVaultCompany.api.Controllers
     public class FuneralHomesAPIController : ControllerBase
     {
         private readonly wilbertdbContext _context;
+        private readonly FuneralHomeRepo _funeralHomeRepo;
 
-        public FuneralHomesAPIController(wilbertdbContext context)
+        public FuneralHomesAPIController(wilbertdbContext context, FuneralHomeRepo funeralHomeRepo)
         {
             _context = context;
+            _funeralHomeRepo = funeralHomeRepo;
         }
 
         // GET: api/FuneralHomes
         [HttpGet]
-        public async Task<IQueryable<FuneralHome>> GetFuneralHomes()
-        {
-            //Get list of funeral homes
-            IQueryable<FuneralHome> fhList = from fh in _context.FuneralHomes orderby fh.Name
-                                             select fh;
-            _context.Database.CloseConnection();
-            //Iterate through each item in the list
-            foreach (var item in fhList)
-            {
-                //Instantiate a parent
-                var pfh = new ParentFuneralHome();
-                if (item.ParentFuneralHomeId != 0 && item.ParentFuneralHomeId != null)
-                    pfh = await _context.ParentFuneralHomes.FindAsync(item.ParentFuneralHomeId);
-
-                if (item.ParentName != null)
-                {
-                    if (pfh != null)
-                        item.ParentName = pfh.ParentFuneralhomeName.Trim();
-                }
-
-                // Get Plants
-                //var additives = p.Additives.ToList();
-                var plants = item.Plants.ToList();
-
-                foreach (var p in plants)
-                {
-                    if (p.PlantId == item.PlantId)
-                    {
-                        item.Plants.Add(p);
-                        item.PlantName = p.PlantName;
-                    }
-                }
-
-                item.State = Enum.GetName(typeof(States), Int32.Parse(item.State));
-            }
-            return fhList;
+        public async Task<IEnumerable<FuneralHome>> GetFuneralHomes()
+        { 
+            return await _funeralHomeRepo.ListAllFuneralHomesAsync();
         }
 
         // GET: api/FuneralHomes/5
