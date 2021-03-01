@@ -27,7 +27,7 @@
 <main role="main" class="action">
     <h1 class="mt-5">Employee Details</h1>
     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.EmployeeId">Edit Employee</a>
-    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model.EmployeeId">Delete Entry</a>
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.EmployeeId">Delete Entry</a>
     <a class="btn btn-primary" asp-action="Index">Go Back</a>
     <center>
         <form asp-action="Create" method="post">
